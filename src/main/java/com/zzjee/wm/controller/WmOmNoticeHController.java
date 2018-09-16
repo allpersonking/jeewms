@@ -536,7 +536,11 @@ public class WmOmNoticeHController extends BaseController {
 				String datecuso[]= wmOmNoticeH.getOcusCode().split("-");
 				MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", datecuso[0]);
 				if (mdcusother != null) {
+					wmOmNoticeH.setOcusCode(datecuso[0]);
 					wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
+				}else{
+					wmOmNoticeH.setOcusName(wmOmNoticeH.getOcusCode());
+
 				}
 			}
 
