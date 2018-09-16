@@ -1,39 +1,26 @@
-# jeewms
+# wms
+QQ群：335607153
+测试系统地址http://218.5.177.99/wmstest   用户名：test  密码：123456
+android app也已经开源，近期更新会比较频繁。
+大家看到了，star一下，谢谢，本团队会持续更新，一直开源！
+欢迎喜欢的朋友一起来优化功能。
+新增了第三方接口功能，可连接平台：1，SAP  HANA;2,SAP ERP(RFC方式，JAVA代码使用反射，支持字段配置化）；3，用友OPENAPI；4，UAS ERP；5,百胜E3；6，EXCEL导入
 
-#### 项目介绍
-{**以下是码云平台说明，您可以替换为您的项目简介**
-码云是开源中国推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+# 任务计划(TODO):
+近期新增功能：无硬件电子拣选（2018-10-07完成）
 
-#### 软件架构
-软件架构说明
+近期修改功能：在线报表视图化（2018-09-20 已完成）
 
+近期修改功能：APP增加波次操作和美化（2018-10-07）
 
-#### 安装教程
+近期修改功能：基础平台升级（2018-09-20）
 
-1. xxxx
-2. xxxx
-3. xxxx
+# 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/zzwms/issues
 
-#### 使用说明
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103719_3c2482c0_544004.png "home1.png")
 
-1. xxxx
-2. xxxx
-3. xxxx
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103730_85ceeab3_544004.png "home2.png")
 
-#### 参与贡献
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103740_dc86f33a_544004.png "home3.png")
 
-1. Fork 本项目
-2. 新建 Feat_xxx 分支
-3. 提交代码
-4. 新建 Pull Request
-
-
-#### 码云特技
-
-1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103654_01d5732d_544004.png "home4.png")

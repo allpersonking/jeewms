@@ -1,0 +1,102 @@
+ALTER TABLE `zzjee`.`wm_in_qm_i` 
+CHANGE COLUMN `cus_name` `cus_name` VARCHAR(145) NULL DEFAULT NULL ,
+CHANGE COLUMN `goods_name` `goods_name` VARCHAR(145) NULL DEFAULT NULL ;
+
+
+
+
+ALTER TABLE `zzjee`.`wm_im_notice_i` 
+ADD COLUMN `goods_name` VARCHAR(145) NULL AFTER `base_qmcount`,
+ADD COLUMN `other_id` VARCHAR(145) NULL AFTER `goods_name`;
+
+ALTER TABLE `zzjee`.`wm_om_notice_i` 
+ADD COLUMN `goods_name` VARCHAR(145) NULL AFTER `plan_sta`,
+ADD COLUMN `other_id` VARCHAR(145) NULL AFTER `goods_name`;
+
+
+ALTER TABLE `zzjee`.`wm_to_down_goods` 
+ADD COLUMN `goods_name` VARCHAR(145) NULL AFTER `base_goodscount`;
+ALTER TABLE `zzjee`.`wm_to_up_goods` 
+ADD COLUMN `goods_name` VARCHAR(145) NULL AFTER `base_goodscount`;
+
+
+CREATE TABLE `md_cus_other` (
+  `id` varchar(36) NOT NULL COMMENT '主键',
+  `create_name` varchar(50) DEFAULT NULL COMMENT '创建人名称',
+  `create_by` varchar(50) DEFAULT NULL COMMENT '创建人登录名称',
+  `create_date` datetime DEFAULT NULL COMMENT '创建日期',
+  `update_name` varchar(50) DEFAULT NULL COMMENT '更新人名称',
+  `update_by` varchar(50) DEFAULT NULL COMMENT '更新人登录名称',
+  `update_date` datetime DEFAULT NULL COMMENT '更新日期',
+  `sys_org_code` varchar(50) DEFAULT NULL COMMENT '所属部门',
+  `sys_company_code` varchar(50) DEFAULT NULL COMMENT '所属公司',
+   `suo_shu_ke_hu` varchar(32) DEFAULT NULL COMMENT '所属客户',
+  `zhong_wen_qch` varchar(100) DEFAULT NULL COMMENT '中文全称',
+  `zhu_ji_ma` varchar(32) DEFAULT NULL COMMENT '助记码',
+  `ke_hu_jian_cheng` varchar(32) DEFAULT NULL COMMENT '客户简称',
+  `ke_hu_bian_ma` varchar(32) DEFAULT NULL COMMENT '客户编码',
+  `ke_hu_ying_wen` varchar(100) DEFAULT NULL COMMENT '客户英文名称',
+  `zeng_yong_qi` varchar(32) DEFAULT NULL COMMENT '曾用企业代码',
+  `zeng_yong_qi_ye` varchar(100) DEFAULT NULL COMMENT '曾用企业名称',
+  `ke_hu_zhuang_tai` varchar(32) DEFAULT NULL COMMENT '客户状态',
+  `xing_ye_fen_lei` varchar(32) DEFAULT NULL COMMENT '企业属性',
+  `ke_hu_deng_ji` varchar(32) DEFAULT NULL COMMENT '客户等级',
+  `suo_shu_xing_ye` varchar(32) DEFAULT NULL COMMENT '所属行业',
+  `shou_qian_ri_qi` datetime DEFAULT NULL COMMENT '首签日期',
+  `zhong_zhi_he_shi_jian` datetime DEFAULT NULL COMMENT '终止合作时间',
+  `shen_qing_shi_jian` datetime DEFAULT NULL COMMENT '申请时间',
+  `ke_hu_shu_xing` varchar(32) DEFAULT NULL COMMENT '客户属性',
+  `gui_shu_zu_zh` varchar(32) DEFAULT NULL COMMENT '归属组织代码',
+  `gui_shu_sheng` varchar(32) DEFAULT NULL COMMENT '归属省份代码',
+  `gui_shu_shi_dai` varchar(32) DEFAULT NULL COMMENT '归属市代码',
+  `gui_shu` varchar(32) DEFAULT NULL COMMENT '归属县区代码',
+  `di_zhi` varchar(132) DEFAULT NULL COMMENT '地址',
+  `you_zheng_bian_ma` varchar(32) DEFAULT NULL COMMENT '邮政编码',
+  `zhu_lian_xi_ren` varchar(32) DEFAULT NULL COMMENT '主联系人',
+  `dian_hua` varchar(32) DEFAULT NULL COMMENT '电话',
+  `shou_ji` varchar(32) DEFAULT NULL COMMENT '手机',
+  `chuan_zhen` varchar(32) DEFAULT NULL COMMENT '传真',
+  `Emaildi_zhi` varchar(32) DEFAULT NULL COMMENT 'Email地址',
+  `wang_ye_di_zhi` varchar(32) DEFAULT NULL COMMENT '网页地址',
+  `fa_ren_dai_biao` varchar(32) DEFAULT NULL COMMENT '法人代表',
+  `fa_ren_shen_fen` varchar(32) DEFAULT NULL COMMENT '法人身份证号',
+  `zhu_ce_zi_jin` varchar(32) DEFAULT NULL COMMENT '注册资金万元',
+  `bi_bie` varchar(32) DEFAULT NULL COMMENT '币别',
+  `ying_ye_zhi_zhao` varchar(32) DEFAULT NULL COMMENT '营业执照号',
+  `shui_wu_deng` varchar(32) DEFAULT NULL COMMENT '税务登记证号',
+  `zu_zhi_ji_gou` varchar(32) DEFAULT NULL COMMENT '组织机构代码证',
+  `dao_lu_yun_shu` varchar(32) DEFAULT NULL COMMENT '道路运输经营许可证',
+  `zhu_ying_ye_wu` varchar(32) DEFAULT NULL COMMENT '主营业务',
+  `he_yi_xiang` varchar(32) DEFAULT NULL COMMENT '合作意向',
+  `pi_zhun_ji_guan` varchar(32) DEFAULT NULL COMMENT '批准机关',
+  `pi_zhun_wen_hao` varchar(32) DEFAULT NULL COMMENT '批准文号',
+  `zhu_ce_ri_qi` datetime DEFAULT NULL COMMENT '注册日期',
+  `bei_zhu` varchar(128) DEFAULT NULL COMMENT '备注',
+  `zhu_lian_xi_ren1` varchar(32) DEFAULT NULL COMMENT '联系人1',
+  `dian_hua1` varchar(32) DEFAULT NULL COMMENT '电话1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `zzjee`.`wm_im_notice_h` 
+ADD COLUMN `sup_code` VARCHAR(45) NULL COMMENT '供应商编码' AFTER `WHERE_CON`,
+ADD COLUMN `sup_name` VARCHAR(145) NULL COMMENT '供应商名称' AFTER `sup_code`;
+
+
+
+ALTER TABLE `zzjee`.`wm_om_notice_h` 
+ADD COLUMN `ocus_code` VARCHAR(45) NULL COMMENT '三方客户' AFTER `order_type_code`,
+ADD COLUMN `ocus_name` VARCHAR(145) NULL COMMENT '三方客户名称' AFTER `ocus_code`;
+
+
+ALTER TABLE `zzjee`.`wm_om_notice_h` 
+ADD COLUMN `IM_CUS_CODE` VARCHAR(45) NULL AFTER `ocus_name`;
+
+
+
+ALTER TABLE `zzjee`.`wm_im_notice_h` 
+CHANGE COLUMN `im_beizhu` `im_beizhu` VARCHAR(320) NULL DEFAULT NULL COMMENT '备注' ;
+
+
+ALTER TABLE `zzjee`.`wm_om_notice_h` 
+CHANGE COLUMN `om_beizhu` `om_beizhu` VARCHAR(320) NULL DEFAULT NULL COMMENT '备注' ;
+
