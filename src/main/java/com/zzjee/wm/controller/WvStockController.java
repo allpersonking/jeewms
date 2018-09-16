@@ -274,7 +274,6 @@ public class WvStockController extends BaseController {
 	/**
 	 * 添加生成盘点单
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -473,6 +472,7 @@ public class WvStockController extends BaseController {
 	public AjaxJson doBatchStttpzy(String ids, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
+		String moveTinid = request.getParameter("moveTinid");
 		message = "生成托盘转移单成功";
 		try {
 			for (String id : ids.split(",")) {
@@ -494,7 +494,12 @@ public class WvStockController extends BaseController {
 					wmtomove.setGoodsUnit(t.getGoodsUnit());
 					wmtomove.setBaseGoodscount(t.getGoodsQua().toString());
 					wmtomove.setBaseUnit(t.getGoodsUnit());
-					wmtomove.setMoveSta("计划中");
+					if(StringUtil.isEmpty(moveTinid)){
+						wmtomove.setMoveSta("计划中");
+					}else{
+						wmtomove.setMoveSta("已完成");
+						wmtomove.setTinId(moveTinid);
+					}
 					wmtomove.setTinFrom(t.getBinId());
 					systemService.save(wmtomove);
 					systemService.addLog(message, Globals.Log_Type_UPDATE,
@@ -562,7 +567,6 @@ public class WvStockController extends BaseController {
 	/**
 	 * 更新生成盘点单
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

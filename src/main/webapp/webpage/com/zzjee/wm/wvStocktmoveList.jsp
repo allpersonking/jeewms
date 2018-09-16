@@ -23,9 +23,9 @@
     <t:dgCol title="单位"  field="goodsUnit"    queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="状态"  field="moveSta"    queryMode="group"  width="50"></t:dgCol>
 
-      <t:dgFunOpt title="生成托盘转移" funname="dostttpzy(id)"  urlclass="ace_button"  exp="moveSta#ne#计划中"  />
-      <t:dgToolBar title="批量生成托盘转移"   url="wvStockController.do?doBatchStttpzy" funname="dosttALLSelect"></t:dgToolBar>
-   
+      <t:dgFunOpt title="生成托盘转移任务" funname="dostttpzy(id)"  urlclass="ace_button"  exp="moveSta#ne#计划中"  />
+      <t:dgToolBar title="批量生成托盘转移任务"     funname="dosttALLSelect"></t:dgToolBar>
+      <t:dgToolBar title="立即批量转移"     funname="dosttokALLSelect"></t:dgToolBar>
 <%--    <t:dgDelOpt title="删除" url="wvStockController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/> --%>
 <%--    <t:dgToolBar title="录入" icon="icon-add" url="wvStockController.do?goAdd" funname="add"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="编辑" icon="icon-edit" url="wvStockController.do?goUpdate" funname="update"></t:dgToolBar> --%>
@@ -36,6 +36,14 @@
 
 <%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
   </t:datagrid>
+      <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
+          <span style="vertical-align:middle;display:-moz-inline-box;display:inline-block;width: 90px;text-align:right;" title="批量托盘">批量托盘为: </span>
+
+
+          <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
+          托盘：<input type="text" name="moveTinid"    class="form-control"   style="width: 100px; height: 30px;">
+
+      </div>
   </div>
  </div>
  <script src = "webpage/com/zzjee/wm/wvStockList.js"></script>		
@@ -43,8 +51,23 @@
  $(document).ready(function(){
 
  });
- 
- function dosttALLSelect(){
+
+
+ function dosttokALLSelect() {
+     var moveTinid;
+     moveTinid = $('input[name="moveTinid"]').attr("value");
+     if(moveTinid==""){
+         alert("托盘不能为空");
+     }else{
+         dosttALLSelectbatch(moveTinid);
+     }
+ }
+
+ function dosttALLSelect() {
+     dosttALLSelectbatch("");
+ }
+
+ function dosttALLSelectbatch(moveTinid){
 
 	 var ids = [];
 	 var rows = $('#wvStockList').datagrid('getSelections');
@@ -55,7 +78,7 @@
 			 	ids.push(rows[i].id);
 		 }
 	 }
-		var url = "wvStockController.do?doBatchStttpzy&ids="+ids;
+		var url = "wvStockController.do?doBatchStttpzy&ids="+ids+"&moveTinid="+moveTinid;
 		$.ajax({
 			async : false,
 			cache : false,

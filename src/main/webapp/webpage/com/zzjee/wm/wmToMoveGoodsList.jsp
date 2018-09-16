@@ -35,14 +35,14 @@
    <t:dgDelOpt title="删除" url="wmToMoveGoodsController.do?doDel&id={id}" urlclass="ace_button"  exp="moveSta#ne#已完成"  urlfont="fa-trash-o"/>
 <%--    <t:dgToolBar title="录入" icon="icon-add" url="wmToMoveGoodsController.do?goAdd" funname="add"></t:dgToolBar> --%>
    <t:dgToolBar title="编辑" icon="icon-edit" url="wmToMoveGoodsController.do?goUpdate" funname="update" ></t:dgToolBar>
-      <t:dgToolBar title="质押" icon="icon-edit" url="wmToMoveGoodsController.do?goUpdate" funname="update" ></t:dgToolBar>
+      <%--<t:dgToolBar title="质押" icon="icon-edit" url="wmToMoveGoodsController.do?goUpdate" funname="update" ></t:dgToolBar>--%>
 
 
       <t:dgToolBar title="选择批量更改" icon="icon-edit"  funname="editRow"></t:dgToolBar>
       <t:dgToolBar  title="批量保存" icon="icon-save" url="wmToMoveGoodsController.do?saveRows" funname="saveData"></t:dgToolBar>
       <t:dgToolBar   title="取消批量更改" icon="icon-undo" funname="reject"></t:dgToolBar>
 
-<%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmToMoveGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
+    <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmToMoveGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>
    <t:dgToolBar title="查看" icon="icon-search" url="wmToMoveGoodsController.do?goUpdate" funname="detail"></t:dgToolBar>
 <%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar> --%>
    <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>

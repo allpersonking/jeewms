@@ -14,6 +14,7 @@ import net.sf.json.JSONObject;
 
 import org.jeecgframework.core.online.def.CgReportConstant;
 import org.jeecgframework.core.util.DBTypeUtil;
+import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
 
 /**
@@ -62,7 +63,13 @@ public class CgReportQueryParamUtil
 					value = value.replaceAll("\\*", "%");
 					params.put(filedName, CgReportConstant.OP_LIKE+value);
 				}else{
-					params.put(filedName, CgReportConstant.OP_EQ+value);
+					if(ResourceUtil.getConfigByName("sysfuzseach").equals("on")){
+						params.put(filedName, CgReportConstant.OP_LIKE+ "'"+"%"+value+"%"+ "'");//模糊查询
+
+					}else{
+						params.put(filedName, CgReportConstant.OP_EQ+value);//模糊查询
+
+					}
 				}
 			}
 		}else if("group".equals(queryMode)){
@@ -117,7 +124,6 @@ public class CgReportQueryParamUtil
 	/**
 	 * 将结果集转化为列表json格式(不含分页信息)
 	 * @param result 结果集
-	 * @param size 总大小
 	 * @return 处理好的json格式
 	 */
 	public static String getJson(List<Map<String, Object>> result){
@@ -199,8 +205,18 @@ public class CgReportQueryParamUtil
 				//if(ResourceUtil.fuzzySearch&&(!value.contains("*"))){
 				//	value="*"+value+"*";
 				//}
+				if(ResourceUtil.getConfigByName("sysfuzseach").equals("on")){
+					if(value.contains("*")){
+						result = "'" +value+ "'";
+					}else{
+						result =  value;
+					}
 
-				result = "'" +value+ "'";
+				}else{
+					result = "'" +value+ "'";
+				}
+
+
 			}else if(CgReportConstant.TYPE_DATE.equalsIgnoreCase(fieldType)){
 				result = getDateFunction(value, "yyyy-MM-dd");
 			}else if(CgReportConstant.TYPE_DOUBLE.equalsIgnoreCase(fieldType)){

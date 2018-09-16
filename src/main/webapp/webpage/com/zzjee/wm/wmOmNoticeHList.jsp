@@ -49,7 +49,7 @@
     <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>
    <t:dgToolBar operationCode="uasimpomn" title="第三方系统导入" icon="icon-put" funname="otherimp"></t:dgToolBar>
 
-   <%--<t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
+   <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
    <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">

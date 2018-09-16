@@ -36,29 +36,24 @@ public class WmToDownGoodsEntity implements java.io.Serializable {
 	@Excel(name="创建人名称")
 	private java.lang.String createName;
 	/**创建人登录名称*/
-	@Excel(name="创建人登录名称")
 	private java.lang.String createBy;
 	/**创建日期*/
-	@Excel(name="创建日期",format = "yyyy-MM-dd hh:mm:ss")
 	private java.util.Date createDate;
 	/**更新人名称*/
-	@Excel(name="更新人名称")
 	private java.lang.String updateName;
 	/**更新人登录名称*/
-	@Excel(name="更新人登录名称")
 	private java.lang.String updateBy;
 	/**更新日期*/
-	@Excel(name="更新日期",format = "yyyy-MM-dd hh:mm:ss")
 	private java.util.Date updateDate;
 	/**所属部门*/
-	@Excel(name="所属部门")
 	private java.lang.String sysOrgCode;
 	/**所属公司*/
-	@Excel(name="所属公司")
 	private java.lang.String sysCompanyCode;
 	/**商品编码*/
 	@Excel(name="商品编码")
 	private java.lang.String goodsId;
+	@Excel(name="商品名称")
+	private java.lang.String goodsName;
 	/**数量*/
 	@Excel(name="数量")
 	private java.lang.String goodsQua;
@@ -81,7 +76,6 @@ public class WmToDownGoodsEntity implements java.io.Serializable {
 	@Excel(name="生产日期")
 	private java.lang.String goodsProData;
 	/**批次*/
-	@Excel(name="批次")
 	private java.lang.String goodsBatch;
 	/**作业类型*/
 	@Excel(name="作业类型")
@@ -107,8 +101,7 @@ public class WmToDownGoodsEntity implements java.io.Serializable {
 	/**基本单位数量*/
 	@Excel(name="基本单位数量")
 	private java.lang.String baseGoodscount;
-	@Excel(name="商品名称")
-	private java.lang.String goodsName;
+
 	/**客户订单号*/
 	@Excel(name="客户订单号")
 	private java.lang.String imCusCode;

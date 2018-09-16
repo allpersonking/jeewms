@@ -174,7 +174,8 @@ public class WmToMoveGoodsController extends BaseController {
 				WmToMoveGoodsEntity wmToMoveGoods = systemService.getEntity(WmToMoveGoodsEntity.class, 
 				id
 				);
-				wmToMoveGoodsService.delete(wmToMoveGoods);
+				wmToMoveGoods.setMoveSta("已删除");
+				wmToMoveGoodsService.updateEntitie(wmToMoveGoods);
 				systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 			}
 		}catch(Exception e){
