@@ -67,7 +67,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: wv_gi
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-05-30 20:21:50
  * @version V1.0   
  *

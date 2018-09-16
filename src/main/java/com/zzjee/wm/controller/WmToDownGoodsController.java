@@ -72,7 +72,7 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
 /**
  * @Title: Controller
  * @Description: 下架商品明细
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-25 10:40:39
  * @version V1.0
  *

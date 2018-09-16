@@ -1,4 +1,4 @@
-package com.zzjee.yongyoubase.openapi4j.platform;
+/**     * @Title: Controller  * @Description: 出货通知  * @author erzhongxmu  * @date 2017-08-15 23:18:59  * @version V1.0     *  */  package com.zzjee.yongyoubase.openapi4j.platform;
 
 
 import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;

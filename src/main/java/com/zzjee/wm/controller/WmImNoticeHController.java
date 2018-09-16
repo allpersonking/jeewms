@@ -109,7 +109,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * @Title: Controller
  * @Description: 进货通知抬头
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:17:33
  * @version V1.0
  *

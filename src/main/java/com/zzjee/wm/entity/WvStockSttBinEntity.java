@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 储位盘点
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-11-20 22:48:23
  * @version V1.0   
  *

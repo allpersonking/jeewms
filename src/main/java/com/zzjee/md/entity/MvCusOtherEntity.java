@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: mv_cus_other
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-09-16 09:22:47
  * @version V1.0   
  *

@@ -81,7 +81,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 月台进出
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:20:14
  * @version V1.0   
  *

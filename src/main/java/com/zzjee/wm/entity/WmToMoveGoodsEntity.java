@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 库内转移
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-11 15:25:15
  * @version V1.0   
  *

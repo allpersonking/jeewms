@@ -20,7 +20,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 上架明细
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-20 17:57:54
  * @version V1.0   
  *

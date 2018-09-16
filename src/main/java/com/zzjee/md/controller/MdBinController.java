@@ -83,7 +83,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 仓位定义
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:17:02
  * @version V1.0   
  *

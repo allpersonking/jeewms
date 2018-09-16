@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 费用名称
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-28 10:46:28
  * @version V1.0   
  *

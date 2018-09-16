@@ -68,7 +68,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 销售排行
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-07-16 15:23:55
  * @version V1.0   
  *

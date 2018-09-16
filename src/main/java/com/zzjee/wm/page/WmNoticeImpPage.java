@@ -12,7 +12,7 @@ import java.util.List;
 /**   
  * @Title: Entity
  * @Description: 导入
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-11 15:08:34
  * @version V1.0   
  *

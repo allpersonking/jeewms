@@ -105,7 +105,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller
  * @Description: 出货通知
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:18:59
  * @version V1.0   
  *

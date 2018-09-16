@@ -74,7 +74,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 库存转移
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-08 21:03:22
  * @version V1.0   
  *

@@ -20,7 +20,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 预约通知项目
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-11 15:08:34
  * @version V1.0   
  *

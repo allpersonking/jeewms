@@ -74,7 +74,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller
  * @Description: 上架明细
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:18:14
  * @version V1.0   
  *

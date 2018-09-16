@@ -68,7 +68,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: rp_wm_up_and_down
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-09-11 07:47:13
  * @version V1.0   
  *

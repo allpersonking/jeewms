@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: wv_notice
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-05-30 20:21:05
  * @version V1.0   
  *

@@ -22,7 +22,7 @@ import org.jeecgframework.poi.excel.annotation.ExcelCollection;
 /**   
  * @Title: Entity
  * @Description: 预约进货抬头
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-11 15:08:34
  * @version V1.0   
  *

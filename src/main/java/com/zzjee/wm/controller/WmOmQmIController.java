@@ -72,7 +72,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 下架任务
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-11 14:57:43
  * @version V1.0   
  *

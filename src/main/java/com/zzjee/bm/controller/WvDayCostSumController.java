@@ -54,7 +54,7 @@ import com.zzjee.bm.service.WvDayCostSumServiceI;
 /**   
  * @Title: Controller  
  * @Description: wv_day_cost_sum
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-10-21 21:08:13
  * @version V1.0   
  *

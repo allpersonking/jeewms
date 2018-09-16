@@ -81,7 +81,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * @Title: Controller
  * @Description: 生成盘点单
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-08 22:26:27
  * @version V1.0
  *

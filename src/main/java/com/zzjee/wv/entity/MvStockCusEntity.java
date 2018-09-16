@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 客户库存
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-17 21:45:28
  * @version V1.0   
  *

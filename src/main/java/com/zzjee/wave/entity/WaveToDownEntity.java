@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: wave_to_down
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-09-10 13:09:35
  * @version V1.0   
  *

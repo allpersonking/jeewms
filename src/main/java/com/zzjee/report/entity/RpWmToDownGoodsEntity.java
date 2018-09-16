@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: rp_wm_to_down_goods
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-09-11 07:47:22
  * @version V1.0   
  *

@@ -80,7 +80,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * @Title: Controller
  * @Description: 供应商
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-15 23:16:45
  * @version V1.0
  *

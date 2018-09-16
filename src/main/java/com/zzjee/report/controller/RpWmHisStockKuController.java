@@ -68,7 +68,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: rp_wm_his_stock_ku
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2018-09-11 07:47:09
  * @version V1.0   
  *

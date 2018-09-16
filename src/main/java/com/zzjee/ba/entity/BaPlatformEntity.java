@@ -21,7 +21,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 月台主数据
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-12 20:50:06
  * @version V1.0   
  *

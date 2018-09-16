@@ -65,7 +65,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**
  * @Title: Controller
  * @Description: 收货登记
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-08-20 19:48:00
  * @version V1.0
  *

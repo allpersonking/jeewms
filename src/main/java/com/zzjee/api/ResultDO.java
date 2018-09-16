@@ -4,7 +4,14 @@
 //
 
 package com.zzjee.api;
-
+/**
+ * @Title: Controller
+ * @Description: 出货通知
+ * @author erzhongxmu
+ * @date 2017-08-15 23:18:59
+ * @version V1.0
+ *
+ */
 import java.io.Serializable;
 
 public class ResultDO<T>  implements Serializable {

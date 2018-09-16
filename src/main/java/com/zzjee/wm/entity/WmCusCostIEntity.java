@@ -20,7 +20,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 /**   
  * @Title: Entity
  * @Description: 费用项目
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-26 15:12:31
  * @version V1.0   
  *

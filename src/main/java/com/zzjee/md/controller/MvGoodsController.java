@@ -81,7 +81,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 商品视图
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-11-02 23:59:31
  * @version V1.0   
  *

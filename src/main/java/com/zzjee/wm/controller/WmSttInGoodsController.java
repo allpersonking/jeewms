@@ -56,7 +56,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 /**   
  * @Title: Controller  
  * @Description: 库存盘点
- * @author onlineGenerator
+ * @author erzhongxmu
  * @date 2017-09-08 21:03:33
  * @version V1.0   
  *
