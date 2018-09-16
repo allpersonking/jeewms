@@ -36,7 +36,7 @@
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mvStockCusController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="查看" icon="icon-search" url="mvStockCusController.do?goUpdate" funname="detail"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar> --%>
-   <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
+   <%--<t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
 <%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
   </t:datagrid>
   </div>

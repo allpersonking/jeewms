@@ -121,8 +121,8 @@ $(function(){$('#${config_id}List').datagrid(
 	</#list>
 	</div>
 	<div style="height:30px;" class="datagrid-toolbar">
-	<span style="float:left;" >
-	<a href="#" class="easyui-linkbutton" plain="true" icon="icon-putout" onclick="exportXls();">导出excel</a>
+	<span style="float:left;"  operationCode="onlineexport">
+	<a href="#"   class="easyui-linkbutton" plain="true" icon="icon-putout" onclick="exportXls();">导出excel</a>
 	</span>
 	
 <#if  (config_queryList?size >0)>

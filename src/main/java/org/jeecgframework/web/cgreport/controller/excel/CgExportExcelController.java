@@ -13,10 +13,13 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.hibernate.loader.custom.Return;
+import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.online.def.CgReportConstant;
 import org.jeecgframework.core.online.exception.CgReportNotFoundException;
 import org.jeecgframework.core.online.util.CgReportQueryParamUtil;
 import org.jeecgframework.core.util.DynamicDBUtil;
+import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.SqlUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.params.ExcelExportEntity;
@@ -26,10 +29,16 @@ import org.jeecgframework.web.cgreport.service.core.CgReportServiceI;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.web.system.pojo.base.TSRole;
+import org.jeecgframework.web.system.pojo.base.TSRoleUser;
+import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  *
  * @Title:ExportExcelController
@@ -43,6 +52,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CgExportExcelController extends BaseController {
 	@Autowired
 	private CgReportServiceI cgReportService;
+	@Autowired
+	private SystemService systemService;
 	/**
 	 * 将报表导出为excel
 	 * @param request
@@ -50,9 +61,31 @@ public class CgExportExcelController extends BaseController {
 	 */
 	@SuppressWarnings("all")
 	@RequestMapping(params = "exportXls")
-	public void exportXls(HttpServletRequest request,
+	public ModelAndView exportXls(HttpServletRequest request,
 			HttpServletResponse response,ModelMap modelMap) {
-		//step.1 设置，获取配置信息
+        AjaxJson ex = new AjaxJson();
+
+        //step.1 设置，获取配置信息
+		TSUser user = ResourceUtil.getSessionUserName();
+		String roles = "";
+		if (user != null) {
+			List<TSRoleUser> rUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
+			for (TSRoleUser ru : rUsers) {
+				TSRole role = ru.getTSRole();
+				roles += role.getRoleCode() + ",";
+			}
+			if (roles.length() > 0) {
+				roles = roles.substring(0, roles.length() - 1);
+			}
+			if(roles.equals("QUERY")){
+
+				return new ModelAndView("common/noAuth");
+
+			}
+		}
+
+		//权限判断
+
 		String codedFileName = "报表";
 		String sheetName="导出信息";
 		if (StringUtil.isNotEmpty(request.getParameter("configId"))) {
@@ -301,5 +334,8 @@ public class CgExportExcelController extends BaseController {
 		} else {
 			throw new BusinessException("参数错误");
 		}
+		return null;
 	}
+
+
 }
