@@ -15,7 +15,7 @@ android app也已经开源，近期更新会比较频繁。
 
 近期修改功能：基础平台升级（2018-09-20）
 
-# 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/zzwms/issues
+# 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103719_3c2482c0_544004.png "home1.png")
 
