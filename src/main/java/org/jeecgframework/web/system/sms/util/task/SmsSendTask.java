@@ -485,7 +485,13 @@ public class SmsSendTask {
 
 						System.out.print(tsql);
 						if (resultt != null && resultt.size() > 0) {
-							String goodprodata = resultt.get(0).get("goods_pro_data").toString();
+							String goodprodata = null;
+							try{
+								goodprodata		= resultt.get(0).get("goods_pro_data").toString();
+
+							}catch (Exception e){
+
+							}
 							String hiti = "0";
 							try {
 								hiti = Long.toString(Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng()) * Long.parseLong(mvgoods.getChlShl()));
@@ -503,17 +509,22 @@ public class SmsSendTask {
 
 								tsqlz = tsqlz
 										+ "   and ws.goods_id = ? "
-										+ "   and ws.cus_code =  ? "
-										+ "   and ws.goods_pro_data =  ? "
+										+ "   and ws.cus_code =  ? ";
+										if(StringUtil.isEmpty(goodprodata)){
+											tsqlz = tsqlz
+													+ "   and ws.goods_pro_data = '"+ goodprodata +"'";
+										}
+
+								tsqlz = tsqlz
 										+ "   and (ws.base_goodscount + 0) =  ? "
 										+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
 								List<Map<String, Object>> resultz = systemService
-										.findForJdbc(tsqlz, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode(), goodprodata, hiti);
+										.findForJdbc(tsqlz, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode(),  hiti);
 								System.out.print("****************tsqlz" + tsqlz);
 
 								if (resultz != null && resultz.size() > 0) {
 									for (int i = 0; i < resultz.size(); i++) {
-
+										try{
 										Long bin_qua = Long.valueOf(resultz.get(i)
 												.get("goods_qua").toString());
 										if (omcountwq >= bin_qua && omcountwq > 0) {
@@ -576,7 +587,10 @@ public class SmsSendTask {
 											systemService.save(wmOmQmIEntity);
 
 										}
-									}
+									}catch (Exception e){
+
+										}
+								}
 								}
 							}
 						}
