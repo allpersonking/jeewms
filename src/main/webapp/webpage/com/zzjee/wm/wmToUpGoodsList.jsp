@@ -15,7 +15,6 @@
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="商品编码"  field="goodsId"   query="true" queryMode="single"  width="100"></t:dgCol>
       <t:dgCol title="商品名称"  field="goodsName"   query="true" queryMode="single"  width="100"></t:dgCol>
-
       <t:dgCol title="数量"  field="goodsQua"    queryMode="group"  width="60"></t:dgCol>
     <t:dgCol title="原始单据类型"  field="orderTypeCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="原始单据编码"  field="orderId"   query="true" queryMode="single"  width="80"></t:dgCol>
