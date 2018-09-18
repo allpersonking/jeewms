@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker,autocomplete"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="wmOmNoticeitemList"  checkbox="true" pagination="true" fitColumns="true"
+  <t:datagrid name="wmOmNoticeitemList"  checkbox="true" pagination="true" fitColumns="false"
   title="出库通知调整" actionUrl="wmOmNoticeHController.do?datagriditem" idField="id"  queryMode="group">
  <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人"  field="createName"     queryMode="single"  width="80"></t:dgCol>

@@ -162,7 +162,7 @@ public class WmOmNoticeHController extends BaseController {
 		}
 
 		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("omNoticeId", "desc");
+		map1.put("createDate", "desc");
 		cq.setOrder(map1);
 		cq.add();
 		this.wmOmNoticeHService.getDataGridReturn(cq, true);
@@ -370,7 +370,7 @@ public class WmOmNoticeHController extends BaseController {
 //		map2.put("omSta", "asc");
 //		cq.setOrder(map2);
 		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("omNoticeId", "desc");
+		map1.put("createDate", "desc");
 		cq.setOrder(map1);
 
 		cq.add();
@@ -414,7 +414,7 @@ public class WmOmNoticeHController extends BaseController {
 //		map2.put("omSta", "asc");
 //		cq.setOrder(map2);
 		Map<String,Object> map1 = new HashMap<String,Object>();
-		map1.put("omNoticeId", "desc");
+		map1.put("createDate", "desc");
 		cq.setOrder(map1);
 //		cq.like("omNoticeId", "CK%");
 		cq.add();
