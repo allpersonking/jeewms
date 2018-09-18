@@ -64,6 +64,8 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 				wmOmNoticeI.setPlanSta("N");
 				wmOmNoticeI.setGoodsQuaok("0");
 				wmOmNoticeI.setOmNoticeId(wmOmNoticeH.getOmNoticeId());
+				wmOmNoticeI.setImCusCode(wmOmNoticeH.getImCusCode());
+				wmOmNoticeI.setOmBeizhu(wmOmNoticeH.getOmBeizhu());
 				this.save(wmOmNoticeI);
 			}
 			//执行新增操作配置的sql增强
