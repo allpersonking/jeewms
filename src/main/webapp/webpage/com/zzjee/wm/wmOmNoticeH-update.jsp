@@ -172,8 +172,8 @@
 						  <b>三方客户：</b>
 					  </div>
 					  <div class="col-xs-2">
-						  <t:dictSelect id="ocusCodeid" field="ocusCode" type="list" extendJson="{class:'form-control',style:'width:230px'}"
-									defaultVal="${wmOmNoticeHPage.ocusCode}"	dictTable="mv_cus_other" dictField="cus_code" dictText="cus_name"  hasLabel="false"  title="三方客户编码"></t:dictSelect>
+						  <input id="ocusCode" name="ocusCode"
+								 value="${wmOmNoticeHPage.ocusCode}"	  hasLabel="false"  class="form-control"/>
 						  <span class="Validform_checktip" style="float:left;height:0px;"></span>
 						  <label class="Validform_label" style="display: none">三方客户</label>
 					  </div>

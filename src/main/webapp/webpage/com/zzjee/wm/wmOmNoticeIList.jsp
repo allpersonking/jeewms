@@ -1728,14 +1728,23 @@
 					<input name="wmOmNoticeIList[${stuts.index }].omSta" type="hidden" value="${poVal.omSta }"/>
 					<input name="wmOmNoticeIList[${stuts.index }].baseUnit" type="hidden" value="${poVal.baseUnit }"/>
 					<input name="wmOmNoticeIList[${stuts.index }].baseGoodscount" type="hidden" value="${poVal.baseGoodscount }"/>
-<%-- 					<input name="wmOmNoticeIList[${stuts.index }].planSta" type="hidden" value="${poVal.planSta }"/> --%>
+				   <input name="wmOmNoticeIList[${stuts.index }].goodsId" type="hidden" value="${poVal.goodsId }"/>
+
+
+					<%--
+wmOmNoticeIList[${stuts.index }].goodsId<input name="wmOmNoticeIList[${stuts.index }].planSta" type="hidden" value="${poVal.planSta }"/> --%>
 
 					
 				   <td align="left">
+
+
+					   <input id="wmOmNoticeIList[${stuts.index }].goodsName" value="${poVal.goodsName }" readonly="readonly"  name="wmOmNoticeIList[${stuts.index }].goodsName" maxlength="32"
+							  ignore="ignore"
+							  type="text"    style="width:420px;text-align: left" >
 <%-- 					  	<input name="wmOmNoticeIList[${stuts.index }].goodsId" maxlength="32"  --%>
 <%-- 					  		type="text" class="form-control"  style="width:120px;"  value="${poVal.goodsId }"> --%>
-					  		<t:dictSelect field="wmOmNoticeIList[${stuts.index }].goodsId" type="list" extendJson="{class:'form-control',style:'width:350px'}"
-														dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="${poVal.goodsId }" hasLabel="false"  title="商品编码"></t:dictSelect>
+					  		<%--<t:dictSelect field="wmOmNoticeIList[${stuts.index }].goodsId" type="list" extendJson="{class:'form-control',style:'width:350px'}"--%>
+														<%--dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="${poVal.goodsId }" hasLabel="false"  title="商品编码"></t:dictSelect>--%>
 					  		
 					  <label class="Validform_label" style="display: none;">出货商品</label>
 				   </td>

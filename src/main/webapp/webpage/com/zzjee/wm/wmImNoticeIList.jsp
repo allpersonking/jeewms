@@ -1467,11 +1467,19 @@
 					<input name="wmImNoticeIList[${stuts.index }].goodsWqmCount" type="hidden" value="${poVal.goodsWqmCount }"/>
 					<input name="wmImNoticeIList[${stuts.index }].baseUnit" type="hidden" value="${poVal.baseUnit }"/>
 					<input name="wmImNoticeIList[${stuts.index }].baseGoodscount" type="hidden" value="${poVal.baseGoodscount }"/>
-					<input name="wmImNoticeIList[${stuts.index }].baseQmcount" type="hidden" value="${poVal.baseQmcount }"/>
-<%-- 					<input name="wmImNoticeIList[${stuts.index }].goodsUnit" type="hidden" value="${poVal.goodsUnit }"/> --%>
+
+				<input name="wmImNoticeIList[${stuts.index }].goodsCode" type="hidden" value="${poVal.goodsCode }"/>
+
+			<%-- 					<input name="wmImNoticeIList[${stuts.index }].goodsUnit" type="hidden" value="${poVal.goodsUnit }"/> --%>
 				   <td align="left">
-							<t:dictSelect field="wmImNoticeIList[${stuts.index }].goodsCode" type="list" extendJson="{class:'form-control',style:'width:350px'}"  
-								dictCondition="${wmImNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="${poVal.goodsCode }" hasLabel="false"  title="商品编码"></t:dictSelect>      
+
+
+					   <input id="wmOmNoticeIList[${stuts.index }].goodsName"    value="${poVal.goodsName }" readonly="readonly"  name="wmOmNoticeIList[${stuts.index }].goodsName" maxlength="32"
+							  ignore="ignore"
+							  type="text"    style="width:420px;text-align: left" >
+
+							<%--<t:dictSelect field="wmImNoticeIList[${stuts.index }].goodsCode" type="list" extendJson="{class:'form-control',style:'width:350px'}"  --%>
+								<%--dictCondition="${wmImNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="${poVal.goodsCode }" hasLabel="false"  title="商品编码"></t:dictSelect>      --%>
 					  <label class="Validform_label" style="display: none;">商品编码</label>
 <%-- 				   	<input id="wmImNoticeIList[${stuts.index }].goodsCode"  name="wmImNoticeIList[${stuts.index }].goodsCode"    maxlength="32"  --%>
 									   
