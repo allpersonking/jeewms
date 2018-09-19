@@ -3,7 +3,10 @@ import com.alibaba.fastjson.JSON;
 import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.MvGoodsEntity;
 import com.zzjee.wm.entity.WmInQmIEntity;
+import com.zzjee.wm.entity.WmToDownGoodsEntity;
 import com.zzjee.wm.entity.WmToUpGoodsEntity;
+import com.zzjee.wm.page.Delrowpage;
+import com.zzjee.wm.page.wmtoupgoodspage;
 import com.zzjee.wm.service.WmToUpGoodsServiceI;
 
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.zzjee.wmapi.entity.WvNoticeEntity;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.CopyUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.util.*;
@@ -272,7 +276,38 @@ public class WmToUpGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+	/**
+	 * gengxin
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(params = "updateRows")
+	@ResponseBody
+	public AjaxJson updateRows(wmtoupgoodspage page){
+		String message = null;
+		List<WmToUpGoodsEntity> demos=page.getUprows();
+		AjaxJson j = new AjaxJson();
+		if(CollectionUtils.isNotEmpty(demos)){
+			for(WmToUpGoodsEntity jeecgDemo:demos){
+				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
+					WmToUpGoodsEntity t =systemService.get(WmToUpGoodsEntity.class, jeecgDemo.getId());
+					try {
+
+
+						MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
+
+						systemService.saveOrUpdate(t);
+
+
+//						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return j;
+	}
 
 	/**
 	 * 上架列表新增页面跳转

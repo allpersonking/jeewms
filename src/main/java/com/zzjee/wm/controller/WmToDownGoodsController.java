@@ -301,6 +301,40 @@ public class WmToDownGoodsController extends BaseController {
 	}
 
 
+
+	/**
+	 * gengxin
+	 * @param page
+	 * @return
+	 */
+	@RequestMapping(params = "updateRows")
+	@ResponseBody
+	public AjaxJson updateRows(Delrowpage page){
+		String message = null;
+		List<WmToDownGoodsEntity> demos=page.getDownrows();
+		AjaxJson j = new AjaxJson();
+		if(CollectionUtils.isNotEmpty(demos)){
+			for(WmToDownGoodsEntity jeecgDemo:demos){
+				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
+					WmToDownGoodsEntity t =systemService.get(WmToDownGoodsEntity.class, jeecgDemo.getId());
+					try {
+
+
+						MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
+
+						systemService.saveOrUpdate(t);
+
+
+//						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		return j;
+	}
+
 	/**
 	 * 装车复核
 	 * @param page
