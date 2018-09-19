@@ -475,122 +475,130 @@ public class SmsSendTask {
 								+ "   and ws.cus_code =  ? "
 								+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data  having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc ";
 						List<Map<String, Object>> resultt = new ArrayList<Map<String, Object>>();
-						try {
-							resultt = systemService
-									.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());
-						} catch (Exception e) {
 
-						}
+
 
 
 						System.out.print(tsql);
-						if (resultt != null && resultt.size() > 0) {
-							String goodprodata = null;
-							try{
-								goodprodata		= resultt.get(0).get("goods_pro_data").toString();
+						if(!"off".equals(ResourceUtil.getConfigByName("hiti"))) {//不启用HITI 此处不操作
 
-							}catch (Exception e){
-
-							}
-							String hiti = "0";
 							try {
-								hiti = Long.toString(Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng()) * Long.parseLong(mvgoods.getChlShl()));
+								resultt = systemService
+										.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());
 							} catch (Exception e) {
+
 							}
-							if (Long.parseLong(hiti) <= omcountwq) {
-								String tsqlz = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
-										+ "  from wv_stock ws, md_bin mb  where "
-										+ "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma  and mb.ku_wei_lei_xing = '良品区' and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')"
+							if (resultt != null && resultt.size() > 0) {
+								String goodprodata = null;
+								try {
+									goodprodata = resultt.get(0).get("goods_pro_data").toString();
 
-										;
-								if(StringUtil.isNotEmpty(tuopanma)) {
-									tsqlz = tsqlz + "  and  ws.bin_id = '"+tuopanma + "' ";
+								} catch (Exception e) {
+
 								}
+								String hiti = "0";
+								try {
+									hiti = Long.toString(Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng()) * Long.parseLong(mvgoods.getChlShl()));
+								} catch (Exception e) {
+								}
+								if (Long.parseLong(hiti) <= omcountwq) {
+									String tsqlz = "select ws.base_unit,ws.zhong_wen_qch, ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
+											+ "  from wv_stock ws, md_bin mb  where "
+											+ "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma  and mb.ku_wei_lei_xing = '良品区' and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')";
+									if (StringUtil.isNotEmpty(tuopanma)) {
+										tsqlz = tsqlz + "  and  ws.bin_id = '" + tuopanma + "' ";
+									}
 
-								tsqlz = tsqlz
-										+ "   and ws.goods_id = ? "
-										+ "   and ws.cus_code =  ? ";
-										if(StringUtil.isEmpty(goodprodata)){
-											tsqlz = tsqlz
-													+ "   and ws.goods_pro_data = '"+ goodprodata +"'";
-										}
+									tsqlz = tsqlz
+											+ "   and ws.goods_id = ? "
+											+ "   and ws.cus_code =  ? ";
+									if (StringUtil.isEmpty(goodprodata)) {
+										tsqlz = tsqlz
+												+ "   and ws.goods_pro_data = '" + goodprodata + "'";
+									}
 
-								tsqlz = tsqlz
-										+ "   and (ws.base_goodscount + 0) =  ? "
-										+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
-								List<Map<String, Object>> resultz = systemService
-										.findForJdbc(tsqlz, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode(),  hiti);
-								System.out.print("****************tsqlz" + tsqlz);
+									tsqlz = tsqlz
+											+ "   and (ws.base_goodscount + 0) =  ? "
+											+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
+									List<Map<String, Object>> resultz = systemService
+											.findForJdbc(tsqlz, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode(), hiti);
+									System.out.print("****************tsqlz" + tsqlz);
 
-								if (resultz != null && resultz.size() > 0) {
-									for (int i = 0; i < resultz.size(); i++) {
-										try{
-										Long bin_qua = Long.valueOf(resultz.get(i)
-												.get("goods_qua").toString());
-										if (omcountwq >= bin_qua && omcountwq > 0) {
-											wmOmQmIEntity.setBinId(resultz.get(i)
-													.get("ku_wei_bian_ma").toString());
-											wmOmQmIEntity.setTinId(resultz.get(i)
-													.get("bin_id").toString());
-											wmOmQmIEntity.setBaseUnit(resultz.get(i)
-													.get("base_unit").toString());
-											wmOmQmIEntity
-													.setBaseGoodscount(resultz.get(i)
-															.get("goods_qua")
-															.toString());
-											wmOmQmIEntity.setProData(resultz.get(i)
-													.get("goods_pro_data").toString());
-											wmOmQmIEntity.setCusName(resultz.get(i)
-													.get("zhong_wen_qch").toString());
-											wmOmQmIEntity.setGoodsName(resultz.get(i)
-													.get("shp_ming_cheng").toString());
-											omcountwq = omcountwq - bin_qua;
-											if (wmOmNoticeIEntity.getGoodsUnit()
-													.equals(wmOmNoticeIEntity
-															.getBaseUnit())) {
-												wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
-												try {
-													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-															.getTiJiCm()) / Double.parseDouble(mvgoods
-															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-															.getZhlKg()) / Double.parseDouble(mvgoods
-															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-												} catch (Exception e) {
-													// TODO: handle exception
-												}
-											} else {
-												try {
-													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-															.getTiJiCm())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
-															.getChlShl())));
-													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-															.getZhlKg())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
-															.getChlShl())));
-												} catch (Exception e) {
-													// TODO: handle exception
-												}
-												try {
-
+									if (resultz != null && resultz.size() > 0) {
+										for (int i = 0; i < resultz.size(); i++) {
+											try {
+												Long bin_qua = Long.valueOf(resultz.get(i)
+														.get("goods_qua").toString());
+												if (omcountwq >= bin_qua && omcountwq > 0) {
+													wmOmQmIEntity.setBinId(resultz.get(i)
+															.get("ku_wei_bian_ma").toString());
+													wmOmQmIEntity.setTinId(resultz.get(i)
+															.get("bin_id").toString());
+													wmOmQmIEntity.setBaseUnit(resultz.get(i)
+															.get("base_unit").toString());
 													wmOmQmIEntity
-															.setQmOkQuat(Long.toString(bin_qua));
+															.setBaseGoodscount(resultz.get(i)
+																	.get("goods_qua")
+																	.toString());
+													wmOmQmIEntity.setProData(resultz.get(i)
+															.get("goods_pro_data").toString());
+													try{
+														wmOmQmIEntity.setCusName(resultz.get(i)
+																.get("zhong_wen_qch").toString());
+														wmOmQmIEntity.setGoodsName(resultz.get(i)
+																.get("shp_ming_cheng").toString());
+													}catch (Exception e){
 
-												} catch (Exception e) {
-													// TODO: handle exception
+													}
+
+													omcountwq = omcountwq - bin_qua;
+													if (wmOmNoticeIEntity.getGoodsUnit()
+															.equals(wmOmNoticeIEntity
+																	.getBaseUnit())) {
+														wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
+														try {
+															wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+																	.getTiJiCm()) / Double.parseDouble(mvgoods
+																	.getChlShl())
+																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+															wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+																	.getZhlKg()) / Double.parseDouble(mvgoods
+																	.getChlShl())
+																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+														} catch (Exception e) {
+															// TODO: handle exception
+														}
+													} else {
+														try {
+															wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+																	.getTiJiCm())
+																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+																	.getChlShl())));
+															wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+																	.getZhlKg())
+																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+																	.getChlShl())));
+														} catch (Exception e) {
+															// TODO: handle exception
+														}
+														try {
+
+															wmOmQmIEntity
+																	.setQmOkQuat(Long.toString(bin_qua));
+
+														} catch (Exception e) {
+															// TODO: handle exception
+														}
+													}
+
+													systemService.save(wmOmQmIEntity);
+
 												}
+											} catch (Exception e) {
+
 											}
-
-											systemService.save(wmOmQmIEntity);
-
 										}
-									}catch (Exception e){
-
-										}
-								}
+									}
 								}
 							}
 						}
@@ -598,6 +606,7 @@ public class SmsSendTask {
 								.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());
 						if (result != null && result.size() > 0) {
 							for (int i = 0; i < result.size(); i++) {
+							try {
 								Long bin_qua = Long.valueOf(result.get(i)
 										.get("goods_qua").toString());
 								if (bin_qua > 0 && omcountwq > 0) {
@@ -724,7 +733,14 @@ public class SmsSendTask {
 										break;
 									}
 								}
+							}catch (Exception e){
+
 							}
+								//catch  jieshu
+							}
+
+
+
 						}
 
 					}
