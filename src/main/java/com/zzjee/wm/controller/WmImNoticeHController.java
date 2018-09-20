@@ -2070,9 +2070,11 @@ public class WmImNoticeHController extends BaseController {
 		// 查询-进货通知明细
 		String hql0 = "from WmImNoticeIEntity where 1 = 1 AND iM_NOTICE_ID = ? ";
 		try {
-			List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
-					.findHql(hql0, id0);
-			req.setAttribute("wmImNoticeIList", wmImNoticeIEntityList);
+			if(StringUtil.isNotEmpty(id0)){
+				List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
+						.findHql(hql0, id0);
+				req.setAttribute("wmImNoticeIList", wmImNoticeIEntityList);
+			}
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
@@ -2164,6 +2166,22 @@ public class WmImNoticeHController extends BaseController {
 			try {
 				List<WmNoticeImpPage> list = ExcelImportUtil.importExcel(
 						file.getInputStream(), WmNoticeImpPage.class, params);
+
+				String flag = "Y";
+				String message="";
+				for(WmNoticeImpPage wmt:list){
+					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
+					if(mvgoods==null){
+						flag = "N";
+						message=message+wmt.getGoodsId();
+					}
+				}
+				if("N".equals(flag)){
+					j.setMsg(message+"不存在");
+					return j;
+				}
+
 				List<WmNoticeImpPage> listheader =  ExcelImportUtil.importExcel(
 						file.getInputStream(), WmNoticeImpPage.class, params);
 				for(int i=0; i<listheader.size()-1;i++){

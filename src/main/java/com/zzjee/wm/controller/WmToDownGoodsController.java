@@ -5,6 +5,7 @@ import com.zzjee.md.entity.MvCusEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
+import com.zzjee.wm.entity.WmOmQmIEntity;
 import com.zzjee.wm.entity.WmToDownGoodsEntity;
 import com.zzjee.wm.page.Delrowpage;
 import com.zzjee.wm.service.WmToDownGoodsServiceI;
@@ -274,7 +275,6 @@ public class WmToDownGoodsController extends BaseController {
 	/**
 	 * 更新下架商品明细
 	 *
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "dofubatch")
@@ -747,6 +747,7 @@ public class WmToDownGoodsController extends BaseController {
 		ResultDO D0 = new  ResultDO();
 		WmToDownGoodsEntity wmToDownGoods  = (WmToDownGoodsEntity)JSONHelper.json2Object(wmToDownGoodsstr,WmToDownGoodsEntity.class);
 		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		WvGiNoticeEntity t = new WvGiNoticeEntity();
 		Set<ConstraintViolation<WmToDownGoodsEntity>> failures = validator
 				.validate(wmToDownGoods);
 		if (!failures.isEmpty()) {
@@ -754,7 +755,7 @@ public class WmToDownGoodsController extends BaseController {
 
 		}
        try{
-		   WvGiNoticeEntity t = systemService.get(WvGiNoticeEntity.class,wmToDownGoods.getOrderIdI());
+		    t = systemService.get(WvGiNoticeEntity.class,wmToDownGoods.getOrderIdI());
 		   if(t!=null&&StringUtil.isEmpty(wmToDownGoods.getBinIdFrom())){
 		   	wmToDownGoods.setGoodsName(t.getShpMingCheng());
 			   wmToDownGoods.setBinIdFrom(t.getTinId());
@@ -767,6 +768,9 @@ public class WmToDownGoodsController extends BaseController {
 			wmToDownGoods.setCreateDate(DateUtils.getDate());
 			if(wmUtil.checkstcokk(wmToDownGoods.getCusCode(),wmToDownGoods.getKuWeiBianMa(),wmToDownGoods.getBinIdFrom(),wmToDownGoods.getGoodsId(),wmToDownGoods.getGoodsProData(),wmToDownGoods.getBaseGoodscount()))
 			{
+				WmOmQmIEntity wmOmQmIEntity = systemService.get(WmOmQmIEntity.class,t.getId());
+				wmToDownGoods.setImCusCode(wmOmQmIEntity.getImCusCode());
+				wmToDownGoods.setOmBeizhu(wmOmQmIEntity.getOmBeizhu());
 				wmToDownGoodsService.save(wmToDownGoods);
 				D0.setOK(true);
 			}else{
