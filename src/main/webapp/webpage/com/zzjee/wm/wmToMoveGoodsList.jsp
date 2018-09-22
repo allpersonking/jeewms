@@ -21,7 +21,9 @@
     <t:dgCol title="数量"  field="goodsQua" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
     <t:dgCol title="基本单位数量"  field="baseGoodscount" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
     <t:dgCol title="生产日期"  field="goodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
-    <t:dgCol title="单位"  field="baseUnit"    queryMode="group"  width="50"></t:dgCol>
+      <t:dgCol title="到生产日期"  field="toGoodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
+
+      <t:dgCol title="单位"  field="baseUnit"    queryMode="group"  width="50"></t:dgCol>
     <t:dgCol title="客户编码"  field="cusCode"   query="true" queryMode="single"  width="80"></t:dgCol>
     <t:dgCol title="客户名称"  field="cusName"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="源托盘"  field="tinFrom"   query="true" queryMode="single"  width="70"></t:dgCol>

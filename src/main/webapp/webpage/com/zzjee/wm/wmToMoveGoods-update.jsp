@@ -114,6 +114,16 @@
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">生产日期</label>
 			          </div>
+								<div class="col-xs-3 text-center">
+									<b>到生产日期：</b>
+								</div>
+								<div class="col-xs-3">
+									<input id="toGoodsProData" name="toGoodsProData" type="text"
+										   ignore="ignore"
+										   style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker()" value='${wmToMoveGoodsPage.toGoodsProData}'  />
+									<span class="Validform_checktip" style="float:left;height:0px;"></span>
+									<label class="Validform_label" style="display: none">到生产日期</label>
+								</div>
 						</div>
 			          
 			        
