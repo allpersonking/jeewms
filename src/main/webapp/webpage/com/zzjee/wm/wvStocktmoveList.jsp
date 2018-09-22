@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid   name="wvStockList" checkbox="true" pagination="true" fitColumns="false" title="生成库存转移任务" actionUrl="wvStockController.do?datagridkczy" idField="id" fit="true" queryMode="group">
+  <t:datagrid   name="wvStockList" checkbox="true" pagination="true" fitColumns="false" title="生成库存转移任务" actionUrl="wvStockController.do?datagridkczy" idField="id" fit="false" queryMode="group">
     <t:dgCol title="id"  field="id"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
        <t:dgCol title="操作" field="opt" width="80"></t:dgCol>
         <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
@@ -31,10 +31,10 @@
 <%--    <t:dgToolBar title="编辑" icon="icon-edit" url="wvStockController.do?goUpdate" funname="update"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="wvStockController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="查看" icon="icon-search" url="wvStockController.do?goUpdate" funname="detail"></t:dgToolBar> --%>
-<%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar> --%>
-   <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
+    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar>
+   <%--<t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
 
-<%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
+    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
       <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
           <span style="vertical-align:middle;display:-moz-inline-box;display:inline-block;width: 90px;text-align:right;" title="批量托盘">批量托盘为: </span>
@@ -117,7 +117,7 @@
  
 //导入
 function ImportXls() {
-	openuploadwin('Excel导入', 'wvStockController.do?upload', "wvStockList");
+	openuploadwin('Excel导入', 'wmToMoveGoodsController.do?upload', "wvStockList");
 }
 
 //导出
@@ -127,7 +127,7 @@ function ExportXls() {
 
 //模板下载
 function ExportXlsByT() {
-	JeecgExcelExport("wvStockController.do?exportXlsByT","wvStockList");
+	JeecgExcelExport("wmToMoveGoodsController.do?exportXlsByT","wvStockList");
 }
 
  </script>

@@ -33,38 +33,44 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	/**主键*/
 	private java.lang.String id;
 	/**创建人名称*/
-	@Excel(name="创建人名称")
+//	@Excel(name="创建人名称")
 	private java.lang.String createName;
 	/**创建人登录名称*/
-	@Excel(name="创建人登录名称")
+//	@Excel(name="创建人登录名称")
 	private java.lang.String createBy;
 	/**创建日期*/
-	@Excel(name="创建日期",  format = "yyyy-MM-dd hh:mm:ss")
+//	@Excel(name="创建日期",  format = "yyyy-MM-dd hh:mm:ss")
 	private java.util.Date createDate;
 	/**更新人名称*/
-	@Excel(name="更新人名称")
+//	@Excel(name="更新人名称")
 	private java.lang.String updateName;
 	/**更新人登录名称*/
-	@Excel(name="更新人登录名称")
+//	@Excel(name="更新人登录名称")
 	private java.lang.String updateBy;
 	/**更新日期*/
-	@Excel(name="更新日期",format = "yyyy-MM-dd hh:mm:ss")
+//	@Excel(name="更新日期",format = "yyyy-MM-dd hh:mm:ss")
 	private java.util.Date updateDate;
 	/**所属部门*/
-	@Excel(name="所属部门")
+//	@Excel(name="所属部门")
 	private java.lang.String sysOrgCode;
 	/**所属公司*/
-	@Excel(name="所属公司")
+//	@Excel(name="所属公司")
 	private java.lang.String sysCompanyCode;
 	/**原始单据类型*/
-	@Excel(name="原始单据类型")
+//	@Excel(name="原始单据类型")
 	private java.lang.String orderTypeCode;
 	/**原始单据编码*/
-	@Excel(name="原始单据编码")
+//	@Excel(name="原始单据编码")
 	private java.lang.String orderId;
 	/**原始单据行项目*/
 	@Excel(name="原始单据行项目")
 	private java.lang.String orderIdI;
+	/**客户编码*/
+	@Excel(name="原客户")
+	private java.lang.String cusCode;
+	/**客户名称*/
+	@Excel(name="原客户名称")
+	private java.lang.String cusName;
 	/**商品编码*/
 	@Excel(name="商品编码")
 	private java.lang.String goodsId;
@@ -74,45 +80,48 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	/**数量*/
 	@Excel(name="数量")
 	private java.lang.String goodsQua;
-	/**生产日期*/
-	@Excel(name="生产日期")
-	private java.lang.String goodsProData;
-	/**单位*/
 	@Excel(name="单位")
 	private java.lang.String goodsUnit;
-	/**客户编码*/
-	@Excel(name="客户编码")
-	private java.lang.String cusCode;
-	/**客户名称*/
-	@Excel(name="客户名称")
-	private java.lang.String cusName;
-	/**源托盘*/
-	@Excel(name="源托盘")
-	private java.lang.String tinFrom;
-	/**到托盘*/
-	@Excel(name="到托盘")
-	private java.lang.String tinId;
-	/**源储位*/
-	@Excel(name="源储位")
-	private java.lang.String binFrom;
-	/**到储位*/
-	@Excel(name="到储位")
-	private java.lang.String binTo;
-	/**状态*/
-	@Excel(name="状态")
-	private java.lang.String moveSta;
-	/**转移客户*/
-	@Excel(name="转移客户")
-	private java.lang.String toCusCode;
-	/**转移客户名称*/
-	@Excel(name="转移客户名称")
-	private java.lang.String toCusName;
-	/**基本单位*/
-	@Excel(name="基本单位")
-	private java.lang.String baseUnit;
 	/**基本单位数量*/
 	@Excel(name="基本单位数量")
 	private java.lang.String baseGoodscount;
+	/**基本单位*/
+	@Excel(name="基本单位")
+	private java.lang.String baseUnit;
+	/**生产日期*/
+	@Excel(name="生产日期")
+	private java.lang.String goodsProData;
+	/**源储位*/
+	@Excel(name="源储位")
+	private java.lang.String binFrom;
+
+	/**源托盘*/
+	@Excel(name="源托盘")
+	private java.lang.String tinFrom;
+	/**转移客户*/
+	@Excel(name="到客户")
+	private java.lang.String toCusCode;
+	/**转移客户名称*/
+	@Excel(name="到客户名称")
+	private java.lang.String toCusName;
+
+
+
+	/**到储位*/
+	@Excel(name="到储位")
+	private java.lang.String binTo;
+	/**到托盘*/
+	@Excel(name="到托盘")
+	private java.lang.String tinId;
+
+	@Excel(name="到生产日期")
+	private java.lang.String toGoodsProData;
+	/**状态*/
+	@Excel(name="状态")
+	private java.lang.String moveSta;
+
+
+
 	
 	/**
 	 *方法: 取得java.lang.String
@@ -564,5 +573,19 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	 */
 	public void setBaseGoodscount(java.lang.String baseGoodscount){
 		this.baseGoodscount = baseGoodscount;
+	}
+
+
+	@Column(name ="TO_GOODS_PRO_DATA",nullable=true,length=32)
+	public java.lang.String getToGoodsProData(){
+		return this.toGoodsProData;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  生产日期
+	 */
+	public void setToGoodsProData(java.lang.String toGoodsProData){
+		this.toGoodsProData = toGoodsProData;
 	}
 }

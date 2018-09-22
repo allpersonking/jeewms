@@ -40,7 +40,11 @@
     function wmim(id) {
     var url = "wmInQmIController.do?goAddBatch&id=" + id;
     // createdetailwindow()
-    add('收货登记', url, "wmInQmIbatchList","100%","100%");
+
+        // function addbytab(){
+            addOneTab("验收", url);
+        // }
+    // add('收货登记', url, "wmInQmIbatchList","100%","100%");
 }
     //导入
     function ImportXls() {

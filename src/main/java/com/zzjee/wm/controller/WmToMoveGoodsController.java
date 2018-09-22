@@ -379,6 +379,16 @@ public class WmToMoveGoodsController extends BaseController {
 			try {
 				List<WmToMoveGoodsEntity> listWmToMoveGoodsEntitys = ExcelImportUtil.importExcel(file.getInputStream(),WmToMoveGoodsEntity.class,params);
 				for (WmToMoveGoodsEntity wmToMoveGoods : listWmToMoveGoodsEntitys) {
+					if(StringUtil.isNotEmpty(wmToMoveGoods.getOrderIdI())){
+						try{
+							WmToMoveGoodsEntity t = systemService.findByProperty(WmToMoveGoodsEntity.class,"orderIdI",wmToMoveGoods.getOrderIdI()).get(0);
+							if(t!=null){
+								continue;
+							}
+						}catch (Exception e){
+
+						}
+					}
 					wmToMoveGoodsService.save(wmToMoveGoods);
 				}
 				j.setMsg("文件导入成功！");

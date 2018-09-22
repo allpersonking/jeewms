@@ -278,7 +278,13 @@ public class SmsSendTask {
 				wmToDownGoods.setGoodsId(wmToMoveGoodsEntity.getGoodsId());//
 				wmToDownGoods.setGoodsProData(wmToMoveGoodsEntity.getGoodsProData());//生产日期
 				wmToDownGoods.setOrderId("ZY");//出货通知单
-				wmToDownGoods.setOrderIdI(wmToMoveGoodsEntity.getId());//转移项目
+				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getOrderIdI())){
+					wmToDownGoods.setOrderIdI(wmToMoveGoodsEntity.getId());
+
+				}else{
+					wmToDownGoods.setOrderIdI(wmToMoveGoodsEntity.getOrderIdI());
+
+				}
 				MvGoodsEntity mvgoods = new MvGoodsEntity();
 				mvgoods = systemService.findUniqueByProperty(
 						MvGoodsEntity.class, "goodsCode",
@@ -315,7 +321,11 @@ public class SmsSendTask {
 				wmToUpGoodsEntity.setCreateDate(wmToMoveGoodsEntity.getCreateDate());
 				wmToUpGoodsEntity.setCreateName(wmToMoveGoodsEntity.getCreateName());
 				wmToUpGoodsEntity.setGoodsId(wmToMoveGoodsEntity.getGoodsId());
-				wmToUpGoodsEntity.setGoodsProData(wmToMoveGoodsEntity.getGoodsProData());
+				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getToGoodsProData())){
+					wmToUpGoodsEntity.setGoodsProData(wmToMoveGoodsEntity.getGoodsProData());
+				}else{
+					wmToUpGoodsEntity.setGoodsProData(wmToMoveGoodsEntity.getToGoodsProData());
+				}
 				wmToUpGoodsEntity.setGoodsBatch(wmToMoveGoodsEntity.getGoodsProData());
 				wmToUpGoodsEntity.setGoodsQua(wmToMoveGoodsEntity.getGoodsQua());
 				wmToUpGoodsEntity.setGoodsUnit(wmToMoveGoodsEntity.getGoodsUnit());
@@ -340,8 +350,13 @@ public class SmsSendTask {
 //				wmToUpGoodsEntity.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
 				wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
 				wmToUpGoodsEntity.setGoodsName(mvgoods.getGoodsName());
-				
-				wmToUpGoodsEntity.setOrderIdI(wmToMoveGoodsEntity.getId());
+				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getOrderIdI())){
+					wmToUpGoodsEntity.setOrderIdI(wmToMoveGoodsEntity.getId());
+
+				}else{
+					wmToUpGoodsEntity.setOrderIdI(wmToMoveGoodsEntity.getOrderIdI());
+
+				}
 				wmToUpGoodsEntity.setOrderId("ZY");
 				wmToUpGoodsEntity.setBinId(wmToMoveGoodsEntity.getTinId());
 				wmToUpGoodsEntity.setKuWeiBianMa(wmToMoveGoodsEntity.getBinTo());

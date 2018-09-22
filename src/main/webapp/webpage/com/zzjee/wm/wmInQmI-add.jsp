@@ -74,7 +74,7 @@ window.onload = function() {
 
  <body>
 
-	<t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="wmInQmIController.do?doAdd" tiptype="1" >
+	<t:formvalid formid="formobj" dialog="true" usePlugin="password"   layout="div" >
 			<input type="hidden" id="btn_sub" class="btn_sub"/>
 			<input type="hidden" id="id" name="id"/>
 			<input type="hidden" id="binSta" name="binSta" value="N"/>
@@ -123,7 +123,9 @@ window.onload = function() {
 			          	<b>数量(${wmInQmIPage.goodsUnit}) ：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="qmOkQuat" name="qmOkQuat" type="text" class="form-control" 
+						  <input id="qmOkQuaty" name="qmOkQuaty" value='${wmInQmIPage.qmOkQuat}' type="hidden"/>
+
+						  <input id="qmOkQuat" name="qmOkQuat" type="text" class="form-control"
 									ignore="checked" value='${wmInQmIPage.qmOkQuat}' style="width:80px;"
 								 datatype="*" />   
 							
@@ -156,7 +158,7 @@ window.onload = function() {
 			          <div class="col-xs-3">
 								<input id="proData" name="proData" type="text"
 									ignore="checked" onchange="setbatch()" 
-								  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker()" datatype="*"  type="date" pattern="yyyy-MM-dd"/>
+								  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker()"    type="date"  />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">生产日期</label>
 			          </div>
@@ -210,44 +212,61 @@ window.onload = function() {
 					  </div>
 					  </div>
 
-			          <div class="row" id = "sub_tr" style="display: none;">
-				        <div class="col-xs-12 layout-header">
-				          <div class="col-xs-6"></div>
-				          <div class="col-xs-6"><button type="button" onclick="neibuClick();" class="btn btn-default">提交</button></div>
-				        </div>
-				      </div>
+			          <%--<div class="row" id = "sub_tr" style="display: none;">--%>
+				        <%--<div class="col-xs-12 layout-header">--%>
+				          <%--<div class="col-xs-6"></div>--%>
+				          <%--<div class="col-xs-6"><button type="button" onclick="neibuClick();" class="btn btn-default">提交</button></div>--%>
+				        <%--</div>--%>
+				      <%--</div>--%>
 			     </div>
 			   </div>
 			   
 			   <div class="con-wrapper" id="con-wrapper2" style="display: block;"></div>
 			 </div>
-  </t:formvalid>
+		<div style="margin:3px auto"><button onclick="sub('formobj');">验收</button></div>
+
+	</t:formvalid>
 
 <script type="text/javascript">
-   $(function(){
-    //查看模式情况下,删除和上传附件功能禁止使用
-	if(location.href.indexOf("load=detail")!=-1){
-		$(".jeecgDetail").hide();
-	}
-	
-	if(location.href.indexOf("mode=read")!=-1){
-		//查看模式控件禁用
-		$("#formobj").find(":input").attr("disabled","disabled");
-	}
-	if(location.href.indexOf("mode=onbutton")!=-1){
-		//其他模式显示提交按钮
-		$("#sub_tr").show();
-	}
-   });
-
-  var neibuClickFlag = false;
-  function neibuClick() {
-	  neibuClickFlag = true; 
-	  $('#btn_sub').trigger('click');
-  }
 
 
-}
+    //表单提交
+    function sub(formid){
+        console.log('1');
+
+		var qmOkQuaty = $("#qmOkQuaty").val();
+		console.log("qmOkQuaty"+qmOkQuaty);
+        var qmOkQuat = $("#qmOkQuat").val();
+        console.log("qmOkQuaty"+qmOkQuaty);
+
+        if(qmOkQuat==""||qmOkQuat<=0){
+            alert("请输入数量");
+		}else{
+            $.ajax({
+                type:"POST",
+                url:"wmInQmIController.do?doAdd",
+                data:$("#"+formid).serialize(),
+                async:true,
+                success:function (data) {
+                    var d = $.parseJSON(data);
+                    if (d.success) {
+                        var msg = d.msg;
+                        tip(msg);
+                        qmOkQuaty = qmOkQuaty  - qmOkQuat;
+                        $("#qmOkQuaty").val(qmOkQuaty);
+                        $("#qmOkQuat").val(qmOkQuaty);
+                        $("#binId").val("");
+
+                    } else {
+                        tip(d.msg);
+                    }
+                }
+            });
+		}
+    }
+
+
+
 </script>
  </body>
 <script src = "webpage/com/zzjee/wm/wmInQmI.js"></script>		
