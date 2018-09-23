@@ -46,6 +46,21 @@
 		<property name="cronExpression" value="0 0/1 * * * ?" />
 	</bean>
 
+
+	<!-- 定时任务配置   costTask 可配置到管理界面 -->
+	<bean id="goodsMoveTaskJob"
+		  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="goodsMoveTask" />
+		<property name="targetMethod" value="run" />
+		<property name="concurrent" value="false"/>
+
+	</bean>
+
+	<bean id="goodsMoveTaskCronTrigger" class="org.jeecgframework.core.timer.DataBaseCronTriggerBean">
+		<property name="jobDetail" ref="goodsMoveTaskJob" />
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean>
+
 	<!-- 定时任务调度器 -->
 	<bean id="schedulerFactory" lazy-init="false" autowire="no"
 		class="org.jeecgframework.core.timer.DataBaseSchedulerFactoryBean">
@@ -53,14 +68,9 @@
 			<list>
 				<ref bean="costTaskCronTrigger" />
 				<ref bean="smsSendTaskCronTrigger" />
+				<ref bean="goodsMoveTaskCronTrigger" />
 			</list>
 		</property>
 	</bean>
-
-
-
-
-
-
 
 </beans>
