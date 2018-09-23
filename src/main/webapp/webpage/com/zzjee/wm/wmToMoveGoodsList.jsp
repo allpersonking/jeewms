@@ -43,6 +43,7 @@
       <t:dgToolBar title="选择批量更改" icon="icon-edit"  funname="editRow"></t:dgToolBar>
       <t:dgToolBar  title="批量保存" icon="icon-save" url="wmToMoveGoodsController.do?saveRows" funname="saveData"></t:dgToolBar>
       <t:dgToolBar   title="取消批量更改" icon="icon-undo" funname="reject"></t:dgToolBar>
+      <t:dgToolBar title="批量确定转移"     funname="dobatchUpdate"></t:dgToolBar>
 
     <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmToMoveGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>
    <t:dgToolBar title="查看" icon="icon-search" url="wmToMoveGoodsController.do?goUpdate" funname="detail"></t:dgToolBar>
@@ -56,6 +57,40 @@
  <script type="text/javascript">
  $(document).ready(function(){
  });
+
+
+ function dobatchUpdate(){
+     var  moveSta = "已完成";
+
+     var ids = [];
+     var rows = $('#wmToMoveGoodsList').datagrid('getSelections');
+
+     for(var i=0; i<rows.length; i++){
+         if(rows[i].moveSta=="计划中"){
+             ids.push(rows[i].id);
+         }
+     }
+     if(ids.size<=0){
+         alert("请选择数据");
+     }else{
+         var url = "wmToMoveGoodsController.do?doBatchUpdate&ids="+ids+"&moveSta="+moveSta;
+         $.ajax({
+             async : false,
+             cache : false,
+             type : 'POST',
+             url : url,// 请求的action路径
+             error : function() {// 请求失败处理函数
+             },
+             success : function(data) {
+                 var d = $.parseJSON(data);
+                 if (d.success) {
+                     tip("批量设置状态已完成成功");
+                     $('#wmToMoveGoodsList').datagrid('reload',{});
+                 }
+             }
+         });
+     }
+ }
 
 
 

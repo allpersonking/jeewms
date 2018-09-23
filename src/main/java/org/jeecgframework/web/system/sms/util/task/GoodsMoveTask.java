@@ -61,40 +61,53 @@ public class GoodsMoveTask {
 		org.jeecgframework.core.util.LogUtil.info("转移定时任务总耗时" + times + "毫秒");
 	}
 	public  void goodsMove(String binstrore,String moveStatus ){
+	    //转移到B
+		String tsql = "SELECT id FROM zzjee.wv_stock_stt " +
+                "where yushoutianshu <> bzhi_qi  " +
+                "and bzhi_qi > 0 " +
+                "and  bin_id = 'A' " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi - yushoutianshu) day) < to_days(now())  " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) > to_days(now())";
+		this.genGoodsMove(tsql,"B","",moveStatus);
 
-		String tsql = "";
-		List<Map<String, Object>> resulmove = systemService
-				.findForJdbc(tsql, binstrore);
-		//生成任务
-		for (int i = 0; i < resulmove.size(); i++) {
-
-				WvStockEntity t = systemService.get(WvStockEntity.class,resulmove.get(i).get("id").toString());
-				try {
-					WmToMoveGoodsEntity wmtomove = new WmToMoveGoodsEntity();
-					wmtomove.setOrderTypeCode("TPZY");
-					wmtomove.setBinFrom(t.getKuWeiBianMa());
-					wmtomove.setBinTo(t.getKuWeiBianMa());
-					wmtomove.setCusCode(t.getCusCode());
-					wmtomove.setCusName(t.getZhongWenQch());
-					wmtomove.setToCusCode(t.getCusCode());
-					wmtomove.setToCusName(t.getZhongWenQch());
-					wmtomove.setGoodsId(t.getGoodsId());
-					wmtomove.setGoodsName(t.getShpMingCheng());
-					wmtomove.setGoodsProData(t.getGoodsProData());
-					wmtomove.setGoodsQua(t.getGoodsQua().toString());
-					wmtomove.setGoodsUnit(t.getGoodsUnit());
-					wmtomove.setBaseGoodscount(t.getGoodsQua().toString());
-					wmtomove.setBaseUnit(t.getGoodsUnit());
-					wmtomove.setMoveSta(moveStatus);
-					wmtomove.setTinFrom(t.getBinId());
-					wmtomove.setTinId("B");
-					systemService.save(wmtomove);
-				}catch (Exception e){
-				}
-
-
-
-			}
-
+		//转移到C
+        tsql = "SELECT id FROM zzjee.wv_stock_stt " +
+                "where yushoutianshu <>  bzhi_qi   " +
+                "and bzhi_qi > 0 " +
+                "and   bin_id in ('A','B') " +
+                "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
+        this.genGoodsMove(tsql,"C","",moveStatus);
 	}
+
+	private void  genGoodsMove(String Tsql,String TinId,String binstrore,String moveStatus  ){
+              List<Map<String, Object>> resulmovea = systemService
+                .findForJdbc(Tsql, binstrore);
+        //生成任务转B
+        for (int i = 0; i < resulmovea.size(); i++) {
+            WvStockEntity t = systemService.get(WvStockEntity.class,resulmovea.get(i).get("id").toString());
+            try {
+                WmToMoveGoodsEntity wmtomove = new WmToMoveGoodsEntity();
+                wmtomove.setOrderTypeCode("TPZY");
+                wmtomove.setBinFrom(t.getKuWeiBianMa());
+                wmtomove.setBinTo(t.getKuWeiBianMa());
+                wmtomove.setCusCode(t.getCusCode());
+                wmtomove.setCusName(t.getZhongWenQch());
+                wmtomove.setToCusCode(t.getCusCode());
+                wmtomove.setToCusName(t.getZhongWenQch());
+                wmtomove.setGoodsId(t.getGoodsId());
+                wmtomove.setGoodsName(t.getShpMingCheng());
+                wmtomove.setGoodsProData(t.getGoodsProData());
+                wmtomove.setGoodsQua(t.getGoodsQua().toString());
+                wmtomove.setGoodsUnit(t.getGoodsUnit());
+                wmtomove.setBaseGoodscount(t.getGoodsQua().toString());
+                wmtomove.setBaseUnit(t.getGoodsUnit());
+                wmtomove.setMoveSta(moveStatus);
+                wmtomove.setTinFrom(t.getBinId());
+                wmtomove.setTinId(TinId);
+                systemService.save(wmtomove);
+            }catch (Exception e){
+            }
+        }
+
+    }
 }

@@ -157,7 +157,36 @@ public class WmToMoveGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+
+	/**
+	 * 批量删除库存转移
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "doBatchUpdate")
+	@ResponseBody
+	public AjaxJson doBatchUpdate(String ids,String moveSta,HttpServletRequest request){
+		String message = null;
+		AjaxJson j = new AjaxJson();
+		message = "批量设置状态成功";
+		try{
+			for(String id:ids.split(",")){
+				WmToMoveGoodsEntity wmToMoveGoods = systemService.getEntity(WmToMoveGoodsEntity.class,
+						id
+				);
+				wmToMoveGoods.setMoveSta(moveSta);
+				wmToMoveGoodsService.updateEntitie(wmToMoveGoods);
+				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			message = "批量设置状态失败";
+			throw new BusinessException(e.getMessage());
+		}
+		j.setMsg(message);
+		return j;
+	}
+
 	/**
 	 * 批量删除库存转移
 	 * 
@@ -186,6 +215,8 @@ public class WmToMoveGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+
+
 
 
 		@RequestMapping(params = "doGetstock", method = { RequestMethod.GET,

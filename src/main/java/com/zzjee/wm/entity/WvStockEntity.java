@@ -71,6 +71,9 @@ public class WvStockEntity implements java.io.Serializable {
 	/**保质期*/
 	@Excel(name="保质期")
 	private java.lang.String bzhiQi;
+	//允收天数
+	private java.lang.String yushoutianshu;
+
 	/**单位*/
 	@Excel(name="单位")
 	private java.lang.String goodsUnit;
@@ -363,5 +366,12 @@ public class WvStockEntity implements java.io.Serializable {
 	public void setMoveSta(java.lang.String moveSta) {
 		this.moveSta = moveSta;
 	}
-	
+	@Column(name ="yushoutianshu",nullable=true,length=36)
+	public String getYushoutianshu() {
+		return yushoutianshu;
+	}
+
+	public void setYushoutianshu(String yushoutianshu) {
+		this.yushoutianshu = yushoutianshu;
+	}
 }
