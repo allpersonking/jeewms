@@ -51,6 +51,10 @@
 
    <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
+   <t:dgToolBar title="导入2" icon="icon-put" funname="ImportXls2"></t:dgToolBar>
+
+   <t:dgToolBar title="模板2下载" icon="icon-putout" funname="ExportXlsByT2"></t:dgToolBar>
+
   </t:datagrid>
    <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
     <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
@@ -148,4 +152,12 @@ function ExportXls() {
 function ExportXlsByT() {
 	JeecgExcelExport("wmOmNoticeHController.do?exportXlsByT","wmOmNoticeHList");
 }
+     //导入
+     function ImportXls2() {
+         openuploadwin('Excel导入', 'wmOmNoticeHController.do?upload2', "wmOmNoticeHList");
+     }
+     //模板下载
+     function ExportXlsByT2() {
+         JeecgExcelExport("wmOmNoticeHController.do?exportXlsByT2","wmOmNoticeHList");
+     }
  </script>

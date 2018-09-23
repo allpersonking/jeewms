@@ -18,6 +18,7 @@ import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -40,6 +41,41 @@ public class wmUtil {
 			}
 		}
 		return list;
+	}
+//通过客户商品编码，或者WMS商品编码和单位找到WMS编码
+	public static Map<String,String> getGoodsId(String cusgoodsid,String goodsUnit){
+		Map<String,String> resultmap = new HashMap<>();
+		String goodsCode= null;
+		String cusCode= null;
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+		String  tsql = "select cus_code,chailing, goods_id,goods_code,shp_bian_makh,shl_dan_wei,baseunit" +
+				" from  mv_goods where goods_id = ? or shp_bian_makh = ? order by chailing desc";
+		List<Map<String, Object>> result=  systemService.findForJdbc(tsql, cusgoodsid,cusgoodsid);
+		if(result.size() > 0) {
+          try{
+          	for(int i = 0; i < result.size(); i++){
+				if(goodsUnit.equals(result.get(i).get("baseunit").toString())){
+					goodsCode = result.get(i).get("goods_code").toString();
+					cusCode = result.get(i).get("cus_code").toString();
+					resultmap.put("goodsCode",goodsCode);
+					resultmap.put("cusCode",cusCode);
+					break;
+				}
+				if(goodsUnit.equals(result.get(i).get("shl_dan_wei").toString())){
+					goodsCode = result.get(i).get("goods_id").toString();
+					cusCode = result.get(i).get("cus_code").toString();
+					resultmap.put("goodsCode",goodsCode);
+					resultmap.put("cusCode",cusCode);
+					break;
+				}
+
+			}
+
+		  }catch (Exception e){
+
+		  }
+		}
+		return resultmap;
 	}
 
 	public static String getCusCode(){

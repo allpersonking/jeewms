@@ -1708,6 +1708,149 @@ public class WmOmNoticeHController extends BaseController {
 					}
 				}
 				if("N".equals(flag)){
+					j.setMsg(message+"不存在");
+					return j;
+				}
+				List<WmNoticeImpPage> listheader =  ExcelImportUtil.importExcel(
+						file.getInputStream(), WmNoticeImpPage.class, params);
+				for(int i=0;i<listheader.size()-1;i++){
+					for(int  k=listheader.size()-1;k>i;k--){
+						if(listheader.get(k).getImCusCode().equals(listheader.get(i).getImCusCode()))  {
+							listheader.remove(k);
+						}
+					}
+				}
+				for(WmNoticeImpPage pageheader: listheader) {
+					List<WmOmNoticeHEntity>  wmomh = systemService.findByProperty(WmOmNoticeHEntity.class, "imCusCode", pageheader.getImCusCode());
+					if(wmomh!=null&&wmomh.size()>0){
+						continue;
+					}
+
+					List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+					for (WmNoticeImpPage page : list) {
+						if(pageheader.getImCusCode().equals(page.getImCusCode())) {
+							WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
+							wmi.setGoodsId(page.getGoodsId());
+							MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+									MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
+							if (mvgoods != null) {
+								wmi.setGoodsName(mvgoods.getGoodsName());
+								wmi.setGoodsUnit(mvgoods.getShlDanWei());
+							}
+							try{
+								wmi.setGoodsQua(page.getGoodsQua());
+								String[] args=page.getGoodsQua().split("\\.");
+								wmi.setGoodsQua(args[0]);
+							}catch (Exception e){
+
+							}
+
+//                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
+							wmi.setOtherId(page.getOtherId());
+							wmi.setBinId(page.getBinId());
+							if(StringUtil.isNotEmpty(page.getGoodsProData())){
+								wmi.setGoodsProData(DateUtils.str2Date(page.getGoodsProData(),DateUtils.date_sdf));
+							}
+							wmomNoticeIListnew.add(wmi);
+						}
+					}
+					WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
+					Map<String, Object> countMap = systemService
+							.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+					String noticeid = null;
+					if (countMap != null) {
+						noticeid = "CK"
+								+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+								+ "-"
+								+ StringUtil.leftPad(
+								((Long) countMap.get("count")).intValue(), 4,
+								'0');
+					}
+					wmOmNoticeH.setDelvData(pageheader.getImData());
+					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
+					wmOmNoticeH.setCusCode(pageheader.getCusCode());
+					wmOmNoticeH.setOmNoticeId(noticeid);
+					wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
+					wmOmNoticeH.setOcusCode(pageheader.getSupCode());
+					wmOmNoticeH.setDelvAddr(pageheader.getDelvAddr());
+					MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", wmOmNoticeH.getOcusCode());
+					if (mdcusother != null) {
+						wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
+					}
+					wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
+					wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
+				}
+				//
+				j.setMsg("文件导入成功！");
+			} catch (Exception e) {
+				j.setMsg("文件导入失败！");
+				logger.error(ExceptionUtil.getExceptionMessage(e));
+			}finally{
+				try {
+					file.getInputStream().close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return j;
+	}
+
+
+	/**
+	 * 通过excel导入数据
+	 * @param request
+	 * @param
+	 * @return
+	 */
+	@RequestMapping(params = "importExcel2", method = RequestMethod.POST)
+	@ResponseBody
+	public AjaxJson importExcel2(HttpServletRequest request, HttpServletResponse response) {
+		AjaxJson j = new AjaxJson();
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+		for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+			MultipartFile file = entity.getValue();// 获取上传文件对象
+			ImportParams params = new ImportParams();
+			params.setTitleRows(2);
+			params.setHeadRows(1);
+			params.setNeedSave(true);
+			try {
+
+
+				List<WmOmNoticeImpPage> listfirst =  ExcelImportUtil.importExcel(file.getInputStream(), WmOmNoticeImpPage.class, params);
+				List<WmNoticeImpPage> list =  new ArrayList<WmNoticeImpPage>();
+
+				for(WmOmNoticeImpPage t:listfirst){
+					WmNoticeImpPage wmNoticeImpPage = new WmNoticeImpPage();
+					wmNoticeImpPage.setOrderTypeCode("11");
+					wmNoticeImpPage.setImCusCode(t.getImCusCode());//三方单号
+					wmNoticeImpPage.setImBeizhu(t.getImBeizhu());//备注
+					try{
+						wmNoticeImpPage.setGoodsId(wmUtil.getGoodsId(t.getGoodsId(),t.getGoodsUnit()).get("goodsCode"));
+						wmNoticeImpPage.setCusCode(wmUtil.getGoodsId(t.getGoodsId(),t.getGoodsUnit()).get("cusCode"));
+					}catch (Exception e){
+
+					}
+					wmNoticeImpPage.setGoodsName(t.getGoodsName());//商品名称
+					wmNoticeImpPage.setGoodsQua(t.getGoodsQua());//数量
+					wmNoticeImpPage.setGoodsUnit(t.getGoodsUnit());//单位
+					list.add(wmNoticeImpPage);
+
+				}
+//第二类简单模板
+
+				String flag = "Y";
+				String message="";
+				for(WmNoticeImpPage wmt:list){
+					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
+					if(mvgoods==null){
+						flag = "N";
+						message=message+wmt.getGoodsId();
+					}
+				}
+				if("N".equals(flag)){
 									j.setMsg(message+"不存在");
 									return j;
 				}
@@ -1808,6 +1951,18 @@ public class WmOmNoticeHController extends BaseController {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	/**
+	 * 导出excel 使模板
+	 */
+	@RequestMapping(params = "exportXlsByT2")
+	public String exportXlsByT2(ModelMap map) {
+		map.put(NormalExcelConstants.FILE_NAME,"出货通知");
+		map.put(NormalExcelConstants.CLASS,WmOmNoticeImpPage.class);
+		map.put(NormalExcelConstants.PARAMS,new ExportParams("出货通知", "导出人:"+ ResourceUtil.getSessionUserName().getRealName(),
+				"导出信息"));
+		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());
+		return NormalExcelConstants.JEECG_EXCEL_VIEW;
+	}
+	/**
 	 * 导入功能跳转
 	 *
 	 * @return
@@ -1818,7 +1973,16 @@ public class WmOmNoticeHController extends BaseController {
 		return new ModelAndView("common/upload/pub_excel_upload");
 	}
 
-
+	/**
+	 * 导入功能跳转
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "upload2")
+	public ModelAndView upload2(HttpServletRequest req) {
+		req.setAttribute("controller_name", "wmOmNoticeHController");
+		return new ModelAndView("common/upload/pub_excel_upload2");
+	}
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<WmOmNoticeHEntity> list() {
