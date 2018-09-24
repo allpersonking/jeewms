@@ -88,6 +88,10 @@ public class WmNoticeImpPage implements java.io.Serializable {
 	@Excel(name="单位")
 	private java.lang.String goodsUnit;
 
+
+	@Excel(name="储位")
+	private java.lang.String binOm;
+
 	@Excel(name="托盘")
 	private java.lang.String binId;
 
@@ -415,6 +419,13 @@ public class WmNoticeImpPage implements java.io.Serializable {
 		this.delvAddr = delvAddr;
 	}
 
+	public String getBinOm() {
+		return binOm;
+	}
+
+	public void setBinOm(String binOm) {
+		this.binOm = binOm;
+	}
 
 	public String getBinId() {
 		return binId;

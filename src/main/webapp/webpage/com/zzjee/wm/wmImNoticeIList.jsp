@@ -1521,3 +1521,4 @@
 	</c:if>	
 	</tbody>
 </table>
+</div>

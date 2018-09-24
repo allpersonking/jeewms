@@ -96,6 +96,9 @@
 					  <th>
 							下架任务是否已生成
 					  </th>
+			  <th>
+				  出货储位
+			  </th>
 					  <th>
 						  出货托盘
 					  </th>
@@ -128,6 +131,13 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+
+				<td>
+					<input name="wmOmNoticeIList[0].binOm" maxlength="32"
+						   type="text" class="form-control"  style="width:120px;" >
+					<label class="Validform_label" style="display: none;">出货储位</label>
+				</td>
+
 				<td>
 					<input name="wmOmNoticeIList[0].binId" maxlength="32"
 						   type="text" class="form-control"  style="width:120px;" >
@@ -162,6 +172,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[1].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[1].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -194,6 +209,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[2].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[2].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -228,6 +248,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[3].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[3].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -260,6 +285,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[4].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[4].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -294,6 +324,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[5].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[5].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -326,6 +361,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[6].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[6].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -360,6 +400,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[7].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[7].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -392,6 +437,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[8].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[8].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -426,6 +476,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[9].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[9].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -458,6 +513,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[10].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[10].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -492,6 +552,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[11].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[11].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -524,6 +589,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[12].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[12].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -558,6 +628,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[13].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[13].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -590,6 +665,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[14].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[14].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -624,6 +704,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[15].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[15].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -656,6 +741,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[16].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[16].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -690,6 +780,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[17].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[17].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -722,6 +817,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[18].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[18].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -756,6 +856,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[19].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[19].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -788,6 +893,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+							<td>
+								<input name="wmOmNoticeIList[20].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
 							<td>
 								<input name="wmOmNoticeIList[20].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
@@ -822,6 +932,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 							<td>
+								<input name="wmOmNoticeIList[21].binOm" maxlength="32"
+									   type="text" class="form-control"  style="width:120px;" >
+								<label class="Validform_label" style="display: none;">出货储位</label>
+							</td>
+							<td>
 								<input name="wmOmNoticeIList[21].binId" maxlength="32"
 									   type="text" class="form-control"  style="width:120px;" >
 								<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -854,6 +969,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 				<td>
+					<input name="wmOmNoticeIList[22].binOm" maxlength="32"
+						   type="text" class="form-control"  style="width:120px;" >
+					<label class="Validform_label" style="display: none;">出货储位</label>
+				</td>
+				<td>
 					<input name="wmOmNoticeIList[22].binId" maxlength="32"
 						   type="text" class="form-control"  style="width:120px;" >
 					<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -874,6 +994,11 @@
 					<t:choose  hiddenName="wmOmNoticeIList[23].goodsId" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>	  
 					  <label class="Validform_label" style="display: none;">出货商品</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[23].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 				        <td>
 					  	<input name="wmOmNoticeIList[23].goodsQua" maxlength="32" 
 					  		type="text" class="form-control"  style="width:120px;" >
@@ -916,6 +1041,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 			<td>
+				<input name="wmOmNoticeIList[24].binOm" maxlength="32"
+					   type="text" class="form-control"  style="width:120px;" >
+				<label class="Validform_label" style="display: none;">出货储位</label>
+			</td>
+			<td>
 				<input name="wmOmNoticeIList[24].binId" maxlength="32"
 					   type="text" class="form-control"  style="width:120px;" >
 				<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -946,6 +1076,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[25].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[25].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -978,6 +1113,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[26].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[26].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1008,6 +1148,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[27].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[27].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1040,6 +1185,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[28].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[28].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1070,6 +1220,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[29].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[29].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1102,6 +1257,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[30].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[30].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1132,6 +1292,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[31].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[31].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1164,6 +1329,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[32].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[32].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1194,6 +1364,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[33].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[33].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1226,6 +1401,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[34].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[34].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1256,6 +1436,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[35].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[35].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1288,6 +1473,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[36].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[36].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1318,6 +1508,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[37].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[37].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1350,6 +1545,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[38].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[38].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1380,6 +1580,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[39].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[39].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1412,6 +1617,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[40].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[40].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1442,6 +1652,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[41].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[41].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1474,6 +1689,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[42].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[42].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1504,6 +1724,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[43].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[43].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1536,6 +1761,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[44].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[44].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1566,6 +1796,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[45].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[45].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1598,6 +1833,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[46].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[46].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1628,6 +1868,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[47].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[47].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1660,6 +1905,11 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 	<td>
+		<input name="wmOmNoticeIList[48].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+	<td>
 		<input name="wmOmNoticeIList[48].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
 		<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1690,6 +1940,11 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[49].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
 	<td>
 		<input name="wmOmNoticeIList[49].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
@@ -1759,6 +2014,11 @@ wmOmNoticeIList[${stuts.index }].goodsId<input name="wmOmNoticeIList[${stuts.ind
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 				<td align="left">
+					<input name="wmOmNoticeIList[${stuts.index }].binOm" maxlength="32"
+						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binOm }">
+					<label class="Validform_label" style="display: none;">出货储位</label>
+				</td>
+				<td align="left">
 					<input name="wmOmNoticeIList[${stuts.index }].binId" maxlength="32"
 						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binId }">
 					<label class="Validform_label" style="display: none;">出货托盘</label>
@@ -1783,3 +2043,4 @@ wmOmNoticeIList[${stuts.index }].goodsId<input name="wmOmNoticeIList[${stuts.ind
 	</c:if>	
 	</tbody>
 </table>
+</div>

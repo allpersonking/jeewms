@@ -394,10 +394,13 @@ public class SmsSendTask {
 			String  usetuopan  = ResourceUtil.getConfigByName("usetuopan");
 			String  prodate = null;
 			String  tuopanma ="";
+			String binom = "";
 			if("no".equals(usetuopan)){
 				tuopanma = ResourceUtil.getConfigByName("tuopanma");
 			}
 			for (WmOmNoticeIEntity wmOmNoticeIEntity : WmOmNoticeIlist) {
+				binom ="";
+				binom = wmOmNoticeIEntity.getBinOm();
 				prodate = null;
 				if(StringUtil.isNotEmpty(wmOmNoticeIEntity.getGoodsProData())){
 					prodate= DateUtils.date2Str(wmOmNoticeIEntity.getGoodsProData(),DateUtils.date_sdf);
@@ -486,6 +489,10 @@ public class SmsSendTask {
 							tsql = tsql + " and ws.goods_pro_data = '"+prodate + "' ";
 						}
 
+						if(StringUtil.isNotEmpty(binom)) {
+							tsql = tsql + " and ws.ku_wei_bian_ma = '"+binom + "' ";
+						}
+
 						tsql = tsql + "   and ws.goods_id = ? "
 								+ "   and ws.cus_code =  ? "
 								+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data  having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc ";
@@ -531,7 +538,9 @@ public class SmsSendTask {
 										tsqlz = tsqlz
 												+ "   and ws.goods_pro_data = '" + goodprodata + "'";
 									}
-
+									if(StringUtil.isNotEmpty(binom)) {
+										tsqlz = tsqlz + " and ws.ku_wei_bian_ma = '"+binom + "' ";
+									}
 									tsqlz = tsqlz
 											+ "   and (ws.base_goodscount + 0) =  ? "
 											+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
