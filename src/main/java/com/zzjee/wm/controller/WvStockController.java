@@ -125,7 +125,6 @@ public class WvStockController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 	@RequestMapping(params = "datagridkczy")
 	public void datagridkczy(WvStockEntity wvStock, HttpServletRequest request,
@@ -407,6 +406,7 @@ public class WvStockController extends BaseController {
 					wmtomove.setBaseGoodscount(t.getGoodsQua().toString());
 					wmtomove.setBaseUnit(t.getGoodsUnit());
 					wmtomove.setMoveSta("计划中");
+					wmtomove.setRunSta("计划中");
 					wmtomove.setTinFrom(t.getBinId());
 					wmtomove.setTinId(t.getBinId());
 					systemService.save(wmtomove);
@@ -452,6 +452,7 @@ public class WvStockController extends BaseController {
 			wmtomove.setBaseGoodscount(t.getGoodsQua().toString());
 			wmtomove.setBaseUnit(t.getGoodsUnit());
 			wmtomove.setMoveSta("计划中");
+			wmtomove.setRunSta("计划中");
 			wmtomove.setTinFrom(t.getBinId());
 			wmtomove.setTinId(t.getBinId());
 			systemService.save(wmtomove);
@@ -501,6 +502,7 @@ public class WvStockController extends BaseController {
 						wmtomove.setTinId(moveTinid);
 					}
 					wmtomove.setTinFrom(t.getBinId());
+					wmtomove.setRunSta("计划中");
 					systemService.save(wmtomove);
 					systemService.addLog(message, Globals.Log_Type_UPDATE,
 							Globals.Log_Leavel_INFO);
@@ -546,7 +548,8 @@ public class WvStockController extends BaseController {
 			wmtomove.setBaseUnit(t.getGoodsUnit());
 			wmtomove.setMoveSta("计划中");
 			wmtomove.setTinFrom(t.getBinId());
-	
+			wmtomove.setRunSta("计划中");
+
 			systemService.save(wmtomove);
 			systemService.addLog(message, Globals.Log_Type_UPDATE,
 					Globals.Log_Leavel_INFO);

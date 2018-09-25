@@ -258,15 +258,19 @@ public class SmsSendTask {
 			for (WmToMoveGoodsEntity wmToMoveGoodsEntity : WmToMoveGoodslist) {
 				if(!wmUtil.checkstcok(wmToMoveGoodsEntity.getBinFrom(),wmToMoveGoodsEntity.getTinFrom(),wmToMoveGoodsEntity.getGoodsId(),wmToMoveGoodsEntity.getGoodsProData(),wmToMoveGoodsEntity.getGoodsQua())){
 					wmToMoveGoodsEntity.setMoveSta("库存不足");
+					wmToMoveGoodsEntity.setRunSta("库存不足");
 					systemService.saveOrUpdate(wmToMoveGoodsEntity);
 					continue;
 				};
 				MdBinEntity mdbin = systemService.findUniqueByProperty(MdBinEntity.class, "kuWeiBianMa", wmToMoveGoodsEntity.getBinTo());
 				if(mdbin==null){
 					wmToMoveGoodsEntity.setMoveSta("储位不存在");
+					wmToMoveGoodsEntity.setRunSta("储位不存在");
 					systemService.saveOrUpdate(wmToMoveGoodsEntity);
 					continue;
 				}
+				wmToMoveGoodsEntity.setRunSta("已完成");
+
 				WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
 				wmToDownGoods.setCreateBy(wmToMoveGoodsEntity.getCreateBy());
 				wmToDownGoods.setCreateDate(wmToMoveGoodsEntity.getCreateDate());

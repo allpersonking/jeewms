@@ -420,6 +420,7 @@ public class WmToMoveGoodsController extends BaseController {
 
 						}
 					}
+					wmToMoveGoods.setRunSta("计划中");
 					wmToMoveGoodsService.save(wmToMoveGoods);
 				}
 				j.setMsg("文件导入成功！");

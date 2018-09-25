@@ -121,6 +121,7 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	private java.lang.String moveSta;
 
 
+	private java.lang.String runSta;
 
 	
 	/**
@@ -587,5 +588,14 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	 */
 	public void setToGoodsProData(java.lang.String toGoodsProData){
 		this.toGoodsProData = toGoodsProData;
+	}
+
+	@Column(name ="RUN_STA",nullable=true,length=32)
+	public String getRunSta() {
+		return runSta;
+	}
+
+	public void setRunSta(String runSta) {
+		this.runSta = runSta;
 	}
 }
