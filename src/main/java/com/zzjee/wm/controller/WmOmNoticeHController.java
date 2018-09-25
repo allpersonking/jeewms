@@ -1817,19 +1817,17 @@ public class WmOmNoticeHController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
-
-
 				List<WmOmNoticeImpPage> listfirst =  ExcelImportUtil.importExcel(file.getInputStream(), WmOmNoticeImpPage.class, params);
 				List<WmNoticeImpPage> list =  new ArrayList<WmNoticeImpPage>();
-
+				List<WmNoticeImpPage> listheader = new ArrayList<WmNoticeImpPage>();
 				for(WmOmNoticeImpPage t:listfirst){
 					WmNoticeImpPage wmNoticeImpPage = new WmNoticeImpPage();
 					wmNoticeImpPage.setOrderTypeCode("11");
 					wmNoticeImpPage.setImCusCode(t.getImCusCode());//三方单号
 					wmNoticeImpPage.setImBeizhu(t.getImBeizhu());//备注
 					try{
-						wmNoticeImpPage.setGoodsId(wmUtil.getGoodsId(t.getGoodsId(),t.getGoodsUnit()).get("goodsCode"));
-						wmNoticeImpPage.setCusCode(wmUtil.getGoodsId(t.getGoodsId(),t.getGoodsUnit()).get("cusCode"));
+						wmNoticeImpPage.setGoodsId(wmUtil.getGoodsId(t.getCusCode(),t.getGoodsId(),t.getGoodsUnit()).get("goodsCode"));
+//						wmNoticeImpPage.setCusCode(wmUtil.getGoodsId(t.getGoodsId(),t.getGoodsUnit()).get("cusCode"));
 					}catch (Exception e){
 
 					}
@@ -1837,7 +1835,7 @@ public class WmOmNoticeHController extends BaseController {
 					wmNoticeImpPage.setGoodsQua(t.getGoodsQua());//数量
 					wmNoticeImpPage.setGoodsUnit(t.getGoodsUnit());//单位
 					list.add(wmNoticeImpPage);
-
+					listheader.add(wmNoticeImpPage);
 				}
 //第二类简单模板
 
@@ -1848,15 +1846,14 @@ public class WmOmNoticeHController extends BaseController {
 							MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
 					if(mvgoods==null){
 						flag = "N";
-						message=message+wmt.getGoodsId();
+						message=message+wmt.getGoodsName();
 					}
 				}
 				if("N".equals(flag)){
 									j.setMsg(message+"不存在");
 									return j;
 				}
-				List<WmNoticeImpPage> listheader =  ExcelImportUtil.importExcel(
-						file.getInputStream(), WmNoticeImpPage.class, params);
+
 				for(int i=0;i<listheader.size()-1;i++){
 					for(int  k=listheader.size()-1;k>i;k--){
 						if(listheader.get(k).getImCusCode().equals(listheader.get(i).getImCusCode()))  {

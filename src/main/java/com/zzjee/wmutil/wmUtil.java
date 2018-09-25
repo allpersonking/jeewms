@@ -43,14 +43,13 @@ public class wmUtil {
 		return list;
 	}
 //通过客户商品编码，或者WMS商品编码和单位找到WMS编码
-	public static Map<String,String> getGoodsId(String cusgoodsid,String goodsUnit){
+	public static Map<String,String> getGoodsId(String cusCode,String cusgoodsid,String goodsUnit){
 		Map<String,String> resultmap = new HashMap<>();
 		String goodsCode= null;
-		String cusCode= null;
 		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 		String  tsql = "select cus_code,chailing, goods_id,goods_code,shp_bian_makh,shl_dan_wei,baseunit" +
-				" from  mv_goods where goods_id = ? or shp_bian_makh = ? order by chailing desc";
-		List<Map<String, Object>> result=  systemService.findForJdbc(tsql, cusgoodsid,cusgoodsid);
+				" from  mv_goods where goods_id = ? or shp_bian_makh = ?  and cus_code = ? order by chailing desc";
+		List<Map<String, Object>> result=  systemService.findForJdbc(tsql, cusgoodsid,cusgoodsid,cusCode);
 		if(result.size() > 0) {
           try{
           	for(int i = 0; i < result.size(); i++){

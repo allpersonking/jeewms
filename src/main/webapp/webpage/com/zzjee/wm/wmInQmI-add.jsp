@@ -257,6 +257,11 @@ window.onload = function() {
                         $("#qmOkQuat").val(qmOkQuaty);
                         $("#binId").val("");
 
+                        window.parent.$('#tt').tabs('close','验收');
+
+
+
+
                     } else {
                         tip(d.msg);
                     }

@@ -300,7 +300,7 @@ function tip(msg) {
 			$.messager.show({
 				title : '提示信息',
 				msg : msg,
-				timeout : 1000 * 6
+				timeout : 1000 * 36
 			});
 		}else{
 			var icon = 7;

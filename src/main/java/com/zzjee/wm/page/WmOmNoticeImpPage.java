@@ -45,7 +45,7 @@ public class WmOmNoticeImpPage implements java.io.Serializable {
 
 	private String sysCompanyCode;
 	/**客户编码*/
-
+	@Excel(name="客户编码")
 	private String cusCode;
 	/**预计到货时间*/
 
@@ -70,7 +70,7 @@ public class WmOmNoticeImpPage implements java.io.Serializable {
 	private String supName;
 
 	private String otherId;
-	@Excel(name="商品")
+	@Excel(name="商品编号")
 	private String goodsId;
 
 	@Excel(name="商品名称")
