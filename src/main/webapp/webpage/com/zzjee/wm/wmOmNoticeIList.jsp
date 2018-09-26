@@ -994,11 +994,7 @@
 					<t:choose  hiddenName="wmOmNoticeIList[23].goodsId" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>	  
 					  <label class="Validform_label" style="display: none;">出货商品</label>
 					</td>
-	<td>
-		<input name="wmOmNoticeIList[23].binOm" maxlength="32"
-			   type="text" class="form-control"  style="width:120px;" >
-		<label class="Validform_label" style="display: none;">出货储位</label>
-	</td>
+
 				        <td>
 					  	<input name="wmOmNoticeIList[23].goodsQua" maxlength="32" 
 					  		type="text" class="form-control"  style="width:120px;" >
@@ -1009,6 +1005,12 @@
 										typeGroupCode="sf_yn" defaultVal="${wmOmNoticeHPage.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
+	<td>
+		<input name="wmOmNoticeIList[23].binOm" maxlength="32"
+			   type="text" class="form-control"  style="width:120px;" >
+		<label class="Validform_label" style="display: none;">出货储位</label>
+	</td>
+
 	<td>
 		<input name="wmOmNoticeIList[23].binId" maxlength="32"
 			   type="text" class="form-control"  style="width:120px;" >
