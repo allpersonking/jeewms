@@ -1841,17 +1841,20 @@ public class WmOmNoticeHController extends BaseController {
 
 				String flag = "Y";
 				String message="";
-				for(WmNoticeImpPage wmt:list){
-					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-							MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
-					if(mvgoods==null){
-						flag = "N";
-						message=message+wmt.getGoodsName();
+				if("yes".equals(ResourceUtil.getConfigByName("nocheck"))){
+					for(WmNoticeImpPage wmt:list){
+						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+								MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
+						if(mvgoods==null){
+							flag = "N";
+							message=message+wmt.getGoodsName();
+						}
 					}
-				}
-				if("N".equals(flag)){
-									j.setMsg(message+"不存在");
-									return j;
+					if("N".equals(flag)){
+						j.setMsg(message+"不存在");
+						return j;
+					}
+
 				}
 
 				for(int i=0;i<listheader.size()-1;i++){
