@@ -177,7 +177,7 @@ public class SmsSendTask {
 		try {
 			// 更新上架商品基本单位基本数量
 			List<WmToUpGoodsEntity> WmToUpGoodslist = new ArrayList<WmToUpGoodsEntity>();
-			hql = "from WmToUpGoodsEntity t where  t.baseUnit is null  ";
+			hql = "from WmToUpGoodsEntity t where  t.baseUnit is null or  t.baseUnit = ''  ";
 			WmToUpGoodslist = systemService.findByQueryString(hql);
 			for (WmToUpGoodsEntity wmToUpGoodsEntity : WmToUpGoodslist) {
 				MvGoodsEntity mvgoods = new MvGoodsEntity();

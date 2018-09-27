@@ -1841,7 +1841,7 @@ public class WmOmNoticeHController extends BaseController {
 
 				String flag = "Y";
 				String message="";
-				if("yes".equals(ResourceUtil.getConfigByName("nocheck"))){
+				if(!"yes".equals(ResourceUtil.getConfigByName("nocheck"))){
 					for(WmNoticeImpPage wmt:list){
 						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 								MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());

@@ -217,7 +217,36 @@ public class WmInQmIController extends BaseController {
 					return j;
 					
 				}
-				
+
+				try{
+
+					MvGoodsEntity mvgoods = new MvGoodsEntity();
+					mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode",
+							wmToUpGoodsEntity.getGoodsId());
+					wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
+					wmToUpGoodsEntity.setGoodsUnit(mvgoods.getShlDanWei());
+
+					if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
+						try {
+							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
+									.parseLong(mvgoods.getChlShl())
+									* Long.parseLong(wmToUpGoodsEntity.getGoodsQua())));
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+
+					} else {
+						wmToUpGoodsEntity.setBaseGoodscount(wmToUpGoodsEntity
+								.getGoodsQua());
+					}
+
+
+				}catch (Exception e){
+
+				}
+
+
 				wmInQmIEntity.setBinSta("Y");
 				systemService.save(wmToUpGoodsEntity);
 				systemService.saveOrUpdate(wmInQmIEntity);

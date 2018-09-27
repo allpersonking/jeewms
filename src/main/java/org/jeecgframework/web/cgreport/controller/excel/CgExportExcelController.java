@@ -141,7 +141,12 @@ public class CgExportExcelController extends BaseController {
 				columnNamesfiels[i] = fieldList.get(i).get("field_name").toString();
 			}
 			//长度
+			int countsize =0;
 			for(int i=0;i< result.size();i++){
+				countsize = countsize + 1;
+				if (countsize > 100){
+					break;
+				}
 				for(int j=0;j<fieldList.size();j++){
 					String lenths=null;
 					try{
