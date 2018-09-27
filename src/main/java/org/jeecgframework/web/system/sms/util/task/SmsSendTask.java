@@ -181,38 +181,37 @@ public class SmsSendTask {
 			WmToUpGoodslist = systemService.findByQueryString(hql);
 			for (WmToUpGoodsEntity wmToUpGoodsEntity : WmToUpGoodslist) {
 				MvGoodsEntity mvgoods = new MvGoodsEntity();
-				mvgoods = systemService.findUniqueByProperty(
-						MvGoodsEntity.class, "goodsCode",
-						wmToUpGoodsEntity.getGoodsId());
-				wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
-				wmToUpGoodsEntity.setGoodsUnit(mvgoods.getShlDanWei());
+				try{
+					mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode",
+							wmToUpGoodsEntity.getGoodsId());
+					wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
+					wmToUpGoodsEntity.setGoodsUnit(mvgoods.getShlDanWei());
 
-				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
-					try {
-						wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
-								.parseLong(mvgoods.getChlShl())
-								* Long.parseLong(wmToUpGoodsEntity.getGoodsQua())));
-					} catch (Exception e) {
-						// TODO: handle exception
+					if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
+						try {
+							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
+									.parseLong(mvgoods.getChlShl())
+									* Long.parseLong(wmToUpGoodsEntity.getGoodsQua())));
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+
+					} else {
+						wmToUpGoodsEntity.setBaseGoodscount(wmToUpGoodsEntity
+								.getGoodsQua());
 					}
-	
-				} else {
-					wmToUpGoodsEntity.setBaseGoodscount(wmToUpGoodsEntity
-							.getGoodsQua());
+				}catch (Exception e){
+
 				}
-
-
 				systemService.saveOrUpdate(wmToUpGoodsEntity);
 			}
-
 			// 更新基本单位基本数量
-			
-			
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		
 		try {
 			// 更新下架商品基本单位基本数量
 			List<WmToDownGoodsEntity> WmToDownGoodslist = new ArrayList<WmToDownGoodsEntity>();
@@ -220,26 +219,17 @@ public class SmsSendTask {
 			WmToDownGoodslist = systemService.findByQueryString(hql);
 			for (WmToDownGoodsEntity wmToDownGoodsEntity : WmToDownGoodslist) {
 				MvGoodsEntity mvgoods = new MvGoodsEntity();
-				mvgoods = systemService.findUniqueByProperty(
-						MvGoodsEntity.class, "goodsCode",
-						wmToDownGoodsEntity.getGoodsId());
-				wmToDownGoodsEntity.setGoodsUnit(mvgoods.getBaseunit());
-				wmToDownGoodsEntity.setGoodsQua(wmToDownGoodsEntity.getGoodsQuaok());
-
-//				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
-//					try {
-//						wmToDownGoodsEntity.setBaseGoodscount(String.valueOf(Long
-//								.parseLong(mvgoods.getChlShl())
-//								* Long.parseLong(wmToDownGoodsEntity.getGoodsQuaok())));
-//					} catch (Exception e) {
-//						// TODO: handle exception
-//					}
-//
-//				} else {
+				try{
+					mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode",
+							wmToDownGoodsEntity.getGoodsId());
+					wmToDownGoodsEntity.setGoodsUnit(mvgoods.getBaseunit());
+					wmToDownGoodsEntity.setGoodsQua(wmToDownGoodsEntity.getGoodsQuaok());
 					wmToDownGoodsEntity.setBaseGoodscount(wmToDownGoodsEntity.getGoodsQuaok());
-//				}
-//				wmToDownGoodsEntity.setBaseGoodscount(wmToDownGoodsEntity.getGoodsQuaok());
-				wmToDownGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
+					wmToDownGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
+				}catch (Exception e){
+
+				}
 				systemService.saveOrUpdate(wmToDownGoodsEntity);
 			}
 
@@ -294,27 +284,12 @@ public class SmsSendTask {
 						MvGoodsEntity.class, "goodsCode",
 						wmToMoveGoodsEntity.getGoodsId());
 				wmToDownGoods.setGoodsName(mvgoods.getGoodsName());
-//				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
-//					try {
-//						wmToDownGoods.setBaseGoodscount(String.valueOf(Long
-//								.parseLong(mvgoods.getChlShl())
-//								* Long.parseLong(wmToMoveGoodsEntity.getGoodsQua())));
-//					} catch (Exception e) {
-//						// TODO: handle exception
-//					}
-//
-//				} else {
 					if(StringUtil.isEmpty(wmToMoveGoodsEntity.getBaseGoodscount())){
 						wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
 					}else{
 						wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getBaseGoodscount());
 					}
-//				}
-				
-				
 				wmToDownGoods.setBaseUnit(mvgoods.getBaseunit());//基本单位
-//				wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());//基本单位数量
-				
 				wmToDownGoods.setGoodsUnit(wmToMoveGoodsEntity.getGoodsUnit());//出货单位
 				wmToDownGoods.setGoodsQua(wmToMoveGoodsEntity.getGoodsQua());//出货数量
 				wmToDownGoods.setGoodsQuaok(wmToMoveGoodsEntity.getGoodsQua());//出货数量
@@ -333,33 +308,17 @@ public class SmsSendTask {
 				wmToUpGoodsEntity.setGoodsBatch(wmToMoveGoodsEntity.getGoodsProData());
 				wmToUpGoodsEntity.setGoodsQua(wmToMoveGoodsEntity.getGoodsQua());
 				wmToUpGoodsEntity.setGoodsUnit(wmToMoveGoodsEntity.getGoodsUnit());
-				
-//				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
-//					try {
-//						wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
-//								.parseLong(mvgoods.getChlShl())
-//								* Long.parseLong(wmToMoveGoodsEntity.getGoodsQua())));
-//					} catch (Exception e) {
-//						// TODO: handle exception
-//					}
-//
-//				} else {
-//					wmToUpGoodsEntity.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
-//				}
 				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getBaseGoodscount())){
 					wmToUpGoodsEntity.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
 				}else{
 					wmToUpGoodsEntity.setBaseGoodscount(wmToMoveGoodsEntity.getBaseGoodscount());
 				}
-//				wmToUpGoodsEntity.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
 				wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
 				wmToUpGoodsEntity.setGoodsName(mvgoods.getGoodsName());
 				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getOrderIdI())){
 					wmToUpGoodsEntity.setOrderIdI(wmToMoveGoodsEntity.getId());
-
 				}else{
 					wmToUpGoodsEntity.setOrderIdI(wmToMoveGoodsEntity.getOrderIdI());
-
 				}
 				wmToUpGoodsEntity.setOrderId("ZY");
 				wmToUpGoodsEntity.setBinId(wmToMoveGoodsEntity.getTinId());
@@ -376,15 +335,8 @@ public class SmsSendTask {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	
-
-		
-		
-		
-	
-       this.rundowntask();//下架任务
-       
-		org.jeecgframework.core.util.LogUtil
+	    this.rundowntask();//下架任务
+       	org.jeecgframework.core.util.LogUtil
 				.info("===================消息中间件定时任务结束===================");
 		long end = System.currentTimeMillis();
 		long times = end - start;
@@ -418,10 +370,7 @@ public class SmsSendTask {
 						tuopanma="";
 					}
 				}
-
-
 				try {
-
 					long omcount = 0;
 					long omcountok = 0;
 					long omcountwq = 0;
@@ -501,13 +450,8 @@ public class SmsSendTask {
 								+ "   and ws.cus_code =  ? "
 								+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data  having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc ";
 						List<Map<String, Object>> resultt = new ArrayList<Map<String, Object>>();
-
-
-
-
 						System.out.print(tsql);
 						if(!"off".equals(ResourceUtil.getConfigByName("hiti"))) {//不启用HITI 此处不操作
-
 							try {
 								resultt = systemService
 										.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());
@@ -618,12 +562,9 @@ public class SmsSendTask {
 															// TODO: handle exception
 														}
 													}
-
 													systemService.save(wmOmQmIEntity);
-
 												}
 											} catch (Exception e) {
-
 											}
 										}
 									}
