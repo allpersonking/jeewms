@@ -124,6 +124,35 @@
 // 	function selectfun(){
 // 		alert($("#cuscodeid").val);
 // 	}
+
+
+
+ $(document).ready(function(){
+     //绑定下拉框change事件，当下来框改变时调用 SelectChange()方法
+     $("select[name='cusCode']").change(function() { SelectChange(); });
+     SelectChange();
+ })
+
+
+ function SelectChange() {
+     var selectcusValue = $("select[name='cusCode']").val();
+//加载工地
+     var url = "mvGoodsController.do?setvalue&cusCode="+selectcusValue;
+     $.ajax({
+         url:url,
+         type:"GET",
+         dataType:"JSON",
+         async: false,
+         success:function(data){
+             if(data.success){
+
+
+             }
+         }
+     });
+
+ }
+
  </script>
  <body>
   <form id="formobj"   action="wmImNoticeHController.do?doAdd" name="formobj" method="post"><input type="hidden" id="btn_sub" class="btn_sub"/>
@@ -145,7 +174,7 @@
 			          	<b>客户编码：</b>
 			          </div>
 			          <div class="col-xs-2">
-								<t:dictSelect  readonly="${wmImNoticeHPage.readonly}"  id="cusCodeid" field="cusCode" type="list"   extendJson="  {class:'form-control',datatype:'*',style:'width:230px'}"
+								<t:dictSelect  readonly="${wmImNoticeHPage.readonly}"   field="cusCode" type="list"   extendJson="  {class:'form-control',datatype:'*',style:'width:230px'}"
 								 								  defaultVal="${wmImNoticeHPage.cusCode}" dictTable="mv_cus" dictField="cus_code" dictText="cus_name"   hasLabel="false"  title="客户编码"></t:dictSelect>      
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">客户编码</label>

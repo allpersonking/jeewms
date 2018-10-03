@@ -127,8 +127,11 @@ public class MvGoodsController extends BaseController {
 	@ResponseBody
 	public AjaxJson setvalue(String cusCode, HttpServletRequest request) {
 		AjaxJson j = new AjaxJson();
-		coscode = cusCode;
+		System.out.print("ResourceUtil.getSessionUserName().setBrowser(cusCode)*******"+		ResourceUtil.getSessionUserName().getBrowser());
+		ResourceUtil.getSessionUserName().setBrowser(cusCode);
+		System.out.print("ResourceUtil.getSessionUserName().setBrowser(cusCode)########"+		ResourceUtil.getSessionUserName().getBrowser());
 
+		coscode = cusCode;
 		return j;
 	}
 	/**
@@ -137,7 +140,6 @@ public class MvGoodsController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -148,8 +150,10 @@ public class MvGoodsController extends BaseController {
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, mvGoods, request.getParameterMap());
 		try{
 		//自定义追加查询条件
-			if(!StringUtil.isEmpty(coscode)){
-				cq.like("cusCode", coscode);
+			System.out.print("ResourceUtil.getSessionUserName().setBrowser(cusCode)data"+		ResourceUtil.getSessionUserName().getBrowser());
+
+			if(!StringUtil.isEmpty(ResourceUtil.getSessionUserName().getBrowser())){
+				cq.like("cusCode", ResourceUtil.getSessionUserName().getBrowser());
 			}
 			cq.add();
 			if(!StringUtil.isEmpty(goodsCode)){
@@ -239,7 +243,6 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 添加商品视图
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -263,7 +266,6 @@ public class MvGoodsController extends BaseController {
 	/**
 	 * 更新商品视图
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")

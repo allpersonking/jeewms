@@ -117,7 +117,7 @@
 							  			  	<input id="wmOmNoticeIList[0].goodsId"  name="wmOmNoticeIList[0].goodsId" maxlength="32" 
 									ignore="ignore"  
 							  		type="text"    style="width:420px;text-align: left" >
-							  <t:choose  hiddenName="wmOmNoticeIList[0].goodsId" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>
+							  <t:choose  hiddenName="wmOmNoticeIList[0].goodsId"  hiddenid="goodsName"  url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>
 							  
 					  <label class="Validform_label" style="display: none;">出货商品</label>
 					</td>
