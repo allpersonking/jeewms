@@ -245,8 +245,29 @@ public class WmOmNoticeHController extends BaseController {
 		//===================================================================================
 		//查询-产品
 		String hql0 = "from WmOmQmIEntity where 1 = 1 AND omNoticeId = ? order by binId";
+		Double tomsum = 0.00;
+		Double  noticesum = 0.00;
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
+
+			try{
+				for(WmOmQmIEntity tom:wmOmQmIEntityList){
+					tomsum = tomsum + Double.parseDouble(tom.getBaseGoodscount());
+				}
+			}catch ( Exception e){
+
+			}
+
+			String hqlnotice = "from WmOmNoticeIEntity where 1 = 1 AND oM_NOTICE_ID = ? ";
+			List<WmOmNoticeIEntity> wmOmNoticeIEntityList = systemService.findHql(hqlnotice,id0);
+			for(WmOmNoticeIEntity tnotice:wmOmNoticeIEntityList){
+				noticesum = noticesum + Double.parseDouble(tnotice.getBaseGoodscount());
+			}
+			if(Double.doubleToLongBits(noticesum) != Double.doubleToLongBits(tomsum)){
+				request.setAttribute("jianhuoremark", "订单："+Double.toString(noticesum)+" 拣货："+Double.toString(tomsum));
+			}else{
+				request.setAttribute("jianhuoremark", "全部拣货");
+			}
 			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
 		}catch (Exception e){
 

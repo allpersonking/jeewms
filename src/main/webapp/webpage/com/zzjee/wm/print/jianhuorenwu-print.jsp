@@ -148,8 +148,8 @@ document.onreadystatechange = function () {
 		<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>
 		<col width=253 style='mso-width-source:userset;mso-width-alt:4010;width:252pt'>
 		<col width=45 style='mso-width-source:userset;mso-width-alt:1592;width:34pt'>
-		<col width=84  style='mso-width-source:userset;mso-width-alt:2986;
- width:63pt'>
+		<col width=94  style='mso-width-source:userset;mso-width-alt:2986;
+ width:73pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:102pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
@@ -164,21 +164,23 @@ document.onreadystatechange = function () {
 			</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单(${wmOmNoticeHPage.omNoticeId})</span></td>
+			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
 			<td colspan=1 style='mso-ignore:colspan'></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=3 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>货主：${cusname}</td>
-			<td colspan=4 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>三方客户：${ocusname}</td>
+			<td colspan=4 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>货主：${cusname}</td>
+			<td colspan=3 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>客户：${ocusname}</td>
 			<td></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=7 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.omBeizhu}</td>
+			<td colspan=4 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.omBeizhu}</td>
+			<td colspan=3 >WMS单号：${wmOmNoticeHPage.omNoticeId}</td>
 			<td></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=7 class=xl68 width=337 style='width:252pt'>地址：${wmOmNoticeHPage.delvAddr}</td>
+			<td colspan=4 class=xl68 width=337 style='width:252pt'>地址：${wmOmNoticeHPage.delvAddr}</td>
+			<td colspan=3 >提醒：${jianhuoremark}</td>
 			<td></td>
 		</tr>
 
