@@ -25,7 +25,7 @@
 <body class="gray-bg">
 
       <%--<div class="row J_mainContent" id="content-main" style="margin-left:-13px;">--%>
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="mvStockYjController.do?list" frameborder="0"   seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="BiController.do?homebi" frameborder="0"   seamless></iframe>
         <%--</div>--%>
     <!-- 全局js -->
     <script src="plug-in-ui/hplus/js/jquery.min.js?v=2.1.4"></script>

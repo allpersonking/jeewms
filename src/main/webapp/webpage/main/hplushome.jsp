@@ -24,7 +24,7 @@
 
 <body class="gray-bg">
       <%--<div class="row J_mainContent" id="content-main" style="margin-left:-5px;">--%>
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="mvStockYjController.do?list" frameborder="0"   seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="BiController.do?homebi" frameborder="0"   seamless></iframe>
         <%--</div>--%>
 
 
