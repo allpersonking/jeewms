@@ -31,10 +31,12 @@ function make2DCode() {
 //     make2DCode();
 // };
 document.onreadystatechange = function () {
+
     if (document.readyState == "complete") {
         console.log("content");
         make2DCode();
     }
+
 }
 
         function downloadqrcode() {
@@ -157,11 +159,12 @@ document.onreadystatechange = function () {
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<td rowspan=2 class=xl69>				<div id="qrcode" style="width:80px; height:80px;margin-top: 10px;margin-left: -10px"></div>
+			<td rowspan=2 class=xl69>
+				<div id="qrcode" style="width:80px; height:80px;margin-top: 10px;margin-left: -10px"></div>
 			</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单</span></td>
+			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单(${wmOmNoticeHPage.omNoticeId})</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
 			<td colspan=1 style='mso-ignore:colspan'></td>
 		</tr>

@@ -5,6 +5,8 @@
   <div region="center" style="padding:0px;border:0px">
   <t:datagrid name="wmImNoticeHList" checkbox="true" fitColumns="false" title="进货通知" actionUrl="wmImNoticeHController.do?datagrid" idField="id" fit="false" queryMode="group">
    <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
+   <t:dgCol title="操作" field="opt" width="350"></t:dgCol>
+
    <t:dgCol title="创建人名称"  field="createName"    queryMode="single"  width="80"></t:dgCol>
    <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
    <t:dgCol title="创建日期"  field="createDate" formatter="yyyy-MM-dd"   queryMode="single"  width="80"></t:dgCol>
@@ -25,7 +27,6 @@
    <t:dgCol title="备注"  field="imBeizhu"    queryMode="single"  width="120"></t:dgCol>
 
    <t:dgCol title="单据状态"  field="imSta"   query="true" queryMode="single"  width="50"></t:dgCol>
-   <t:dgCol title="操作" field="opt" width="350"></t:dgCol>
    <t:dgConfOpt title="删除" url="wmImNoticeHController.do?doDel&id={id}"  urlclass="ace_button" message="确定要删除此收货通知" urlfont="fa-trash-o" exp="imSta#eq#计划中"/>
    <%--<t:dgFunOpt title="预约通知" funname="print(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="imSta#ne#已删除"/>--%>
    <t:dgFunOpt title="验收单" funname="printysd(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="imSta#ne#已删除"/>
