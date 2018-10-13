@@ -43,7 +43,7 @@ $(function(){$('#${config_id}List').datagrid(
 		{rowid=rowData.id;gridname='${config_id}List';}
 	});
 	$('#${config_id}List').datagrid('getPager').pagination({beforePageText:'',afterPageText:'/{pages}',displayMsg:'{from}-{to}共{total}条',showPageList:true,showRefresh:true});
-	$('#${config_id}List').datagrid('getPager').pagination({onBeforeRefresh:function(pageNumber, pageSize){ $(this).pagination('loading');$(this).pagination('loaded'); }});});
+	$('#${config_id}List').datagrid('getPager').pagination({onBeforeRefresh:function(pageNumber, pageSize){ $(this).pagination('loading'); }});});
 	function reloadTable(){	
 		try{
 		$('#'+gridname).datagrid('reload');
