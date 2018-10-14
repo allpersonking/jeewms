@@ -220,7 +220,9 @@
 	<script>
         setInterval(function(){
             var myDate = new Date();
-            var x="欢迎您使用WMS，现在时间："+myDate.getFullYear()+"年"+myDate.getMonth()+"月"+myDate.getDate()+"日 "+myDate.getHours()+"点"+myDate.getMinutes()+"分"+myDate.getSeconds()+"秒";
+            var month=myDate.getMonth()+1;
+            month =(month<10 ? "0"+month:month);
+            var x="欢迎您使用WMS，现在时间："+myDate.getFullYear()+"年"+month+"月"+myDate.getDate()+"日 "+myDate.getHours()+"点"+myDate.getMinutes()+"分"+myDate.getSeconds()+"秒";
             document.getElementById("x"). innerHTML=x;
         },1000);
 	</script>
