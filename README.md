@@ -24,10 +24,15 @@ android app也已经开源，近期更新会比较频繁。
 客户下单流程，收货流程，上架流程，移货作业、拣货流程：批量拣货，按单拣货、盘点流程、计费流程。
 
 三、安装说明：
+
     1，开发环境：数据库 mysql5.7 ，jdk1.8，idea
+
     2，按照mvn方式导入
+
     3，数据库还原：步骤 1：还原数据库，2，修改 dbconfig.properties
+
     4，IDEA：tomcat7:tun   输入用户名和密码：admin llg123
+
 
 
 # 任务计划(TODO):
@@ -40,11 +45,11 @@ android app也已经开源，近期更新会比较频繁。
 近期修改功能：基础平台升级 
 
 # 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
-![输入图片说明](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000747_4eafc335_544004.png "cwsyl.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000802_e438ced8_544004.png "cwt.png")
+![主页](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
+![仓位使用率](https://images.gitee.com/uploads/images/2018/1015/000747_4eafc335_544004.png "cwsyl.png")
+![仓位图](https://images.gitee.com/uploads/images/2018/1015/000802_e438ced8_544004.png "cwt.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000813_bab8d35c_544004.png "ccsl.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000823_c5a982fe_544004.png "xqyj.png")
+![效期预警](https://images.gitee.com/uploads/images/2018/1015/000823_c5a982fe_544004.png "xqyj.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000843_92d44144_544004.png "Screenshot_2018-10-15-00-07-03-907_com.jeewms.www.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000857_ad7d16dc_544004.png "Screenshot_2018-10-15-00-03-11-011_com.jeewms.www.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000906_e439bf3f_544004.png "Screenshot_2018-10-15-00-03-34-019_com.jeewms.www.png")
