@@ -1,4 +1,4 @@
-# wms
+# jeewms
 QQ群：335607153
 测试系统地址http://218.5.177.99/wmstest   用户名：test  密码：123456
 android app也已经开源，近期更新会比较频繁。
