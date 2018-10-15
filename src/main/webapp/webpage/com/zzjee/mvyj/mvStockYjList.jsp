@@ -20,7 +20,9 @@
     <t:dgCol title="保质期天"  field="bzhiQi"    queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="到期日"  field="dqr"  query="true" formatter="yyyy-MM-dd"    queryMode="single"  width="90"></t:dgCol>
     <t:dgCol title="剩余天数"  field="resDate"    queryMode="group"  width="80"></t:dgCol>
-<%--     <t:dgCol title="上架次序"  field="shangJiaCiXu"    queryMode="group"  width="80"></t:dgCol> --%>
+      <t:dgCol title="过期比例"  field="guoqiBili" query="true"   queryMode="group"  width="80"></t:dgCol>
+
+      <%--     <t:dgCol title="上架次序"  field="shangJiaCiXu"    queryMode="group"  width="80"></t:dgCol> --%>
 <%--    <t:dgCol title="操作" field="opt" width="100"></t:dgCol> --%>
 <%--    <t:dgDelOpt title="删除" url="mvStockYjController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/> --%>
 <%--    <t:dgToolBar title="录入" icon="icon-add" url="mvStockYjController.do?goAdd" funname="add"></t:dgToolBar> --%>

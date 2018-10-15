@@ -73,6 +73,9 @@ public class MvStockYjEntity implements java.io.Serializable {
 	/**剩余天数*/
 	@Excel(name="剩余天数")
 	private java.lang.String resDate;
+
+	private java.lang.String guoqiBili;
+
 	/**取货次序*/
 
 	private java.lang.String quHuoCiXu;
@@ -345,10 +348,21 @@ public class MvStockYjEntity implements java.io.Serializable {
 
 	/**
 	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  剩余天数
+	 *@param: java.lang.String  过期比例
 	 */
 	public void setResDate(java.lang.String resDate){
 		this.resDate = resDate;
 	}
-	
+	@Column(name ="guoqibili",nullable=true,length=32)
+	public java.lang.String getGuoqiBili(){
+		return this.guoqiBili;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  过期比例
+	 */
+	public void setGuoqiBili(java.lang.String guoqiBili){
+		this.guoqiBili = guoqiBili;
+	}
 }
