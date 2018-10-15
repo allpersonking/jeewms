@@ -1,5 +1,6 @@
 
-³õÊ¼»¯»áÉ¾³ıÈ«²¿Êı¾İ£¬²¢ÇÒÃ»ÓĞ±¸·İ£¬Çë×¢ÒâÊ¹ÓÃ
+åˆå§‹åŒ–ä¼šåˆ é™¤å…¨éƒ¨æ•°æ®ï¼Œå¹¶ä¸”æ²¡æœ‰å¤‡ä»½ï¼Œè¯·æ³¨æ„ä½¿ç”¨
+
 set sql_safe_updates=0;
 delete from  md_bin;
 delete from  md_cus;
@@ -29,7 +30,7 @@ delete from  wm_in_qm_i;
 delete from  wm_om_notice_h;
 delete from  wm_om_notice_i;
 
-delete from  wm_on_qm_i;
+delete from  wm_om_qm_i;
 
 delete from  wm_plat_io;
 
