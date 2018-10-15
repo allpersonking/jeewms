@@ -17,11 +17,11 @@ android app也已经开源，近期更新会比较频繁。
 
 # 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
 ![输入图片说明](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103719_3c2482c0_544004.png "home1.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103730_85ceeab3_544004.png "home2.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103740_dc86f33a_544004.png "home3.png")
-
-![输入图片说明](https://images.gitee.com/uploads/images/2018/0907/103654_01d5732d_544004.png "home4.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000747_4eafc335_544004.png "cwsyl.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000802_e438ced8_544004.png "cwt.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000813_bab8d35c_544004.png "ccsl.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000823_c5a982fe_544004.png "xqyj.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000843_92d44144_544004.png "Screenshot_2018-10-15-00-07-03-907_com.jeewms.www.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000857_ad7d16dc_544004.png "Screenshot_2018-10-15-00-03-11-011_com.jeewms.www.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000906_e439bf3f_544004.png "Screenshot_2018-10-15-00-03-34-019_com.jeewms.www.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2018/1015/000914_a6078e90_544004.png "Screenshot_2018-10-15-00-04-17-626_com.jeewms.www.png")
