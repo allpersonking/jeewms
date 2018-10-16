@@ -60,10 +60,7 @@
                                 }
 
                             },
-                            exporting:{
-                                filename:'pie',
-                                url:'${ctxPath}/jeecgListDemoController.do?export'
-                            },
+
                             plotOptions : {
                                 pie : {
                                     allowPointSelect : true,
@@ -124,10 +121,7 @@
          					}
 
 						},
-						exporting:{ 
-			                filename:'column',  
-			                url:'${ctxPath}/jeecgListDemoController.do?export'
-			            },
+
 						plotOptions : {
 							column : {
 								allowPointSelect : true,
@@ -191,10 +185,7 @@
          					}
 
 						},
-						exporting:{  
-			                filename:'pie',  
-			                 url:'${ctxPath}/jeecgListDemoController.do?export'  
-			            },  
+
 						plotOptions : {
 							pie : {
 								allowPointSelect : true,

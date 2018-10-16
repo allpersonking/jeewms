@@ -93,7 +93,7 @@ public class DataGridTag extends TagSupport {
 	private String entityName;//对应的实体对象
 	private String rowStyler;//rowStyler函数
 	private String extendParams;//扩展参数,easyui有的,但是jeecg没有的参数进行扩展
-	private boolean autoLoadData=false; // 列表是否自动加载数据
+	private boolean autoLoadData=true; // 列表是否自动加载数据
 	//private boolean frozenColumn=false; // 是否是冰冻列    默认不是
 	private String langArg;
 	
