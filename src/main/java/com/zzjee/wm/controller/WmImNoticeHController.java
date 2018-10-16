@@ -284,7 +284,7 @@ public class WmImNoticeHController extends BaseController {
 //		cq.setOrder(map);  
 		          
 		Map<String,Object> map1 = new HashMap<String,Object>();  
-		map1.put("noticeId", "desc");  
+		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
 //		cq.eq("orderTypeCode", "01");
 		cq.add();
@@ -341,7 +341,7 @@ public class WmImNoticeHController extends BaseController {
 //		cq.setOrder(map);  
 		          
 		Map<String,Object> map1 = new HashMap<String,Object>();  
-		map1.put("noticeId", "desc");  
+		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
 		cq.eq("orderTypeCode", "09");
 		cq.add();
@@ -390,7 +390,7 @@ public class WmImNoticeHController extends BaseController {
 //		cq.setOrder(map);  
 		          
 		Map<String,Object> map1 = new HashMap<String,Object>();  
-		map1.put("noticeId", "desc");  
+		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
 		cq.eq("orderTypeCode", "03");
 		cq.add();
@@ -440,7 +440,7 @@ public class WmImNoticeHController extends BaseController {
 //		cq.setOrder(map);  
 		          
 		Map<String,Object> map1 = new HashMap<String,Object>();  
-		map1.put("noticeId", "desc");  
+		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
 		cq.eq("orderTypeCode", "04");
 		cq.add();
