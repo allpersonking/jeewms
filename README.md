@@ -1,4 +1,4 @@
-# jeewms
+
 QQ群：335607153
 测试系统地址http://218.5.177.99/wmstest   用户名：test  密码：123456
 android app也已经开源，近期更新会比较频繁。
@@ -32,7 +32,13 @@ JEEWMS是由灵鹿谷科技主导的开源项目，WMS在经过多家公司上�
 
 三、安装说明：
 
-    1，开发环境：数据库 mysql5.6以上 ，jdk1.8，idea
+    1，开发环境：
+       开发工具：
+		IDEA（强烈建议用IDEA，也可以Eclipse）；ANDROID STUDIO
+		JDK1.8
+		Maven
+		Mysql5.6以上（linux 注意设置大小写不敏感）
+		运行环境：CENTOS6.5以上或windows server 2008、tomcat7以上，JDK1.8， MYSQL5.7
 
     2，按照mvn方式导入
 
@@ -40,16 +46,36 @@ JEEWMS是由灵鹿谷科技主导的开源项目，WMS在经过多家公司上�
 
     4，IDEA：tomcat7:tun   输入用户名和密码：admin llg123
 
+    5、主要技术
+        开发语言：JAVA。
+    6、技术架构
+	SpringMVC+Hibernat+Minidao(类Mybatis)+Easyui(UI库)+ Jquery + Boostrap + Ehcache + Redis + Ztree等基础架构
+	
 
+四、技术支持：
 
-# 任务计划(TODO):
-近期新增功能：无硬件电子拣选 
+    演示环境：http://218.5.177.99/wmstest     用户： test   密码：123456
+    QQ群：335607153
 
-近期修改功能：在线报表视图化
+五、版本管理及更新说明：
 
-近期修改功能：APP增加波次操作和美化 
+	此版本为定版1.0
+	每半月发布一个小版本 例如1.1。
+	每半年升级大版本 例如2.0
 
-近期修改功能：基础平台升级 
+六、开发计划：
+
+    1，支持Mysql的同时支持多数据库。
+    2，去除触发器。
+    3，电商系统选型和对接
+    4，升级基础框架
+
+七、开源及商务合作说明：
+
+    1、开源说明：本项目完全遵循GPL V3协议。
+	如果你喜欢我们的产品, 可以放心从我们的开源版开始使用, 在产品商业化的支持下同时我们会尽最大的努力维护开源版的稳定。
+	后期在不影响公司业务的前提下, 会逐步开放更多的信息化平台。在此期间,如果你发现产品 有任何Bug, 请在Issue模块向我们反馈，谢谢。
+    2、商务合作：本项目同时支持开源版实施和定制开发服务，商务合作请 统一联系 13591310609
 
 # 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
 ![主页](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
