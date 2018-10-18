@@ -424,6 +424,7 @@ public class SmsSendTask {
 									MvGoodsEntity.class, "goodsCode",
 									goods);
 							wmOmQmIEntity.setGoodsId(mvgoods.getGoodsId());
+							wmOmQmIEntity.setBarCode(mvgoods.getShpTiaoMa());
 							wmOmQmIEntity.setGoodsName(mvgoods.getGoodsName());
 							wmOmQmIEntity
 									.setGoodsUnit(mvgoods.getBaseunit());

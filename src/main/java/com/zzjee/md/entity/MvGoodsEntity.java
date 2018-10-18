@@ -74,6 +74,8 @@ public class MvGoodsEntity implements java.io.Serializable {
 	@Excel(name="baseunit")
 	private java.lang.String baseunit;
 	private java.lang.String shpMingCheng;
+
+
 	
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
@@ -331,4 +333,6 @@ public class MvGoodsEntity implements java.io.Serializable {
 	public void setBaseunit(java.lang.String baseunit){
 		this.baseunit = baseunit;
 	}
+
+
 }

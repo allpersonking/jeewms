@@ -118,6 +118,8 @@ public class WmOmQmIEntity implements java.io.Serializable {
 	private java.lang.String imCusCode;
 	@Excel(name="备注")
 	private java.lang.String omBeizhu;
+	@Excel(name="商品条码")
+	private java.lang.String barCode;
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -636,9 +638,23 @@ public class WmOmQmIEntity implements java.io.Serializable {
 
 	/**
 	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  客户订单号
+	 *@param: java.lang.String  商品条码
 	 */
 	public void setImCusCode(java.lang.String imCusCode){
 		this.imCusCode = imCusCode;
+	}
+
+
+	@Column(name ="BARCODE",nullable=true,length=32)
+	public java.lang.String getBarCode(){
+		return this.barCode;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品条码
+	 */
+	public void setBarCode(java.lang.String barCode){
+		this.barCode = barCode;
 	}
 }
