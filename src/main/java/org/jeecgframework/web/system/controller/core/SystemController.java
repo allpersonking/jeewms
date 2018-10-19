@@ -1307,7 +1307,7 @@ public class SystemController extends BaseController {
 		if("1".equals(flag)){
 			response.setContentType("application/x-msdownload;charset=utf-8");
 			String fileName=dbpath.substring(dbpath.lastIndexOf(File.separator)+1);
-			response.setHeader("Content-disposition", "attachment; filename="+ new String(fileName.getBytes("utf-8"), "ISO8859-1"));
+			response.setHeader("Content-disposition", "attachment; filename="+  java.net.URLEncoder.encode(fileName, "UTF-8"));
 		}else{
 			response.setContentType("image/jpeg;charset=utf-8");
 		}
