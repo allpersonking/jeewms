@@ -38,7 +38,12 @@
 <script type="text/javascript">
 function wmim(id) {
     var url = "wmInQmIController.do?goAddBatch&id=" + id;
-    add('退货登记', url, "wmInQmIbatchList","680","450");
+    // createdetailwindow()
+
+    // function addbytab(){
+    addOneTab("退货验收", url);
+    // var url = "wmInQmIController.do?goAddBatch&id=" + id;
+    // add('退货登记', url, "wmInQmIbatchList","680","450");
 }
     //导入
     function ImportXls() {
