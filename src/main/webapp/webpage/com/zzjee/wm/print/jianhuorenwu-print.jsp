@@ -194,14 +194,15 @@ document.onreadystatechange = function () {
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>备注</td>
-			<td></td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
+
+			<td  ></td>
 		</tr>
 
 		<c:if test="${fn:length(wmOmQmIList)  > 0 }">
 		<c:forEach items="${wmOmQmIList}" var="poVal" varStatus="stuts">
 
-			<tr height=33 style='mso-height-source:userset;height:25.05pt'>
+			<tr height=33 style='mso-height-source:userset;height:50px'>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.binId }　</td>
 				<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsId }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center;word-break:break-all;'><span style='word-break:break-all;width: auto;font-size: 14pt'>${poVal.goodsName }</span></td>
@@ -209,8 +210,8 @@ document.onreadystatechange = function () {
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.proData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseGoodscount }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>　</td>
-				<td></td>
+				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
+				<td  ></td>
 			</tr>
 
 		</c:forEach>

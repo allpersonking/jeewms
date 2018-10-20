@@ -2007,68 +2007,6 @@ public class WmOmNoticeHController extends BaseController {
 	}
 
 
-	/**
-	 * 获取图片流/获取文件用于下载
-	 * @param response
-	 * @param request
-	 * @throws Exception
-	 * http://localhost:8080/zzjee/wmOmNoticeHController/showOrDownqrcodeByurl.do?&qrvalue=1111223333  调用
-	 */
-	@RequestMapping(value="showOrDownqrcodeByurl",method = RequestMethod.GET)
-	public void getQrImgByurl(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		request.setCharacterEncoding("UTF-8");
-		String flag=request.getParameter("down");//是否下载否则展示图片
-
-		String qrvalue = request.getParameter("qrvalue");
-		String dbpath = qrvalue+".jpg";
-		String localPath=ResourceUtil.getConfigByName("webUploadpath");
-
-		try{
-			String imgurl = localPath+File.separator+dbpath;
-			QRcodeUtil.encode(qrvalue,imgurl);
-		}catch (Exception e){
-
-		}
-		if("1".equals(flag)){
-			response.setContentType("application/x-msdownload;charset=utf-8");
-			String fileName=dbpath.substring(dbpath.lastIndexOf(File.separator)+1);
-
-			String userAgent = request.getHeader("user-agent").toLowerCase();
-			if (userAgent.contains("msie") || userAgent.contains("like gecko") ) {
-				fileName = URLEncoder.encode(fileName, "UTF-8");
-			}else {
-				fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
-			}
-			response.setHeader("Content-disposition", "attachment; filename="+ fileName);
-
-		}else{
-			response.setContentType("image/jpeg;charset=utf-8");
-		}
-
-		InputStream inputStream = null;
-		OutputStream outputStream=null;
-		try {
-			String imgurl = localPath+File.separator+dbpath;
-			inputStream = new BufferedInputStream(new FileInputStream(imgurl));
-			outputStream = response.getOutputStream();
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = inputStream.read(buf)) > 0) {
-				outputStream.write(buf, 0, len);
-			}
-			response.flushBuffer();
-		} catch (Exception e) {
-
-		}finally{
-			if(inputStream!=null){
-				inputStream.close();
-			}
-			if(outputStream!=null){
-				outputStream.close();
-			}
-		}
-	}
-
 
 
 

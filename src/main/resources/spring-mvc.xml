@@ -125,7 +125,7 @@
 						<value>rest/wvStockController</value>
 						<value>rest/wmSttInGoodsController</value>
 						<value>rest/wmToMoveGoodsController</value>
-						<value>wmOmNoticeHController.do?showOrDownqrcodeByurl</value>
+						<value>rest/wmBaseController/showOrDownqrcodeByurl</value>
 						<!-- 菜单样式图标预览 -->
 						<value>webpage/common/functionIconStyleList.jsp</value>
 					</list>
