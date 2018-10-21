@@ -59,6 +59,9 @@ public class WmInQmIEntity implements java.io.Serializable {
 	@Excel(name="到货通知单")
 	private java.lang.String imNoticeId;
 	/**到货通知行项目*/
+	/**客户订单号*/
+	@Excel(name="客户订单号")
+	private java.lang.String imCusCode;
 
 	private java.lang.String imNoticeItem;
 	/**商品编码*/
@@ -600,6 +603,17 @@ public class WmInQmIEntity implements java.io.Serializable {
 	public void setGoodsName(java.lang.String goodsName){
 		this.goodsName = goodsName;
 	}
-	
-	
+
+	@Column(name ="IM_CUS_CODE",nullable=true,length=32)
+	public java.lang.String getImCusCode(){
+		return this.imCusCode;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  客户订单号
+	 */
+	public void setImCusCode(java.lang.String imCusCode){
+		this.imCusCode = imCusCode;
+	}
 }

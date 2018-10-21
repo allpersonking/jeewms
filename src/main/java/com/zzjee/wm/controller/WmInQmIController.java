@@ -486,6 +486,7 @@ public class WmInQmIController extends BaseController {
 				}
 				wmInQmI.setImNoticeItem(wmimnotice.getId());
 				wmInQmI.setImQuat(wmimnotice.getGoodsCount());
+				wmInQmI.setImCusCode(wmimnotice.getImCusCode());
 //				wmInQmI.setBinId(wmInQmI.getImNoticeId());
 				wmInQmIService.save(wmInQmI);
 				systemService.addLog(message, Globals.Log_Type_INSERT,
@@ -896,8 +897,14 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 			WmImNoticeIEntity wmImNoticeIEntity = systemService.get(WmImNoticeIEntity.class,wmInQmI.getImNoticeItem());
 			if(wmImNoticeIEntity!=null){
 				wmInQmI.setGoodsId(wmImNoticeIEntity.getGoodsCode());
-				WmImNoticeHEntity wmImNoticeHEntity = systemService.findUniqueByProperty(WmImNoticeHEntity.class,"noticeId",wmInQmI.getImNoticeId());
-				wmInQmI.setCusCode(wmImNoticeHEntity.getCusCode());
+				try{
+					WmImNoticeHEntity wmImNoticeHEntity = systemService.findUniqueByProperty(WmImNoticeHEntity.class,"noticeId",wmInQmI.getImNoticeId());
+					wmInQmI.setCusCode(wmImNoticeHEntity.getCusCode());
+					wmInQmI.setImCusCode(wmImNoticeHEntity.getImCusCode());
+				}catch (Exception e){
+
+				}
+
 				if("n".equals(ResourceUtil.getConfigByName("chaoshou"))){
 					Long weiq = Long.parseLong(wmImNoticeIEntity
 							.getGoodsCount())

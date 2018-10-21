@@ -113,6 +113,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 					wmInQmI.setProData(DateUtils.date2Str(DateUtils.date_sdf));
 					wmInQmI.setGoodsBatch(wmInQmI.getProData());
 					wmInQmI.setBaseGoodscount(wmImNoticeI.getBaseGoodscount());
+					wmInQmI.setImCusCode(wmImNoticeH.getImCusCode());
 					this.save(wmInQmI);
 
 				}else{

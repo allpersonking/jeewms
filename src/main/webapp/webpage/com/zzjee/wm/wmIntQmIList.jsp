@@ -15,7 +15,10 @@
     <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="通知单"  field="imNoticeId"  query="true"  queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="通知行项目"  field="imNoticeItem"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
+
+   <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="90"></t:dgCol>
+
+   <t:dgCol title="通知行项目"  field="imNoticeItem"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
    <t:dgCol title="商品编码"  field="goodsId"     query="true"     width="100"></t:dgCol>
    <t:dgCol title="商品名称"  field="goodsName"     query="true" queryMode="single"  width="220"></t:dgCol>
     <t:dgCol title="到货数量"  field="imQuat"    queryMode="single"  width="80"></t:dgCol>
