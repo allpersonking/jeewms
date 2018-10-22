@@ -42,10 +42,10 @@ public class MvStockYjEntity implements java.io.Serializable {
 	@Excel(name="基本单位")
 	private java.lang.String baseUnit;
 	/**储位*/
-
+	@Excel(name="储位")
 	private java.lang.String kuWeiBianMa;
 	/**托盘*/
-
+	@Excel(name="托盘")
 	private java.lang.String binId;
 	/**客户编码*/
 	@Excel(name="客户编码")
@@ -73,7 +73,7 @@ public class MvStockYjEntity implements java.io.Serializable {
 	/**剩余天数*/
 	@Excel(name="剩余天数")
 	private java.lang.String resDate;
-
+	@Excel(name="剩余比例")
 	private java.lang.String guoqiBili;
 
 	/**取货次序*/

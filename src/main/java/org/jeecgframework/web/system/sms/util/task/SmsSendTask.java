@@ -452,7 +452,8 @@ public class SmsSendTask {
 								+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data  having sum(ws.base_goodscount) > 0 order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc ";
 						List<Map<String, Object>> resultt = new ArrayList<Map<String, Object>>();
 						System.out.print(tsql);
-						if(!"off".equals(ResourceUtil.getConfigByName("hiti"))) {//不启用HITI 此处不操作
+						if(!"off".equals(ResourceUtil.getConfigByName("hiti"))) {
+							//不启用HITI 此处不操作
 							try {
 								resultt = systemService
 										.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());

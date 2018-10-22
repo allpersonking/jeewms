@@ -20,7 +20,7 @@
     <t:dgCol title="保质期天"  field="bzhiQi"    queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="到期日"  field="dqr"  query="true" formatter="yyyy-MM-dd"    queryMode="single"  width="90"></t:dgCol>
     <t:dgCol title="剩余天数"  field="resDate"    queryMode="group"  width="80"></t:dgCol>
-      <t:dgCol title="过期比例"  field="guoqiBili" query="true"   queryMode="group"  width="80"></t:dgCol>
+      <t:dgCol title="剩余比例"  field="guoqiBili" query="true"   queryMode="group"  width="80"></t:dgCol>
 
       <%--     <t:dgCol title="上架次序"  field="shangJiaCiXu"    queryMode="group"  width="80"></t:dgCol> --%>
 <%--    <t:dgCol title="操作" field="opt" width="100"></t:dgCol> --%>
@@ -30,7 +30,7 @@
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mvStockYjController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="查看" icon="icon-search" url="mvStockYjController.do?goUpdate" funname="detail"></t:dgToolBar> --%>
 <%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar> --%>
-   <%--<t:dgToolBar operationCode="export" title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>--%>
+   <t:dgToolBar operationCode="export" title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
 <%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
   </t:datagrid>
   </div>
