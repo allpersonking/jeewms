@@ -5,7 +5,6 @@
 <head>
 <title>拣货任务打印</title>
 <t:base type="jquery,easyui,tools"></t:base>
-<script type="text/javascript"  charset="utf-8" src="webpage/com/zzjee/wmjs/qrcode.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="webpage/com/zzjee/wmjs/jquery.jqprint.js"></script>
 <script language="javascript">
 function printall(){
@@ -16,45 +15,7 @@ function printall(){
 function printview(){
 	document.all.WebBrowser1.ExecWB(7,1);
 }
-function make2DCode() {
-    $("#qrcode").html("");//清空二维码
-    var qrcode;
-    var codesize = 80;
-    qrcode = new QRCode(document.getElementById("qrcode"), {
-        width : codesize,
-        height : codesize
 
-    });
-    qrcode.makeCode(document.getElementById("content").value);
-};
-// window.onload=function(){
-//     make2DCode();
-// };
-document.onreadystatechange = function () {
-
-    if (document.readyState == "complete") {
-        console.log("content");
-        make2DCode();
-    }
-
-}
-
-        function downloadqrcode() {
-    // 获取base64的图片节点
-    var img = document.getElementById('qrcode').getElementsByTagName('img')[0];
-    // 构建画布
-    var canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    canvas.getContext('2d').drawImage(img, 0, 0);
-    // 构造url
-    url = canvas.toDataURL('image/png');
-    // 构造a标签并模拟点击
-    var downloadLink = document.getElementById('downloadLink');
-    downloadLink.setAttribute('href', url);
-    downloadLink.setAttribute('download', '二维码.png');
-    downloadLink.click();
-};
 
 </script>
 	<style>
@@ -159,8 +120,8 @@ document.onreadystatechange = function () {
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<td rowspan=2 class=xl69>
-				<div id="qrcode" style="width:80px; height:80px;margin-top: 10px;margin-left: -10px"></div>
+			<td  rowspan="2" class=xl69>
+				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">
 			</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
