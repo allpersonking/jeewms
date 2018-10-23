@@ -29,6 +29,8 @@
    <t:dgCol title="单据状态"  field="imSta"   query="true" queryMode="single"  width="50"></t:dgCol>
    <t:dgConfOpt title="删除" url="wmImNoticeHController.do?doDel&id={id}"  urlclass="ace_button" message="确定要删除此收货通知" urlfont="fa-trash-o" exp="imSta#eq#计划中"/>
    <%--<t:dgFunOpt title="预约通知" funname="print(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="imSta#ne#已删除"/>--%>
+   <t:dgFunOpt title="通知单" funname="doprint(id)"  urlclass="ace_button"   exp="imSta#ne#已删除"   />
+
    <t:dgFunOpt title="验收单" funname="printysd(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="imSta#ne#已删除"/>
    <t:dgFunOpt title="货品ID" funname="printhpid(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="imSta#ne#已删除"/>
    <t:dgFunOpt title="完成" funname="closeor(id)"  urlclass="ace_button"     exp="imSta#ne#已完成"/>
@@ -88,7 +90,12 @@
          $('#wmImNoticeHList').datagrid('reload',{});
      }
  }
+ function doprint(id){
+     var url = "wmImNoticeHController.do?doPrintpage&id="+id;
+     createdetailwindow(" 进货通知单", url, 1000, 1000);
 
+     // window.open(url);
+ }
  function addorder(){
 	var url = "wmImNoticeHController.do?goAdd&orderTypeCode=01";
  	openwindow("添加",url,"进货",770,500);

@@ -52,7 +52,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 				mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmImNoticeI.getGoodsCode()) ;		
 				if(mvgoods!=null){
 					wmImNoticeI.setGoodsName(mvgoods.getGoodsName());
-
+					wmImNoticeI.setBarCode(mvgoods.getShpTiaoMa());
 
 					try {
 						try {

@@ -1,10 +1,7 @@
 package com.zzjee.wm.controller;
 
 import com.zzjee.api.ResultDO;
-import com.zzjee.md.entity.MdCusEntity;
-import com.zzjee.md.entity.MdGoodsEntity;
-import com.zzjee.md.entity.MdSupEntity;
-import com.zzjee.md.entity.MvGoodsEntity;
+import com.zzjee.md.entity.*;
 import com.zzjee.wm.entity.*;
 import com.zzjee.wm.page.WmNoticeImpPage;
 import com.zzjee.wm.service.WmImNoticeHServiceI;
@@ -167,6 +164,68 @@ public class WmImNoticeHController extends BaseController {
 	public ModelAndView tbatchlist(HttpServletRequest request) {
 		return new ModelAndView("com/zzjee/wm/wmintqmbatchList");
 	}
+
+	@RequestMapping(params = "doPrintpage")
+	public ModelAndView doPrint(String id,HttpServletRequest request) {
+		WmImNoticeHEntity wmImNoticeHEntity = wmImNoticeHService.getEntity(WmImNoticeHEntity.class, id);
+		request.setAttribute("wmImNoticeHPage", wmImNoticeHEntity);
+		request.setAttribute("kprq",DateUtils.date2Str(wmImNoticeHEntity.getCreateDate(),DateUtils.date_sdf));
+		request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+
+		if(StringUtil.isNotEmpty(wmImNoticeHEntity.getImCusCode())){
+			request.setAttribute("noticeid", wmImNoticeHEntity.getImCusCode());
+		}else{
+			request.setAttribute("noticeid", wmImNoticeHEntity.getNoticeId());
+		}
+
+		try{
+			MdSupEntity mdSupEntity = systemService.findUniqueByProperty(MdSupEntity.class,"gysBianMa",wmImNoticeHEntity.getSupCode());
+			MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmImNoticeHEntity.getCusCode());
+
+			request.setAttribute("cusname",wmImNoticeHEntity.getCusCode()+"-"+mdcus.getZhongWenQch());
+
+			request.setAttribute("supname",mdSupEntity.getGysBianMa()+"-"+ mdSupEntity.getZhongWenQch());
+
+		}catch (Exception e){
+
+		}
+		//获取参数
+		Object id0 = wmImNoticeHEntity.getNoticeId();
+		//===================================================================================
+		//查询-产品
+		Double tomsum = 0.00;
+		Double  noticesum = 0.00;
+
+
+		List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
+			String hql0 = "from WmImNoticeIEntity where 1 = 1 AND iM_NOTICE_ID = ? ";
+			try {
+				List<WmImNoticeIEntity> wmImNoticeIEntityList = systemService
+						.findHql(hql0, id0);
+				for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
+					if (StringUtil.isEmpty(wmImNoticeIEntity.getBinPlan())){
+						String hqlup = "from WmToUpGoodsEntity where 1 = 1 AND goodsId = ?  order by createDate desc";
+						try {
+							WmToUpGoodsEntity wmToUpGoodsEntity = 	(WmToUpGoodsEntity)systemService.findHql(hqlup,wmImNoticeIEntity.getGoodsCode()).get(0);
+							wmImNoticeIEntity.setBinPlan(wmToUpGoodsEntity.getKuWeiBianMa());
+						}catch (Exception e){
+
+						}
+					}
+					wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
+				}
+
+			request.setAttribute("wmImNoticeIList", wmImNoticeIEntitynewList);
+		}catch (Exception e){
+
+		}
+		return new ModelAndView("com/zzjee/wm/print/imnotice-print");
+	}
+
+
+
+
+
 	@RequestMapping(params = "datagridbatch")
 	public void datagridbatch(WmImNoticeIEntity wmImNoticeI,
 			HttpServletRequest request, HttpServletResponse response,
