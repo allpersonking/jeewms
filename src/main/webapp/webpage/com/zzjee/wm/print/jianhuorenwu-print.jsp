@@ -216,20 +216,6 @@ document.onreadystatechange = function () {
 
 		</c:forEach>
 		</c:if>
-
-
-
-		<%--<tr height=33 style='mso-height-source:userset;height:25.05pt'>--%>
-			<%--<td height=33 class=xl65 style='height:25.05pt;border-top:none'>配套砖</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>195*95*50</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>块</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>2</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>　</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>MU 10</td>--%>
-			<%--<td class=xl65 style='border-top:none;border-left:none'>　</td>--%>
-			<%--<td></td>--%>
-		<%--</tr>--%>
-
 		<tr height=20 style='height:25.0pt'>
 			<td height=20 class=xl66 colspan=8 style='height:15.0pt;mso-ignore:colspan;text-align: justify'>主管：<span
 					style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
