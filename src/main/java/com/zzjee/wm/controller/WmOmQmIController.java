@@ -339,15 +339,6 @@ public class WmOmQmIController extends BaseController {
 		message = "下架任务删除成功";
 		try{
 			wmOmQmIService.delete(wmOmQmI);
-//			List<WmOmNoticeIEntity> WmOmNoticeIlist = new ArrayList<WmOmNoticeIEntity>();
-//          String hql = null;
-//			hql = "from WmOmNoticeIEntity t where t.id = '"+ wmOmQmI.getIomNoticeItem() +"'" ;
-//			WmOmNoticeIlist = systemService.findByQueryString(hql);
-//			for (WmOmNoticeIEntity WmOmNoticeIentity : WmOmNoticeIlist) {
-//				WmOmNoticeIentity.setPlanSta("N");
-//				systemService.saveOrUpdate(WmOmNoticeIentity);
-//			}
-	
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -409,12 +400,7 @@ public class WmOmQmIController extends BaseController {
 		return j;
 	}
 
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * 批量删除下架任务
 	 * 
@@ -521,16 +507,6 @@ public class WmOmQmIController extends BaseController {
 				return j;
 			}else{
 				double goods = Double.parseDouble(wmOmQmI.getBaseGoodscount());
-//				double goodsold = Double.parseDouble(t.getBaseGoodscount());
-//				if(goods < goodsold){
-//					WmOmQmIEntity wmOmQmInew = new WmOmQmIEntity();
-//					MyBeanUtils.copyBeanNotNull2Bean(t,wmOmQmInew);
-//					wmOmQmInew.setId(null);
-//					wmOmQmInew.setBaseGoodscount(Double.toString(goods-goods));
-//					wmOmQmInew.setOmQuat(wmOmQmInew.getBaseGoodscount());
-//					wmOmQmInew.setQmOkQuat(wmOmQmInew.getBaseGoodscount());
-//					wmOmQmIService.save(wmOmQmInew);
-//				}
 					wmOmQmI.setQmOkQuat(wmOmQmI.getBaseGoodscount());
 					wmOmQmI.setOmQuat(wmOmQmI.getBaseGoodscount());
 					MyBeanUtils.copyBeanNotNull2Bean(wmOmQmI, t);
