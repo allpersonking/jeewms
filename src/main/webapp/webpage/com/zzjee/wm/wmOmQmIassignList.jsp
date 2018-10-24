@@ -75,7 +75,7 @@
 	 }
 		var url = "wmOmQmIController.do?doassignwave&ids="+ids;
 		$.ajax({
-			async : false,
+			async : true,
 			cache : false,
 			type : 'POST',
 			url : url,// 请求的action路径
@@ -102,7 +102,7 @@
      }
      var url = "wmOmQmIController.do?dodelwave&ids="+ids;
      $.ajax({
-         async : false,
+         async : true,
          cache : false,
          type : 'POST',
          url : url,// 请求的action路径
@@ -128,7 +128,7 @@
 	 }
 		var url = "wmOmQmIController.do?doassignbatch&ids="+ids;
 		$.ajax({
-			async : false,
+			async : true,
 			cache : false,
 			type : 'POST',
 			url : url,// 请求的action路径
@@ -147,7 +147,7 @@
  function taskassign(id){
 		var url = "wmOmQmIController.do?doassign&id="+id;
 		$.ajax({
-			async : false,
+			async : true,
 			cache : false,
 			type : 'POST',
 			url : url,// 请求的action路径
@@ -166,7 +166,7 @@
  function wmtodown(id){
 		var url = "wmOmQmIController.do?dotodown&id="+id;
 		$.ajax({
-			async : false,
+			async : true,
 			cache : false,
 			type : 'POST',
 			url : url,// 请求的action路径

@@ -76,7 +76,7 @@
  function wmtodown(id){
 		var url = "wmOmQmIController.do?dotodown&id="+id;
 		$.ajax({
-			async : false,
+			async : true,
 			cache : false,
 			type : 'POST',
 			url : url,// 请求的action路径
