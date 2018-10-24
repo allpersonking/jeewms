@@ -195,8 +195,6 @@ public class WmImNoticeHController extends BaseController {
 		//查询-产品
 		Double tomsum = 0.00;
 		Double  noticesum = 0.00;
-
-
 		List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
 			String hql0 = "from WmImNoticeIEntity where 1 = 1 AND iM_NOTICE_ID = ? ";
 			try {
@@ -222,10 +220,6 @@ public class WmImNoticeHController extends BaseController {
 		return new ModelAndView("com/zzjee/wm/print/imnotice-print");
 	}
 
-
-
-
-
 	@RequestMapping(params = "datagridbatch")
 	public void datagridbatch(WmImNoticeIEntity wmImNoticeI,
 			HttpServletRequest request, HttpServletResponse response,
@@ -235,15 +229,8 @@ public class WmImNoticeHController extends BaseController {
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
 				wmImNoticeI);
 		cq.eq("binPre", "N");
-//		cq.like("imNoticeId", "RK%");
-//		Map<String,Object> map1 = new HashMap<String,Object>();  
-//		map1.put("imNoticeId", "desc");  
-//		cq.setOrder(map1); 
 		cq.add();
-
 		this.wmImNoticeHService.getDataGridReturn(cq, true);
-
-		
 		List<WmImNoticeIEntity> resultnew = new ArrayList<WmImNoticeIEntity>();
 		List<WmImNoticeIEntity> resultold = dataGrid.getResults();
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
@@ -273,22 +260,14 @@ public class WmImNoticeHController extends BaseController {
 				wmImNoticeI);
 		cq.eq("binPre", "N");
 		cq.like("imNoticeId", "TH%");
-//		Map<String,Object> map1 = new HashMap<String,Object>();  
-//		map1.put("imNoticeId", "desc");  
-//		cq.setOrder(map1); 
-	
 		cq.add();
-
 		this.wmImNoticeHService.getDataGridReturn(cq, true);
-
-		
 		List<WmImNoticeIEntity> resultnew = new ArrayList<WmImNoticeIEntity>();
 		List<WmImNoticeIEntity> resultold = dataGrid.getResults();
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
 			if (Long.parseLong(wmImNoticeIEntity.getGoodsCount()) > Long.parseLong(wmImNoticeIEntity.getGoodsQmCount())) {
 				resultnew.add(wmImNoticeIEntity);
 			}
-
 		}
 		dataGrid.setResults(resultnew);
 		dataGrid.setTotal(resultnew.size());
@@ -328,24 +307,12 @@ public class WmImNoticeHController extends BaseController {
 		} catch (Exception e) {
 			throw new BusinessException(e.getMessage());
 		}
-//		if (wmImNoticeH.getImSta() == null) {
-//			cq.eq("imSta", Constants.wm_sta1);
-//		}
-
-
 		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
 			cq.eq("cusCode", wmUtil.getCusCode());
 		}
-
-		
-//		Map<String,Object> map = new HashMap<String,Object>();  
-//		map.put("imSta", "desc");  
-//		cq.setOrder(map);  
-		          
-		Map<String,Object> map1 = new HashMap<String,Object>();  
+		Map<String,Object> map1 = new HashMap<String,Object>();
 		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
-//		cq.eq("orderTypeCode", "01");
 		cq.add();
 
 		this.wmImNoticeHService.getDataGridReturn(cq, true);
@@ -487,17 +454,10 @@ public class WmImNoticeHController extends BaseController {
 		if (wmImNoticeH.getImSta() == null) {
 			cq.eq("imSta", Constants.wm_sta1);
 		}
-
-
-
 		if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
 			cq.eq("cusCode", wmUtil.getCusCode());
 		}
-		
-//		Map<String,Object> map = new HashMap<String,Object>();  
-//		map.put("imSta", "desc");  
-//		cq.setOrder(map);  
-		          
+
 		Map<String,Object> map1 = new HashMap<String,Object>();  
 		map1.put("createDate", "desc");
 		cq.setOrder(map1); 
@@ -1113,26 +1073,7 @@ public class WmImNoticeHController extends BaseController {
 				Cell cell5 = rowColumnValue.createCell(4);
 				cell5.setCellValue(entity.getGoodsWeight());
 				cell5.setCellStyle(cs4);
-				// Cell cell9 = rowColumnValue.createCell(8);
-				// cell9.setCellStyle(cs4);
-				// //插入图片
-				//
-				// byteArrayOut = new ByteArrayOutputStream();
-				// bufferImg =
-				// ImageIO.read(BarcodeUtil.generateToStream(entity.getGoodsCode()));
-				// ImageIO.write(bufferImg, "jpg", byteArrayOut);
-				// if(cellsNum == 6){
-				// anchor = new HSSFClientAnchor(0, 0, 0, 0,(short)8, cellsNum,
-				// (short)9, cellsNum+1);
-				// }else{
-				// anchor = new HSSFClientAnchor(0, 0, 0, 0,(short)8, cellsNum,
-				// (short)9, cellsNum+1);
-				// }
-				//
-				//
-				// patriarch.createPicture(anchor,
-				// wb.addPicture(byteArrayOut.toByteArray(),
-				// HSSFWorkbook.PICTURE_TYPE_JPEG));
+
 
 				cerconNo++;
 			}
@@ -1644,41 +1585,7 @@ public class WmImNoticeHController extends BaseController {
 		String message = "进货通知添加成功";
 		try {
 
-			Map<String, Object> countMap = systemService
-					.findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-			String noticeid = null;
-			if (countMap != null) {
-				if(wmImNoticeH.getOrderTypeCode().equals("03")){
-					noticeid = "TH"
-							+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-							+ "-"
-							+ StringUtil.leftPad(
-									((Long) countMap.get("count")).intValue(), 4,
-									'0');
-				}else if(wmImNoticeH.getOrderTypeCode().equals("01")){
-					noticeid = "RK"
-							+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-							+ "-"
-							+ StringUtil.leftPad(
-									((Long) countMap.get("count")).intValue(), 4,
-									'0');	
-				}else if(wmImNoticeH.getOrderTypeCode().equals("04")){
-					noticeid = "YK"
-							+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-							+ "-"
-							+ StringUtil.leftPad(
-									((Long) countMap.get("count")).intValue(), 4,
-									'0');	
-				}else if(wmImNoticeH.getOrderTypeCode().equals("09")){
-					noticeid = "QT"
-							+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-							+ "-"
-							+ StringUtil.leftPad(
-									((Long) countMap.get("count")).intValue(), 4,
-									'0');	
-				}
-
-			}
+			String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
 			wmImNoticeH.setNoticeId(noticeid);
 			WmPlatIoEntity wmPlatIo = new WmPlatIoEntity();
 			wmPlatIo.setCarno(wmImNoticeH.getImCarNo());
@@ -1689,17 +1596,7 @@ public class WmImNoticeHController extends BaseController {
 			wmPlatIo.setPlatBeizhu("司机:" + wmImNoticeH.getImCarDri() + "电话:"
 					+ wmImNoticeH.getImCarMobile());
 			systemService.save(wmPlatIo);
-			// for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIList) {
-			// MdGoodsEntity mdgoods =
-			// systemService.findUniqueByProperty(MdGoodsEntity.class,
-			// "shpBianMa", wmImNoticeIEntity.getGoodsCode()) ;
-			// if(mdgoods!=null){
-			// wmImNoticeIEntity.setGoodsFvol(String.valueOf(Long.parseLong(mdgoods.getTiJiCm())*Long.parseLong(wmImNoticeIEntity.getGoodsCount())));
-			// wmImNoticeIEntity.setGoodsWeight(String.valueOf(Long.parseLong(mdgoods.getZhlKg())*Long.parseLong(wmImNoticeIEntity.getGoodsCount())));
-			// wmImNoticeIEntity.setGoodsUnit(mdgoods.getShlDanWei());
-			// }
-			//
-			// }
+
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", wmImNoticeH.getNoticeId());
 			TSUser user = ResourceUtil.getSessionUserName();
@@ -1728,17 +1625,7 @@ public class WmImNoticeHController extends BaseController {
 						wmImNoticeH.setCusCode(user.getUserName());
 			}
 			}
-//			for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIList) {
-//				if(!StringUtil.isEmpty(wmImNoticeIEntity.getGoodsCode())){
-//					if(!wmImNoticeIEntity.getGoodsCode().startsWith(wmImNoticeH.getCusCode())){
-//						message = "货品不属于此货主";
-//						j.setMsg(message);
-//						return j;
-//					}
-//				}
-//
-//			}
-			
+
 			List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
 			for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIList) {
 				if(!StringUtil.isEmpty(wmImNoticeIEntity.getGoodsCode())){
@@ -1756,7 +1643,6 @@ public class WmImNoticeHController extends BaseController {
 				}
 			}
 
-			
 			wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
 		
 			try {
@@ -1807,18 +1693,11 @@ public class WmImNoticeHController extends BaseController {
                                 List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
                                 Map<String, Object> countMap = systemService
                                         .findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-                                String noticeid = null;
 
-                                if (countMap != null) {
-                                    noticeid = "RK"
-                                            + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                                            + "-"
-                                            + StringUtil.leftPad(
-                                            ((Long) countMap.get("count")).intValue(), 4,
-                                            '0');
-                                }
-                                wmImNoticeH.setOrderTypeCode("01");
-                                wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
+								wmImNoticeH.setOrderTypeCode("01");
+								String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+
+								wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
                                 wmImNoticeH.setNoticeId(noticeid);
                                 wmImNoticeH.setPlatformCode(Integer.toString(billResult.getData().get(s).getPiId()));
                                 wmImNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
@@ -1940,10 +1819,47 @@ public class WmImNoticeHController extends BaseController {
         return new Date(time); // 将毫秒数转换成日期
     }
 
+private String getNextNoticeid(String orderType){
+		String noticeid=null;
+	Map<String, Object> countMap = systemService
+			.findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+	if (StringUtil.isEmpty(orderType)){
+		orderType = "01";
+	}
+	if (countMap != null) {
+		if(orderType.equals("03")){
+			noticeid = "TH"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else if(orderType.equals("01")){
+			noticeid = "RK"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else if(orderType.equals("04")){
+			noticeid = "YK"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else if(orderType.equals("09")){
+			noticeid = "QT"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}
 
-
-
-
+	}
+		return  noticeid;
+}
 	/**
 	 * 更新进货通知抬头
 	 * 
@@ -1975,21 +1891,7 @@ public class WmImNoticeHController extends BaseController {
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-			
 
-			// for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIList) {
-			// MdGoodsEntity mdgoods =
-			// systemService.findUniqueByProperty(MdGoodsEntity.class,
-			// "shpBianMa", wmImNoticeIEntity.getGoodsCode()) ;
-			// if(mdgoods!=null){
-			// wmImNoticeIEntity.setGoodsFvol(String.valueOf(Long.parseLong(mdgoods.getTiJiCm())*Long.parseLong(wmImNoticeIEntity.getGoodsCount())));
-			// wmImNoticeIEntity.setGoodsWeight(String.valueOf(Long.parseLong(mdgoods.getZhlKg())*Long.parseLong(wmImNoticeIEntity.getGoodsCount())));
-			// wmImNoticeIEntity.setGoodsUnit(mdgoods.getShlDanWei());
-			// }
-			//
-			// }
-
-			
 			if(wmImNoticeH.getCusCode()==null){
 				TSUser user = ResourceUtil.getSessionUserName();
 				String roles = "";
@@ -2281,20 +2183,9 @@ public class WmImNoticeHController extends BaseController {
 				}
 
                 WmImNoticeHEntity wmImNoticeH  = new WmImNoticeHEntity();
-                Map<String, Object> countMap = systemService
-                        .findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-                String noticeid = null;
-
-                if (countMap != null) {
-                    noticeid = "RK"
-                            + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                            + "-"
-                            + StringUtil.leftPad(
-                            ((Long) countMap.get("count")).intValue(), 4,
-                            '0');
-                }
-                wmImNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
-                wmImNoticeH.setCusCode(pageheader.getCusCode());
+				wmImNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
+				String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+				wmImNoticeH.setCusCode(pageheader.getCusCode());
                 wmImNoticeH.setNoticeId(noticeid);
 				wmImNoticeH.setImData(pageheader.getImData());
                 wmImNoticeH.setPlatformCode(pageheader.getCusCode());
