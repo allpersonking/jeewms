@@ -14,16 +14,12 @@
     <t:dgCol title="复核时间"  field="updateDate" formatter="yyyy-MM-dd hh:mm:ss"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
-        <t:dgCol title="原始单据编码"  field="orderId"   query="true" queryMode="single"  width="100"></t:dgCol>
+      <t:dgCol title="原始单据编码"  field="orderId"   query="true" queryMode="single"  width="100"></t:dgCol>
     <t:dgCol title="商品编码"  field="goodsId" dictionary="mv_goods,goods_code,goods_name"  query="true" queryMode="single"  width="180"></t:dgCol>
-
       <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="100"></t:dgCol>
       <t:dgCol title="备注"  field="omBeizhu" query="true"   queryMode="single"  width="120"></t:dgCol>
-
-
       <t:dgCol title="数量"  field="goodsQua"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="复核数量"  field="goodsQuaok"  extendParams="editor:'text'"  queryMode="single"  width="120"></t:dgCol>
-
 <%--     <t:dgCol title="原始单据行项目"  field="orderIdI"  hidden="true"  queryMode="single"  width="120"></t:dgCol> --%>
 <%--     <t:dgCol title="原始单据类型"  field="orderType"    queryMode="single"  width="120"></t:dgCol> --%>
     <t:dgCol title="单位"  field="goodsUnit"    queryMode="single"  width="120"></t:dgCol>
@@ -34,9 +30,7 @@
 <%--     <t:dgCol title="作业类型"  field="actTypeCode"   query="true" queryMode="single"  width="120"></t:dgCol> --%>
     <t:dgCol title="货主"  field="cusCode" dictionary="mv_cus,cus_code,cus_name"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="目标托盘"  field="binIdTo"   query="true" queryMode="single"  width="120"></t:dgCol>
-
       <t:dgToolBar title="一键复核" icon="icon-remove"    funname="dofhALLSelect"></t:dgToolBar>
-
       <%--     <t:dgToolBar operationCode="add" title="录入" icon="icon-add"  funname="addRow"></t:dgToolBar> --%>
 	<t:dgToolBar operationCode="edit" title="选择复核" icon="icon-edit"  funname="editRow"></t:dgToolBar>
 	<t:dgToolBar operationCode="save" title="复核保存" icon="icon-save" url="wmToDownGoodsController.do?saveRows" funname="saveData"></t:dgToolBar>
@@ -52,7 +46,6 @@
          var rows = $('#wmToDownGoodsList').datagrid('getSelections');
          if(rows.length >0){
              for(var i=0; i<rows.length; i++){
-
                  var url = "wmToDownGoodsController.do?dofubatch&id="+rows[i].id;
                  $.ajax({
                      async : false,
@@ -65,20 +58,15 @@
                          var d = $.parseJSON(data);
                          if (d.success) {
 // 							tip("添加到盘点清单成功");
-
                          }
                      }
                  });
-
-
              }
              $('#wmToDownGoodsList').datagrid('reload',{});
-             tip("批量复核成功");
+           tip("批量复核成功");
          }else{
              tip("请选择需要一键复核的数据");
          }
-
-
 
      }
 
@@ -148,8 +136,6 @@
 	function reject(title,addurl,gname){
 		$('#'+gname).datagrid('clearChecked');
 		$('#'+gname).datagrid('rejectChanges');
-
-
 	}
  
  </script>
