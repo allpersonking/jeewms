@@ -265,7 +265,7 @@ public class WmOmNoticeHController extends BaseController {
 			if(Double.doubleToLongBits(noticesum) != Double.doubleToLongBits(tomsum)){
 				request.setAttribute("jianhuoremark", "订单："+Double.toString(noticesum)+" 拣货："+Double.toString(tomsum));
 			}else{
-				request.setAttribute("jianhuoremark", "全部拣货");
+				request.setAttribute("jianhuoremark", "全部拣货，共"+Double.toString(noticesum));
 			}
 			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
 		}catch (Exception e){
