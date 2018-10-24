@@ -437,52 +437,60 @@
 		</script>
 		
 		</form>
-		<!-- 添加 产品明细 模版 -->
-		<table style="display:none">
-			<tbody id="add_wmOmNoticeI_table_template">
-				<tr>
-					 <th scope="row"><div name="xh"></div></th>
-					 <td><input style="width:20px;" type="checkbox" name="ck"/></td>
-						  <td align="left">
+  <!-- 添加 产品明细 模版 -->
+  <table style="display:none">
+	  <tbody id="add_wmOmNoticeI_table_template">
+	  <tr>
+		  <th scope="row"><div name="xh"></div></th>
+		  <td><input style="width:20px;" type="checkbox" name="ck"/></td>
+		  <td align="left">
+			  <%-- 							  		<t:dictSelect field="wmOmNoticeIList[#index#].goodsId" type="list" extendJson="{class:'form-control',datatype:'*',style:'width:350px'}"   --%>
+			  <%-- 											dictCondition="${wmOmNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>      --%>
 
-							  		<t:dictSelect field="wmOmNoticeIList[#index#].goodsId" type="list" extendJson="{class:'form-control',style:'width:350px'}"
-														dictTable="mv_goods" dictField="goods_code" dictText="goods_name"  defaultVal="wmOmNoticeIList[#index#].goodsId"  hasLabel="false"  title="商品编码"></t:dictSelect>
-							  		
-							  <label class="Validform_label" style="display: none;">出货商品</label>
-						  </td>
-						  <td align="left">
-							  	<input name="wmOmNoticeIList[#index#].goodsQua" maxlength="32" 
-									ignore="ignore"
-							  		type="text" class="form-control"  style="width:120px;" >
-							  <label class="Validform_label" style="display: none;">出货数量</label>
-						  </td>
-						  						   <td>
-							<t:dictSelect field="wmOmNoticeIList[#index#].planSta" type="radio" extendJson="{class:'form-control',style:'width:150px'}"  
-										typeGroupCode="sf_yn"  hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
-					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
-					</td>
-<!-- 						  <td align="left"> -->
-<!-- 							  	<input name="wmOmNoticeIList[#index#].goodsQuaok" maxlength="32"  -->
-<!-- 									ignore="ignore" -->
-<!-- 							  		type="text" class="form-control"  style="width:120px;" > -->
-<!-- 							  <label class="Validform_label" style="display: none;">已经出货数量</label> -->
-<!-- 						  </td> -->
-<!-- 						  <td align="left"> -->
-<!-- 									<input name="wmOmNoticeIList[#index#].goodsProData" maxlength="32"  -->
-<!-- 							  		type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;" -->
-<!-- 									ignore="ignore" -->
-<!-- 							  		 > -->
-<!-- 							  <label class="Validform_label" style="display: none;">生产日期</label> -->
-<!-- 						  </td> -->
-<!-- 						  <td align="left"> -->
-<!-- 							  	<input name="wmOmNoticeIList[#index#].binOm" maxlength="32"  -->
-<!-- 									ignore="ignore" -->
-<!-- 							  		type="text" class="form-control"  style="width:120px;" > -->
-<!-- 							  <label class="Validform_label" style="display: none;">出货储位</label> -->
-<!-- 						  </td> -->
-					</tr>
-				 </tbody>
-		</table>
+
+			  <input id="wmOmNoticeIList[#index#].goodsId"  name="wmOmNoticeIList[#index#].goodsId" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control searchbox-inputtext" onclick="popClickone('wmOmNoticeIList[#index#].goodsId','goodsName','mvGoodsController.do?list')"   style="width:420px;text-align: left" >
+
+
+
+			  <label class="Validform_label" style="display: none;">出货商品</label>
+		  </td>
+		  <td align="left">
+			  <input name="wmOmNoticeIList[#index#].goodsQua" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">出货数量</label>
+		  </td>
+
+		  <td>
+			  <t:dictSelect field="wmOmNoticeIList[#index#].planSta" type="radio" extendJson="{class:'form-control',style:'width:150px'}"
+							typeGroupCode="sf_yn"  hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>
+			  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
+		  </td>
+		  <td align="left">
+			  <input name="wmOmNoticeIList[#index#].binOm" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">出货储位</label>
+		  </td>
+
+		  <td align="left">
+			  <input name="wmOmNoticeIList[#index#].binId" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">出货托盘</label>
+		  </td>
+		  <td align="left">
+			  <input name="wmOmNoticeIList[#index#].goodsProData" maxlength="32"
+					 type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"
+					 ignore="ignore"
+			  >
+			  <label class="Validform_label" style="display: none;">生产日期</label>
+		  </td>
+	  </tr>
+	  </tbody>
+  </table>
 	<script src = "webpage/com/zzjee/wm/wmOmNoticeH.js"></script>	
  </body>
  </html>

@@ -1040,6 +1040,108 @@ function inputClick(obj,name,code) {
 			});
 		}
 }
+
+
+
+/*
+	自定义url的弹出
+	obj:要填充的控件,可以为多个，以逗号分隔
+	name:列表中对应的字段,可以为多个，以逗号分隔（与obj要对应）
+	url：弹出页面的Url
+*/
+function popClickone(obj,name,url) {
+    $.dialog.setting.zIndex = getzIndex(true);
+    var names = name;
+    var objs = obj;
+    if(typeof(windowapi) == 'undefined'){
+        $.dialog({
+            content: "url:"+url,
+            zIndex: getzIndex(),
+            lock : true,
+            title:"选择",
+            width:700,
+            height: 400,
+            cache:false,
+            ok: function(){
+                iframe = this.iframe.contentWindow;
+                var selected = iframe.getSelectRows();
+                console.log(selected);
+                if (selected == '' || selected == null ){
+                    alert("请选择");
+                    return false;
+                }else {
+                    for(var i1=0;i1<names.length;i1++){
+                        var str = "";
+                        $.each( selected, function(i, n){
+                            if (i==0)
+                                str+= n[names[i1]];
+                            else{
+                                str+= ",";
+                                str+=n[names[i1]];
+                            }
+                        });
+                        if($("#"+objs[i1]).length>=1){
+                            $("#"+objs[i1]).val("");
+                            $("#"+objs[i1]).val(str);
+                        }else{
+                            $("input[name='"+objs[i1]+"']").val("");
+                            $("input[name='"+objs[i1]+"']").val(str);
+                        }
+                    }
+                    return true;
+                }
+
+            },
+            cancelVal: '关闭',
+            cancel: true /*为true等价于function(){}*/
+        });
+    }else{
+        $.dialog({
+            content: "url:"+url,
+            zIndex: getzIndex(),
+            lock : true,
+            title:"选择",
+            width:700,
+            height: 400,
+            parent:windowapi,
+            cache:false,
+            ok: function(){
+                iframe = this.iframe.contentWindow;
+                var selected = iframe.getSelectRows();
+                if (selected == '' || selected == null ){
+                    alert("请选择数据E");
+                    return false;
+                }else {
+                    for(var i1=0;i1<names.length;i1++){
+                        var str = "";
+                        $.each( selected, function(i, n){
+                            if (i==0)
+                                str+= n[names[i1]];
+                            else{
+                                str+= ",";
+                                str+=n[names[i1]];
+                            }
+                        });
+                        if($("#"+objs[i1]).length>=1){
+                            $("#"+objs[i1]).val("");
+                            $("#"+objs[i1]).val(str);
+                        }else{
+                            $("[name='"+objs[i1]+"']").val("");
+                            $("[name='"+objs[i1]+"']").val(str);
+                        }
+                    }
+                    return true;
+                }
+
+            },
+            cancelVal: '关闭',
+            cancel: true /*为true等价于function(){}*/
+        });
+    }
+}
+
+
+
 /*
 	自定义url的弹出
 	obj:要填充的控件,可以为多个，以逗号分隔

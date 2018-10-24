@@ -15,6 +15,9 @@ function resetTrNum(tableId) {
 					var new_name = name.substring(s+1,e);
 					$this.attr("name",name.replace(new_name,i));
 				}
+
+
+
 			}
 			if(id!=null){
 				if (id.indexOf("#index#") >= 0){

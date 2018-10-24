@@ -367,8 +367,24 @@
 		<th scope="row"><div name="xh"></div></th>
 		<td><input style="width:20px;" type="checkbox" name="ck"/></td>
 		<td align="left">
-			<t:dictSelect field="wmImNoticeIList[#index#].goodsCode" type="list" extendJson="{class:'form-control',style:'width:350px'}"
-						  dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="wmImNoticeIList[#index#].goodsCode"  hasLabel="false"  title="商品编码"></t:dictSelect>
+			<%-- 									<t:dictSelect  field="wmImNoticeIList[#index#].goodsCode" type="list" extendJson="{class:'form-control',style:'width:350px'}"   --%>
+			<%--   												dictCondition="${wmImNoticeHPage.wherecon}"			dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>        --%>
+
+			<%--<td>--%>
+			<input id="wmImNoticeIList[#index#].goodsCode"  name="wmImNoticeIList[#index#].goodsCode"    maxlength="32"
+				   type="text"  onclick="popClickone('wmImNoticeIList[#index#].goodsCode','goodsName','mvGoodsController.do?list')"   style="width:420px;text-align: left" >
+			<%--</td>--%>
+
+
+
+			<%--<input id="wmImNoticeIList[#index#].goodsCode"  name="wmImNoticeIList[#index#].goodsCode" maxlength="32" --%>
+			<%--ignore="ignore" 		type="text" style="width:420px;text-align: left" >--%>
+			<%--<t:choose  hiddenName="wmImNoticeIList[#index#].goodsCode" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>--%>
+			<%----%>
+			<%-- 							  	<t:choose hiddenName="wmImNoticeIList[#index#].goodsCode" hiddenid="id" url="mdGoodsController.do?list" name="mdGoodsList" --%>
+			<%-- 								  icon="icon-search" title="common.role.list" textname="wmImNoticeIList[#index#].goodsCode" isclear="true" isInit="true"></t:choose> --%>
+
+
 			<label class="Validform_label" style="display: none;">商品编码</label>
 		</td>
 		<td align="left">
@@ -379,8 +395,11 @@
 		</td>
 
 		<!-- 						  <td align="left"> -->
-		<%-- 									<t:dictSelect field="wmImNoticeIList[#index#].goodsUnit" type="list" extendJson="{class:'form-control',style:'width:250px'}"  --%>
-		<%-- 												dictTable="ba_unit" dictField="unit_code" dictText="unit_zh_name"  defaultVal="" hasLabel="false"  title="单位"></t:dictSelect>      --%>
+
+		<%-- 							  		<t:dictSelect field="wmImNoticeIList[#index#].goodsUnit" type="list" extendJson="{class:'form-control'}" --%>
+		<%-- 								dictTable="ba_unit" dictField="unit_code" dictText="unit_zh_name" hasLabel="false"  title="单位"></t:dictSelect>      --%>
+
+
 		<!-- 							  <label class="Validform_label" style="display: none;">单位</label> -->
 		<!-- 						  </td> -->
 
@@ -393,15 +412,10 @@
 		<!-- 						  </td> -->
 		<td align="left">
 			<t:dictSelect field="wmImNoticeIList[#index#].binPre" type="radio" extendJson="{class:'form-control',style:'width:150px'}"
-						  typeGroupCode="sf_yn" defaultVal="" hasLabel="false"  title="收货完成"></t:dictSelect>
+						  typeGroupCode="sf_yn" defaultVal="N" hasLabel="false"  title="收货完成"></t:dictSelect>
 			<label class="Validform_label" style="display: none;">收货完成</label>
 		</td>
-		<!-- 						  <td align="left"> -->
-		<!-- 							  	<input name="wmImNoticeIList[#index#].goodsUnit" maxlength="32"  -->
-		<!-- 									ignore="ignore" -->
-		<!-- 							  		type="text" class="form-control"  style="width:120px;" > -->
-		<!-- 							  <label class="Validform_label" style="display: none;">单位</label> -->
-		<!-- 						  </td> -->
+
 	</tr>
 	</tbody>
 </table>

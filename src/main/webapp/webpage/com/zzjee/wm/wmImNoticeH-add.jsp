@@ -105,6 +105,9 @@
 						var new_name = name.substring(s+1,e);
 						$this.attr("name",name.replace(new_name,i));
 					}
+
+
+
 				}
 			});
 			$(this).find('div[name=\'xh\']').html(i+1);
@@ -136,7 +139,6 @@
 
  function SelectChange() {
      var selectcusValue = $("select[name='cusCode']").val();
-//加载工地
      var url = "mvGoodsController.do?setvalue&cusCode="+selectcusValue;
      $.ajax({
          url:url,
@@ -418,11 +420,18 @@
 						  <td align="left">
 <%-- 									<t:dictSelect  field="wmImNoticeIList[#index#].goodsCode" type="list" extendJson="{class:'form-control',style:'width:350px'}"   --%>
 <%--   												dictCondition="${wmImNoticeHPage.wherecon}"			dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>        --%>
-							  
-							  	<input id="wmImNoticeIList[#index#].goodsCode"  name="wmImNoticeIList[#index#].goodsCode" maxlength="32" 
-									ignore="ignore" 		type="text" style="width:420px;text-align: left" >
-							  		<t:choose  hiddenName="wmImNoticeIList[#index#].goodsCode" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>
-							  	
+
+					<%--<td>--%>
+						<input id="wmImNoticeIList[#index#].goodsCode"  name="wmImNoticeIList[#index#].goodsCode"    maxlength="32"
+							   type="text"  onclick="popClickone('wmImNoticeIList[#index#].goodsCode','goodsName','mvGoodsController.do?list')"   style="width:420px;text-align: left" >
+					<%--</td>--%>
+
+
+
+							  	<%--<input id="wmImNoticeIList[#index#].goodsCode"  name="wmImNoticeIList[#index#].goodsCode" maxlength="32" --%>
+									<%--ignore="ignore" 		type="text" style="width:420px;text-align: left" >--%>
+							  		<%--<t:choose  hiddenName="wmImNoticeIList[#index#].goodsCode" hiddenid="goodsName" url="mvGoodsController.do?list" name="mvGoodsList" width="600"  height="410" icon="icon-search" title="选择" textname="goodsName"  isInit="true"></t:choose>--%>
+							  	<%----%>
 <%-- 							  	<t:choose hiddenName="wmImNoticeIList[#index#].goodsCode" hiddenid="id" url="mdGoodsController.do?list" name="mdGoodsList" --%>
 <%-- 								  icon="icon-search" title="common.role.list" textname="wmImNoticeIList[#index#].goodsCode" isclear="true" isInit="true"></t:choose> --%>
 							  
