@@ -427,16 +427,9 @@ public class WmOmNoticeHController extends BaseController {
 		if (wmOmNoticeH.getOmSta() == null) {
 			cq.notEq("omSta", Constants.wm_sta4);
 		}
-//		Map<String,Object> map = new HashMap<String,Object>();
-//		map.put("omSta", "desc");
-//		cq.setOrder(map);
-//		Map<String,Object> map2 = new HashMap<String,Object>();
-//		map2.put("omSta", "asc");
-//		cq.setOrder(map2);
 		Map<String,Object> map1 = new HashMap<String,Object>();
 		map1.put("createDate", "desc");
 		cq.setOrder(map1);
-//		cq.like("omNoticeId", "CK%");
 		cq.add();
 		this.wmOmNoticeHService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
@@ -456,11 +449,8 @@ public class WmOmNoticeHController extends BaseController {
 			if(!StringUtil.isEmpty(goodsid)){
 				if(goodsid.endsWith("l")){
 					goods = goodsid.substring(0,goodsid.length() - 1);
-					System.out.print("11111111I"+goods);
 				}else{
 					goods = goodsid;
-					System.out.print("22222"+goods);
-
 				}
 
 			}
@@ -560,26 +550,7 @@ public class WmOmNoticeHController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		String message = "添加成功";
 		try{
-			Map<String, Object> countMap = systemService
-					.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-			String noticeid = null;
-			if(wmOmNoticeH.getOrderTypeCode().equals("19")){
-				noticeid = "QT"
-						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-						+ "-"
-						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
-						'0');
-			}else {
-				noticeid = "CK"
-						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-						+ "-"
-						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
-						'0');
-			}
-
-
+			String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
 			WmPlatIoEntity wmPlatIo = new WmPlatIoEntity();
 			wmPlatIo.setCarno(wmOmNoticeH.getReCarno());
 			wmPlatIo.setDocId(noticeid);
@@ -591,15 +562,12 @@ public class WmOmNoticeHController extends BaseController {
 			systemService.save(wmPlatIo);
 			wmOmNoticeH.setOmNoticeId(noticeid);
 			wmOmNoticeH.setOmSta(Constants.wm_sta1);
-
-
 			if(wmOmNoticeH.getCusCode()==null){
 				if(StringUtil.isNotEmpty(wmUtil.getCusCode())){
 					wmOmNoticeH.setCusCode(wmUtil.getCusCode());
 
 				}
 			}
-
 			List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
 			for (WmOmNoticeIEntity wmomNoticeIEntity : wmOmNoticeIList) {
 				if(!StringUtil.isEmpty(wmomNoticeIEntity.getGoodsId())){
@@ -644,6 +612,30 @@ public class WmOmNoticeHController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+	private String getNextNoticeId(String orderType){
+		Map<String, Object> countMap = systemService
+				.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+		String noticeid = null;
+		if (StringUtil.isEmpty(orderType)){
+			orderType = "11";
+		}
+		if(orderType.equals("19")){
+			noticeid = "QT"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else {
+			noticeid = "CK"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}
+		return  noticeid;
+	}
 	@RequestMapping(params = "doGet")
 	@ResponseBody
 	public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
@@ -673,21 +665,11 @@ public class WmOmNoticeHController extends BaseController {
 							if (wmimh == null) {
 								WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
 								List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
-								Map<String, Object> countMap = systemService
-										.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-								String noticeid = null;
 
-								if (countMap != null) {
-									noticeid = "CK"
-											+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-											+ "-"
-											+ StringUtil.leftPad(
-											((Long) countMap.get("count")).intValue(), 4,
-											'0');
-								}
 								wmOmNoticeH.setOmPlatNo(Integer.toString(billResult.getData().get(s).getPiId()));
 								wmOmNoticeH.setOrderTypeCode("11");
 								wmOmNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
+								String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
 								wmOmNoticeH.setOmNoticeId(noticeid);
 								wmOmNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
 								wmOmNoticeH.setPiMaster(master);
@@ -798,9 +780,6 @@ public class WmOmNoticeHController extends BaseController {
 		//先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
 			StringBuffer sber=new StringBuffer();
-
-
-
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmOmNoticeH.getOmNoticeId()));
 			// 进行转码，使其支持中文文件名
@@ -826,7 +805,6 @@ public class WmOmNoticeHController extends BaseController {
 			anchor.setAnchorType(3);
 			//插入图片
 			patriarch.createPicture(anchor, wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));
-
 
 
 
@@ -1776,20 +1754,11 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}
 					WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
-					Map<String, Object> countMap = systemService
-							.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-					String noticeid = null;
-					if (countMap != null) {
-						noticeid = "CK"
-								+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-								+ "-"
-								+ StringUtil.leftPad(
-								((Long) countMap.get("count")).intValue(), 4,
-								'0');
-					}
+
 					wmOmNoticeH.setDelvData(pageheader.getImData());
 					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
 					wmOmNoticeH.setCusCode(pageheader.getCusCode());
+					String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
 					wmOmNoticeH.setOmNoticeId(noticeid);
 					wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
 					wmOmNoticeH.setOcusCode(pageheader.getSupCode());
@@ -1920,20 +1889,11 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}
 					WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
-					Map<String, Object> countMap = systemService
-							.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-					String noticeid = null;
-					if (countMap != null) {
-						noticeid = "CK"
-								+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-								+ "-"
-								+ StringUtil.leftPad(
-								((Long) countMap.get("count")).intValue(), 4,
-								'0');
-					}
+
 					wmOmNoticeH.setDelvData(pageheader.getImData());
 					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
 					wmOmNoticeH.setCusCode(pageheader.getCusCode());
+					String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
 					wmOmNoticeH.setOmNoticeId(noticeid);
 					wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
 					wmOmNoticeH.setOcusCode(pageheader.getSupCode());
