@@ -246,7 +246,7 @@ window.onload = function() {
                 type:"POST",
                 url:"wmInQmIController.do?doAdd",
                 data:$("#"+formid).serialize(),
-                async:true,
+                async:false,
                 success:function (data) {
                     var d = $.parseJSON(data);
                     if (d.success) {
@@ -256,11 +256,7 @@ window.onload = function() {
                         $("#qmOkQuaty").val(qmOkQuaty);
                         $("#qmOkQuat").val(qmOkQuaty);
                         $("#binId").val("");
-
-                        window.parent.$('#tt').tabs('close','验收');
-
-
-
+                        window.close();
 
                     } else {
                         tip(d.msg);
