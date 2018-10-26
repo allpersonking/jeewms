@@ -141,7 +141,7 @@ function printview(){
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 class=xl68 width=337 style='width:252pt'>地址：${wmOmNoticeHPage.delvAddr}</td>
-			<td colspan=3 >提醒：${jianhuoremark}</td>
+			<td colspan=3 >拣货提醒：${jianhuoremark}</td>
 			<td></td>
 		</tr>
 
