@@ -1,6 +1,7 @@
 package com.zzjee.yongyoubase.openapi4j.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zzjee.wmutil.wmUtil;
 import com.zzjee.yongyoubase.openapi4j.commons.TokenManager;
 import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
 import com.zzjee.yongyoubase.openapi4j.model.Record;
@@ -51,7 +52,6 @@ public class UserService extends BaseService {
 			
 			JSONObject resultRecord = Record.parseObject(resultStr);
 			record = resultRecord;
-			
 		} catch (Exception e) {
 			throw new OpenAPIException(e.getMessage(), e);
 		}

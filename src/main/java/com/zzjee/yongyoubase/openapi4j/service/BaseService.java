@@ -1,5 +1,6 @@
 package com.zzjee.yongyoubase.openapi4j.service;
 
+import com.zzjee.wmutil.wmUtil;
 import com.zzjee.yongyoubase.openapi4j.commons.TokenManager;
 import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
 import com.zzjee.yongyoubase.openapi4j.model.Record;
@@ -33,7 +34,6 @@ public class BaseService implements Serializable {
 		url.append(baseURL);
 		url.append(apiName);
 		url.append("?from_account=" + from_account + "&");
-
 		url.append("app_key=" + app_key + "&");
 		url.append("token=" + access_token + "&");
 		if (paramMap != null && paramMap.size() > 0) {

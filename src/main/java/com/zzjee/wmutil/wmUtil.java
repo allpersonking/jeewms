@@ -1,6 +1,7 @@
 package com.zzjee.wmutil;
 
 import com.zzjee.md.entity.MdGoodsEntity;
+import com.zzjee.sys.entity.SysParaEntity;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.ResourceUtil;
@@ -42,6 +43,60 @@ public class wmUtil {
 		}
 		return list;
 	}
+
+	public  static String getSysPar(String parType,String  username){
+		String parvalue = null;
+		try{
+			SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+			if (StringUtil.isEmpty(username)){
+				String hql = " from SysParaEntity where parType = ?";
+				SysParaEntity  syspar = (SysParaEntity)systemService.findHql(hql,parType).get(0);
+				parvalue = syspar.getParValue();
+			}else{
+				String hql = " from SysParaEntity where parType = ? and parUsername = ?";
+				SysParaEntity  syspar = (SysParaEntity)systemService.findHql(hql,parType,username).get(0);
+				parvalue = syspar.getParValue();
+			}
+		}catch (Exception e){
+
+		}
+
+		return  parvalue;
+	}
+
+	public  static  void  saveSysPar(String parType,String  username,String parvalue){
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+		if (StringUtil.isEmpty(username)){
+			String hql = " from SysParaEntity where parType = ?";
+			SysParaEntity  syspar = (SysParaEntity)systemService.findHql(hql,parType).get(0);
+			if (syspar == null){
+				syspar = new SysParaEntity();
+				syspar.setParType(parType);
+				syspar.setParValue(parType);
+				systemService.save(syspar);
+			}else{
+				syspar.setParType(parType);
+				syspar.setParValue(parType);
+				systemService.updateEntitie(syspar);
+			}
+		}else{
+			String hql = " from SysParaEntity where parType = ? and parUsername = ?";
+			SysParaEntity  syspar = (SysParaEntity)systemService.findHql(hql,parType,username).get(0);
+			if (syspar == null){
+				syspar = new SysParaEntity();
+				syspar.setParType(parType);
+				syspar.setParUsername(username);
+				syspar.setParValue(parType);
+				systemService.save(syspar);
+			}else{
+				syspar.setParType(parType);
+				syspar.setParUsername(username);
+				syspar.setParValue(parType);
+				systemService.updateEntitie(syspar);
+			}
+		}
+	}
+
 //通过客户商品编码，或者WMS商品编码和单位找到WMS编码
 	public static Map<String,String> getGoodsId(String cusCode,String cusgoodsid,String goodsUnit){
 		Map<String,String> resultmap = new HashMap<>();
