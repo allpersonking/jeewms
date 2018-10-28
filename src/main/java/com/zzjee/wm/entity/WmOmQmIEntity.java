@@ -120,6 +120,9 @@ public class WmOmQmIEntity implements java.io.Serializable {
 	private java.lang.String omBeizhu;
 	@Excel(name="商品条码")
 	private java.lang.String barCode;
+
+	@Excel(name="保质期")
+	private java.lang.String baoZhiq;
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -656,5 +659,14 @@ public class WmOmQmIEntity implements java.io.Serializable {
 	 */
 	public void setBarCode(java.lang.String barCode){
 		this.barCode = barCode;
+	}
+
+	@Column(name ="BAOZHIQI",nullable=true,length=32)
+	public String getBaoZhiq() {
+		return baoZhiq;
+	}
+
+	public void setBaoZhiq(String baoZhiq) {
+		this.baoZhiq = baoZhiq;
 	}
 }
