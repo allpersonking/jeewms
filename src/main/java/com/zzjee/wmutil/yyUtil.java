@@ -3,9 +3,7 @@ package com.zzjee.wmutil;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaoleilu.hutool.http.HttpUtil;
 import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
-import com.zzjee.yongyoubase.openapi4j.service.ConsignmentService;
-import com.zzjee.yongyoubase.openapi4j.service.InventoryService;
-import com.zzjee.yongyoubase.openapi4j.service.PurchaseOrderService;
+import com.zzjee.yongyoubase.openapi4j.service.*;
 import com.alibaba.fastjson.JSONArray;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.JSONHelper;
@@ -157,7 +155,27 @@ public class yyUtil {
         }
     }
 
+ public  static void addOtherOut(Map<String, Object> params){
+     String to_account = params.get("to_account").toString();	//提供方id        String page_index = args[1];// 页号
 
+     String jsonBody = params.get("jsonBody").toString();
+     OtherOutService otherOutService = new OtherOutService();
+     try {
+         JSONObject record = otherOutService.add(jsonBody, to_account);
+     } catch (OpenAPIException e) {
+         e.printStackTrace();
+     }
+ }
+    public  static void addOtherIn(Map<String, Object> params){
+        String to_account = params.get("to_account").toString();	//提供方id        String page_index = args[1];// 页号
 
+        String jsonBody = params.get("jsonBody").toString();
+        OtherInService otherInService = new OtherInService();
+        try {
+            JSONObject record = otherInService.add(jsonBody, to_account);
+        } catch (OpenAPIException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -26,14 +26,7 @@ public class PurchaseOrderGet {
         PurchaseOrderService purchaseOrderService = new PurchaseOrderService();
         try {
             JSONObject record = purchaseOrderService.get(id, to_account);
-
-
             logger.info(record.toString());
-
-
-
-
-
         } catch (OpenAPIException e) {
             e.printStackTrace();
         }
