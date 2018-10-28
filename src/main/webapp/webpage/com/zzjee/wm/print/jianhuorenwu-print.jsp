@@ -154,7 +154,7 @@ function printview(){
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>生产日期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘/保质期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
 
 			<td  ></td>
@@ -170,7 +170,7 @@ function printview(){
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseUnit }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.proData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseGoodscount }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }</td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>
 				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
