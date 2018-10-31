@@ -25,12 +25,12 @@ import com.zzjee.wm.entity.WmToMoveGoodsEntity;
 import com.zzjee.wm.entity.WmToUpGoodsEntity;
 
 /**
- * 
+ *
  * @ClassName:SmsSendTask 所有信息的发送定时任务类
  * @Description: TODO
  * @author Comsys-skyCc cmzcheng@gmail.com
  * @date 2014-11-13 下午5:06:34
- * 
+ *
  */
 @Service("smsSendTask")
 public class SmsSendTask {
@@ -43,10 +43,10 @@ public class SmsSendTask {
 	/* @Scheduled(cron="0 0/1 * * * ?") */
 	public void run() {
 		long start = System.currentTimeMillis();
-		 String run = ResourceUtil.getConfigByName("timerun");
-		 if(!run.equals("run")){
-			 return;
-		 }
+		String run = ResourceUtil.getConfigByName("timerun");
+		if(!run.equals("run")){
+			return;
+		}
 		org.jeecgframework.core.util.LogUtil
 				.info("===================消息中间件定时任务开始===================");
 		try {//发送消息
@@ -77,7 +77,7 @@ public class SmsSendTask {
 
 			WmInQmlist = systemService.findHql(hql, new Object[] { "N" });
 			for (WmInQmIEntity wmInQmIEntity : WmInQmlist) {
-				
+
 				if(wmInQmIEntity.getImNoticeId().startsWith("YK")){//越库任务
 					wmInQmIEntity.setBinId(wmInQmIEntity.getImNoticeId());
 					wmInQmIEntity.setBinSta("Y");
@@ -91,17 +91,17 @@ public class SmsSendTask {
 						if(wmInQmIEntity.getTinTj()==null){
 							wmInQmIEntity.setTinTj("0");
 						}
-						 String zuidatiji = null;
-						 try {
-							 if(StringUtil.isEmpty( wmInQmIEntity.getTinTj())){
-								 zuidatiji = "1";
-							 }else{
-								 zuidatiji = wmInQmIEntity.getTinTj();
-							 }
+						String zuidatiji = null;
+						try {
+							if(StringUtil.isEmpty( wmInQmIEntity.getTinTj())){
+								zuidatiji = "1";
+							}else{
+								zuidatiji = wmInQmIEntity.getTinTj();
+							}
 						} catch (Exception e) {
 							zuidatiji = "1";
 						}
-					
+
 						sql = "select  binid     from          wv_avabin      where  ku_wei_lei_xing <> '不良品区'  and   zui_da_ti_ji >"
 								+ zuidatiji
 								+ "  and ku_wei_shu_xing = (select cf_wen_ceng from mv_goods  where goods_code =  '"
@@ -116,7 +116,7 @@ public class SmsSendTask {
 								+ "order by suo_shu_ke_hu desc,  shang_jia_ci_xu,binid     limit 1";
 						binMap = systemService.findOneForJdbc(sql);
 					}
-					    
+
 					if (binMap != null) {
 						wmInQmIEntity.setBinId(binMap.get("binid").toString());
 						systemService.updateEntitie(wmInQmIEntity);
@@ -132,7 +132,7 @@ public class SmsSendTask {
 						MvGoodsEntity.class, "goodsCode",
 						wmInQmIEntity.getGoodsId());
 				wmInQmIEntity.setBaseUnit(mvgoods.getBaseunit());
-				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {		
+				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 					try {
 						wmInQmIEntity.setBaseGoodscount(String.valueOf(Long
 								.parseLong(mvgoods.getChlShl())
@@ -140,10 +140,10 @@ public class SmsSendTask {
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-					
+
 					try {
 						wmInQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-								.getZhlKg()) * Long.parseLong(wmInQmIEntity.getQmOkQuat())));	
+								.getZhlKg()) * Long.parseLong(wmInQmIEntity.getQmOkQuat())));
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -234,8 +234,8 @@ public class SmsSendTask {
 			}
 
 			// 更新下架商品基本单位基本数量
-			
-			
+
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -244,7 +244,7 @@ public class SmsSendTask {
 			List<WmToMoveGoodsEntity> WmToMoveGoodslist = new ArrayList<WmToMoveGoodsEntity>();
 			hql = "from WmToMoveGoodsEntity t where  t.orderId is null and t.moveSta = '已完成' ";
 			WmToMoveGoodslist = systemService.findByQueryString(hql);
-			
+
 			for (WmToMoveGoodsEntity wmToMoveGoodsEntity : WmToMoveGoodslist) {
 				if(!wmUtil.checkstcok(wmToMoveGoodsEntity.getBinFrom(),wmToMoveGoodsEntity.getTinFrom(),wmToMoveGoodsEntity.getGoodsId(),wmToMoveGoodsEntity.getGoodsProData(),wmToMoveGoodsEntity.getGoodsQua())){
 					wmToMoveGoodsEntity.setMoveSta("库存不足");
@@ -284,11 +284,11 @@ public class SmsSendTask {
 						MvGoodsEntity.class, "goodsCode",
 						wmToMoveGoodsEntity.getGoodsId());
 				wmToDownGoods.setGoodsName(mvgoods.getGoodsName());
-					if(StringUtil.isEmpty(wmToMoveGoodsEntity.getBaseGoodscount())){
-						wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
-					}else{
-						wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getBaseGoodscount());
-					}
+				if(StringUtil.isEmpty(wmToMoveGoodsEntity.getBaseGoodscount())){
+					wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getGoodsQua());
+				}else{
+					wmToDownGoods.setBaseGoodscount(wmToMoveGoodsEntity.getBaseGoodscount());
+				}
 				wmToDownGoods.setBaseUnit(mvgoods.getBaseunit());//基本单位
 				wmToDownGoods.setGoodsUnit(wmToMoveGoodsEntity.getGoodsUnit());//出货单位
 				wmToDownGoods.setGoodsQua(wmToMoveGoodsEntity.getGoodsQua());//出货数量
@@ -324,7 +324,7 @@ public class SmsSendTask {
 				wmToUpGoodsEntity.setBinId(wmToMoveGoodsEntity.getTinId());
 				wmToUpGoodsEntity.setKuWeiBianMa(wmToMoveGoodsEntity.getBinTo());
 				wmToUpGoodsEntity.setCusCode(wmToMoveGoodsEntity.getToCusCode());
-				wmToUpGoodsEntity.setActTypeCode("ZY");	
+				wmToUpGoodsEntity.setActTypeCode("ZY");
 				systemService.save(wmToUpGoodsEntity);
 				if(!StringUtil.isNotEmpty(wmToMoveGoodsEntity.getOrderTypeCode())){
 					wmToMoveGoodsEntity.setOrderTypeCode("KCZY");
@@ -335,8 +335,8 @@ public class SmsSendTask {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	    this.rundowntask();//下架任务
-       	org.jeecgframework.core.util.LogUtil
+		this.rundowntask();//下架任务
+		org.jeecgframework.core.util.LogUtil
 				.info("===================消息中间件定时任务结束===================");
 		long end = System.currentTimeMillis();
 		long times = end - start;
@@ -345,7 +345,7 @@ public class SmsSendTask {
 	public  void rundowntask() {
 		try {// 生成下架任务
 			List<WmOmNoticeIEntity> WmOmNoticeIlist = new ArrayList<WmOmNoticeIEntity>();
-            String			hql = "from WmOmNoticeIEntity t where  t.planSta = 'N' order by goodsId ,omNoticeId";
+			String			hql = "from WmOmNoticeIEntity t where  t.planSta = 'N' order by goodsId ,omNoticeId";
 			WmOmNoticeIlist = systemService.findByQueryString(hql);
 			String  usetuopan  = ResourceUtil.getConfigByName("usetuopan");
 			String  prodate = null;
@@ -362,8 +362,8 @@ public class SmsSendTask {
 					prodate= DateUtils.date2Str(wmOmNoticeIEntity.getGoodsProData(),DateUtils.date_sdf);
 				}
 				if(StringUtil.isNotEmpty(wmOmNoticeIEntity.getBinId())){
-						tuopanma  = wmOmNoticeIEntity.getBinId();
-					}else{
+					tuopanma  = wmOmNoticeIEntity.getBinId();
+				}else{
 					if("no".equals(usetuopan)){
 						tuopanma = ResourceUtil.getConfigByName("tuopanma");
 					}else{
@@ -578,136 +578,136 @@ public class SmsSendTask {
 								.findForJdbc(tsql, mvgoods.getGoodsId(), wmOmQmIEntity.getCusCode());
 						if (result != null && result.size() > 0) {
 							for (int i = 0; i < result.size(); i++) {
-							try {
-								Long bin_qua = Long.valueOf(result.get(i)
-										.get("goods_qua").toString());
-								if (bin_qua > 0 && omcountwq > 0) {
-									if (omcountwq > bin_qua) {
-										wmOmQmIEntity.setBinId(result.get(i)
-												.get("ku_wei_bian_ma").toString());
-										wmOmQmIEntity.setTinId(result.get(i)
-												.get("bin_id").toString());
-										wmOmQmIEntity.setBaseUnit(result.get(i)
-												.get("base_unit").toString());
-										wmOmQmIEntity
-												.setBaseGoodscount(result.get(i)
-														.get("goods_qua")
-														.toString());
-										wmOmQmIEntity.setProData(result.get(i)
-												.get("goods_pro_data").toString());
-										wmOmQmIEntity.setCusName(result.get(i)
-												.get("zhong_wen_qch").toString());
-										wmOmQmIEntity.setGoodsName(result.get(i)
-												.get("shp_ming_cheng").toString());
-										omcountwq = omcountwq - bin_qua;
-										if (wmOmNoticeIEntity.getGoodsUnit()
-												.equals(wmOmNoticeIEntity
-														.getBaseUnit())) {
-											wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
-											try {
-												wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-														.getTiJiCm()) / Double.parseDouble(mvgoods
-														.getChlShl())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-												wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-														.getZhlKg()) / Double.parseDouble(mvgoods
-														.getChlShl())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-											} catch (Exception e) {
-												// TODO: handle exception
+								try {
+									Long bin_qua = Long.valueOf(result.get(i)
+											.get("goods_qua").toString());
+									if (bin_qua > 0 && omcountwq > 0) {
+										if (omcountwq > bin_qua) {
+											wmOmQmIEntity.setBinId(result.get(i)
+													.get("ku_wei_bian_ma").toString());
+											wmOmQmIEntity.setTinId(result.get(i)
+													.get("bin_id").toString());
+											wmOmQmIEntity.setBaseUnit(result.get(i)
+													.get("base_unit").toString());
+											wmOmQmIEntity
+													.setBaseGoodscount(result.get(i)
+															.get("goods_qua")
+															.toString());
+											wmOmQmIEntity.setProData(result.get(i)
+													.get("goods_pro_data").toString());
+											wmOmQmIEntity.setCusName(result.get(i)
+													.get("zhong_wen_qch").toString());
+											wmOmQmIEntity.setGoodsName(result.get(i)
+													.get("shp_ming_cheng").toString());
+											omcountwq = omcountwq - bin_qua;
+											if (wmOmNoticeIEntity.getGoodsUnit()
+													.equals(wmOmNoticeIEntity
+															.getBaseUnit())) {
+												wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
+												try {
+													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+															.getTiJiCm()) / Double.parseDouble(mvgoods
+															.getChlShl())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+															.getZhlKg()) / Double.parseDouble(mvgoods
+															.getChlShl())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
+											} else {
+
+												try {
+													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+															.getTiJiCm())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+															.getChlShl())));
+													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+															.getZhlKg())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+															.getChlShl())));
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
+												try {
+
+													wmOmQmIEntity
+															.setQmOkQuat(Long.toString(bin_qua
+															));
+
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
 											}
+											systemService.save(wmOmQmIEntity);
 										} else {
+											wmOmQmIEntity.setBinId(result.get(i)
+													.get("ku_wei_bian_ma").toString());
+											wmOmQmIEntity.setTinId(result.get(i)
+													.get("bin_id").toString());
+											wmOmQmIEntity.setBaseUnit(result.get(i)
+													.get("base_unit").toString());
+											wmOmQmIEntity.setBaseGoodscount(Long
+													.toString(omcountwq));
+											wmOmQmIEntity.setProData(result.get(i)
+													.get("goods_pro_data").toString());
+											wmOmQmIEntity.setCusName(result.get(i)
+													.get("zhong_wen_qch").toString());
+											wmOmQmIEntity.setGoodsName(result.get(i)
+													.get("shp_ming_cheng").toString());
+											if (wmOmNoticeIEntity.getGoodsUnit()
+													.equals(wmOmNoticeIEntity
+															.getBaseUnit())) {
+												wmOmQmIEntity.setQmOkQuat(Long.toString(omcountwq));
+												try {
+													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+															.getTiJiCm()) / Double.parseDouble(mvgoods
+															.getChlShl())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+															.getZhlKg()) / Double.parseDouble(mvgoods
+															.getChlShl())
+															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
 
-											try {
-												wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-														.getTiJiCm())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
-														.getChlShl())));
-												wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-														.getZhlKg())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
-														.getChlShl())));
-											} catch (Exception e) {
-												// TODO: handle exception
+											} else {
+
+												try {
+													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
+															.getTiJiCm())
+															* omcountwq / Long.parseLong(mvgoods
+															.getChlShl())));
+													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
+															.getZhlKg())
+															* omcountwq / Long.parseLong(mvgoods
+															.getChlShl())));
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
+
+
+												try {
+
+													wmOmQmIEntity
+															.setQmOkQuat(Long.toString(omcountwq));
+
+												} catch (Exception e) {
+													// TODO: handle exception
+												}
 											}
-											try {
-
-												wmOmQmIEntity
-														.setQmOkQuat(Long.toString(bin_qua
-														));
-
-											} catch (Exception e) {
-												// TODO: handle exception
-											}
+											systemService.save(wmOmQmIEntity);
+											wmOmNoticeIEntity.setPlanSta("Y");
+											systemService
+													.saveOrUpdate(wmOmNoticeIEntity);
+											break;
 										}
-										systemService.save(wmOmQmIEntity);
-									} else {
-										wmOmQmIEntity.setBinId(result.get(i)
-												.get("ku_wei_bian_ma").toString());
-										wmOmQmIEntity.setTinId(result.get(i)
-												.get("bin_id").toString());
-										wmOmQmIEntity.setBaseUnit(result.get(i)
-												.get("base_unit").toString());
-										wmOmQmIEntity.setBaseGoodscount(Long
-												.toString(omcountwq));
-										wmOmQmIEntity.setProData(result.get(i)
-												.get("goods_pro_data").toString());
-										wmOmQmIEntity.setCusName(result.get(i)
-												.get("zhong_wen_qch").toString());
-										wmOmQmIEntity.setGoodsName(result.get(i)
-												.get("shp_ming_cheng").toString());
-										if (wmOmNoticeIEntity.getGoodsUnit()
-												.equals(wmOmNoticeIEntity
-														.getBaseUnit())) {
-											wmOmQmIEntity.setQmOkQuat(Long.toString(omcountwq));
-											try {
-												wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-														.getTiJiCm()) / Double.parseDouble(mvgoods
-														.getChlShl())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-												wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-														.getZhlKg()) / Double.parseDouble(mvgoods
-														.getChlShl())
-														* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
-											} catch (Exception e) {
-												// TODO: handle exception
-											}
-
-										} else {
-
-											try {
-												wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
-														.getTiJiCm())
-														* omcountwq / Long.parseLong(mvgoods
-														.getChlShl())));
-												wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-														.getZhlKg())
-														* omcountwq / Long.parseLong(mvgoods
-														.getChlShl())));
-											} catch (Exception e) {
-												// TODO: handle exception
-											}
-
-
-											try {
-
-												wmOmQmIEntity
-														.setQmOkQuat(Long.toString(omcountwq));
-
-											} catch (Exception e) {
-												// TODO: handle exception
-											}
-										}
-										systemService.save(wmOmQmIEntity);
-										wmOmNoticeIEntity.setPlanSta("Y");
-										systemService
-												.saveOrUpdate(wmOmNoticeIEntity);
-										break;
 									}
-								}
-							}catch (Exception e){
+								}catch (Exception e){
 
-							}
+								}
 								//catch  jieshu
 							}
 
@@ -723,7 +723,7 @@ public class SmsSendTask {
 				catch (Exception e){
 
 				}
-				}
+			}
 
 		} catch (Exception e) {
 			// TODO: handle exception

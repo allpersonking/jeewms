@@ -215,7 +215,7 @@ public class yyUtil {
                                 wmi.setGoodsName(mvgoods.getGoodsName());
                                 wmi.setGoodsUnit(mvgoods.getShlDanWei());
                             }
-                            wmi.setGoodsCount(Double.toString(new BigDecimal(proddet.get("iQuantity").toString()).setScale(2, RoundingMode.UP).doubleValue()));
+                            wmi.setGoodsCount(Long.toString(new BigDecimal(proddet.get("iQuantity").toString()).setScale(0, RoundingMode.UP).longValue()));
 //                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
 //                            wmi.setOtherId();
                             wmImNoticeIListnew.add(wmi);
@@ -279,7 +279,7 @@ public class yyUtil {
                                 wmi.setGoodsName(mvgoods.getGoodsName());
                                 wmi.setGoodsUnit(mvgoods.getShlDanWei());
                             }
-                            wmi.setGoodsQua(Double.toString(new BigDecimal(proddet.get("iQuantity").toString()).setScale(0, RoundingMode.UP).doubleValue()));
+                            wmi.setGoodsQua(Long.toString(new BigDecimal(proddet.get("iQuantity").toString()).setScale(0, RoundingMode.UP).longValue()));
                             wmomNoticeIListnew.add(wmi);
                         }
                         wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);

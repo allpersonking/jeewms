@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 import com.zzjee.wmutil.uasUtil;
+import com.zzjee.wmutil.yyUtil;
 import org.jeecgframework.AbstractUnitTest;
 import org.jeecgframework.core.util.DateUtils;
 import org.junit.Before;
@@ -39,19 +40,20 @@ public class ControllerTestDemo  extends AbstractUnitTest{
 	//测试登录
 	@Test
 	public void testLogin() throws Exception {
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("formDate","2017-01-01");
-		paramMap.put("lastUpdateTime","2017-01-01");
-		paramMap.put("pi_class","采购验收单");
-		uasUtil.getProduct(paramMap);
-
-		uasUtil.getCustomer(paramMap);
-
-		uasUtil.getVendor(paramMap);
-
-		uasUtil.getWarehouse(paramMap);
-
-		uasUtil.getBil(paramMap);
+        yyUtil.getProduct();
+//		Map<String, Object> paramMap = new HashMap<String, Object>();
+//		paramMap.put("formDate","2017-01-01");
+//		paramMap.put("lastUpdateTime","2017-01-01");
+//		paramMap.put("pi_class","采购验收单");
+//		uasUtil.getProduct(paramMap);
+//
+//		uasUtil.getCustomer(paramMap);
+//
+//		uasUtil.getVendor(paramMap);
+//
+//		uasUtil.getWarehouse(paramMap);
+//
+//		uasUtil.getBil(paramMap);
  //		session.setAttribute("randCode", "1234"); //设置登录验证码
 //		this.mockMvc.perform(post("/loginController.do?checkuser=")
 //				.param("userName","admin")

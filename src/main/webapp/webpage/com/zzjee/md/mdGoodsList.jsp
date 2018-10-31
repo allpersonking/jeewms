@@ -85,7 +85,7 @@
        }else{
                                var url = "mdGoodsController.do?doGet&formDate="+batchdate;
                        $.ajax({
-                           async : false,
+                           async : true,
                            cache : false,
                            type : 'POST',
                            url : url,// 请求的action路径
