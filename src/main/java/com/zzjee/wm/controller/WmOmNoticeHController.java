@@ -642,72 +642,81 @@ public class WmOmNoticeHController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "读取成功";
-		String masterbill[] = {"XKN_TEST","XKN_TEST"};
-		for(int m =0;m<masterbill.length;m++) {
+		if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
+			if(StringUtil.isEmpty(formDate)){
+				formDate = "2011-01-01";
+			}
+			yyUtil.getSdvl(formDate);
 
-			try {
-				if (StringUtil.isEmpty(formDate)) {
-					formDate = "2011-01-01";
-				}
-				String master = masterbill[m];
-				String billclass[] = {"出货单", "采购退货单", "拨出单", "其它出库单", "其它采购出库单"};
-				for (int i = 0; i < billclass.length; i++) {
-					Map<String, Object> paramMap = new HashMap<String, Object>();
-					paramMap.put("lastUpdateTime", formDate);
-					paramMap.put("pi_class", billclass[i]);
-					paramMap.put("master", master);
+		}
+		if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))) {
+			String masterbill[] = {"XKN_TEST", "XKN_TEST"};
+			for (int m = 0; m < masterbill.length; m++) {
 
-					sdresult billResult = wmIntUtil.getsdBillin(paramMap);
-					for (int s = 0; s < billResult.getData().size(); s++) {
-						String imcuscode = billResult.getData().get(s).getPiInoutno();
-						if (StringUtil.isNotEmpty(imcuscode)) {
-							WmOmNoticeHEntity wmimh = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "imCusCode", imcuscode);
-							if (wmimh == null) {
-								WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
-								List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+				try {
+					if (StringUtil.isEmpty(formDate)) {
+						formDate = "2011-01-01";
+					}
+					String master = masterbill[m];
+					String billclass[] = {"出货单", "采购退货单", "拨出单", "其它出库单", "其它采购出库单"};
+					for (int i = 0; i < billclass.length; i++) {
+						Map<String, Object> paramMap = new HashMap<String, Object>();
+						paramMap.put("lastUpdateTime", formDate);
+						paramMap.put("pi_class", billclass[i]);
+						paramMap.put("master", master);
 
-								wmOmNoticeH.setOmPlatNo(Integer.toString(billResult.getData().get(s).getPiId()));
-								wmOmNoticeH.setOrderTypeCode("11");
-								wmOmNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
-								String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
-								wmOmNoticeH.setOmNoticeId(noticeid);
-								wmOmNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
-								wmOmNoticeH.setPiMaster(master);
-								wmOmNoticeH.setOcusCode(billResult.getData().get(s).getPiCardcode());
-								MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", wmOmNoticeH.getOcusCode());
-								if (mdcusother != null) {
-									wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
-								}
-								wmOmNoticeH.setImCusCode(imcuscode);
-								for (int k = 0; k < billResult.getData().get(s).getDetail().size(); k++) {
-									WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
-									wmi.setGoodsId(billResult.getData().get(s).getDetail().get(k).getPdProdcode());
-									MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-											MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
-									if (mvgoods != null) {
-										wmi.setGoodsName(mvgoods.getGoodsName());
-										wmi.setGoodsUnit(mvgoods.getShlDanWei());
+						sdresult billResult = wmIntUtil.getsdBillin(paramMap);
+						for (int s = 0; s < billResult.getData().size(); s++) {
+							String imcuscode = billResult.getData().get(s).getPiInoutno();
+							if (StringUtil.isNotEmpty(imcuscode)) {
+								WmOmNoticeHEntity wmimh = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "imCusCode", imcuscode);
+								if (wmimh == null) {
+									WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
+									List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+
+									wmOmNoticeH.setOmPlatNo(Integer.toString(billResult.getData().get(s).getPiId()));
+									wmOmNoticeH.setOrderTypeCode("11");
+									wmOmNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
+									String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
+									wmOmNoticeH.setOmNoticeId(noticeid);
+									wmOmNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
+									wmOmNoticeH.setPiMaster(master);
+									wmOmNoticeH.setOcusCode(billResult.getData().get(s).getPiCardcode());
+									MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", wmOmNoticeH.getOcusCode());
+									if (mdcusother != null) {
+										wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
 									}
-									wmi.setGoodsProData( DateUtils.str2Date(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate(),DateUtils.date_sdf));
-									wmi.setGoodsQua(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPurcoutqty()));
+									wmOmNoticeH.setImCusCode(imcuscode);
+									for (int k = 0; k < billResult.getData().get(s).getDetail().size(); k++) {
+										WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
+										wmi.setGoodsId(billResult.getData().get(s).getDetail().get(k).getPdProdcode());
+										MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+												MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
+										if (mvgoods != null) {
+											wmi.setGoodsName(mvgoods.getGoodsName());
+											wmi.setGoodsUnit(mvgoods.getShlDanWei());
+										}
+										wmi.setGoodsProData(DateUtils.str2Date(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate(), DateUtils.date_sdf));
+										wmi.setGoodsQua(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPurcoutqty()));
 //                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
-									wmi.setOtherId(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPdno()));
+										wmi.setOtherId(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPdno()));
 
-									wmomNoticeIListnew.add(wmi);
+										wmomNoticeIListnew.add(wmi);
+									}
+									wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
 								}
-								wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
+							} else {
+								continue;
 							}
-						} else {
-							continue;
 						}
 					}
+					systemService.addLog(message, Globals.Log_Type_UPDATE,
+							Globals.Log_Leavel_INFO);
+				} catch (Exception e) {
+					e.printStackTrace();
+					message = "读取失败";
+					throw new BusinessException(e.getMessage());
 				}
-				systemService.addLog(message, Globals.Log_Type_UPDATE,
-						Globals.Log_Leavel_INFO);
-			} catch (Exception e) {
-				e.printStackTrace();
-				message = "读取失败";
-				throw new BusinessException(e.getMessage());
 			}
 		}
 		j.setMsg(message);

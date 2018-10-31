@@ -4,12 +4,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.xiaoleilu.hutool.http.HttpUtil;
 import com.zzjee.ba.entity.BaGoodsTypeEntity;
 import com.zzjee.ba.entity.BaUnitEntity;
+import com.zzjee.md.entity.MdCusOtherEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.md.entity.MdSupEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
 import com.zzjee.wm.entity.WmImNoticeHEntity;
 import com.zzjee.wm.entity.WmImNoticeIEntity;
+import com.zzjee.wm.entity.WmOmNoticeHEntity;
+import com.zzjee.wm.entity.WmOmNoticeIEntity;
 import com.zzjee.wm.service.WmImNoticeHServiceI;
+import com.zzjee.wm.service.WmOmNoticeHServiceI;
 import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
 import com.zzjee.yongyoubase.openapi4j.service.*;
 import com.alibaba.fastjson.JSONArray;
@@ -177,7 +181,7 @@ public class yyUtil {
                         List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
 
                         wmImNoticeH.setOrderTypeCode("01");
-                        String noticeid = yyUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+                        String noticeid = wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
 
                         wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("yy.cuscode"));
                         wmImNoticeH.setNoticeId(noticeid);
@@ -226,135 +230,59 @@ public class yyUtil {
     }
 
 
-    private  static  String getNextNoticeid(String orderType){
-        String noticeid=null;
-        SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 
-        Map<String, Object> countMap = systemService
-                .findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-        if (StringUtil.isEmpty(orderType)){
-            orderType = "01";
-        }
-        if (countMap != null) {
-            if(orderType.equals("03")){
-                noticeid = "TH"
-                        + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                        + "-"
-                        + StringUtil.leftPad(
-                        ((Long) countMap.get("count")).intValue(), 4,
-                        '0');
-            }else if(orderType.equals("01")){
-                noticeid = "RK"
-                        + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                        + "-"
-                        + StringUtil.leftPad(
-                        ((Long) countMap.get("count")).intValue(), 4,
-                        '0');
-            }else if(orderType.equals("04")){
-                noticeid = "YK"
-                        + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                        + "-"
-                        + StringUtil.leftPad(
-                        ((Long) countMap.get("count")).intValue(), 4,
-                        '0');
-            }else if(orderType.equals("09")){
-                noticeid = "QT"
-                        + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                        + "-"
-                        + StringUtil.leftPad(
-                        ((Long) countMap.get("count")).intValue(), 4,
-                        '0');
-            }
-
-        }
-        return  noticeid;
-    }
-
-
-    private static String getNextomNoticeId(String orderType){
-        SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
-        Map<String, Object> countMap = systemService
-                .findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-        String noticeid = null;
-        if (StringUtil.isEmpty(orderType)){
-            orderType = "11";
-        }
-        if(orderType.equals("19")){
-            noticeid = "QT"
-                    + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                    + "-"
-                    + StringUtil.leftPad(
-                    ((Long) countMap.get("count")).intValue(), 4,
-                    '0');
-        }else {
-            noticeid = "CK"
-                    + DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-                    + "-"
-                    + StringUtil.leftPad(
-                    ((Long) countMap.get("count")).intValue(), 4,
-                    '0');
-        }
-        return  noticeid;
-    }
     public static  void getSdvl(String indate) {
 //  /        PO_Pomain  采购订单主表
 //        PO_Podetails  采购订单子表
         String dbKey=  ResourceUtil.getConfigByName("yydbkey");
         List<Map<String, Object>> result=null;
         List<Map<String, Object>> resultdetail=null;
-        String querySql = "select * from PO_Pomain where dpodate = '"+indate+"'";
+        String querySql = "select * from DispatchList  where cvouchtype  = '05' and  ddate = '"+indate+"'";
         Map queryparams =  new LinkedHashMap<String,Object>();
-
         SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
-        WmImNoticeHServiceI wmImNoticeHService =ApplicationContextUtil.getContext().getBean(WmImNoticeHServiceI.class);
-
+        WmOmNoticeHServiceI wmOmNoticeHService =ApplicationContextUtil.getContext().getBean(WmOmNoticeHServiceI.class);
         if(StringUtils.isNotBlank(dbKey)) {
             result = DynamicDBUtil.findList(dbKey, SqlUtil.jeecgCreatePageSql(dbKey, querySql, queryparams, 1, 1000000));
         }
         if (result!=null&&result.size()>0) {
             for (int i = 0; i < result.size(); i++) {
                 Map<String, Object> prodbo = result.get(i);
-                String poid =  prodbo.get("poid").toString();
-
-                if (StringUtil.isNotEmpty(poid)) {
-                    WmImNoticeHEntity wmimh = systemService.findUniqueByProperty(WmImNoticeHEntity.class, "imCusCode", poid);
+                String imcuscode =  prodbo.get("DLID").toString();
+                if (StringUtil.isNotEmpty(imcuscode)) {
+                    WmOmNoticeHEntity wmimh = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "imCusCode", imcuscode);
                     if (wmimh == null) {
-                        WmImNoticeHEntity wmImNoticeH = new WmImNoticeHEntity();
-                        List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
+                        WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
+                        List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+                        wmOmNoticeH.setOrderTypeCode("11");
+                        wmOmNoticeH.setCusCode(ResourceUtil.getConfigByName("yy.cuscode"));
+                        String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
+                        wmOmNoticeH.setOmNoticeId(noticeid);
+                        wmOmNoticeH.setImCusCode(imcuscode);
+                        try{
+                            wmOmNoticeH.setOmBeizhu(prodbo.get("cMemo").toString());
 
-                        wmImNoticeH.setOrderTypeCode("01");
-                        String noticeid = yyUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+                        }catch (Exception e){
 
-                        wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("yy.cuscode"));
-                        wmImNoticeH.setNoticeId(noticeid);
-//                        wmImNoticeH.setPlatformCode(Integer.toString(billResult.getData().get(s).getPiId()));
-//                        wmImNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
-//                        wmImNoticeH.setPiMaster(master);
-//                        wmImNoticeH.setSupCode(billResult.getData().get(s).getPiCardcode());
-//                        MdSupEntity mdsup = systemService.findUniqueByProperty(MdSupEntity.class, "gysBianMa", wmImNoticeH.getSupCode());
-//                        if (mdsup != null) {
-//                            wmImNoticeH.setSupName(mdsup.getZhongWenQch());
-//                        }
-                        wmImNoticeH.setImCusCode(poid);
-                        String querySqldetail = "select * from PO_Podetails where poid = '"+poid+"'";
+                        }
+                        String querySqldetail = "select * from DispatchLists  where DLID = '"+imcuscode+"'";
+                        if (resultdetail!=null){
+                            resultdetail.clear();
+                        }
                         resultdetail = DynamicDBUtil.findList(dbKey, SqlUtil.jeecgCreatePageSql(dbKey, querySqldetail, queryparams, 1, 1000000));
-
                         for (int k = 0; k < resultdetail.size(); k++) {
-                            WmImNoticeIEntity wmi = new WmImNoticeIEntity();
-                            Map<String, Object> proddet = result.get(i);
-                            wmi.setGoodsCode(proddet.get("cInvCode").toString());
+                            WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
+                            Map<String, Object> proddet = resultdetail.get(k);
+                            wmi.setGoodsId(proddet.get("cInvCode").toString());
                             MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-                                    MvGoodsEntity.class, "goodsCode", wmi.getGoodsCode());
+                                    MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
                             if (mvgoods != null) {
                                 wmi.setGoodsName(mvgoods.getGoodsName());
                                 wmi.setGoodsUnit(mvgoods.getShlDanWei());
                             }
-                            wmi.setGoodsCount(proddet.get("iQuantity").toString());
-//                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
-//                            wmi.setOtherId();
-                            wmImNoticeIListnew.add(wmi);
+                            wmi.setGoodsQua(Double.toString(new BigDecimal(proddet.get("iQuantity").toString()).setScale(0, RoundingMode.UP).doubleValue()));
+                            wmomNoticeIListnew.add(wmi);
                         }
-                        wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
+                        wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
                     }
                 } else {
                     continue;

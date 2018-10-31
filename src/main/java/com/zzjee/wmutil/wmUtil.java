@@ -19,10 +19,7 @@ import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * User: caoez
@@ -43,7 +40,76 @@ public class wmUtil {
 		}
 		return list;
 	}
+	public  static  String getNextNoticeid(String orderType){
+		String noticeid=null;
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 
+		Map<String, Object> countMap = systemService
+				.findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+		if (StringUtil.isEmpty(orderType)){
+			orderType = "01";
+		}
+		if (countMap != null) {
+			if(orderType.equals("03")){
+				noticeid = "TH"
+						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+						+ "-"
+						+ StringUtil.leftPad(
+						((Long) countMap.get("count")).intValue(), 4,
+						'0');
+			}else if(orderType.equals("01")){
+				noticeid = "RK"
+						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+						+ "-"
+						+ StringUtil.leftPad(
+						((Long) countMap.get("count")).intValue(), 4,
+						'0');
+			}else if(orderType.equals("04")){
+				noticeid = "YK"
+						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+						+ "-"
+						+ StringUtil.leftPad(
+						((Long) countMap.get("count")).intValue(), 4,
+						'0');
+			}else if(orderType.equals("09")){
+				noticeid = "QT"
+						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+						+ "-"
+						+ StringUtil.leftPad(
+						((Long) countMap.get("count")).intValue(), 4,
+						'0');
+			}
+
+		}
+		return  noticeid;
+	}
+
+
+	public static String getNextomNoticeId(String orderType){
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+		Map<String, Object> countMap = systemService
+				.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+		String noticeid = null;
+		if (StringUtil.isEmpty(orderType)){
+			orderType = "11";
+		}
+		if(orderType.equals("19")){
+			noticeid = "QT"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else {
+			noticeid = "CK"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}
+		return  noticeid;
+	}
 	public  static String getSysPar(String parType,String  username){
 		String parvalue = null;
 		try{
