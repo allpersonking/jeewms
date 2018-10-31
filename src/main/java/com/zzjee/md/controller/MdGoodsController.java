@@ -17,6 +17,7 @@ import com.zzjee.wm.entity.WmToDownGoodsEntity;
 import com.zzjee.wmapi.entity.WvGiEntity;
 import com.zzjee.wmutil.wmIntUtil;
 import com.zzjee.wmutil.wmUtil;
+import com.zzjee.wmutil.yyUtil;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -260,10 +261,19 @@ public class MdGoodsController extends BaseController {
 		message = "商品信息读取成功";
 
 		try {
-			if(StringUtil.isEmpty(formDate)){
-				formDate = "2011-01-01";
+
+			if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
+				yyUtil.getProduct();
+
 			}
-			wmIntUtil.getproduct(formDate);
+			if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
+				if(StringUtil.isEmpty(formDate)){
+					formDate = "2011-01-01";
+				}
+				wmIntUtil.getproduct(formDate);
+
+			}
+
 			systemService.addLog(message, Globals.Log_Type_UPDATE,
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {

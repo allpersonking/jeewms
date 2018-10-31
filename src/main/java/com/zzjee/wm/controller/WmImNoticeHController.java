@@ -19,10 +19,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zzjee.wmutil.billResult;
-import com.zzjee.wmutil.resResult;
-import com.zzjee.wmutil.wmIntUtil;
-import com.zzjee.wmutil.wmUtil;
+import com.zzjee.wmutil.*;
 import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -1669,77 +1666,87 @@ public class WmImNoticeHController extends BaseController {
         String message = null;
         AjaxJson j = new AjaxJson();
         message = "读取成功";
-        String masterbill[] = {"XKN_TEST","XKN_TEST"};
-        for(int m =0;m<masterbill.length;m++) {
-            try {
-                if (StringUtil.isEmpty(formDate)) {
-                    formDate = "2011-01-01";
-                }
-                String master = masterbill[m];
-                String billclass[] = {"采购验收单", "销售退货单", "其它入库单", "其它采购入库单"};
-                for (int i = 0; i < billclass.length; i++) {
-                    Map<String, Object> paramMap = new HashMap<String, Object>();
-                    paramMap.put("lastUpdateTime", formDate);
-                    paramMap.put("pi_class", billclass[i]);
-                    paramMap.put("master", master);
+		if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
+			if(StringUtil.isEmpty(formDate)){
+				formDate = "2011-01-01";
+			}
+			yyUtil.getPo(formDate);
 
-                    billResult billResult = wmIntUtil.getBillin(paramMap);
-                    for (int s = 0; s < billResult.getData().size(); s++) {
-                        String imcuscode = billResult.getData().get(s).getPiInoutno();
-                        if (StringUtil.isNotEmpty(imcuscode)) {
-                            WmImNoticeHEntity wmimh = systemService.findUniqueByProperty(WmImNoticeHEntity.class, "imCusCode", imcuscode);
-                            if (wmimh == null) {
-                                WmImNoticeHEntity wmImNoticeH = new WmImNoticeHEntity();
-                                List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
-                                Map<String, Object> countMap = systemService
-                                        .findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+		}
+		if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
+			String masterbill[] = {"XKN_TEST","XKN_TEST"};
+			for(int m =0;m<masterbill.length;m++) {
+				try {
+					if (StringUtil.isEmpty(formDate)) {
+						formDate = "2011-01-01";
+					}
+					String master = masterbill[m];
+					String billclass[] = {"采购验收单", "销售退货单", "其它入库单", "其它采购入库单"};
+					for (int i = 0; i < billclass.length; i++) {
+						Map<String, Object> paramMap = new HashMap<String, Object>();
+						paramMap.put("lastUpdateTime", formDate);
+						paramMap.put("pi_class", billclass[i]);
+						paramMap.put("master", master);
 
-								wmImNoticeH.setOrderTypeCode("01");
-								String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+						billResult billResult = wmIntUtil.getBillin(paramMap);
+						for (int s = 0; s < billResult.getData().size(); s++) {
+							String imcuscode = billResult.getData().get(s).getPiInoutno();
+							if (StringUtil.isNotEmpty(imcuscode)) {
+								WmImNoticeHEntity wmimh = systemService.findUniqueByProperty(WmImNoticeHEntity.class, "imCusCode", imcuscode);
+								if (wmimh == null) {
+									WmImNoticeHEntity wmImNoticeH = new WmImNoticeHEntity();
+									List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
 
-								wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
-                                wmImNoticeH.setNoticeId(noticeid);
-                                wmImNoticeH.setPlatformCode(Integer.toString(billResult.getData().get(s).getPiId()));
-                                wmImNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
-                                wmImNoticeH.setPiMaster(master);
-                                wmImNoticeH.setSupCode(billResult.getData().get(s).getPiCardcode());
-                                MdSupEntity mdsup = systemService.findUniqueByProperty(MdSupEntity.class, "gysBianMa", wmImNoticeH.getSupCode());
-                                if (mdsup != null) {
-                                    wmImNoticeH.setSupName(mdsup.getZhongWenQch());
-                                }
-                                wmImNoticeH.setImCusCode(imcuscode);
-                                wmImNoticeH.setSupName(billResult.getData().get(s).getPiReceivename());
-                                for (int k = 0; k < billResult.getData().get(s).getDetail().size(); k++) {
-                                    WmImNoticeIEntity wmi = new WmImNoticeIEntity();
-                                    wmi.setGoodsCode(billResult.getData().get(s).getDetail().get(k).getPdProdcode());
-                                    MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-                                            MvGoodsEntity.class, "goodsCode", wmi.getGoodsCode());
-                                    if (mvgoods != null) {
-                                        wmi.setGoodsName(mvgoods.getGoodsName());
-                                        wmi.setGoodsUnit(mvgoods.getShlDanWei());
-                                    }
-                                    wmi.setGoodsCount(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdInqty()));
+									wmImNoticeH.setOrderTypeCode("01");
+									String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+
+									wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
+									wmImNoticeH.setNoticeId(noticeid);
+									wmImNoticeH.setPlatformCode(Integer.toString(billResult.getData().get(s).getPiId()));
+									wmImNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
+									wmImNoticeH.setPiMaster(master);
+									wmImNoticeH.setSupCode(billResult.getData().get(s).getPiCardcode());
+									MdSupEntity mdsup = systemService.findUniqueByProperty(MdSupEntity.class, "gysBianMa", wmImNoticeH.getSupCode());
+									if (mdsup != null) {
+										wmImNoticeH.setSupName(mdsup.getZhongWenQch());
+									}
+									wmImNoticeH.setImCusCode(imcuscode);
+									wmImNoticeH.setSupName(billResult.getData().get(s).getPiReceivename());
+									for (int k = 0; k < billResult.getData().get(s).getDetail().size(); k++) {
+										WmImNoticeIEntity wmi = new WmImNoticeIEntity();
+										wmi.setGoodsCode(billResult.getData().get(s).getDetail().get(k).getPdProdcode());
+										MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+												MvGoodsEntity.class, "goodsCode", wmi.getGoodsCode());
+										if (mvgoods != null) {
+											wmi.setGoodsName(mvgoods.getGoodsName());
+											wmi.setGoodsUnit(mvgoods.getShlDanWei());
+										}
+										wmi.setGoodsCount(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdInqty()));
 //                               wmi.setGoodsPrdData(billResult.getData().get(s).getDetail().get(k).getPdProdmadedate2User());
-                                    wmi.setOtherId(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPdno()));
-                                    wmImNoticeIListnew.add(wmi);
-                                }
-                                wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                }
+										wmi.setOtherId(Integer.toString(billResult.getData().get(s).getDetail().get(k).getPdPdno()));
+										wmImNoticeIListnew.add(wmi);
+									}
+									wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIListnew);
+								}
+							} else {
+								continue;
+							}
+						}
+					}
 
 
-                systemService.addLog(message, Globals.Log_Type_UPDATE,
-                        Globals.Log_Leavel_INFO);
-            } catch (Exception e) {
-                e.printStackTrace();
-                message = "读取失败";
-                throw new BusinessException(e.getMessage());
-            }
-        }
+					systemService.addLog(message, Globals.Log_Type_UPDATE,
+							Globals.Log_Leavel_INFO);
+				} catch (Exception e) {
+					e.printStackTrace();
+					message = "读取失败";
+					throw new BusinessException(e.getMessage());
+				}
+			}
+		}
+
+
+
         j.setMsg(message);
         return j;
     }

@@ -325,7 +325,7 @@ public class WmInQmIController extends BaseController {
 			j.setMsg("不存在此商品");
 		} else {
 			mdgoods.setChlShl("0");
-			Long goodsno = (long) 0;
+			Double goodsno =   0.00;
 			System.out
 					.println("*******************8"
 							+ oConvertUtils.getString(request
@@ -340,10 +340,10 @@ public class WmInQmIController extends BaseController {
 							oConvertUtils.getString(request
 									.getParameter("goodsid")));// 获取行项目
 			for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
-				goodsno = Long.parseLong(wmImNoticeIEntity.getGoodsCount())
-						- Long.parseLong(wmImNoticeIEntity.getGoodsQmCount());
+				goodsno = Double.parseDouble(wmImNoticeIEntity.getGoodsCount())
+						- Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount());
 				if (goodsno > 0) {
-					Long quat1 =Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng());
+					Double quat1 =Double.parseDouble(mvgoods.getMpCengGao()) * Double.parseDouble(mvgoods.getMpDanCeng());
 					if(quat1 < goodsno){
 						goodsno = quat1;
 					}
@@ -399,7 +399,9 @@ public class WmInQmIController extends BaseController {
 //					return j;
 //				}
 			}else{
-				wmInQmI.setTinId(ResourceUtil.getConfigByName("tuopanma"));
+				if (StringUtil.isEmpty(wmInQmI.getTinId())){
+					wmInQmI.setTinId(ResourceUtil.getConfigByName("tuopanma"));
+				}
 			}
 			//托盘占用判断
 
