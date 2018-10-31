@@ -73,7 +73,7 @@
      }else{
          var url = "wmImNoticeHController.do?doGet&formDate="+batchdate;
          $.ajax({
-             async : false,
+             async : true,
              cache : false,
              type : 'POST',
              url : url,// 请求的action路径
@@ -124,7 +124,7 @@ function printhpid(id){
      var url = "wmImNoticeHController.do?doPost&id="+id;
 
      $.ajax({
-         async : false,
+         async : true,
          cache : false,
          type : 'POST',
          url : url,// 请求的action路径
@@ -143,7 +143,7 @@ function closeor(id){
 	var url = "wmImNoticeHController.do?close&id="+id;
 	
 	$.ajax({
-		async : false,
+		async : true,
 		cache : false,
 		type : 'POST',
 		url : url,// 请求的action路径
@@ -163,7 +163,7 @@ function appor(id){
 	var url = "wmImNoticeHController.do?appor&id="+id;
 	
 	$.ajax({
-		async : false,
+		async : true,
 		cache : false,
 		type : 'POST',
 		url : url,// 请求的action路径

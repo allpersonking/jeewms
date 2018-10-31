@@ -71,7 +71,7 @@
 
              var url = "wmOmNoticeHController.do?doPost&id="+id;
              $.ajax({
-                 async : false,
+                 async : true,
                  cache : false,
                  type : 'POST',
                  url : url,// 请求的action路径
@@ -96,7 +96,7 @@
          }else{
              var url = "wmOmNoticeHController.do?doGet&formDate="+batchdate;
              $.ajax({
-                 async : false,
+                 async : true,
                  cache : false,
                  type : 'POST',
                  url : url,// 请求的action路径
