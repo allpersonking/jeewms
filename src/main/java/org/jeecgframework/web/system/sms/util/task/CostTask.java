@@ -137,26 +137,31 @@ public class CostTask {
 			dayCostSe = 0.0000;
 			dayCostHsj = 0.0000;
 
-			String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+//			String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+			String jf_shp_lei  = null;
+			try{
+				jf_shp_lei = resulthq.get(i).get("jf_shp_lei").toString();
+			}catch (Exception e){
 
-			if(jf_shp_lei.equals("10")){
+			}
+			if("10".equals(jf_shp_lei)){
 				costcode = "501";// 卸货费/计费吨
 				//更改为向上取整
 //					costSlo = Math.ceil(Double.parseDouble(resulthq.get(i).get("grcount").toString())/1000);
 				costSlo = Double.parseDouble(resulthq.get(i).get("grcount").toString())/1000;
 				countunit = "吨";
 			}
-			if(jf_shp_lei.equals("20")){
+			if("20".equals(jf_shp_lei)){
 				costcode = "502";// 卸货费/整托
 				costSlo = 1.00;
 				countunit = "托";
 			}
-			if(jf_shp_lei.equals("30")){
+			if("30".equals(jf_shp_lei)){
 				costcode = "503";// 卸货费/轻抛5KG以下
 				costSlo = Double.parseDouble(resulthq.get(i).get("qmcount").toString());
 				countunit = "箱";
 			}
-			if(jf_shp_lei.equals("40")){
+			if("40".equals(jf_shp_lei)){
 				costcode = "504";// 卸货费/轻抛5KG以上
 				costSlo = Double.parseDouble(resulthq.get(i).get("qmcount").toString());
 				countunit = "箱";
@@ -507,9 +512,14 @@ public class CostTask {
 			cuscode = null;
 			cfwenceng = null;
 			beizhu = null;
-			String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+			String jf_shp_lei  = null;
+			try{
+				jf_shp_lei = resulthq.get(i).get("jf_shp_lei").toString();
+			}catch (Exception e){
 
-			if(jf_shp_lei.equals("10")){
+			}
+
+			if("10".equals(jf_shp_lei)){
 //					  costcode = "5011";// 卸货费/计费吨
 //					  costSlo = Double.parseDouble(resulthq.get(i).get("grcount").toString())/1000;
 //					  countunit = "吨";
@@ -537,17 +547,17 @@ public class CostTask {
 
 				}
 			}
-			if(jf_shp_lei.equals("20")){
+			if("20".equals(jf_shp_lei)){
 				costcode = "5021";// 卸货费/整托
 				costSlo = 1.00;
 				countunit = "托";
 			}
-			if(jf_shp_lei.equals("30")){
+			if("30".equals(jf_shp_lei)){
 				costcode = "5031";// 卸货费/轻抛5KG以下
 				costSlo = Double.parseDouble(resulthq.get(i).get("qmcount").toString());
 				countunit = "箱";
 			}
-			if(jf_shp_lei.equals("40")){
+			if("40".equals(jf_shp_lei)){
 				costcode = "5041";// 卸货费/轻抛5KG以上
 				costSlo = Double.parseDouble(resulthq.get(i).get("qmcount").toString());
 				countunit = "箱";
@@ -830,9 +840,15 @@ public class CostTask {
 			}
 			if(mdb.getKuWeiShuXing().equals("超低温")){
 				MdCusEntity mdc = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", resulthq.get(i).get("cus_code").toString());
-				String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+//				String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+				String jf_shp_lei  = null;
+				try{
+					jf_shp_lei = resulthq.get(i).get("jf_shp_lei").toString();
+				}catch (Exception e){
+
+				}
 				costcode = "1031";
-				if(jf_shp_lei.equals("10")){
+				if("10".equals(jf_shp_lei)){
 					costSl = resulthq.get(i).get("count").toString();
 					costcode = "1031";
 					jfunit = "吨";
@@ -860,7 +876,7 @@ public class CostTask {
 					}
 					continue;
 				}
-				if (jf_shp_lei.equals("20")) {
+				if ("20".equals(jf_shp_lei)) {
 					costSl = "1";
 					costcode = "1032";
 					jfunit = "托";
@@ -877,10 +893,16 @@ public class CostTask {
 				}
 			}else {
 				MdCusEntity mdc = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", resulthq.get(i).get("cus_code").toString());
-				String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+//				String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
+				String jf_shp_lei  = null;
+				try{
+					jf_shp_lei = resulthq.get(i).get("jf_shp_lei").toString();
+				}catch (Exception e){
+
+				}
 				costcode = "1011";
 
-				if(jf_shp_lei.equals("10")){
+				if("10".equals(jf_shp_lei)){
 					costSl = resulthq.get(i).get("count").toString();
 					costcode = "1011";
 					jfunit = "吨";
@@ -909,17 +931,17 @@ public class CostTask {
 					continue;
 
 				}
-				if (jf_shp_lei.equals("20")) {
+				if ("20".equals(jf_shp_lei)) {
 					costSl = "1";
 					costcode = "1012";
 					jfunit = "托";
 				}
-				if (jf_shp_lei.equals("30")) {
+				if ("30".equals(jf_shp_lei)) {
 					costSl = resulthq.get(i).get("xcount").toString();
 					costcode = "1013";
 					jfunit = "箱";
 				}
-				if (jf_shp_lei.equals("40")) {
+				if ("40".equals(jf_shp_lei)) {
 					costSl = resulthq.get(i).get("xcount").toString();
 					costcode = "1014";
 					jfunit = "箱";
