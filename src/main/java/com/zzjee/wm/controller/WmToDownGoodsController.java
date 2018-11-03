@@ -32,7 +32,6 @@ import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
 import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.sms.util.Constants;
 import com.zzjee.wmutil.wmUtil;
@@ -54,16 +53,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
 
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-
-import java.net.URI;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -153,9 +148,6 @@ public class WmToDownGoodsController extends BaseController {
 		map1.put("createDate", "desc");  
 		cq.setOrder(map1); 
 		cq.isNull("downSta");
-//		cq.isNotNull("orderType");
-//		TSUser user = ResourceUtil.getSessionUserName();
-//        cq.notEq("createBy", user.getUserName());
 		cq.add();
 		this.wmToDownGoodsService.getDataGridReturn(cq, true);
 		List<WmToDownGoodsEntity> resultnew = new ArrayList<WmToDownGoodsEntity>();
@@ -188,9 +180,6 @@ public class WmToDownGoodsController extends BaseController {
 		map1.put("createDate", "desc");  
 		cq.setOrder(map1); 
 		cq.isNull("downSta");
-//		cq.isNull("orderType");
-//		TSUser user = ResourceUtil.getSessionUserName();
-//        cq.notEq("createBy", user.getUserName());
 		cq.add();
 		this.wmToDownGoodsService.getDataGridReturn(cq, true);
 		List<WmToDownGoodsEntity> resultnew = new ArrayList<WmToDownGoodsEntity>();
@@ -264,7 +253,7 @@ public class WmToDownGoodsController extends BaseController {
 	//JeecgListDemoController.do?rowListDemo
 	@RequestMapping(params = "delList")
 	public ModelAndView delListDemo(HttpServletRequest request) {
-		return new ModelAndView("com/zzjee/wm/del_rowedtior");
+		return new ModelAndView("com/zzjee/wm/omconf");
 	}
 	@RequestMapping(params = "wavedelList")
 	public ModelAndView wavedelListDemo(HttpServletRequest request) {
@@ -318,14 +307,8 @@ public class WmToDownGoodsController extends BaseController {
 				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
 					WmToDownGoodsEntity t =systemService.get(WmToDownGoodsEntity.class, jeecgDemo.getId());
 					try {
-
-
 						MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
-
 						systemService.saveOrUpdate(t);
-
-
-//						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -351,48 +334,10 @@ public class WmToDownGoodsController extends BaseController {
 				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
 					WmToDownGoodsEntity t =systemService.get(WmToDownGoodsEntity.class, jeecgDemo.getId());
 					try {
-
 						message = "装车复核成功";
 						MyBeanUtils.copyBeanNotNull2Bean(jeecgDemo, t);
-											
-//						MvGoodsEntity mvgoods = new MvGoodsEntity();
-//						mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId()) ;
-//						if(mvgoods!=null){
-//							try {
-//
-//								try {
-//									if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-//										t.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(jeecgDemo.getGoodsQuaok())));
-//									}else{
-										t.setBaseGoodscount(jeecgDemo.getGoodsQuaok());
-//										t.setGoodsQua(jeecgDemo.getGoodsQuaok());
-//									}
-//								} catch (Exception e) {
-//									// TODO: handle exception
-//								}
-//
-//
-////								wmImNoticeI.setGoodsWeight(String.valueOf(Long.parseLong(mdgoods.getZhlKg())*Long.parseLong(wmImNoticeI.getGoodsCount())));
-////								wmImNoticeI.setGoodsUnit(mdgoods.getShlDanWei());
-//
-//							} catch (Exception e) {
-//								// TODO: handle exception
-//							}
-//
-					
-							
-//											}
-						
 						t.setDownSta(Constants.wm_sta5);
 						systemService.saveOrUpdate(t);
-//						try {
-//							WmOmNoticeHEntity	wmOmNoticeH = systemService.getEntity(WmOmNoticeHEntity.class, t.getOrderId());
-//							wmOmNoticeH.setOmSta(Constants.wm_sta5);
-//							systemService.saveOrUpdate(wmOmNoticeH);
-//						} catch (Exception e) {
-//							// TODO: handle exception
-//						}
-
 						systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 					} catch (Exception e) {
 						e.printStackTrace();

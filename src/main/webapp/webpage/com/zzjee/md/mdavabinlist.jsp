@@ -102,20 +102,5 @@ a.a02:active, a.a01:hover{font-size:12px; font-family:verdana; width:90px; margi
 	 }
 
 	}
- 
-//导入
-function ImportXls() {
-	openuploadwin('Excel导入', 'mvCusCostController.do?upload', "mvCusCostList");
-}
-
-//导出
-function ExportXls() {
-	JeecgExcelExport("mvCusCostController.do?exportXls","mvCusCostList");
-}
-
-//模板下载
-function ExportXlsByT() {
-	JeecgExcelExport("mvCusCostController.do?exportXlsByT","mvCusCostList");
-}
 
  </script>

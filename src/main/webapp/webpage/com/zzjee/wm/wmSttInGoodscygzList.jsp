@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="wmSttInGoodsList" pageSize="10000" checkbox="true" pagination="true" fitColumns="false" title="差异过账" actionUrl="wmSttInGoodsController.do?datagridcygz" idField="id" fit="true" queryMode="group">
+  <t:datagrid name="wmSttInGoodsList" pageSize="30" checkbox="true" pagination="true" fitColumns="false" title="差异过账" actionUrl="wmSttInGoodsController.do?datagridcygz" idField="id" fit="true" queryMode="group">
     <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
       <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
