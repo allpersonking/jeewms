@@ -1,6 +1,5 @@
 
 package com.zzjee.wm.page;
-import com.zzjee.wm.entity.WmToUpEntity;
 import com.zzjee.wm.entity.WmToUpGoodsEntity;
 
 import java.math.BigDecimal;

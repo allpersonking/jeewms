@@ -9,7 +9,6 @@ import com.zzjee.wm.entity.WmImNoticeIEntity;
 import com.zzjee.wm.entity.WmInQmIEntity;
 import com.zzjee.wm.entity.WmToUpGoodsEntity;
 import com.zzjee.wm.service.WmInQmIServiceI;
-import com.zzjee.wm.service.WmToUpServiceI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +85,7 @@ public class WmInQmIController extends BaseController {
 	private SystemService systemService;
 	@Autowired
 	private Validator validator;
-	@Autowired
-	private WmToUpServiceI wmToUpService;
+
 
 	/**
 	 * 收货登记列表 页面跳转
@@ -364,7 +362,6 @@ public class WmInQmIController extends BaseController {
 	/**
 	 * 添加收货登记
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -598,44 +595,44 @@ public class WmInQmIController extends BaseController {
 		WmInQmIEntity t = wmInQmIService.get(WmInQmIEntity.class,
 				wmInQmI.getId());
 		try {
-			if(StringUtil.isNotEmpty(wmInQmI.getBinId())){
-			String sql = "select   binid from wv_avabin where binid = '"
-					+ wmInQmI.getBinId()
-					+ "'";
-			Map<String, Object> binMap =  systemService.findOneForJdbc(sql);
-			if(wmInQmI.getBinId().equals(t.getBinId())){//没有更改则绕过盘点
-				binMap.put("bin", "1");
-			}
-			
-			if (binMap != null) {
-				sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where md.ting_yong = 'N' and   md.ku_wei_bian_ma = '"
-						+ wmInQmI.getBinId() + "' limit 1";
-				binMap = systemService.findOneForJdbc(sql);
-				if (binMap != null) {
-						MyBeanUtils.copyBeanNotNull2Bean(wmInQmI, t);
-						t.setBaseUnit(null);
-						wmInQmIService.saveOrUpdate(t);
-						systemService.addLog(message, Globals.Log_Type_UPDATE,
-								Globals.Log_Leavel_INFO);
-				} else {
-					j.setSuccess(false);
-					message = "储位不存在 或已停用";
-					j.setMsg(message);
-					return j;
-				}
-			} else {
-				j.setSuccess(false);
-				message = "储位已被占用";
-				j.setMsg(message);
-				return j;
-			}
-			}else{
+//			if(StringUtil.isNotEmpty(wmInQmI.getBinId())){
+//			String sql = "select   binid from wv_avabin where binid = '"
+//					+ wmInQmI.getBinId()
+//					+ "'";
+//			Map<String, Object> binMap =  systemService.findOneForJdbc(sql);
+//			if(wmInQmI.getBinId().equals(t.getBinId())){//没有更改则绕过盘点
+//				binMap.put("bin", "1");
+//			}
+//
+//			if (binMap != null) {
+//				sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where md.ting_yong = 'N' and   md.ku_wei_bian_ma = '"
+//						+ wmInQmI.getBinId() + "' limit 1";
+//				binMap = systemService.findOneForJdbc(sql);
+//				if (binMap != null) {
+//						MyBeanUtils.copyBeanNotNull2Bean(wmInQmI, t);
+//						t.setBaseUnit(null);
+//						wmInQmIService.saveOrUpdate(t);
+//						systemService.addLog(message, Globals.Log_Type_UPDATE,
+//								Globals.Log_Leavel_INFO);
+//				} else {
+//					j.setSuccess(false);
+//					message = "储位不存在 或已停用";
+//					j.setMsg(message);
+//					return j;
+//				}
+//			} else {
+//				j.setSuccess(false);
+//				message = "储位已被占用";
+//				j.setMsg(message);
+//				return j;
+//			}
+//			}else{
 				MyBeanUtils.copyBeanNotNull2Bean(wmInQmI, t);
 				t.setBaseUnit(null);
 				wmInQmIService.saveOrUpdate(t);
 				systemService.addLog(message, Globals.Log_Type_UPDATE,
 						Globals.Log_Leavel_INFO);
-			}
+//			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
