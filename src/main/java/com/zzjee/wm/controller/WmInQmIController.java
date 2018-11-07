@@ -928,6 +928,16 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 							MvGoodsEntity.class, "goodsCode", wmInQmI.getGoodsId());
 					if (mvgoods != null) {
 						wmInQmI.setGoodsName(mvgoods.getGoodsName());
+						if(StringUtil.isNotEmpty(wmInQmI.getItemText())){
+							MdGoodsEntity mdGoodsEntity = systemService.findUniqueByProperty(
+									MdGoodsEntity.class, "shpBianMa", mvgoods.getGoodsId());
+							if(mdGoodsEntity!=null){
+								mdGoodsEntity.setShpTiaoMa(wmInQmI.getItemText());
+								systemService.updateEntitie(mdGoodsEntity);
+							}
+						}
+
+
 					}
 				}catch (Exception e){
 

@@ -1,5 +1,4 @@
 package org.jeecgframework.web.system.sms.service.impl;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.net.ConnectException;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import org.jeecgframework.core.util.DBTypeUtil;
 import org.jeecgframework.core.util.LogUtil;
 import org.jeecgframework.core.util.PropertiesUtil;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

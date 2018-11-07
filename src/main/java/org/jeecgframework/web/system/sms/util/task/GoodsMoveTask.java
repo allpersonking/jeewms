@@ -62,7 +62,7 @@ public class GoodsMoveTask {
 	}
 	public  void goodsMove(String binstrore,String moveStatus ){
 	    //转移到B
-		String tsql = "SELECT id FROM zzjee.wv_stock_stt " +
+		String tsql = "SELECT id FROM wv_stock_stt " +
                 "where yushoutianshu <> bzhi_qi  " +
                 "and bzhi_qi > 0 " +
                 "and  bin_id = 'A' " +
@@ -71,7 +71,7 @@ public class GoodsMoveTask {
 		this.genGoodsMove(tsql,"B","",moveStatus);
 
 		//转移到C
-        tsql = "SELECT id FROM zzjee.wv_stock_stt " +
+        tsql = "SELECT id FROM wv_stock_stt " +
                 "where yushoutianshu <>  bzhi_qi   " +
                 "and bzhi_qi > 0 " +
                 "and   bin_id in ('A','B') " +
@@ -81,11 +81,13 @@ public class GoodsMoveTask {
 
 	private void  genGoodsMove(String Tsql,String TinId,String binstrore,String moveStatus  ){
               List<Map<String, Object>> resulmovea = systemService
-                .findForJdbc(Tsql, binstrore);
+                .findForJdbc(Tsql);
         //生成任务转B
         for (int i = 0; i < resulmovea.size(); i++) {
+        	try{
+
             WvStockEntity t = systemService.get(WvStockEntity.class,resulmovea.get(i).get("id").toString());
-            try {
+
                 WmToMoveGoodsEntity wmtomove = new WmToMoveGoodsEntity();
                 wmtomove.setOrderTypeCode("TPZY");
                 wmtomove.setBinFrom(t.getKuWeiBianMa());
