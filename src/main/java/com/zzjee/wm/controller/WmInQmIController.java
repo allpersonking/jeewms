@@ -323,7 +323,7 @@ public class WmInQmIController extends BaseController {
 			j.setMsg("不存在此商品");
 		} else {
 			mdgoods.setChlShl("0");
-			Double goodsno =   0.00;
+			long goodsno =   0;
 			System.out
 					.println("*******************8"
 							+ oConvertUtils.getString(request
@@ -338,14 +338,14 @@ public class WmInQmIController extends BaseController {
 							oConvertUtils.getString(request
 									.getParameter("goodsid")));// 获取行项目
 			for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
-				goodsno = Double.parseDouble(wmImNoticeIEntity.getGoodsCount())
-						- Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount());
+				goodsno = Long.parseLong(wmImNoticeIEntity.getGoodsCount())
+						- Long.parseLong(wmImNoticeIEntity.getGoodsQmCount());
 				if (goodsno > 0) {
-					Double quat1 =Double.parseDouble(mvgoods.getMpCengGao()) * Double.parseDouble(mvgoods.getMpDanCeng());
+					long quat1 =Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng());
 					if(quat1 < goodsno){
 						goodsno = quat1;
 					}
-					mdgoods.setChlShl(goodsno.toString());
+					mdgoods.setChlShl(Long.toString(goodsno));
 					break;
 				}
 			}
