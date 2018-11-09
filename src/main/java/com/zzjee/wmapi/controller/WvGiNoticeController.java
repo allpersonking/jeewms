@@ -350,7 +350,7 @@ public class WvGiNoticeController extends BaseController {
 	}
 	@RequestMapping(value = "/search",method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<?>  lists( @RequestParam(value="username", required=false) String username, @RequestParam(value="searchstr", required=false)String searchstr, @RequestParam(value="searchstr2", required=false)String searchstr2) {
+	public ResponseEntity<?>  lists( @RequestParam(value="username", required=false) String username, @RequestParam(value="searchstr", required=false)String searchstr, @RequestParam(value="searchstr2", required=false)String searchstr2, @RequestParam(value="searchstr3", required=false)String searchstr3) {
 //		return listWvGis;
 
 
@@ -370,6 +370,9 @@ public class WvGiNoticeController extends BaseController {
 
 			}
 			hql=hql+"  and goodsId like '%" + searchstr2 + "%'";
+		}
+		if(!StringUtil.isEmpty(searchstr3)) {
+			hql=hql+"  and binId like '%" + searchstr3 + "%'";
 		}
 
 		List<WvGiNoticeEntity> listWvGiNotices=wvGiNoticeService.findHql(hql);
