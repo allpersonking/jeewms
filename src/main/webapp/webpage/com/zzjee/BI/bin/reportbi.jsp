@@ -47,7 +47,7 @@
                                 plotShadow : false
                             },
                             title : {
-                                text : '近七日下架数'
+                                text : '储位类型分布'
                             },
                             xAxis : {
                                 categories : xAxisCategories
@@ -107,7 +107,7 @@
 							plotShadow : false
 						},
 						title : {
-							text : '下架数量前6'
+							text : '储位周转次数'
 						},
 						xAxis : {
 
@@ -172,7 +172,7 @@
 							plotShadow : false
 						},
 						title : {
-							text : '上架数量前6'
+							text : '储位未移动天数排行'
 						},
 						xAxis : {
 							categories : xAxisCategories
@@ -213,7 +213,7 @@
             var myDate = new Date();
             var month=myDate.getMonth()+1;
             month =(month<10 ? "0"+month:month);
-            var x="欢迎您使用WMS，现在时间："+myDate.getFullYear()+"年"+month+"月"+myDate.getDate()+"日 "+myDate.getHours()+"点"+myDate.getMinutes()+"分"+myDate.getSeconds()+"秒";
+            var x="欢迎您使用WMS储位主题看板，现在时间："+myDate.getFullYear()+"年"+month+"月"+myDate.getDate()+"日 "+myDate.getHours()+"点"+myDate.getMinutes()+"分"+myDate.getSeconds()+"秒";
             document.getElementById("x"). innerHTML=x;
         },1000);
 	</script>
@@ -248,11 +248,11 @@
 					<button type="button" class="btn btn-floating btn-sm btn-warning">
 						<i class="icon wb-shopping-cart"></i>
 					</button>
-					<span class="margin-left-15 font-weight-400">待收货</span>
+					<span class="margin-left-15 font-weight-400">总储位</span>
 					<div class="content-text text-center margin-bottom-0">
 						<i class="text-danger icon wb-triangle-up font-size-20"> </i>
 						<span class="font-size-30 font-weight-100">${num1}</span>
-						<p class="blue-grey-400 font-weight-100 margin-0">待收货件数</p>
+						<p class="blue-grey-400 font-weight-100 margin-0">总储位</p>
 					</div>
 				</div>
 			</div>
@@ -263,11 +263,11 @@
 					<button type="button" class="btn btn-floating btn-sm btn-danger">
 						<i class="icon fa-yen"></i>
 					</button>
-					<span class="margin-left-15 font-weight-400">待上架</span>
+					<span class="margin-left-15 font-weight-400">使用储位</span>
 					<div class="content-text text-center margin-bottom-0">
 						<i class="text-success icon wb-triangle-up font-size-20"> </i>
 						<span class="font-size-30 font-weight-100">${num2}</span>
-						<p class="blue-grey-400 font-weight-100 margin-0">待上架件数</p>
+						<p class="blue-grey-400 font-weight-100 margin-0">使用储位</p>
 					</div>
 				</div>
 			</div>
@@ -278,11 +278,11 @@
 					<button type="button" class="btn btn-floating btn-sm btn-success">
 						<i class="icon wb-eye"></i>
 					</button>
-					<span class="margin-left-15 font-weight-400">待拣货</span>
+					<span class="margin-left-15 font-weight-400">空闲储位</span>
 					<div class="content-text text-center margin-bottom-0">
 						<i class="text-danger icon wb-triangle-up font-size-20"> </i>
 						<span class="font-size-30 font-weight-100">${num3}</span>
-						<p class="blue-grey-400 font-weight-100 margin-0">待拣货件数</p>
+						<p class="blue-grey-400 font-weight-100 margin-0">空闲储位</p>
 					</div>
 				</div>
 			</div>
@@ -293,11 +293,11 @@
 					<button type="button" class="btn btn-floating btn-sm btn-primary">
 						<i class="icon wb-user"></i>
 					</button>
-					<span class="margin-left-15 font-weight-400">拣货中</span>
+					<span class="margin-left-15 font-weight-400">停用储位</span>
 					<div class="content-text text-center margin-bottom-0">
 						<i class="text-danger icon wb-triangle-up font-size-20"> </i>
 						<span class="font-size-30 font-weight-100">${num4}</span>
-						<p class="blue-grey-400 font-weight-100 margin-0">拣货中件数</p>
+						<p class="blue-grey-400 font-weight-100 margin-0">停用储位</p>
 					</div>
 				</div>
 			</div>
