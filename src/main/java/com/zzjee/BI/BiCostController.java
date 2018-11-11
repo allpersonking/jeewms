@@ -3,7 +3,6 @@ package com.zzjee.BI;
 
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.model.json.Highchart;
-import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.web.system.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/BiController")
-public class BiController extends BaseController {
+@RequestMapping("/BiCostController")
+public class BiCostController extends BaseController {
     @Autowired
     private SystemService systemService;
     @Autowired
