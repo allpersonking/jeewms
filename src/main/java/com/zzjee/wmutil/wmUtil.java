@@ -163,6 +163,16 @@ public class wmUtil {
 		}
 	}
 
+	public  static  String getCurrentDepartCode(){
+		TSUser tsUser = ResourceUtil.getSessionUserName();
+		if (tsUser!=null){
+			return tsUser.getCurrentDepart().getOrgCode();
+		}else{
+			return  null;
+		}
+	}
+
+
 //通过客户商品编码，或者WMS商品编码和单位找到WMS编码
 	public static Map<String,String> getGoodsId(String cusCode,String cusgoodsid,String goodsUnit){
 		Map<String,String> resultmap = new HashMap<>();

@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/BiController")
-public class BiHomeController extends BaseController {
+public class BiController extends BaseController {
     @Autowired
     private SystemService systemService;
     @Autowired

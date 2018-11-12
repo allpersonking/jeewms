@@ -225,6 +225,9 @@ public class WmImNoticeHController extends BaseController {
 		// 查询条件组装器
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq,
 				wmImNoticeI);
+		if ("on".equals(ResourceUtil.getConfigByName("comgroup"))){
+			cq.like("sysOrgCode",wmUtil.getCurrentDepartCode()+"%");
+		}
 		cq.eq("binPre", "N");
 		cq.add();
 		this.wmImNoticeHService.getDataGridReturn(cq, true);
