@@ -1,6 +1,6 @@
 
 QQ交流群：335607153
-测试系统地址http://218.5.177.99/wmstest   用户名：test  密码：123456
+测试系统地址http://www.jeewms.cn/wmstest   用户名：test  密码：123456
 android app也已经开源，近期更新会比较频繁 app开源地址（https://gitee.com/erzhongxmu/jeewmsapp）。
 大家看到了，star一下，谢谢，本团队会持续更新，一直开源！
 欢迎喜欢的朋友一起来优化功能。
@@ -34,7 +34,8 @@ android app也已经开源，近期更新会比较频繁 app开源地址（https
 		Mysql5.6以上（linux 注意设置大小写不敏感）
 		运行环境：CENTOS6.5以上或windows server 2008、tomcat7以上，JDK1.8， MYSQL5.7
     2，按照mvn方式导入
-    3，数据库还原：步骤 1：还原数据库，2，修改 dbconfig.properties
+    3，数据库还原：步骤 1：还原数据库，2，修改 dbconfig.ties
+        3.1 sql导入方式建议 将sql文件粘贴至 查询执行窗口 执行
     4，IDEA：tomcat7:tun   输入用户名和密码：admin llg123
     5、主要技术
         开发语言：JAVA。
@@ -43,7 +44,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址（https
 	
 四、技术支持：
 
-    演示环境：http://218.5.177.99/wmstest     用户： test   密码：123456
+    演示环境：http://www.jeewms.cn/wmstest     用户： test   密码：123456
     QQ群：335607153    
 
 五、版本管理及更新说明：
@@ -65,7 +66,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址（https
     1、开源说明：本项目完全遵循GPL V3协议。
         如果你喜欢我们的产品, 可以放心从我们的开源版开始使用, 在产品商业化的支持下同时我们会尽最大的努力维护开源版的稳定。
         后期在不影响公司业务的前提下, 会逐步开放更多的信息化平台。在此期间,如果你发现产品有任何Bug, 请在Issue模块向我们反馈，谢谢。
-    2、商务合作：本项目同时支持开源版实施和定制开发服务，商务合作请 统一联系 QQ：22663889
+    2、商务合作：本项目同时支持开源版实施和定制开发服务，商务合作请 统一联系 QQ：290813851
 
 # 问题&BUG&建议：请在此提交https://gitee.com/erzhongxmu/jeewms/issues
 ![主页](https://images.gitee.com/uploads/images/2018/1014/235739_2c29bbbf_544004.png "wmshome.png")
