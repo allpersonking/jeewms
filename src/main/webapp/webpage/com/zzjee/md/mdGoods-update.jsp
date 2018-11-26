@@ -137,6 +137,17 @@
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">商品条码</label>
 			          </div>
+								<div class="col-xs-3 text-center">
+									<b  >商品规格</b>
+								</div>
+								<div class="col-xs-3">
+									<input id="shpGuiGe" name="shpGuiGe" type="text" class="form-control" value='${mdGoodsPage.shpGuiGe}'
+										   ignore="ignore"
+									/>
+									<span class="Validform_checktip" style="float:left;height:0px;"></span>
+									<label class="Validform_label" style="display: none">商品规格</label>
+								</div>
+
 						</div>
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">

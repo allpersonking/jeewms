@@ -75,7 +75,8 @@ public class MvGoodsEntity implements java.io.Serializable {
 	private java.lang.String baseunit;
 	private java.lang.String shpMingCheng;
 
-
+	@Excel(name="商品规格")
+	private java.lang.String shpGuiGe;
 	
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
@@ -334,5 +335,16 @@ public class MvGoodsEntity implements java.io.Serializable {
 		this.baseunit = baseunit;
 	}
 
+	@Column(name ="SHP_GUI_GE",nullable=true,length=32)
+	public java.lang.String getShpGuiGe(){
+		return this.shpGuiGe;
+	}
 
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品规格
+	 */
+	public void setShpGuiGe(java.lang.String shpGuiGe){
+		this.shpGuiGe = shpGuiGe;
+	}
 }

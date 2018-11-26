@@ -64,6 +64,7 @@ public class MdGoodsEntity implements java.io.Serializable {
 	/**商品型号*/
 	private java.lang.String shpXingHao;
 	/**商品规格*/
+	@Excel(name="商品规格")
 	private java.lang.String shpGuiGe;
 	/**商品颜色*/
 	private java.lang.String shpYanSe;
