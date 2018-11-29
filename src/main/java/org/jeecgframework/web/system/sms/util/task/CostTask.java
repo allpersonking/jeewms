@@ -881,12 +881,12 @@ public class CostTask {
 					costcode = "1032";
 					jfunit = "托";
 				}
-				if (jf_shp_lei.equals("30")) {
+				if ("30".equals(jf_shp_lei)) {
 					costSl = resulthq.get(i).get("xcount").toString();
 					costcode = "1033";
 					jfunit = "箱";
 				}
-				if (jf_shp_lei.equals("40")) {
+				if ("40".equals(jf_shp_lei)) {
 					costSl = resulthq.get(i).get("xcount").toString();
 					costcode = "1034";
 					jfunit = "箱";
