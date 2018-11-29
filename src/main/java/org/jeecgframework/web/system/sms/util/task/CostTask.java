@@ -838,7 +838,7 @@ public class CostTask {
 			if(mdb==null){
 				continue;
 			}
-			if(mdb.getKuWeiShuXing().equals("超低温")){
+			if("超低温".equals(mdb.getKuWeiShuXing())){
 				MdCusEntity mdc = systemService.findUniqueByProperty(MdCusEntity.class, "keHuBianMa", resulthq.get(i).get("cus_code").toString());
 //				String jf_shp_lei  = resulthq.get(i).get("jf_shp_lei").toString();
 				String jf_shp_lei  = null;
