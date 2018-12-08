@@ -1673,7 +1673,7 @@ public class WmImNoticeHController extends BaseController {
 			if(StringUtil.isEmpty(formDate)){
 				formDate = "2011-01-01";
 			}
-			yyUtil.getPo(formDate);
+			yyUtil.getPord(formDate);
 
 		}
 		if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
