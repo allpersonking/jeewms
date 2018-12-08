@@ -56,7 +56,7 @@ public class yyUtil {
             resultdw = DynamicDBUtil.findList(dbKey, SqlUtil.jeecgCreatePageSql(dbKey, querySql, queryparams, 1, 1000000));
         }
 
-        querySql = "select * from InventoryClass";
+        querySql = "select * from InventoryClass where iInvCGrade = '1' ";
         if(StringUtils.isNotBlank(dbKey)) {
             resultgt = DynamicDBUtil.findList(dbKey, SqlUtil.jeecgCreatePageSql(dbKey, querySql, queryparams, 1, 1000000));
         }
@@ -89,6 +89,8 @@ public class yyUtil {
                 BaUnitEntity mdn = new BaUnitEntity();
                 mdn.setUnitCode(prodbo.get("cComunitCode").toString());
                 mdn.setUnitZhName(prodbo.get("cComUnitName").toString());
+                mdn.setUnitChange(prodbo.get("iChangeRate").toString());
+
                 try {
                     BaUnitEntity baunit = systemService.findUniqueByProperty(
                             BaUnitEntity.class, "unitCode", mdn.getUnitCode());
@@ -110,30 +112,47 @@ public class yyUtil {
                 String ShpBianMa =  prodbo.get("cInvCode").toString();
                 MdGoodsEntity mdn = new MdGoodsEntity();
                 mdn.setShpBianMa(ShpBianMa);
-                mdn.setChlShl("1");
                 mdn.setSuoShuKeHu("hwm");
                 mdn.setShpMingCheng(prodbo.get("cInvName").toString());
                 mdn.setBzhiQi("360");
-                mdn.setChpShuXing(prodbo.get("cInvCCode").toString());
+                mdn.setChpShuXing(prodbo.get("cInvCCode").toString().substring(0,2));
 //                mdn.setChpShuXing("其他");
-                mdn.setJshDanWei(prodbo.get("cComUnitCode").toString());
+                mdn.setShpGuiGe(prodbo.get("cInvStd").toString());
+                mdn.setJshDanWei(prodbo.get("cComUnitCode").toString());//拆零单位
                 BaUnitEntity baunit = systemService.findUniqueByProperty(
                         BaUnitEntity.class, "unitCode", mdn.getJshDanWei());
                 if (baunit !=null){
-                    mdn.setJshDanWei(baunit.getUnitZhName());
-                    mdn.setShlDanWei(baunit.getUnitZhName());
+                    mdn.setJshDanWei(baunit.getUnitZhName());//拆零单位
                 }
+                mdn.setShlDanWei(prodbo.get("cSAComUnitCode").toString());//单位
 
+                if(StringUtil.isEmpty(mdn.getShlDanWei())){
+                    mdn.setChlShl("1");
+                    mdn.setChlKongZhi("N");
+                    mdn.setShlDanWei(baunit.getUnitZhName());
+
+                }else{
+                    try{
+                        BaUnitEntity baunitz = systemService.findUniqueByProperty(
+                                BaUnitEntity.class, "unitCode", mdn.getShlDanWei());
+                        if (baunitz !=null){
+                            mdn.setShlDanWei(baunitz.getUnitZhName());
+                        }
+                        mdn.setChlShl(baunitz.getUnitChange());
+                        mdn.setChlKongZhi("Y");
+                    }catch (Exception e){
+
+                    }
+
+                }
                 try {
                     mdn.setShpTiaoMa(prodbo.get("cBarCode").toString());
-
                 }catch (Exception e){
                 }
                 mdn.setCfWenCeng("低温");
                 mdn.setJiZhunwendu("1");
                 mdn.setTiJiCm("1");
                 mdn.setZhlKg("1");
-                mdn.setChlKongZhi("N");
                 mdn.setJfShpLei("10");
                 mdn.setMpCengGao("99");
                 mdn.setMpDanCeng("99");
@@ -264,7 +283,9 @@ public class yyUtil {
                         }catch (Exception e){
 
                         }
-                        String querySqldetail = "select * from DispatchLists  where DLID = '"+imcuscode+"'";
+//                        String querySqldetail = "select * from DispatchLists  where cWhCode = '28' and  DLID = '"+imcuscode+"'";
+                                                String querySqldetail = "select * from DispatchLists  where   DLID = '"+imcuscode+"'";
+
                         if (resultdetail!=null){
                             resultdetail.clear();
                         }
@@ -304,7 +325,6 @@ public class yyUtil {
  }
     public  static void addOtherIn(Map<String, Object> params){
         String to_account = params.get("to_account").toString();	//提供方id        String page_index = args[1];// 页号
-
         String jsonBody = params.get("jsonBody").toString();
         OtherInService otherInService = new OtherInService();
         try {
