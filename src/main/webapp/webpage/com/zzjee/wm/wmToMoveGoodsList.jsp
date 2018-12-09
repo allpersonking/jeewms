@@ -30,7 +30,7 @@
     <t:dgCol title="到托盘"  field="tinId"  extendParams="editor:'text'"   query="true" queryMode="single"  width="70"></t:dgCol>
     <t:dgCol title="源储位"  field="binFrom"   query="true" queryMode="single"  width="100"></t:dgCol>
     <t:dgCol title="到储位"  field="binTo"   extendParams="editor:'text'"  query="true" queryMode="single"  width="100"></t:dgCol>
-    <t:dgCol title="状态"  field="moveSta"    queryMode="group"  width="50"></t:dgCol>
+    <t:dgCol title="状态"  field="moveSta"    query="true"  queryMode="single"  width="50"></t:dgCol>
       <t:dgCol title="执行状态"  field="runSta" query="true"  queryMode="single"  width="50"></t:dgCol>
 
       <t:dgCol title="转移客户"  field="toCusCode"   query="true" queryMode="single"  width="120"></t:dgCol>
