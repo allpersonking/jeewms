@@ -36,10 +36,10 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 //	@Excel(name="创建人名称")
 	private java.lang.String createName;
 	/**创建人登录名称*/
-//	@Excel(name="创建人登录名称")
+	@Excel(name="创建人登录名称")
 	private java.lang.String createBy;
 	/**创建日期*/
-//	@Excel(name="创建日期",  format = "yyyy-MM-dd hh:mm:ss")
+	@Excel(name="创建日期",  format = "yyyy-MM-dd hh:mm:ss")
 	private java.util.Date createDate;
 	/**更新人名称*/
 //	@Excel(name="更新人名称")
