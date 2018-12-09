@@ -32,7 +32,7 @@ public class BiController extends BaseController {
         String num2= "0";
         String num3= "0";
         String num4= "0";
-
+        String num5= "0";   //库存转移计划中的数量
 //        String yearstr = DateUtils.date2Str(DateUtils.yyyyMMdd);
 
         String ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_im_notice_i where bin_pre = 'N'" ;
@@ -84,12 +84,24 @@ public class BiController extends BaseController {
             }
         }
 
+        ysql = "select CONVERT( sum(base_goodscount),DECIMAL(10,0)) as linecount from wm_to_move_goods where move_Sta = '计划中'" ;
 
+        List<Map<String,Object>> ymaplist5=systemService.findForJdbc(ysql);
+        for (Map<String,Object> object : ymaplist5) {
+            Map<String, Object> obj = object;
+
+            try {
+                num5 = obj.get("linecount").toString();
+            } catch (Exception e) {
+
+            }
+        }
 
         request.setAttribute("num1",num1);
         request.setAttribute("num2",num2);
         request.setAttribute("num3",num3);
         request.setAttribute("num4",num4);
+        request.setAttribute("num5",num5);
 
         return new ModelAndView("com/zzjee/BI/home/reportbi");
     }

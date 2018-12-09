@@ -229,6 +229,7 @@
 					<div class="media" style="border:0px">
 						<div class="media-body" style="padding-top: 10px;padding-left: 50px; ">
 							<h3 class="media-heading" id=x> </h3>
+							<h3 class="media-heading" id=x2> 您有 ${num5} 件商品需要做库存调整，请及时调整</h3>
 
 
 						</div>
