@@ -56,14 +56,14 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 
 					try {
 						try {
-							wmImNoticeI.setGoodsFvol(String.valueOf(Double.parseDouble(mvgoods.getTiJiCm())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+							wmImNoticeI.setGoodsFvol(String.valueOf(Double.parseDouble(mvgoods.getTiJiCm())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
 						try {
 							if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-								wmImNoticeI.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+								wmImNoticeI.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 							}else{
 								wmImNoticeI.setBaseGoodscount(wmImNoticeI.getGoodsCount());
 							}
@@ -82,7 +82,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 					
 					try {
 //						wmImNoticeI.setGoodsFvol(String.valueOf(Long.parseLong(mdgoods.getTiJiCm())*Long.parseLong(wmImNoticeI.getGoodsCount())));
-						wmImNoticeI.setGoodsWeight(String.valueOf(Double.parseDouble(mvgoods.getZhlKg())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+						wmImNoticeI.setGoodsWeight(String.valueOf(Double.parseDouble(mvgoods.getZhlKg())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 //						wmImNoticeI.setGoodsUnit(mdgoods.getShlDanWei());
 
 					} catch (Exception e) {
@@ -195,7 +195,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 							wmImNoticeI.setBaseUnit(mvgoods.getBaseunit());
 							try {
 								if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-									wmImNoticeI.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+									wmImNoticeI.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 								}else{
 									wmImNoticeI.setBaseGoodscount(wmImNoticeI.getGoodsCount());
 								}
@@ -205,7 +205,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 
 //							wmImNoticeI.setGoodsFvol(String.valueOf(Long.parseLong(mdgoods.getTiJiCm())*Long.parseLong(wmImNoticeI.getGoodsCount())));
 							try {
-								wmImNoticeI.setGoodsWeight(String.valueOf(Double.parseDouble(mvgoods.getZhlKg())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+								wmImNoticeI.setGoodsWeight(String.valueOf(Double.parseDouble(mvgoods.getZhlKg())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 
 							} catch (Exception e) {
 								// TODO: handle exception
@@ -215,7 +215,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 							// TODO: handle exception
 						}
 						try {
-							wmImNoticeI.setGoodsFvol(String.valueOf(Double.parseDouble(mvgoods.getTiJiCm())*Long.parseLong(wmImNoticeI.getGoodsCount())));
+							wmImNoticeI.setGoodsFvol(String.valueOf(Double.parseDouble(mvgoods.getTiJiCm())*Double.parseDouble(wmImNoticeI.getGoodsCount())));
 //							wmImNoticeI.setGoodsWeight(String.valueOf(Long.parseLong(mdgoods.getZhlKg())*Long.parseLong(wmImNoticeI.getGoodsCount())));
 //							wmImNoticeI.setGoodsUnit(mdgoods.getShlDanWei());
 						} catch (Exception e) {

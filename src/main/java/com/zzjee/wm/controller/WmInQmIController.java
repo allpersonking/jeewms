@@ -227,9 +227,9 @@ public class WmInQmIController extends BaseController {
 
 					if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 						try {
-							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
-									.parseLong(mvgoods.getChlShl())
-									* Long.parseLong(wmToUpGoodsEntity.getGoodsQua())));
+							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(
+									Double.parseDouble(mvgoods.getChlShl())
+									* Double.parseDouble(wmToUpGoodsEntity.getGoodsQua())));
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
@@ -323,7 +323,7 @@ public class WmInQmIController extends BaseController {
 			j.setMsg("不存在此商品");
 		} else {
 			mdgoods.setChlShl("0");
-			long goodsno =   0;
+			double goodsno =   0.00;
 			System.out
 					.println("*******************8"
 							+ oConvertUtils.getString(request
@@ -338,14 +338,14 @@ public class WmInQmIController extends BaseController {
 							oConvertUtils.getString(request
 									.getParameter("goodsid")));// 获取行项目
 			for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
-				goodsno = Long.parseLong(wmImNoticeIEntity.getGoodsCount())
-						- Long.parseLong(wmImNoticeIEntity.getGoodsQmCount());
+				goodsno = Double.parseDouble(wmImNoticeIEntity.getGoodsCount())
+						- Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount());
 				if (goodsno > 0) {
 					long quat1 =Long.parseLong(mvgoods.getMpCengGao()) * Long.parseLong(mvgoods.getMpDanCeng());
 					if(quat1 < goodsno){
 						goodsno = quat1;
 					}
-					mdgoods.setChlShl(Long.toString(goodsno));
+					mdgoods.setChlShl(Double.toString(goodsno));
 					break;
 				}
 			}
@@ -372,7 +372,7 @@ public class WmInQmIController extends BaseController {
 		String flag = "N";
 		message = "收货登记添加成功";
 		try {
-			if (Long.parseLong(wmInQmI.getQmOkQuat()) <= 0) {
+			if (Double.parseDouble(wmInQmI.getQmOkQuat()) <= 0) {
 				j.setSuccess(false);
 				message = "数量不能为0";
 				return j;
@@ -441,11 +441,11 @@ public class WmInQmIController extends BaseController {
 					for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
 						if (wmImNoticeIEntity.getGoodsCode().equals(
 								wmInQmI.getGoodsId())) {
-							Long weiq = Long.parseLong(wmImNoticeIEntity
+							double weiq = Double.parseDouble(wmImNoticeIEntity
 									.getGoodsCount())
-									- Long.parseLong(wmImNoticeIEntity
+									- Double.parseDouble(wmImNoticeIEntity
 									.getGoodsQmCount());
-							if (Long.parseLong(wmInQmI.getQmOkQuat()) <= weiq) {
+							if (Double.parseDouble(wmInQmI.getQmOkQuat()) <= weiq) {
 								wmimnotice = wmImNoticeIEntity;
 								flag = "X";
 								break;
@@ -473,10 +473,10 @@ public class WmInQmIController extends BaseController {
 					try {
 						wmInQmI.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 								.getTiJiCm())
-								*  Long.parseLong(wmInQmI.getQmOkQuat())));
+								*  Double.parseDouble(wmInQmI.getQmOkQuat())));
 						wmInQmI.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 								.getZhlKg())
-								* Long.parseLong(wmInQmI.getQmOkQuat())));
+								* Double.parseDouble(wmInQmI.getQmOkQuat())));
 					} catch (Exception e) {
 						// TODO: handle exception
 					}

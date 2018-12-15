@@ -228,9 +228,9 @@ public class WmToUpGoodsController extends BaseController {
 			wmToUpGoods.setGoodsUnit(mvgoods.getShlDanWei());
 			if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 				try {
-					wmToUpGoods.setBaseGoodscount(String.valueOf(Long
-							.parseLong(mvgoods.getChlShl())
-							* Long.parseLong(wmToUpGoods.getGoodsQua())));
+					wmToUpGoods.setBaseGoodscount(String.valueOf(Double
+							.parseDouble(mvgoods.getChlShl())
+							* Double.parseDouble(wmToUpGoods.getGoodsQua())));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}

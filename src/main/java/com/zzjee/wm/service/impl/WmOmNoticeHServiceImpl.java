@@ -50,7 +50,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 						wmOmNoticeI.setBaseUnit(mvgoods.getBaseunit());
 						wmOmNoticeI.setGoodsUnit(mvgoods.getShlDanWei());
 						if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-							wmOmNoticeI.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(wmOmNoticeI.getGoodsQua())));
+							wmOmNoticeI.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(wmOmNoticeI.getGoodsQua())));
 						}else{
 							wmOmNoticeI.setBaseGoodscount(wmOmNoticeI.getGoodsQua());
 						}
@@ -98,7 +98,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 							oldE.setGoodsUnit(mvgoods.getShlDanWei());
 							oldE.setBaseUnit(mvgoods.getBaseunit());
 							if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-								oldE.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(oldE.getGoodsQua())));
+								oldE.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(oldE.getGoodsQua())));
 							}else{
 								oldE.setBaseGoodscount(oldE.getGoodsQua());
 							}
@@ -126,7 +126,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 					wmOmNoticeI.setGoodsUnit(mvgoods.getShlDanWei());
 					wmOmNoticeI.setBaseUnit(mvgoods.getBaseunit());
 					if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){
-						wmOmNoticeI.setBaseGoodscount(String.valueOf(Long.parseLong(mvgoods.getChlShl())*Long.parseLong(wmOmNoticeI.getGoodsQua())));
+						wmOmNoticeI.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(wmOmNoticeI.getGoodsQua())));
 					}else{
 						wmOmNoticeI.setBaseGoodscount(wmOmNoticeI.getGoodsQua());
 					}

@@ -101,7 +101,6 @@ public class WmSttInGoodsController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -241,9 +240,9 @@ public class WmSttInGoodsController extends BaseController {
 		if(!wmSttInGoods.getGoodsQua().equals(wmSttInGoods.getSttQua())){
 			try{
 //				wmSttInGoods.setSttQua("0");
-				if(Long.parseLong(wmSttInGoods.getGoodsQua()) > Long.parseLong(wmSttInGoods.getSttQua())){
+				if(Double.parseDouble(wmSttInGoods.getGoodsQua()) > Double.parseDouble(wmSttInGoods.getSttQua())){
 					//下架
-					String goodsqua = Long.toString((Long.parseLong(wmSttInGoods.getGoodsQua()) - Long.parseLong(wmSttInGoods.getSttQua())));
+					String goodsqua = Double.toString((Double.parseDouble(wmSttInGoods.getGoodsQua()) - Double.parseDouble(wmSttInGoods.getSttQua())));
 					WmToDownGoodsEntity wmToDownGoods = new WmToDownGoodsEntity();
 					
 					wmToDownGoods.setOrderId("ZY");
@@ -279,7 +278,7 @@ public class WmSttInGoodsController extends BaseController {
 					}
 				}else{
 					//上架
-					String goodsqua = Long.toString(( Long.parseLong(wmSttInGoods.getSttQua()) - Long.parseLong(wmSttInGoods.getGoodsQua())));
+					String goodsqua = Double.toString(( Double.parseDouble(wmSttInGoods.getSttQua()) - Double.parseDouble(wmSttInGoods.getGoodsQua())));
 
 					WmToUpGoodsEntity wmToUpGoods = new WmToUpGoodsEntity();
 					wmToUpGoods.setOrderId("ZY");

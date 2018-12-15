@@ -36,6 +36,7 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -235,7 +236,7 @@ public class WmImNoticeHController extends BaseController {
 		List<WmImNoticeIEntity> resultold = dataGrid.getResults();
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
 			try {
-				if (Long.parseLong(wmImNoticeIEntity.getGoodsCount()) > Long.parseLong(wmImNoticeIEntity.getGoodsQmCount())) {
+				if (Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) > Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())) {
 					resultnew.add(wmImNoticeIEntity);
 				}
 			} catch (Exception e) {
@@ -265,7 +266,7 @@ public class WmImNoticeHController extends BaseController {
 		List<WmImNoticeIEntity> resultnew = new ArrayList<WmImNoticeIEntity>();
 		List<WmImNoticeIEntity> resultold = dataGrid.getResults();
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
-			if (Long.parseLong(wmImNoticeIEntity.getGoodsCount()) > Long.parseLong(wmImNoticeIEntity.getGoodsQmCount())) {
+			if (Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) > Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())) {
 				resultnew.add(wmImNoticeIEntity);
 			}
 		}
@@ -1250,7 +1251,7 @@ public class WmImNoticeHController extends BaseController {
 			int size = result.size();
 			int pagesize = 10;
 			int pagecount = size%pagesize==0?size/pagesize:size/pagesize+1;
-		      long sum = 0;
+		      double sum = 0;
 			double sumzl = 0;
        do {
   
@@ -1440,7 +1441,7 @@ public class WmImNoticeHController extends BaseController {
 						}
 					 
 					 try {
-						 sum = sum + Long.parseLong(result.get(i).get("goods_count")
+						 sum = sum + Double.parseDouble(result.get(i).get("goods_count")
 									.toString());
 							Cell cell7 = rowColumnValue.createCell(6);// 数量
 		
@@ -1491,7 +1492,7 @@ public class WmImNoticeHController extends BaseController {
  				Row rowColumnValue = sheet.createRow((short) cellsNum); // 列名
  				rowColumnValue.setHeight((short) 250);
  				Cell cell6 = rowColumnValue.createCell(6);// 备注
- 				cell6.setCellValue(Long.toString(sum));
+ 				cell6.setCellValue(Double.toString(sum));
  				Cell cell7 = rowColumnValue.createCell(7);// 重量
  				cell7.setCellValue(Double.toString(sumzl));
 //				cell6.setCellStyle(cs5);

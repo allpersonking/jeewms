@@ -60,8 +60,7 @@ public class SmsSendTask {
 			hql = "from WmImNoticeIEntity t where t.binPre<>?  ";
 			WmInNoticeIlist = systemService.findHql(hql,  "Y" );
 			for (WmImNoticeIEntity wmImNoticeIEntity : WmInNoticeIlist) {
-				if (Long.parseLong(wmImNoticeIEntity.getGoodsCount()) <= Long
-						.parseLong(wmImNoticeIEntity.getGoodsQmCount())) {
+				if (Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) <= Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())) {
 					wmImNoticeIEntity.setBinPre("Y");
 					systemService.saveOrUpdate(wmImNoticeIEntity);
 				}
@@ -134,16 +133,15 @@ public class SmsSendTask {
 				wmInQmIEntity.setBaseUnit(mvgoods.getBaseunit());
 				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 					try {
-						wmInQmIEntity.setBaseGoodscount(String.valueOf(Long
-								.parseLong(mvgoods.getChlShl())
-								* Long.parseLong(wmInQmIEntity.getQmOkQuat())));
+						wmInQmIEntity.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())
+								* Double.parseDouble(wmInQmIEntity.getQmOkQuat())));
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
 
 					try {
 						wmInQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
-								.getZhlKg()) * Long.parseLong(wmInQmIEntity.getQmOkQuat())));
+								.getZhlKg()) * Double.parseDouble(wmInQmIEntity.getQmOkQuat())));
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -154,7 +152,7 @@ public class SmsSendTask {
 					try {
 						wmInQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 								.getZhlKg())
-								* Long.parseLong(wmInQmIEntity.getQmOkQuat())));
+								* Double.parseDouble(wmInQmIEntity.getQmOkQuat())));
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
@@ -190,9 +188,9 @@ public class SmsSendTask {
 
 					if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 						try {
-							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Long
-									.parseLong(mvgoods.getChlShl())
-									* Long.parseLong(wmToUpGoodsEntity.getGoodsQua())));
+							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(Double
+									.parseDouble(mvgoods.getChlShl())
+									* Double.parseDouble(wmToUpGoodsEntity.getGoodsQua())));
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
@@ -371,9 +369,9 @@ public class SmsSendTask {
 					}
 				}
 				try {
-					long omcount = 0;
-					long omcountok = 0;
-					long omcountwq = 0;
+					double omcount = 0.00;
+					double omcountok = 0.00;
+					double omcountwq = 0.00;
 					List<WmOmQmIEntity> WmOmQmIlist = new ArrayList<WmOmQmIEntity>();
 					hql = "from WmOmQmIEntity t where  t.iomNoticeItem = ?  ";
 					WmOmQmIlist = systemService.findHql(hql,
@@ -381,13 +379,13 @@ public class SmsSendTask {
 					for (WmOmQmIEntity wmOmQmIEntity : WmOmQmIlist) {
 						try {
 							omcountok = omcountok
-									+ Long.parseLong(wmOmQmIEntity.getBaseGoodscount());
+									+ Double.parseDouble(wmOmQmIEntity.getBaseGoodscount());
 						} catch (Exception e) {
 
 						}
 
 					}
-					omcount = Long.parseLong(wmOmNoticeIEntity.getBaseGoodscount());// 总出货数量
+					omcount = Double.parseDouble(wmOmNoticeIEntity.getBaseGoodscount());// 总出货数量
 					omcountwq = omcount - omcountok;// 未清基本数量
 					if (omcountwq > 0) {// 如果数量大于0
 						WmOmQmIEntity wmOmQmIEntity = new WmOmQmIEntity();
@@ -502,7 +500,7 @@ public class SmsSendTask {
 									if (resultz != null && resultz.size() > 0) {
 										for (int i = 0; i < resultz.size(); i++) {
 											try {
-												Long bin_qua = Long.valueOf(resultz.get(i)
+												Double bin_qua = Double.parseDouble(resultz.get(i)
 														.get("goods_qua").toString());
 												if (omcountwq >= bin_qua && omcountwq > 0) {
 													wmOmQmIEntity.setBinId(resultz.get(i)
@@ -530,16 +528,16 @@ public class SmsSendTask {
 													if (wmOmNoticeIEntity.getGoodsUnit()
 															.equals(wmOmNoticeIEntity
 																	.getBaseUnit())) {
-														wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
+														wmOmQmIEntity.setQmOkQuat(Double.toString(bin_qua));
 														try {
 															wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 																	.getTiJiCm()) / Double.parseDouble(mvgoods
 																	.getChlShl())
-																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+																	* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 															wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 																	.getZhlKg()) / Double.parseDouble(mvgoods
 																	.getChlShl())
-																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+																	* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 														} catch (Exception e) {
 															// TODO: handle exception
 														}
@@ -547,11 +545,11 @@ public class SmsSendTask {
 														try {
 															wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 																	.getTiJiCm())
-																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+																	* Double.parseDouble(wmOmQmIEntity.getQmOkQuat()) / Double.parseDouble(mvgoods
 																	.getChlShl())));
 															wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 																	.getZhlKg())
-																	* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+																	* Double.parseDouble(wmOmQmIEntity.getQmOkQuat()) / Double.parseDouble(mvgoods
 																	.getChlShl())));
 														} catch (Exception e) {
 															// TODO: handle exception
@@ -559,7 +557,7 @@ public class SmsSendTask {
 														try {
 
 															wmOmQmIEntity
-																	.setQmOkQuat(Long.toString(bin_qua));
+																	.setQmOkQuat(Double.toString(bin_qua));
 
 														} catch (Exception e) {
 															// TODO: handle exception
@@ -579,7 +577,7 @@ public class SmsSendTask {
 						if (result != null && result.size() > 0) {
 							for (int i = 0; i < result.size(); i++) {
 								try {
-									Long bin_qua = Long.valueOf(result.get(i)
+									double bin_qua = Double.valueOf(result.get(i)
 											.get("goods_qua").toString());
 									if (bin_qua > 0 && omcountwq > 0) {
 										if (omcountwq > bin_qua) {
@@ -603,16 +601,16 @@ public class SmsSendTask {
 											if (wmOmNoticeIEntity.getGoodsUnit()
 													.equals(wmOmNoticeIEntity
 															.getBaseUnit())) {
-												wmOmQmIEntity.setQmOkQuat(Long.toString(bin_qua));
+												wmOmQmIEntity.setQmOkQuat(Double.toString(bin_qua));
 												try {
 													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 															.getTiJiCm()) / Double.parseDouble(mvgoods
 															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 															.getZhlKg()) / Double.parseDouble(mvgoods
 															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 												} catch (Exception e) {
 													// TODO: handle exception
 												}
@@ -621,11 +619,11 @@ public class SmsSendTask {
 												try {
 													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 															.getTiJiCm())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat()) / Double.parseDouble(mvgoods
 															.getChlShl())));
 													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 															.getZhlKg())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat()) / Long.parseLong(mvgoods
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat()) / Double.parseDouble(mvgoods
 															.getChlShl())));
 												} catch (Exception e) {
 													// TODO: handle exception
@@ -633,7 +631,7 @@ public class SmsSendTask {
 												try {
 
 													wmOmQmIEntity
-															.setQmOkQuat(Long.toString(bin_qua
+															.setQmOkQuat(Double.toString(bin_qua
 															));
 
 												} catch (Exception e) {
@@ -648,7 +646,7 @@ public class SmsSendTask {
 													.get("bin_id").toString());
 											wmOmQmIEntity.setBaseUnit(result.get(i)
 													.get("base_unit").toString());
-											wmOmQmIEntity.setBaseGoodscount(Long
+											wmOmQmIEntity.setBaseGoodscount(Double
 													.toString(omcountwq));
 											wmOmQmIEntity.setProData(result.get(i)
 													.get("goods_pro_data").toString());
@@ -659,16 +657,16 @@ public class SmsSendTask {
 											if (wmOmNoticeIEntity.getGoodsUnit()
 													.equals(wmOmNoticeIEntity
 															.getBaseUnit())) {
-												wmOmQmIEntity.setQmOkQuat(Long.toString(omcountwq));
+												wmOmQmIEntity.setQmOkQuat(Double.toString(omcountwq));
 												try {
 													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 															.getTiJiCm()) / Double.parseDouble(mvgoods
 															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 															.getZhlKg()) / Double.parseDouble(mvgoods
 															.getChlShl())
-															* Long.parseLong(wmOmQmIEntity.getQmOkQuat())));
+															* Double.parseDouble(wmOmQmIEntity.getQmOkQuat())));
 												} catch (Exception e) {
 													// TODO: handle exception
 												}
@@ -678,11 +676,11 @@ public class SmsSendTask {
 												try {
 													wmOmQmIEntity.setTinTj(String.valueOf(Double.parseDouble(mvgoods
 															.getTiJiCm())
-															* omcountwq / Long.parseLong(mvgoods
+															* omcountwq / Double.parseDouble(mvgoods
 															.getChlShl())));
 													wmOmQmIEntity.setTinZhl(String.valueOf(Double.parseDouble(mvgoods
 															.getZhlKg())
-															* omcountwq / Long.parseLong(mvgoods
+															* omcountwq / Double.parseDouble(mvgoods
 															.getChlShl())));
 												} catch (Exception e) {
 													// TODO: handle exception
@@ -692,7 +690,7 @@ public class SmsSendTask {
 												try {
 
 													wmOmQmIEntity
-															.setQmOkQuat(Long.toString(omcountwq));
+															.setQmOkQuat(Double.toString(omcountwq));
 
 												} catch (Exception e) {
 													// TODO: handle exception

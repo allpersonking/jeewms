@@ -458,7 +458,7 @@ public class WmOmNoticeHController extends BaseController {
 					+ goods + "'";
 			Map<String, Object> binMap	 = systemService.findOneForJdbc(sql);
 			if(binMap!=null){
-				if(Long.parseLong(binMap.get("qua").toString())< Long.parseLong(request.getParameter("goodsqua").toString())){
+				if(Double.parseDouble(binMap.get("qua").toString())< Double.parseDouble(request.getParameter("goodsqua").toString())){
 					j.setSuccess(false);
 					message = request.getParameter("goodscode").toString() +"库存为"+binMap.get("qua").toString();
 					j.setMsg(message);
@@ -1199,9 +1199,9 @@ public class WmOmNoticeHController extends BaseController {
 			}
 			int pagesize = 10;
 			int pagecount = size%pagesize==0?size/pagesize:size/pagesize+1;
-			long sum = 0;
-			long sumxs = 0;
-			long sumzl = 0;
+			double sum = 0;
+			double sumxs = 0;
+			double sumzl = 0;
 			do {
 
 				// 画图的顶级管理器，一个sheet只能获取一个（一定要注意这点）
@@ -1365,8 +1365,8 @@ public class WmOmNoticeHController extends BaseController {
 
 						try {
 
-							long  xs = (long) Math.floor(Long.parseLong(result.get(i).get("goods_count")
-									.toString()) / Long.parseLong(result.get(i).get("chl_shl")
+							long  xs = (long) Math.floor(Double.parseDouble(result.get(i).get("goods_count")
+									.toString()) / Double.parseDouble(result.get(i).get("chl_shl")
 									.toString()));
 							sumxs = sumxs  + xs;
 							Cell cell6 = rowColumnValue.createCell(5);// 单位
@@ -1377,8 +1377,8 @@ public class WmOmNoticeHController extends BaseController {
 						}
 
 						try {
-							long bs =						  Long.parseLong(result.get(i).get("goods_count")
-									.toString()) % Long.parseLong(result.get(i).get("chl_shl")
+							double bs =						  Double.parseDouble(result.get(i).get("goods_count")
+									.toString()) % Double.parseDouble(result.get(i).get("chl_shl")
 									.toString());
 							sum = sum + bs;
 							Cell cell7 = rowColumnValue.createCell(6);// 数量
@@ -1390,8 +1390,8 @@ public class WmOmNoticeHController extends BaseController {
 						Cell cell8 = rowColumnValue.createCell(7);// 毛重
 						try {
 
-							long zhl = Long.parseLong(result.get(i).get("tin_zhl")
-									.toString()) * Long.parseLong(result.get(i).get("goods_count").toString());
+							double zhl = Double.parseDouble(result.get(i).get("tin_zhl")
+									.toString()) * Double.parseDouble(result.get(i).get("goods_count").toString());
 							sumzl = sumzl + zhl;
 							cell8.setCellValue(zhl);
 
@@ -1401,8 +1401,8 @@ public class WmOmNoticeHController extends BaseController {
 						cell8.setCellStyle(cs5);
 						Cell cell9 = rowColumnValue.createCell(8);// 体积
 						try {
-							long tij = Long.parseLong(result.get(i).get("tin_tj")
-									.toString()) * Long.parseLong(result.get(i).get("goods_count").toString());
+							double tij = Double.parseDouble(result.get(i).get("tin_tj")
+									.toString()) * Double.parseDouble(result.get(i).get("goods_count").toString());
 
 
 							cell9.setCellValue(tij);
@@ -1423,11 +1423,11 @@ public class WmOmNoticeHController extends BaseController {
 						Row rowColumnValue = sheet.createRow((short) cellsNum); // 列名
 						rowColumnValue.setHeight((short) 250);
 						Cell cell5 = rowColumnValue.createCell(5);// 备注
-						cell5.setCellValue(Long.toString(sumxs));
+						cell5.setCellValue(Double.toString(sumxs));
 						Cell cell6 = rowColumnValue.createCell(6);// 备注
-						cell6.setCellValue(Long.toString(sum));
+						cell6.setCellValue(Double.toString(sum));
 						Cell cell7 = rowColumnValue.createCell(7);// 重量合计
-						cell7.setCellValue(Long.toString(sumzl));
+						cell7.setCellValue(Double.toString(sumzl));
 //				cell6.setCellStyle(cs5);
 						Cell cell0 = rowColumnValue.createCell(0);// 合计
 						cell0.setCellValue("合计：");

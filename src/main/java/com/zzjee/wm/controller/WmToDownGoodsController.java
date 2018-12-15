@@ -105,7 +105,6 @@ public class WmToDownGoodsController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
 	 */
 
 	@RequestMapping(params = "datagrid")
@@ -401,13 +400,13 @@ public class WmToDownGoodsController extends BaseController {
 				j.setSuccess(false);
 				j.setMsg("不存在此商品");
 			}else{
-				Long goodsno =  (long) 0;
+				double goodsno =  0;
 				WmOmNoticeHEntity wmOmNoticeHEntity = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", oConvertUtils.getString(request.getParameter("noticeid")));
 				String hql0 = "from WmOmNoticeIEntity where 1 = 1 AND omNoticeId = ? and goodsId = ? ";
 				List<WmOmNoticeIEntity> wmOmNoticeIEntityList = systemService
 						.findHql(hql0, wmOmNoticeHEntity.getOmNoticeId(),oConvertUtils.getString(request.getParameter("goodsid")));//获取行项目
 				for (WmOmNoticeIEntity wmOmNoticeIEntity : wmOmNoticeIEntityList) {
-					goodsno = (Long.valueOf(wmOmNoticeIEntity.getGoodsQua()) -  Long.valueOf(wmOmNoticeIEntity.getGoodsQuaok())) * Long.valueOf(mvgoods.getChlShl());
+					goodsno = (Double.valueOf(wmOmNoticeIEntity.getGoodsQua()) -  Double.valueOf(wmOmNoticeIEntity.getGoodsQuaok())) * Double.valueOf(mvgoods.getChlShl());
 					if(goodsno > 0 ){				
 						String sql = "select  ws.ku_wei_bian_ma,ws.bin_id,ws.shp_ming_cheng,cast(sum(ws.base_goodscount) as signed) as goods_qua, mb.qu_huo_ci_xu, ws.goods_pro_data"
                                      +" from wv_stock ws, md_bin mb  where "
@@ -420,14 +419,14 @@ public class WmToDownGoodsController extends BaseController {
 						mvgoods.setChlShl(String.valueOf(goodsno));
 						if(result!=null){
 							for(int i = 0;i<result.size();i++ ){
-								if(Long.valueOf(result.get(i).get("goods_qua").toString())>0){
-									if(Long.valueOf(result.get(i).get("goods_qua").toString())>=goodsno){
+								if(Double.valueOf(result.get(i).get("goods_qua").toString())>0){
+									if(Double.valueOf(result.get(i).get("goods_qua").toString())>=goodsno){
 										mvgoods.setTiJiCm(String.valueOf(goodsno));//数量
 										mvgoods.setZhlKg("本次可发完");//还需数量
 									}else{
-										Long wq = goodsno - Long.valueOf(result.get(i).get("goods_qua").toString());
+										double wq = goodsno - Double.valueOf(result.get(i).get("goods_qua").toString());
 										mvgoods.setTiJiCm(result.get(i).get("goods_qua").toString());//数量setChcDanWei
-										mvgoods.setZhlKg("还需要发"+wq.toString());//还需数量 setChlKongZhi
+										mvgoods.setZhlKg("还需要发"+Double.toString(wq));//还需数量 setChlKongZhi
 
 									}
 									mvgoods.setGoodsName(result.get(i).get("shp_ming_cheng").toString());//名称
@@ -483,9 +482,9 @@ public class WmToDownGoodsController extends BaseController {
 			wmToDownGoods.setGoodsUnit(mvgoods.getShlDanWei());
 			if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
 				try {
-					wmToDownGoods.setBaseGoodscount(String.valueOf(Long
-							.parseLong(mvgoods.getChlShl())
-							* Long.parseLong(wmToDownGoods.getGoodsQua())));
+					wmToDownGoods.setBaseGoodscount(String.valueOf(Double
+							.parseDouble(mvgoods.getChlShl())
+							* Double.parseDouble(wmToDownGoods.getGoodsQua())));
 				} catch (Exception e) {
 					// TODO: handle exception
 				}

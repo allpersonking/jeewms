@@ -323,7 +323,7 @@ public class wmUtil {
 
 			List<Map<String, Object>> result = systemService.findForJdbc(tsql, binid, tinid, goods, prodate);
 			if (result.size() > 0) {
-				if (Long.parseLong(result.get(0).get("goods_qua").toString()) >= Long.parseLong(basecount)) {
+				if (Double.parseDouble(result.get(0).get("goods_qua").toString()) >= Double.parseDouble(basecount)) {
 					flag = true;
 				}
 
@@ -388,7 +388,7 @@ public class wmUtil {
 
 			List<Map<String, Object>> result = systemService.findForJdbc(tsql, binid, tinid, goods, prodate,cuscode);
 			if (result.size() > 0) {
-				if (Long.parseLong(result.get(0).get("goods_qua").toString()) >= Long.parseLong(basecount)) {
+				if (Double.parseDouble(result.get(0).get("goods_qua").toString()) >= Double.parseDouble(basecount)) {
 					flag = true;
 				}
 
