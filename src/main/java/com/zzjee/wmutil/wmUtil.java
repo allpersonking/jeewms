@@ -285,7 +285,7 @@ public class wmUtil {
 					+ "   group by ws.ku_wei_bian_ma,ws.bin_id,ws.goods_id,mb.qu_huo_ci_xu, ws.goods_pro_data order by ws.goods_pro_data , ws.goods_qua ,mb.qu_huo_ci_xu,ws.create_date desc";
 			List<Map<String, Object>> result=  systemService.findForJdbc(tsql, binid,tinid,goods,prodate);
 			if(result.size() > 0) {
-				if(Long.parseLong(result.get(0).get("goods_qua").toString())>=Long.parseLong(basecount)){
+				if(Double.parseDouble(result.get(0).get("goods_qua").toString())>=Double.parseDouble(basecount)){
 					flag = true;
 				}
 			}
