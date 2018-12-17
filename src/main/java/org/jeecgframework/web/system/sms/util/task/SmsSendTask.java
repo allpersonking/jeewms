@@ -436,14 +436,14 @@ public class SmsSendTask {
 								+ "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma  and mb.ku_wei_lei_xing = '良品区' and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')"
 								;
 						if(StringUtil.isNotEmpty(tuopanma)) {
-							tsql = tsql + " and ws.bin_id = '"+tuopanma + "' ";
+							tsql = tsql + " and ws.bin_id like '%"+tuopanma + "%' ";
 						}
 						if(StringUtil.isNotEmpty(prodate)) {
-							tsql = tsql + " and ws.goods_pro_data = '"+prodate + "' ";
+							tsql = tsql + " and ws.goods_pro_data like '%"+prodate + "%' ";
 						}
 
 						if(StringUtil.isNotEmpty(binom)) {
-							tsql = tsql + " and ws.ku_wei_bian_ma = '"+binom + "' ";
+							tsql = tsql + " and ws.ku_wei_bian_ma like '%"+binom + "%' ";
 						}
 
 						tsql = tsql + "   and ws.goods_id = ? "
@@ -477,7 +477,7 @@ public class SmsSendTask {
 											+ "  from wv_stock ws, md_bin mb  where "
 											+ "   ws.ku_wei_bian_ma = mb.ku_wei_bian_ma  and mb.ku_wei_lei_xing = '良品区' and mb.ting_yong <> 'Y' and (ws.kuctype = '库存' or ws.kuctype = '待下架')";
 									if (StringUtil.isNotEmpty(tuopanma)) {
-										tsqlz = tsqlz + "  and  ws.bin_id = '" + tuopanma + "' ";
+										tsqlz = tsqlz + "  and  ws.bin_id like '%" + tuopanma + "%' ";
 									}
 
 									tsqlz = tsqlz
@@ -485,10 +485,10 @@ public class SmsSendTask {
 											+ "   and ws.cus_code =  ? ";
 									if (StringUtil.isEmpty(goodprodata)) {
 										tsqlz = tsqlz
-												+ "   and ws.goods_pro_data = '" + goodprodata + "'";
+												+ "   and ws.goods_pro_data like '%" + goodprodata + "%'";
 									}
 									if(StringUtil.isNotEmpty(binom)) {
-										tsqlz = tsqlz + " and ws.ku_wei_bian_ma = '"+binom + "' ";
+										tsqlz = tsqlz + " and ws.ku_wei_bian_ma like '%"+binom + "%' ";
 									}
 									tsqlz = tsqlz
 											+ "   and (ws.base_goodscount + 0) =  ? "
