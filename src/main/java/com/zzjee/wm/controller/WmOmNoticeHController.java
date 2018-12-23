@@ -7,6 +7,7 @@ import com.zzjee.wm.service.WmOmNoticeHServiceI;
 
 import java.io.*;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -252,8 +253,10 @@ public class WmOmNoticeHController extends BaseController {
 
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
+            List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+            DecimalFormat dfsum=new DecimalFormat(".##");
 
-			try{
+            try{
 				for(WmOmQmIEntity tom:wmOmQmIEntityList){
 					tomsum = tomsum + Double.parseDouble(tom.getBaseGoodscount());
 
@@ -270,6 +273,19 @@ public class WmOmNoticeHController extends BaseController {
 
 					}
 
+                    try{
+                        tom.setTinZhl(dfsum.format(Double.parseDouble(tom.getTinZhl())));
+
+                    }catch ( Exception e){
+
+                    }
+                    try{
+                        tom.setTinTj(dfsum.format(Double.parseDouble(tom.getTinTj())));
+
+                    }catch ( Exception e){
+
+                    }
+                    wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){
 
@@ -283,9 +299,9 @@ public class WmOmNoticeHController extends BaseController {
 				noticesum = noticesum + Double.parseDouble(tnotice.getBaseGoodscount());
 			}
 			if(Double.doubleToLongBits(noticesum) != Double.doubleToLongBits(tomsum)){
-				request.setAttribute("jianhuoremark", "订单："+Double.toString(noticesum)+" 拣货："+Double.toString(tomsum));
+				request.setAttribute("jianhuoremark", "订单："+dfsum.format(noticesum)+" 拣货："+dfsum.format(tomsum));
 			}else{
-				request.setAttribute("jianhuoremark", "全部拣货，共"+Double.toString(noticesum));
+				request.setAttribute("jianhuoremark", "全部拣货，共"+dfsum.format(noticesum));
 			}
 			String tijiunit="立方分米";
 			String zhongliangunit="公斤";
@@ -296,8 +312,8 @@ public class WmOmNoticeHController extends BaseController {
 			}catch (Exception e){
 
 			}
-			request.setAttribute("tijisum", Double.toString(tijisum)+tijiunit);
-			request.setAttribute("zhlsum", Double.toString(zhlsum)+zhongliangunit);
+			request.setAttribute("tijisum", dfsum.format(tijisum)+tijiunit);
+			request.setAttribute("zhlsum", dfsum.format(zhlsum)+zhongliangunit);
 			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
 		}catch (Exception e){
 
