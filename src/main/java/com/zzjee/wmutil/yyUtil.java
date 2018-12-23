@@ -34,13 +34,16 @@ public class yyUtil {
      * Time: 下午2:07
      */
 
-    public static void    getProduct() {
+    public static void    getProduct(String othercode) {
 
         String dbKey=  ResourceUtil.getConfigByName("yydbkey");
         List<Map<String, Object>> result=null;
         List<Map<String, Object>> resultdw=null;
         List<Map<String, Object>> resultgt=null;
         String querySql = "select * from Inventory";
+        if(StringUtil.isNotEmpty(othercode)){
+            querySql = "select * from Inventory where cInvCCode like '%"+ othercode+"%'" ;
+        }
         Map queryparams =  new LinkedHashMap<String,Object>();
         SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 

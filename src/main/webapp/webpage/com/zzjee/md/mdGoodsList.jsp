@@ -68,6 +68,7 @@
     <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
       <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
       日期：<input type="text" name="batchdate"    class="form-control" onClick="WdatePicker()" style="width: 100px; height: 30px;">
+       商品编码：<input type="text" name="othercode"    class="form-control"  style="width: 100px; height: 30px;">
 
     </div>
   </div>
@@ -80,10 +81,12 @@
    function  otherimp() {
        var batchdate;
        batchdate = $('input[name="batchdate"]').attr("value");
+       othercode = $('input[name="othercode"]').attr("value");
+
        if(batchdate==""){
            alert("日期不能为空");
        }else{
-                               var url = "mdGoodsController.do?doGet&formDate="+batchdate;
+                               var url = "mdGoodsController.do?doGet&formDate="+batchdate+"&othercode="+othercode;
                        $.ajax({
                            async : true,
                            cache : false,

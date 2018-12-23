@@ -255,7 +255,7 @@ public class MdGoodsController extends BaseController {
 	 */
 	@RequestMapping(params = "doGet")
 	@ResponseBody
-	public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
+	public AjaxJson dogetfromother(String formDate,String othercode, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		message = "商品信息读取成功";
@@ -263,7 +263,7 @@ public class MdGoodsController extends BaseController {
 		try {
 
 			if ("U8".equals(ResourceUtil.getConfigByName("interfacetype"))){
-				yyUtil.getProduct();
+				yyUtil.getProduct(othercode);
 
 			}
 			if ("UAS".equals(ResourceUtil.getConfigByName("interfacetype"))){
