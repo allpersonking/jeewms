@@ -1,5 +1,5 @@
 
-QQ交流群：335607153
+QQ交流群：335607153  更详细文档和软件加群下载
 测试系统地址http://www.jeewms.cn/wmstest   用户名：test  密码：123456
 android app也已经开源，近期更新会比较频繁 app开源地址  https://gitee.com/erzhongxmu/jeewmsapp
 大家看到了，star一下，谢谢，本团队会持续更新，一直开源！
@@ -34,7 +34,11 @@ android app也已经开源，近期更新会比较频繁 app开源地址  https:
 		Mysql5.6以上（linux 注意设置大小写不敏感）
 		运行环境：CENTOS6.5以上或windows server 2008、tomcat7以上，JDK1.8， MYSQL5.7
     2，按照mvn方式导入
-    3，数据库还原：步骤 1：还原数据库，2，修改 dbconfig.properties
+    3，数据库还原：
+        安装完数据库执行下 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'IDENTIFIED BY '你的密码' WITH GRANT OPTION;
+                          FLUSH PRIVILEGES;
+
+        步骤 1：还原数据库，2，修改 dbconfig.properties
         3.1 sql导入方式建议 将sql文件粘贴至 查询执行窗口 执行
     4，IDEA：tomcat7:tun   输入用户名和密码：admin llg123
     5、主要技术
