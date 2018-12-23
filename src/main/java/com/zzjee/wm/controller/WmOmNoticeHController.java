@@ -287,8 +287,17 @@ public class WmOmNoticeHController extends BaseController {
 			}else{
 				request.setAttribute("jianhuoremark", "全部拣货，共"+Double.toString(noticesum));
 			}
-			request.setAttribute("tijisum", Double.toString(tijisum));
-			request.setAttribute("zhlsum", Double.toString(zhlsum));
+			String tijiunit="立方分米";
+			String zhongliangunit="公斤";
+			try{
+
+				tijiunit= ResourceUtil.getConfigByName("tijiunit");
+				 zhongliangunit=ResourceUtil.getConfigByName("zhongliangunit");
+			}catch (Exception e){
+
+			}
+			request.setAttribute("tijisum", Double.toString(tijisum)+tijiunit);
+			request.setAttribute("zhlsum", Double.toString(zhlsum)+zhongliangunit);
 			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
 		}catch (Exception e){
 
