@@ -246,16 +246,36 @@ public class WmOmNoticeHController extends BaseController {
 		String hql0 = "from WmOmQmIEntity where 1 = 1 AND omNoticeId = ? order by binId";
 		Double tomsum = 0.00;
 		Double  noticesum = 0.00;
+		Double  tijisum = 0.00;
+
+		Double  zhlsum = 0.00;
+
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
 
 			try{
 				for(WmOmQmIEntity tom:wmOmQmIEntityList){
 					tomsum = tomsum + Double.parseDouble(tom.getBaseGoodscount());
+
+					try{
+						tijisum = tijisum + Double.parseDouble(tom.getTinTj());
+
+					}catch ( Exception e){
+
+					}
+					try{
+						zhlsum = zhlsum + Double.parseDouble(tom.getTinZhl());
+
+					}catch ( Exception e){
+
+					}
+
 				}
 			}catch ( Exception e){
 
 			}
+
+
 
 			String hqlnotice = "from WmOmNoticeIEntity where 1 = 1 AND oM_NOTICE_ID = ? ";
 			List<WmOmNoticeIEntity> wmOmNoticeIEntityList = systemService.findHql(hqlnotice,id0);
@@ -267,6 +287,8 @@ public class WmOmNoticeHController extends BaseController {
 			}else{
 				request.setAttribute("jianhuoremark", "全部拣货，共"+Double.toString(noticesum));
 			}
+			request.setAttribute("tijisum", Double.toString(tijisum));
+			request.setAttribute("zhlsum", Double.toString(zhlsum));
 			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
 		}catch (Exception e){
 
