@@ -116,7 +116,7 @@
 
      function doprint(id){
          var url = "wmOmNoticeHController.do?doPrintpage&id="+id;
-         createdetailwindow(" 拣货单", url, 1000, 1000);
+         createdetailwindow(" 拣货单", url, 1200, 800);
 
          // window.open(url);
      }
