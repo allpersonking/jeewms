@@ -55,6 +55,7 @@ import org.jeecgframework.core.beanvalidator.BeanValidators;
 
 import java.util.Set;
 
+import javax.swing.text.StyledEditorKit;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
@@ -187,68 +188,7 @@ public class WmInQmIController extends BaseController {
 		message = "上架成功";
 		try {
 
-			List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
-			String hql0 = "from WmInQmIEntity where binSta = 'N' and  id = ?";
-			List<WmInQmIEntity> WmInQmIEntityList = systemService.findHql(hql0,
-					request.getParameter("id").toString());// 获取行项目
-			for (WmInQmIEntity wmInQmIEntity : WmInQmIEntityList) {
-				WmToUpGoodsEntity wmToUpGoodsEntity = new WmToUpGoodsEntity();
-				wmToUpGoodsEntity.setGoodsId(wmInQmIEntity.getGoodsId());
-				wmToUpGoodsEntity.setGoodsProData(wmInQmIEntity.getProData());
-				wmToUpGoodsEntity.setGoodsBatch(wmInQmIEntity.getGoodsBatch());
-				wmToUpGoodsEntity.setGoodsQua(wmInQmIEntity.getQmOkQuat());
-				wmToUpGoodsEntity.setGoodsUnit(wmInQmIEntity.getGoodsUnit());
-				wmToUpGoodsEntity.setOrderIdI(wmInQmIEntity.getId());
-				wmToUpGoodsEntity.setOrderId(wmInQmIEntity.getImNoticeId());
-				wmToUpGoodsEntity.setBinId(wmInQmIEntity.getTinId());
-				wmToUpGoodsEntity.setKuWeiBianMa(wmInQmIEntity.getBinId());
-				wmToUpGoodsEntity.setCusCode(wmInQmIEntity.getCusCode());
-				wmToUpGoodsEntity.setGoodsName(wmInQmIEntity.getGoodsName());
-				wmToUpGoodsEntity.setActTypeCode("01");
-				String sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where    md.ku_wei_bian_ma = '"
-						+ wmInQmIEntity.getBinId() + "'";
-				Map<String, Object> binMap	 = systemService.findOneForJdbc(sql);
-				if(binMap==null){
-					j.setSuccess(false);
-					message = "储位不存在";
-					j.setMsg(message);
-					return j;
-					
-				}
-
-				try{
-
-					MvGoodsEntity mvgoods = new MvGoodsEntity();
-					mvgoods = systemService.findUniqueByProperty(
-							MvGoodsEntity.class, "goodsCode",
-							wmToUpGoodsEntity.getGoodsId());
-					wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
-					wmToUpGoodsEntity.setGoodsUnit(mvgoods.getShlDanWei());
-
-					if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
-						try {
-							wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(
-									Double.parseDouble(mvgoods.getChlShl())
-									* Double.parseDouble(wmToUpGoodsEntity.getGoodsQua())));
-						} catch (Exception e) {
-							// TODO: handle exception
-						}
-
-					} else {
-						wmToUpGoodsEntity.setBaseGoodscount(wmToUpGoodsEntity
-								.getGoodsQua());
-					}
-
-
-				}catch (Exception e){
-
-				}
-
-
-				wmInQmIEntity.setBinSta("Y");
-				systemService.save(wmToUpGoodsEntity);
-				systemService.saveOrUpdate(wmInQmIEntity);
-			}
+			toup(request.getParameter("id"));
 
 			systemService.addLog(message, Globals.Log_Type_DEL,
 					Globals.Log_Leavel_INFO);
@@ -260,6 +200,71 @@ public class WmInQmIController extends BaseController {
 		}
 		j.setMsg(message);
 		return j;
+	}
+
+
+	private boolean toup(String id ){
+		List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
+		String hql0 = "from WmInQmIEntity where binSta = 'N' and  id = ?";
+		List<WmInQmIEntity> WmInQmIEntityList = systemService.findHql(hql0,
+				id);// 获取行项目
+		for (WmInQmIEntity wmInQmIEntity : WmInQmIEntityList) {
+			WmToUpGoodsEntity wmToUpGoodsEntity = new WmToUpGoodsEntity();
+			wmToUpGoodsEntity.setGoodsId(wmInQmIEntity.getGoodsId());
+			wmToUpGoodsEntity.setGoodsProData(wmInQmIEntity.getProData());
+			wmToUpGoodsEntity.setGoodsBatch(wmInQmIEntity.getGoodsBatch());
+			wmToUpGoodsEntity.setGoodsQua(wmInQmIEntity.getQmOkQuat());
+			wmToUpGoodsEntity.setGoodsUnit(wmInQmIEntity.getGoodsUnit());
+			wmToUpGoodsEntity.setOrderIdI(wmInQmIEntity.getId());
+			wmToUpGoodsEntity.setOrderId(wmInQmIEntity.getImNoticeId());
+			wmToUpGoodsEntity.setBinId(wmInQmIEntity.getTinId());
+			wmToUpGoodsEntity.setKuWeiBianMa(wmInQmIEntity.getBinId());
+			wmToUpGoodsEntity.setCusCode(wmInQmIEntity.getCusCode());
+			wmToUpGoodsEntity.setGoodsName(wmInQmIEntity.getGoodsName());
+			wmToUpGoodsEntity.setActTypeCode("01");
+			String sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where    md.ku_wei_bian_ma = '"
+					+ wmInQmIEntity.getBinId() + "'";
+			Map<String, Object> binMap = systemService.findOneForJdbc(sql);
+			if (binMap == null) {
+
+				return false;
+
+			}
+
+			try {
+
+				MvGoodsEntity mvgoods = new MvGoodsEntity();
+				mvgoods = systemService.findUniqueByProperty(
+						MvGoodsEntity.class, "goodsCode",
+						wmToUpGoodsEntity.getGoodsId());
+				wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
+				wmToUpGoodsEntity.setGoodsUnit(mvgoods.getShlDanWei());
+
+				if (!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())) {
+					try {
+						wmToUpGoodsEntity.setBaseGoodscount(String.valueOf(
+								Double.parseDouble(mvgoods.getChlShl())
+										* Double.parseDouble(wmToUpGoodsEntity.getGoodsQua())));
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
+
+				} else {
+					wmToUpGoodsEntity.setBaseGoodscount(wmToUpGoodsEntity
+							.getGoodsQua());
+				}
+
+
+			} catch (Exception e) {
+
+			}
+
+
+			wmInQmIEntity.setBinSta("Y");
+			systemService.save(wmToUpGoodsEntity);
+			systemService.saveOrUpdate(wmInQmIEntity);
+		}
+		return true;
 	}
 
 	/**
@@ -487,7 +492,10 @@ public class WmInQmIController extends BaseController {
 				wmInQmI.setImQuat(wmimnotice.getGoodsCount());
 				wmInQmI.setImCusCode(wmimnotice.getImCusCode());
 //				wmInQmI.setBinId(wmInQmI.getImNoticeId());
-				wmInQmIService.save(wmInQmI);
+				String id = wmInQmIService.save(wmInQmI).toString();
+                if("on".equals(ResourceUtil.getConfigByName("onestepup"))&&StringUtil.isNotEmpty(wmInQmI.getBinId())){
+                	toup(id);
+				}
 				systemService.addLog(message, Globals.Log_Type_INSERT,
 						Globals.Log_Leavel_INFO);
 			}
