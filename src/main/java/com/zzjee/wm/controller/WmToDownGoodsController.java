@@ -698,6 +698,19 @@ public class WmToDownGoodsController extends BaseController {
 			D0.setOK(false);
 
 		}
+		try{
+			WmToDownGoodsEntity wmToDownGoods1 = systemService.findUniqueByProperty(WmToDownGoodsEntity.class,"orderIdI",wmToDownGoods.getOrderIdI());
+			if (wmToDownGoods1!=null){
+				D0.setOK(false);
+				D0.setErrorMsg("重复保存");
+
+				return new ResponseEntity(D0,HttpStatus.OK);
+			}
+		}catch (Exception e){
+
+		}
+
+
        try{
 		    t = systemService.get(WvGiNoticeEntity.class,wmToDownGoods.getOrderIdI());
 		   if(t!=null&&StringUtil.isEmpty(wmToDownGoods.getBinIdFrom())){
