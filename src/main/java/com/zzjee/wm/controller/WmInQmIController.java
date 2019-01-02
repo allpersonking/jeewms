@@ -950,7 +950,12 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 				}catch (Exception e){
 
 				}
-				wmInQmIService.save(wmInQmI);
+				String id = wmInQmIService.save(wmInQmI).toString();
+
+
+				if("on".equals(ResourceUtil.getConfigByName("onestepup"))&&StringUtil.isNotEmpty(wmInQmI.getBinId())){
+					toup(id);
+				}
 				D0.setOK(true);
 			}
 		} catch (Exception e) {

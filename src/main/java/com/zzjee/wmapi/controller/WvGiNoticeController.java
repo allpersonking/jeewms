@@ -181,7 +181,6 @@ public class WvGiNoticeController extends BaseController {
 	/**
 	 * 添加wv_gi_notice
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
@@ -205,7 +204,6 @@ public class WvGiNoticeController extends BaseController {
 	/**
 	 * 更新wv_gi_notice
 	 * 
-	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
@@ -376,6 +374,16 @@ public class WvGiNoticeController extends BaseController {
 		}
 
 		List<WvGiNoticeEntity> listWvGiNotices=wvGiNoticeService.findHql(hql);
+		if(listWvGiNotices==null||listWvGiNotices.size()==0){
+			  hql = " from WvGiNoticeEntity where 1 = 1 ";
+
+			if(!StringUtil.isEmpty(searchstr)) {
+				hql=hql+"  and omNoticeId like '%" + searchstr + "%'";
+			}
+			  listWvGiNotices=wvGiNoticeService.findHql(hql);
+
+		}
+
 //		public ResponseEntity<?>  list(@RequestParam String username, @RequestParam String searchstr) {
 //		ResultDO D0 = new  ResultDO();
 //		List<WvGiNoticeEntity> listWvGiNotices=wvGiNoticeService.getList(WvGiNoticeEntity.class);
