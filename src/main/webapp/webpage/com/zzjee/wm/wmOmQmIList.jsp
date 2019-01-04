@@ -29,7 +29,7 @@
     <t:dgCol title="生产日期"  field="proData"      queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="托盘"  field="tinId"   query="true"   queryMode="single"  width="70"></t:dgCol>
    
-<%--     <t:dgCol title="批次"  field="goodsBatch"    queryMode="group"  width="120"></t:dgCol> --%>
+     <t:dgCol title="任务接收人"  field="assgnTo"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="仓位"  field="binId"   query="true"   queryMode="single"  width="90"></t:dgCol>
 <%--     <t:dgCol title="体积"  field="tinTj"    queryMode="group"  width="70"></t:dgCol> --%>
 <%--     <t:dgCol title="重量"  field="tinZhl"    queryMode="group"  width="70"></t:dgCol> --%>
@@ -49,18 +49,25 @@
       <t:dgToolBar title="选择批量更改" icon="icon-edit"  funname="editRow"></t:dgToolBar>
       <t:dgToolBar  title="批量保存" icon="icon-save" url="wmOmQmIController.do?saveRows" funname="saveData"></t:dgToolBar>
       <t:dgToolBar   title="取消批量更改" icon="icon-undo" funname="reject"></t:dgToolBar>
-      <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmOmQmIController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
+
+    <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmOmQmIController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
    <t:dgToolBar title="查看" icon="icon-search" url="wmOmQmIController.do?goUpdate" funname="detail"></t:dgToolBar>
 <%--    <t:dgToolBar title="导入" icon="icon-put" funname="ImportXls"></t:dgToolBar> --%>
    <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
 <%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
   </t:datagrid>
+
+
+
+
   </div>
  </div>
  <script src = "webpage/com/zzjee/wm/wmOmQmIList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
  });
+
+
 
  function doalltodown(){
 

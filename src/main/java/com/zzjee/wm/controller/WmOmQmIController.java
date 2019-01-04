@@ -522,7 +522,30 @@ public class WmOmQmIController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	
+	/**
+	 * 更新下架任务
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "dobatchassgnto")
+	@ResponseBody
+	public AjaxJson dobatchassgnto(String id,String assgnTo, HttpServletRequest request) {
+		String message = null;
+		AjaxJson j = new AjaxJson();
+		message = "下架任务更新成功";
+		WmOmQmIEntity t = wmOmQmIService.get(WmOmQmIEntity.class, id);
+		try {
+				t.setAssignTo(assgnTo);
+				wmOmQmIService.saveOrUpdate(t);
+				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+		} catch (Exception e) {
+			e.printStackTrace();
+			message = "下架任务更新失败";
+			throw new BusinessException(e.getMessage());
+		}
+		j.setMsg(message);
+		return j;
+	}
 
 	/**
 	 * 下架任务新增页面跳转

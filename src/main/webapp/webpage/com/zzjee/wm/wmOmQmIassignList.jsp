@@ -46,6 +46,8 @@
    <t:dgDelOpt title="删除" url="wmOmQmIController.do?doDel&id={id}"  exp="binSta#ne#Y" urlclass="ace_button"  urlfont="fa-trash-o"/>
 <%--    <t:dgToolBar title="录入" icon="icon-add" url="wmOmQmIController.do?goAdd" funname="add"></t:dgToolBar> --%>
       <t:dgToolBar title="编辑" icon="icon-edit" url="wmOmQmIController.do?goUpdate" funname="update"></t:dgToolBar>
+      <t:dgToolBar title="批量设置任务接收人"    funname="batchassgnto"></t:dgToolBar>
+
       <t:dgFunOpt title="任务确认" funname="taskassign(id)"  urlclass="ace_button"  exp="binSta#eq#I"  />
       <t:dgToolBar title="批量确认"   url="wmOmQmIController.do?doassignbatch" funname="doassignALLSelect"></t:dgToolBar>
       <t:dgToolBar title="波次生成"   url="wmOmQmIController.do?doassignwave" funname="dowaveALLSelect"></t:dgToolBar>
@@ -61,10 +63,55 @@
    <t:dgToolBar title="导出" icon="icon-putout" funname="ExportXls"></t:dgToolBar>
 <%--    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar> --%>
   </t:datagrid>
+
+      <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
+          <span style="vertical-align:middle;display:-moz-inline-box;display:inline-block;width: 90px;text-align:right;" title="任务接收人">任务接收人为: </span>
+
+          <t:autocomplete   entityName="TSBaseUser" searchField="userName" name="assgnuserName"></t:autocomplete>
+
+
+      </div>
+
   </div>
  </div>
  <script src = "webpage/com/zzjee/wm/wmOmQmIList.js"></script>		
  <script type="text/javascript">
+
+
+
+     function batchassgnto() {
+         var batchassgn;
+         batchassgn = $('input[name="assgnuserName"]').attr("value");
+         if(batchassgn==""){
+             alert("任务接收人不能为空");
+         }else{
+             var rows = $('#wmOmQmIList').datagrid('getSelections');
+             if(rows.length > 0){
+                 for(var i=0; i<rows.length; i++){
+
+                     var url = "wmOmQmIController.do?dobatchassgnto&id="+rows[i].id+"&assgnTo="+batchassgn;
+                     $.ajax({
+                         async : false,
+                         cache : false,
+                         type : 'POST',
+                         url : url,// 请求的action路径
+                         error : function() {// 请求失败处理函数
+                         },
+                         success : function(data) {
+                             var d = $.parseJSON(data);
+                             if (d.success) {
+
+                             }
+                         }
+                     });
+
+                 }
+                 tip("批量设置成功");
+                 $('#wmOmQmIList').datagrid('reload',{});
+             }
+
+         }
+     }
 
  function dowaveALLSelect(){
 

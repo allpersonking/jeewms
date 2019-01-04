@@ -39,6 +39,9 @@ public class WvGiNoticeEntity implements java.io.Serializable {
 	/**创建人登录名称*/
 	@Excel(name="创建人登录名称")
 	private String createBy;
+	/**更新日期*/
+	@Excel(name="出货日期",format = "yyyy-MM-dd hh:mm:ss")
+	private java.util.Date updateDate;
 	/**主键*/
 	private String id;
 	/**到货通知单*/
@@ -95,7 +98,44 @@ public class WvGiNoticeEntity implements java.io.Serializable {
 	/**omBeiZhu*/
 	@Excel(name="omBeiZhu")
 	private String omBeiZhu;
-	
+	/**任务接收人*/
+	@Excel(name="任务接收人")
+	private java.lang.String assignTo;
+
+	/**
+	 *方法: 取得java.util.Date
+	 *@return: java.util.Date  更新日期
+	 */
+	@Column(name ="UPDATE_DATE",nullable=true)
+	public java.util.Date getUpdateDate(){
+		return this.updateDate;
+	}
+
+	/**
+	 *方法: 设置java.util.Date
+	 *@param: java.util.Date  更新日期
+	 */
+	public void setUpdateDate(java.util.Date updateDate){
+		this.updateDate = updateDate;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  任务接收人
+	 */
+	@Column(name ="ASSIGN_TO",nullable=true,length=50)
+	public java.lang.String getAssignTo(){
+		return this.assignTo;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  任务接收人
+	 */
+	public void setAssignTo(java.lang.String assignTo){
+		this.assignTo = assignTo;
+	}
+
 	/**
 	 *方法: 取得java.util.Date
 	 *@return: java.util.Date  创建日期

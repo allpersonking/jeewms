@@ -346,6 +346,9 @@ public class WvGiNoticeController extends BaseController {
 		D0.setObj(listWvGiNotices);
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
+
+
+	//下架任务
 	@RequestMapping(value = "/search",method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?>  lists( @RequestParam(value="username", required=false) String username, @RequestParam(value="searchstr", required=false)String searchstr, @RequestParam(value="searchstr2", required=false)String searchstr2, @RequestParam(value="searchstr3", required=false)String searchstr3) {
@@ -373,6 +376,7 @@ public class WvGiNoticeController extends BaseController {
 			hql=hql+"  and binId like '%" + searchstr3 + "%'";
 		}
 
+
 		List<WvGiNoticeEntity> listWvGiNotices=wvGiNoticeService.findHql(hql);
 		if(listWvGiNotices==null||listWvGiNotices.size()==0){
 			  hql = " from WvGiNoticeEntity where 1 = 1 ";
@@ -393,6 +397,11 @@ public class WvGiNoticeController extends BaseController {
 		List<WvGiNoticeEntity> result = new ArrayList<WvGiNoticeEntity>();
 		int i = 0;
 		for (WvGiNoticeEntity t :listWvGiNotices){
+			if(StringUtil.isNotEmpty(username)&&StringUtil.isNotEmpty(t.getAssignTo())){
+				if(!username.equals(t.getAssignTo())){
+					continue;
+				}
+			}
 
 			i++;
 			if(i>100){

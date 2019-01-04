@@ -81,12 +81,11 @@
 			          	<b>任务接收人：</b>
 			          </div>
 			          <div class="col-xs-3">
-							   
-								   	<t:dictSelect field="assignTo" type="radio" extendJson="{class:'form-control'}" 
-								typeGroupCode="assgin" defaultVal="${wmOmQmIPage.assignTo}" hasLabel="false"  title="任务接收人"></t:dictSelect>     
-			
-								   
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
+							   								   	<%--<t:dictSelect field="assignTo" type="radio" extendJson="{class:'form-control'}" --%>
+								<%--typeGroupCode="assgin" defaultVal="${wmOmQmIPage.assignTo}" hasLabel="false"  title="任务接收人"></t:dictSelect>--%>
+						  <t:dictSelect field="assignTo" type="list" extendJson="{class:'form-control'}"
+										 		dictTable="t_s_base_user" dictField="username" dictText="username"  defaultVal='${wmOmQmIPage.assignTo}'  hasLabel="false"  title="任务接收人"></t:dictSelect>
+										<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">任务接收人</label>
 			          </div>
 						</div>
