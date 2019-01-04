@@ -174,7 +174,7 @@ public class WmToMoveGoodsController extends BaseController {
 				WmToMoveGoodsEntity wmToMoveGoods = systemService.getEntity(WmToMoveGoodsEntity.class,
 						id
 				);
-				wmToMoveGoods.setMoveSta(moveSta);
+				wmToMoveGoods.setMoveSta(ResourceUtil.getConfigByName("moveStats"));
 				wmToMoveGoodsService.updateEntitie(wmToMoveGoods);
 				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 			}
