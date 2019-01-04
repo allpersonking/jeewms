@@ -493,7 +493,7 @@ public class WmInQmIController extends BaseController {
 				wmInQmI.setImCusCode(wmimnotice.getImCusCode());
 //				wmInQmI.setBinId(wmInQmI.getImNoticeId());
 				String id = wmInQmIService.save(wmInQmI).toString();
-                if("on".equals(ResourceUtil.getConfigByName("onestepup"))&&StringUtil.isNotEmpty(wmInQmI.getBinId())){
+                if("on".equals(ResourceUtil.getConfigByName("webonestepup"))&&StringUtil.isNotEmpty(wmInQmI.getBinId())){
                 	toup(id);
 				}
 				systemService.addLog(message, Globals.Log_Type_INSERT,
