@@ -285,6 +285,7 @@ public class WmOmNoticeHController extends BaseController {
                     }catch ( Exception e){
 
                     }
+                    tom.setBaseGoodscount(StringUtil.getdouble(tom.getBaseGoodscount()));
                     wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){

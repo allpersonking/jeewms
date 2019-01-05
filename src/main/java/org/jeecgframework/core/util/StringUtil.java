@@ -478,7 +478,18 @@ public class StringUtil {
 		return sb.append(str).toString();
 		}
 
-	
+	public static String getdouble(String inDouble)
+	{
+		Double mainWastage = Double.parseDouble(inDouble);
+		//主材损耗费取整
+		if(mainWastage.intValue()-mainWastage==0){//判断是否符合取整条件
+			return  String.valueOf(mainWastage.intValue());
+		}else{
+			return  String.valueOf(mainWastage);
+		}
+
+	}
+
 	/**
 	 * 根据输入的多个解释和下标返回一个值
 	 * 
