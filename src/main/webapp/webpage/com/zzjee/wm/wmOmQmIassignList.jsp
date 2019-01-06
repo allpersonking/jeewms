@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/context/mytags.jsp"%>
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
+
+<!-- 自动补全 -->
+<link rel="stylesheet" href="plug-in/jquery/jquery-autocomplete/jquery.autocomplete.css" type="text/css"></link>
+<script type="text/javascript" src="plug-in/jquery/jquery-autocomplete/jquery.autocomplete.min.js"></script>
+
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
   <t:datagrid pageSize="500" name="wmOmQmIList" checkbox="true" pagination="true" fitColumns="false" title="待确认下架任务" actionUrl="wmOmQmIController.do?datagridassign" idField="id" fit="true" queryMode="group">
