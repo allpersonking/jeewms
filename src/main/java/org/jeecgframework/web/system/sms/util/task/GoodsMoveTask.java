@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.text.DecimalFormat;
 import java.util.*;
 
+import static com.xiaoleilu.hutool.date.DateTime.now;
+
 /**
  * 
  * @ClassName:SmsSendTask 所有信息的发送定时任务类
@@ -89,6 +91,8 @@ public class GoodsMoveTask {
             WvStockEntity t = systemService.get(WvStockEntity.class,resulmovea.get(i).get("id").toString());
 
                 WmToMoveGoodsEntity wmtomove = new WmToMoveGoodsEntity();
+				wmtomove.setCreateDate(now());
+				wmtomove.setCreateBy("system");
                 wmtomove.setOrderTypeCode("TPZY");
                 wmtomove.setBinFrom(t.getKuWeiBianMa());
                 wmtomove.setBinTo(t.getKuWeiBianMa());
