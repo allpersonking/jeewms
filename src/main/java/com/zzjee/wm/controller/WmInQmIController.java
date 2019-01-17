@@ -209,6 +209,16 @@ public class WmInQmIController extends BaseController {
 		List<WmInQmIEntity> WmInQmIEntityList = systemService.findHql(hql0,
 				id);// 获取行项目
 		for (WmInQmIEntity wmInQmIEntity : WmInQmIEntityList) {
+
+			try{
+				WmToUpGoodsEntity wmToUpGoodsEntityold = systemService.findUniqueByProperty(WmToUpGoodsEntity.class,"orderIdI",wmInQmIEntity.getId());
+				if (wmToUpGoodsEntityold!=null){
+					continue;
+				}
+			}catch (Exception e){
+
+			}
+
 			WmToUpGoodsEntity wmToUpGoodsEntity = new WmToUpGoodsEntity();
 			wmToUpGoodsEntity.setGoodsId(wmInQmIEntity.getGoodsId());
 			wmToUpGoodsEntity.setGoodsProData(wmInQmIEntity.getProData());

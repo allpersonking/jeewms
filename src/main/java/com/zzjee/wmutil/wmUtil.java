@@ -40,6 +40,17 @@ public class wmUtil {
 		}
 		return list;
 	}
+
+	public static void  genrp(String datafrom,String datato,String username){
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+
+		 String tsql = "call update_rp_period_in_out("+"'"+datafrom+"',"+"'"+datato+"',"+"'"+username+"'"+")";
+		try {
+			systemService.executeSql(tsql);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 	public  static  String getNextNoticeid(String orderType){
 		String noticeid=null;
 		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
