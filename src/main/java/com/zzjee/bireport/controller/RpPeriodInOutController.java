@@ -114,7 +114,6 @@ public class RpPeriodInOutController extends BaseController {
 	public void datagrid(RpPeriodInOutEntity rpPeriodInOut,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
 		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
 		try{
 		//自定义追加查询条件
 		String query_datePeriod_begin = request.getParameter("datePeriod_begin");
@@ -129,12 +128,15 @@ public class RpPeriodInOutController extends BaseController {
 			wmUtil.genrp(query_datePeriod_begin,query_datePeriod_end,ResourceUtil.getSessionUserName().getUserName());
 		}catch (Exception e){
 		}
-		if(StringUtil.isNotEmpty(query_datePeriod_begin)){
-			cq.ge("datePeriod", Integer.parseInt(query_datePeriod_begin));
-		}
-		if(StringUtil.isNotEmpty(query_datePeriod_end)){
-			cq.le("datePeriod", Integer.parseInt(query_datePeriod_end));
-		}
+//		if(StringUtil.isNotEmpty(query_datePeriod_begin)){
+//			cq.ge("datePeriod", Integer.parseInt(query_datePeriod_begin));
+//		}
+//		if(StringUtil.isNotEmpty(query_datePeriod_end)){
+//			cq.le("datePeriod", Integer.parseInt(query_datePeriod_end));
+//		}
+            rpPeriodInOut.setDatePeriod(null);
+            org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
+
             cq.eq("username",ResourceUtil.getSessionUserName().getUserName());
 		}catch (Exception e) {
 			throw new BusinessException(e.getMessage());
@@ -157,18 +159,19 @@ public class RpPeriodInOutController extends BaseController {
 	public String exportXls(RpPeriodInOutEntity rpPeriodInOut,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
 			//自定义追加查询条件
-//			String query_datePeriod_begin = request.getParameter("datePeriod_begin");
-//			String query_datePeriod_end = request.getParameter("datePeriod_end");
-//			try{
-//                if(!StringUtil.isNotEmpty(query_datePeriod_begin)){
-//                    query_datePeriod_begin = "2018-01-01";
-//                }
-//                if(!StringUtil.isNotEmpty(query_datePeriod_end)){
-//                    query_datePeriod_end = "2099-01-01";
-//                }
-//				wmUtil.genrp(query_datePeriod_begin,query_datePeriod_end,ResourceUtil.getSessionUserName().getUserName());
-//			}catch (Exception e){
-//			}
+			String query_datePeriod_begin = request.getParameter("datePeriod_begin");
+			String query_datePeriod_end = request.getParameter("datePeriod_end");
+			try{
+                if(!StringUtil.isNotEmpty(query_datePeriod_begin)){
+                    query_datePeriod_begin = "2018-01-01";
+                }
+                if(!StringUtil.isNotEmpty(query_datePeriod_end)){
+                    query_datePeriod_end = "2099-01-01";
+                }
+				wmUtil.genrp(query_datePeriod_begin,query_datePeriod_end,ResourceUtil.getSessionUserName().getUserName());
+			}catch (Exception e){
+			}
+        rpPeriodInOut.setDatePeriod(null);
         rpPeriodInOut.setUsername(ResourceUtil.getSessionUserName().getUserName());
 		CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
 		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, rpPeriodInOut, request.getParameterMap());
