@@ -112,12 +112,14 @@ public class RpPeriodInOutController extends BaseController {
 
 	@RequestMapping(params = "datagrid")
 	public void datagrid(RpPeriodInOutEntity rpPeriodInOut,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		rpPeriodInOut.setCreateDate(null);
+
 		CriteriaQuery cq = new CriteriaQuery(RpPeriodInOutEntity.class, dataGrid);
 		//查询条件组装器
 		try{
 		//自定义追加查询条件
-		String query_datePeriod_begin = request.getParameter("createDate_begin");
-		String query_datePeriod_end = request.getParameter("createDate_end");
+		String query_datePeriod_begin = request.getParameter("createDate1_begin");
+		String query_datePeriod_end = request.getParameter("createDate1_end");
 		try{
             if(!StringUtil.isNotEmpty(query_datePeriod_begin)){
                 query_datePeriod_begin = "2018-01-01";
@@ -159,8 +161,8 @@ public class RpPeriodInOutController extends BaseController {
 	public String exportXls(RpPeriodInOutEntity rpPeriodInOut,HttpServletRequest request,HttpServletResponse response
 			, DataGrid dataGrid,ModelMap modelMap) {
 			//自定义追加查询条件
-			String query_datePeriod_begin = request.getParameter("createDate_begin");
-			String query_datePeriod_end = request.getParameter("createDate_end");
+			String query_datePeriod_begin = request.getParameter("createDate1_begin");
+			String query_datePeriod_end = request.getParameter("createDate1_end");
 			try{
                 if(!StringUtil.isNotEmpty(query_datePeriod_begin)){
                     query_datePeriod_begin = "2018-01-01";
