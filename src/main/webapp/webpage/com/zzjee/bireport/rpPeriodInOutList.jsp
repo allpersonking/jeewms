@@ -3,11 +3,11 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="rpPeriodInOutList" checkbox="false" pagination="true" fitColumns="false" title="期间出货统计" actionUrl="rpPeriodInOutController.do?datagrid" idField="id" fit="true" queryMode="group">
+  <t:datagrid name="rpPeriodInOutList" checkbox="false" autoLoadData="false" pagination="true" fitColumns="false" title="期间出货统计" actionUrl="rpPeriodInOutController.do?datagrid" idField="id" fit="true" queryMode="group">
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="期间选择"  field="createDate1" formatter="yyyy-MM-dd"    query="true"  queryMode="group"  width="120"></t:dgCol>
+    <t:dgCol title="期间选择"  field="createDate1" formatter="yyyy-MM-dd"    query="true"  queryMode="group"  width="1"></t:dgCol>
     <t:dgCol title="更新人名称"  field="updateName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新人登录名称"  field="updateBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新日期"  field="updateDate" formatter="yyyy-MM-dd" hidden="true"  queryMode="single"  width="120"></t:dgCol>
