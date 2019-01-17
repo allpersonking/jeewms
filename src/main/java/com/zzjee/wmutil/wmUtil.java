@@ -83,7 +83,7 @@ public class wmUtil {
 						((Long) countMap.get("count")).intValue(), 4,
 						'0');
 			}else if(orderType.equals("09")){
-				noticeid = "QT"
+				noticeid = "QTRK"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
@@ -105,7 +105,7 @@ public class wmUtil {
 			orderType = "11";
 		}
 		if(orderType.equals("19")){
-			noticeid = "QT"
+			noticeid = "QTCK"
 					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 					+ "-"
 					+ StringUtil.leftPad(
