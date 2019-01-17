@@ -7,14 +7,14 @@
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="创建日期"  field="createDate" formatter="yyyy-MM-dd" hidden="true"  queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="期间选择"  field="createDate"     query="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="更新人名称"  field="updateName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新人登录名称"  field="updateBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新日期"  field="updateDate" formatter="yyyy-MM-dd" hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="流程状态"  field="bpmStatus"  hidden="true"  queryMode="single" dictionary="bpm_status" width="120"></t:dgCol>
-    <t:dgCol title="期间"  field="datePeriod" formatter="yyyy-MM-dd"  query="true" queryMode="group"  width="120"></t:dgCol>
+    <t:dgCol title="期间"  field="datePeriod"     queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="用户名"  field="username"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品编码"  field="goodsId"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="goodsName"   query="true" queryMode="single"  width="220"></t:dgCol>
