@@ -306,6 +306,38 @@ public class wmUtil {
 
        return flag;
     }
+
+	public static String getstock(String goodsid) {
+		String  goodsqua = "0";
+		try {
+			String goods = null;
+			if (!StringUtil.isEmpty(goodsid)) {
+				if (goodsid.endsWith("l")) {
+					goods = goodsid.substring(0, goodsid.length() - 1);
+					System.out.print("11111111I" + goods);
+				} else {
+					goods = goodsid;
+					System.out.print("22222" + goods);
+
+				}
+
+			}
+			SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
+			String tsql = " select cast(sum(ws.base_goodscount) as signed) as goods_qua"
+					+ "  from wv_stock ws where "
+					+ "     ws.goods_id =  ? "
+					+ "   group by ws.goods_id";
+
+			List<Map<String, Object>> result = systemService.findForJdbc(tsql, goods);
+			if (result.size() > 0) {
+				goodsqua = result.get(0).get("goods_qua").toString();
+			}
+		}catch (Exception e){
+		}
+		return goodsqua;
+	}
+
+
     
     public static boolean checkstcoka(String binid,String tinid,String goodsid,String prodate,String basecount) {
         boolean flag = false;

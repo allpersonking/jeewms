@@ -40,7 +40,7 @@
 	<t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="wmToDownGoodsController.do?doUpdate" tiptype="1" >
 			<input type="hidden" id="btn_sub" class="btn_sub"/>
 			<input type="hidden" name="id" value='${wmToDownGoodsPage.id}' >
-			<input id="createDate" name="createDate" type="hidden" value="${wmToDownGoodsPage.createDate }"/>
+			<%--<input id="createDate" name="createDate" type="hidden" value="${wmToDownGoodsPage.createDate }"/>--%>
 		<input id="createBy" name="createBy" type="hidden" value="${wmToDownGoodsPage.createBy }"/>
 		<input id="createName" name="createName" type="hidden" value="${wmToDownGoodsPage.createName }"/>
 		<input id="updateBy" name="updateBy" type="hidden" value="${wmToDownGoodsPage.updateBy }"/>
@@ -55,6 +55,19 @@
 			    <!-- tab内容 -->
 			    <div class="con-wrapper" id="con-wrapper1" style="display: block;">
 			      <div class="row form-wrapper">
+					  <div class="row show-grid">
+						  <div class="col-xs-3 text-center">
+							  <b>创建日期：</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="createDate" name="createDate" onClick="WdatePicker()" type="text" class="form-control"
+									 ignore="ignore"
+									 value='${wmToUpGoodsPage.createDate}' />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">创建日期</label>
+						  </div>
+					  </div>
+
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
 			          	<b>商品编码：</b>

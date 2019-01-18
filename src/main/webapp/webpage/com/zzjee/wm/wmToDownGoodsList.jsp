@@ -7,7 +7,7 @@
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"  hidden="true"    queryMode="single"  width="80"></t:dgCol>
     <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="创建日期"  field="createDate" hidden="true"  formatter="yyyy-MM-dd"   queryMode="single"  width="80"></t:dgCol>
+    <t:dgCol title="创建日期"  field="createDate"    formatter="yyyy-MM-dd"   queryMode="single"  width="80"></t:dgCol>
     <t:dgCol title="更新人名称"  field="updateName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新人登录名称"  field="updateBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="更新日期"  field="updateDate" formatter="yyyy-MM-dd" hidden="true"  queryMode="single"  width="120"></t:dgCol>

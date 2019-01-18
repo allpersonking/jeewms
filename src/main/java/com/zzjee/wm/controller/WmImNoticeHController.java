@@ -1159,7 +1159,9 @@ public class WmImNoticeHController extends BaseController {
 						CellStyle cs3 = wb.createCellStyle();
 						CellStyle cs4 = wb.createCellStyle();
 						CellStyle cs5 = wb.createCellStyle();
-						CellStyle cs51 = wb.createCellStyle();
+			CellStyle cs5r = wb.createCellStyle();
+
+			CellStyle cs51 = wb.createCellStyle();
 						CellStyle cs52 = wb.createCellStyle();
 						// 创建两种字体
 						Font f = wb.createFont();
@@ -1220,6 +1222,18 @@ public class WmImNoticeHController extends BaseController {
 						cs5.setBorderTop(CellStyle.BORDER_THIN);
 						cs5.setBorderBottom(CellStyle.BORDER_THIN);
 						cs5.setWrapText(true);
+
+
+			cs5r.setFont(f2);
+			cs5r.setBorderLeft(CellStyle.BORDER_THIN);
+			cs5r.setBorderRight(CellStyle.BORDER_THIN);
+			cs5r.setBorderTop(CellStyle.BORDER_THIN);
+			cs5r.setBorderBottom(CellStyle.BORDER_THIN);
+			cs5r.setWrapText(true);
+			cs5r.setAlignment(CellStyle.ALIGN_RIGHT);
+
+
+
 						cs51.setFont(f2);
 						cs51.setBorderLeft(CellStyle.BORDER_THIN);
 						cs51.setBorderRight(CellStyle.BORDER_THIN);
@@ -1378,6 +1392,17 @@ public class WmImNoticeHController extends BaseController {
 					String[]   columnNamest = { "序号", "商品编码", "商品名称", "生产日期", "货温","单位", "数量", "毛重KG","托盘数","备注" };
 					   columnNames = columnNamest;
 				   }
+		   try{
+			   if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))){
+				   String[] columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "货温","单位", "数量", "毛重KG","体积cm³","备注" };
+				   if(ResourceUtil.getConfigByName("systuopan").equals("yes")){
+					   String[]   columnNamest1 = { "序号", "商品编码", "商品名称", "生产日期", "货温","单位", "数量", "毛重KG","托盘数","备注" };
+					   columnNames1 = columnNamest1;
+				   }
+				   columnNames = columnNames1;
+			   }
+		   }catch ( Exception e){
+		   }
 			for (int i = 0; i < columnNames.length; i++) {
 				Cell cell = rowColumnName.createCell(i);
 				cell.setCellValue(columnNames[i]);
@@ -1412,9 +1437,10 @@ public class WmImNoticeHController extends BaseController {
                         try {
     						Cell cell4 = rowColumnValue.createCell(3);// 生产日期
 
-    						cell4.setCellStyle(cs5);
+    						cell4.setCellStyle(cs5r);
     						cell4.setCellValue(result.get(i).get("pro_data")
     								.toString());
+
 						} catch (Exception e) {
 							// TODO: handle exception
 						
@@ -1482,6 +1508,17 @@ public class WmImNoticeHController extends BaseController {
 
 
 						Cell cell10 = rowColumnValue.createCell(9);// 备注
+						 try{
+							 if("hr".equals(ResourceUtil.getConfigByName("wm.rkd"))) {
+								 try{
+//									 cell10.setCellValue(wmUtil.getstock(result.get(i).get("goods_id").toString()));
+								 }catch (Exception e){
+
+								 }
+							 }
+						 }catch (Exception e){
+
+						 }
 						cell10.setCellStyle(cs5);
 				
 				cerconNo++;

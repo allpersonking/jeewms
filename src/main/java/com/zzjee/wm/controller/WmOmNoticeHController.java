@@ -1143,6 +1143,8 @@ public class WmOmNoticeHController extends BaseController {
 			CellStyle cs3 = wb.createCellStyle();
 			CellStyle cs4 = wb.createCellStyle();
 			CellStyle cs5 = wb.createCellStyle();
+			CellStyle cs5r = wb.createCellStyle();
+
 			CellStyle cs51 = wb.createCellStyle();
 			CellStyle cs52 = wb.createCellStyle();
 			// 创建两种字体
@@ -1204,6 +1206,15 @@ public class WmOmNoticeHController extends BaseController {
 			cs5.setBorderTop(CellStyle.BORDER_THIN);
 			cs5.setBorderBottom(CellStyle.BORDER_THIN);
 			cs5.setWrapText(true);
+
+
+			cs5r.setFont(f2);
+			cs5r.setBorderLeft(CellStyle.BORDER_THIN);
+			cs5r.setBorderRight(CellStyle.BORDER_THIN);
+			cs5r.setBorderTop(CellStyle.BORDER_THIN);
+			cs5r.setBorderBottom(CellStyle.BORDER_THIN);
+			cs5r.setWrapText(true);
+			cs5r.setAlignment(CellStyle.ALIGN_RIGHT);
 			cs51.setFont(f2);
 			cs51.setBorderLeft(CellStyle.BORDER_THIN);
 			cs51.setBorderRight(CellStyle.BORDER_THIN);
@@ -1228,7 +1239,7 @@ public class WmOmNoticeHController extends BaseController {
 //			String tsql = "SELECT wq.pro_data,wq.base_unit,wq.rec_deg, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,cast(sum(wq.tin_tj) as signed) tin_tj ,cast(sum(wq.tin_zhl)  as signed) tin_zhl "
 //					+" FROM wm_om_qm_i wq,mv_goods mg where wq.om_notice_id = ? "
 //					+" and  wq.goods_id = mg.goods_code group by wq.om_notice_id, mg.goods_code,wq.pro_data";
-			String tsql = "SELECT wq.goods_pro_data as pro_data,wq.base_unit, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj ,cast(mg.zhl_kg/mg.chl_shl  as signed) tin_zhl  "
+			String tsql = "SELECT wq.goods_pro_data as pro_data,wq.base_unit, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj ,(mg.zhl_kg/mg.chl_shl ) as tin_zhl  "
 					+" FROM wm_to_down_goods wq,mv_goods mg where wq.order_id =  ? "
 					+" and  wq.goods_id = mg.goods_code group by wq.order_id, mg.goods_code,wq.goods_pro_data";
 
@@ -1238,7 +1249,7 @@ public class WmOmNoticeHController extends BaseController {
 
 			int size = result.size();
 			if(size<1){
-				tsql = "SELECT wq.pro_data,wq.base_unit, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj ,cast(mg.zhl_kg/mg.chl_shl  as signed) tin_zhl "
+				tsql = "SELECT wq.pro_data,wq.base_unit, mg.goods_code, mg.goods_id,mg.shp_ming_cheng,cast(sum(wq.base_goodscount) as signed) as goods_count,mg.chl_shl,cast(mg.ti_ji_cm/mg.chl_shl as signed) tin_tj , (mg.zhl_kg/mg.chl_shl)  as   tin_zhl "
 						+" FROM wm_om_qm_i wq,mv_goods mg where wq.om_notice_id = ? "
 						+" and  wq.goods_id = mg.goods_code group by wq.om_notice_id, mg.goods_code,wq.pro_data";
 				result = systemService
@@ -1361,6 +1372,17 @@ public class WmOmNoticeHController extends BaseController {
 
 				Row rowColumnName = sheet.createRow((short) page*20+8); // 列名
 				String[] columnNames = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","体积/cm³","备注" };
+				try{
+					if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))){
+//						String[]  columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","库存","备注" };
+						String[]  columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","体积/cm³","备注" };
+
+						columnNames = columnNames1;
+					}
+				}catch ( Exception e){
+
+				}
+
 
 				for (int i = 0; i < columnNames.length; i++) {
 					Cell cell = rowColumnName.createCell(i);
@@ -1395,9 +1417,14 @@ public class WmOmNoticeHController extends BaseController {
 						cell3.setCellStyle(cs5);
 						try {
 							Cell cell4 = rowColumnValue.createCell(3);// 生产日期
-							cell4.setCellValue(result.get(i).get("pro_data")
+
+
+
+								cell4.setCellValue(result.get(i).get("pro_data")
 									.toString());
-							cell4.setCellStyle(cs5);
+
+
+							cell4.setCellStyle(cs5r);
 						} catch (Exception e) {
 							// TODO: handle exception
 
@@ -1448,19 +1475,35 @@ public class WmOmNoticeHController extends BaseController {
 						}
 						cell8.setCellStyle(cs5);
 						Cell cell9 = rowColumnValue.createCell(8);// 体积
-						try {
-							double tij = Double.parseDouble(result.get(i).get("tin_tj")
-									.toString()) * Double.parseDouble(result.get(i).get("goods_count").toString());
+//						try {
+//							double tij = Double.parseDouble(result.get(i).get("tin_tj")
+//									.toString()) * Double.parseDouble(result.get(i).get("goods_count").toString());
+//
+//
+//							cell9.setCellValue(tij);
+//
+//						} catch (Exception e) {
+//							// TODO: handle exception
+//						}
 
+						try{
+							if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))) {
+								try{
+//									cell9.setCellValue(wmUtil.getstock(result.get(i).get("goods_id").toString()));
+								}catch (Exception e){
 
-							cell9.setCellValue(tij);
+								}
+							}
+						}catch (Exception e){
 
-						} catch (Exception e) {
-							// TODO: handle exception
 						}
+
+
 						cell9.setCellStyle(cs5);
 
 						Cell cell10 = rowColumnValue.createCell(9);// 备注
+
+
 						cell10.setCellStyle(cs5);
 
 						cerconNo++;

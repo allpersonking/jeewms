@@ -50,7 +50,23 @@
 			    <!-- tab内容 -->
 			    <div class="con-wrapper" id="con-wrapper1" style="display: block;">
 			      <div class="row form-wrapper">
-							<div class="row show-grid">
+
+					  <div class="row show-grid">
+						  <div class="col-xs-3 text-center">
+							  <b>创建日期：</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="createDate" name="createDate" onClick="WdatePicker()" type="text" class="form-control"
+									 ignore="ignore"
+									 value='${wmToUpGoodsPage.createDate}' />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">创建日期</label>
+						  </div>
+					  </div>
+
+
+
+					  <div class="row show-grid">
 			          <div class="col-xs-3 text-center">
 			          	<b>商品编码：</b>
 			          </div>
@@ -111,7 +127,7 @@
 			          	<b>生产日期：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsProData" name="goodsProData" type="text" class="form-control"
+								<input id="goodsProData" name="goodsProData" onClick="WdatePicker()" type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToUpGoodsPage.goodsProData}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
