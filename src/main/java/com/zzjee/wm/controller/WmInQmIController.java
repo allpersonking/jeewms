@@ -4,10 +4,7 @@ import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
-import com.zzjee.wm.entity.WmImNoticeHEntity;
-import com.zzjee.wm.entity.WmImNoticeIEntity;
-import com.zzjee.wm.entity.WmInQmIEntity;
-import com.zzjee.wm.entity.WmToUpGoodsEntity;
+import com.zzjee.wm.entity.*;
 import com.zzjee.wm.service.WmInQmIServiceI;
 
 import java.util.ArrayList;
@@ -129,7 +126,26 @@ public class WmInQmIController extends BaseController {
 		}
 //		cq.like("imNoticeId", "RK%");
 		cq.add();
+
 		this.wmInQmIService.getDataGridReturn(cq, true);
+		List<WmInQmIEntity> resultold = dataGrid.getResults();
+		List<WmInQmIEntity> resultnew = new ArrayList<>();
+		for(WmInQmIEntity t:resultold){
+			if (StringUtil.isEmpty(t.getGoodsName())){
+				try{
+					MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
+					if(goods!=null){
+						t.setGoodsName(goods.getGoodsName());
+					}
+				}catch (Exception e){
+
+				}
+
+			}
+
+			resultnew.add(t);
+		}
+		dataGrid.setResults(resultnew);
 		TagUtil.datagrid(response, dataGrid);
 	}
 	@RequestMapping(params = "datagridt")
@@ -153,6 +169,24 @@ public class WmInQmIController extends BaseController {
         cq.like("imNoticeId", "TH%");
 		cq.add();
 		this.wmInQmIService.getDataGridReturn(cq, true);
+		List<WmInQmIEntity> resultold = dataGrid.getResults();
+		List<WmInQmIEntity> resultnew = new ArrayList<>();
+		for(WmInQmIEntity t:resultold){
+			if (StringUtil.isEmpty(t.getGoodsName())){
+				try{
+					MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
+					if(goods!=null){
+						t.setGoodsName(goods.getGoodsName());
+					}
+				}catch (Exception e){
+
+				}
+
+			}
+
+			resultnew.add(t);
+		}
+		dataGrid.setResults(resultnew);
 		TagUtil.datagrid(response, dataGrid);
 	}
 	/**
@@ -232,13 +266,11 @@ public class WmInQmIController extends BaseController {
 			wmToUpGoodsEntity.setCusCode(wmInQmIEntity.getCusCode());
 			wmToUpGoodsEntity.setGoodsName(wmInQmIEntity.getGoodsName());
 			wmToUpGoodsEntity.setActTypeCode("01");
-			String sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where    md.ku_wei_bian_ma = '"
-					+ wmInQmIEntity.getBinId() + "'";
-			Map<String, Object> binMap = systemService.findOneForJdbc(sql);
-			if (binMap == null) {
-
+//			String sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where    md.ku_wei_bian_ma = '"
+//					+ wmInQmIEntity.getBinId() + "'";
+//			Map<String, Object> binMap = systemService.findOneForJdbc(sql);
+			if (!wmUtil.checkbin(wmInQmIEntity.getBinId())) {
 				return false;
-
 			}
 
 			try {
@@ -398,18 +430,17 @@ public class WmInQmIController extends BaseController {
 			return j;
 			// TODO: handle exception
 		}
+		if(StringUtil.isNotEmpty(wmInQmI.getBinId())){
+			if(!wmUtil.checkbin(wmInQmI.getBinId())){
+				j.setSuccess(false);
+				message = wmInQmI.getBinId()+"储位不存在";
+				return j;
+			}
+		}
 		try {
 			//托盘占用判断
 			if("yes".equals(ResourceUtil.getConfigByName("usetuopan"))){
-//				String tsql = "select bin_id  as tinid from wv_stock where kuctype = '库存' and  goods_qua <> 0  and bin_id = '"
-//						+ wmInQmI.getTinId() + "'";
-//				Map<String, Object> tinMap = systemService.findOneForJdbc(tsql);
-//				if (tinMap != null) {
-//					j.setSuccess(false);
-//					message = "托盘已被占用";
-//					j.setMsg(message);
-//					return j;
-//				}
+
 			}else{
 				if (StringUtil.isEmpty(wmInQmI.getTinId())){
 					wmInQmI.setTinId(ResourceUtil.getConfigByName("tuopanma"));
@@ -574,21 +605,24 @@ public class WmInQmIController extends BaseController {
 				request.getParameter("id"));
 
 		String binid = request.getParameter("binid");
+
+		if(StringUtil.isNotEmpty(binid)){
+			if(!wmUtil.checkbin(binid)){
+				j.setSuccess(false);
+				message = wmInQmI.getBinId()+"储位不存在";
+				return j;
+			}
+		}
+
+
 		if(StringUtil.isEmpty(binid)){
 			message = "储位不能为空";
 			j.setSuccess(false);
 		}else{
-			String sql = "select   binid from wv_avabin where binid = '"
-					+ binid
-					+ "'";
-			Map<String, Object> binMap =  systemService.findOneForJdbc(sql);
-			if(binMap==null||binMap.isEmpty()){
-				message = "储位不能用";
-				j.setSuccess(false);
-			}else{
+
 				t.setBinId(binid);
 				systemService.updateEntitie(t);
-			}
+//			}
 
 
 		}
@@ -613,38 +647,15 @@ public class WmInQmIController extends BaseController {
 		WmInQmIEntity t = wmInQmIService.get(WmInQmIEntity.class,
 				wmInQmI.getId());
 		try {
-//			if(StringUtil.isNotEmpty(wmInQmI.getBinId())){
-//			String sql = "select   binid from wv_avabin where binid = '"
-//					+ wmInQmI.getBinId()
-//					+ "'";
-//			Map<String, Object> binMap =  systemService.findOneForJdbc(sql);
-//			if(wmInQmI.getBinId().equals(t.getBinId())){//没有更改则绕过盘点
-//				binMap.put("bin", "1");
-//			}
-//
-//			if (binMap != null) {
-//				sql = "select     md.suo_shu_ke_hu as cuscode from    md_bin md  where md.ting_yong = 'N' and   md.ku_wei_bian_ma = '"
-//						+ wmInQmI.getBinId() + "' limit 1";
-//				binMap = systemService.findOneForJdbc(sql);
-//				if (binMap != null) {
-//						MyBeanUtils.copyBeanNotNull2Bean(wmInQmI, t);
-//						t.setBaseUnit(null);
-//						wmInQmIService.saveOrUpdate(t);
-//						systemService.addLog(message, Globals.Log_Type_UPDATE,
-//								Globals.Log_Leavel_INFO);
-//				} else {
-//					j.setSuccess(false);
-//					message = "储位不存在 或已停用";
-//					j.setMsg(message);
-//					return j;
-//				}
-//			} else {
-//				j.setSuccess(false);
-//				message = "储位已被占用";
-//				j.setMsg(message);
-//				return j;
-//			}
-//			}else{
+
+			if(StringUtil.isNotEmpty(wmInQmI.getBinId())){
+				if(!wmUtil.checkbin(wmInQmI.getBinId())){
+					j.setSuccess(false);
+					message = wmInQmI.getBinId()+"储位不存在";
+					return j;
+				}
+			}
+
 				MyBeanUtils.copyBeanNotNull2Bean(wmInQmI, t);
 				t.setBaseUnit(null);
 				wmInQmIService.saveOrUpdate(t);

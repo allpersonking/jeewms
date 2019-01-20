@@ -69,11 +69,17 @@ public class RpPeriodInOutEntity implements java.io.Serializable {
 	@Excel(name="规格")
 	private String goodsGuige;
 	/**入库数量*/
+	@Excel(name="期初数量")
+	private String goodsQc;
+	/**入库数量*/
 	@Excel(name="入库数量")
 	private String goodsIn;
 	/**出库数量*/
 	@Excel(name="出库数量")
 	private String goodsOut;
+	/**入库数量*/
+	@Excel(name="期末数量")
+	private String goodsQm;
 	/**现库存*/
 	@Excel(name="现库存")
 	private String goodsNow;
@@ -352,6 +358,25 @@ public class RpPeriodInOutEntity implements java.io.Serializable {
 	public void setGoodsIn(String goodsIn){
 		this.goodsIn = goodsIn;
 	}
+
+
+	@Column(name ="GOODS_QC",nullable=true,length=32)
+	public String getGoodsQc() {
+		return goodsQc;
+	}
+
+	public void setGoodsQc(String goodsQc) {
+		this.goodsQc = goodsQc;
+	}
+	@Column(name ="GOODS_QM",nullable=true,length=32)
+	public String getGoodsQm() {
+		return goodsQm;
+	}
+
+	public void setGoodsQm(String goodsQm) {
+		this.goodsQm = goodsQm;
+	}
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  出库数量

@@ -1,7 +1,9 @@
 package com.zzjee.wmutil;
 
+import com.zzjee.md.entity.MdBinEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.sys.entity.SysParaEntity;
+import org.antlr.stringtemplate.language.Cat;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.ResourceUtil;
@@ -377,6 +379,24 @@ public class wmUtil {
        return flag;
     }
 
+
+
+    public static boolean  checkbin(String binid){
+    	boolean flag= false;
+		SystemService systemService = ApplicationContextUtil.getContext().getBean(SystemService.class);
+		try{
+			MdBinEntity mdBinEntity = systemService.findUniqueByProperty(MdBinEntity.class,"kuWeiBianMa",binid);
+			if (mdBinEntity!=null){
+				if("N".equals(mdBinEntity.getTingYong())){
+					flag = true;
+				}
+
+			}
+		}catch (Exception e){
+
+		}
+		return  flag;
+	}
 
     public  static String getscrp(){
 		if("no".equals(ResourceUtil.getConfigByName("scrqon"))){

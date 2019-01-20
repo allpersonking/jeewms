@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
   <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="rpPeriodInOutList" checkbox="false" autoLoadData="false" pagination="true" fitColumns="false" title="期间出货统计" actionUrl="rpPeriodInOutController.do?datagrid" idField="id" fit="true" queryMode="group">
+  <t:datagrid name="rpPeriodInOutList" checkbox="false" autoLoadData="false" pagination="true" fitColumns="false" title="进销存统计表" actionUrl="rpPeriodInOutController.do?datagrid" idField="id" fit="true" queryMode="group">
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
@@ -20,8 +20,12 @@
     <t:dgCol title="商品名称"  field="goodsName"   query="true" queryMode="single"  width="220"></t:dgCol>
     <t:dgCol title="单位"  field="goodsUnit"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="规格"  field="goodsGuige"    queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="期初数量"  field="goodsQc"    queryMode="single"  width="120"></t:dgCol>
+
     <t:dgCol title="入库数量"  field="goodsIn"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="出库数量"  field="goodsOut"    queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="期末数量"  field="goodsQm"    queryMode="single"  width="120"></t:dgCol>
+
     <t:dgCol title="现库存"  field="goodsNow"    queryMode="single"  width="120"></t:dgCol>
    <%--<t:dgCol title="操作" field="opt" width="100"></t:dgCol>--%>
    <%--<t:dgDelOpt title="删除" url="rpPeriodInOutController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>--%>
