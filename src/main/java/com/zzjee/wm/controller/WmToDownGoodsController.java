@@ -3,10 +3,7 @@ package com.zzjee.wm.controller;
 import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.MvCusEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
-import com.zzjee.wm.entity.WmOmNoticeHEntity;
-import com.zzjee.wm.entity.WmOmNoticeIEntity;
-import com.zzjee.wm.entity.WmOmQmIEntity;
-import com.zzjee.wm.entity.WmToDownGoodsEntity;
+import com.zzjee.wm.entity.*;
 import com.zzjee.wm.page.Delrowpage;
 import com.zzjee.wm.service.WmToDownGoodsServiceI;
 
@@ -126,6 +123,26 @@ public class WmToDownGoodsController extends BaseController {
 		cq.setOrder(map1); 
 		cq.add();
 		this.wmToDownGoodsService.getDataGridReturn(cq, true);
+		List<WmToDownGoodsEntity> resultold = dataGrid.getResults();
+		List<WmToDownGoodsEntity> resultnew = new ArrayList<>();
+		for(WmToDownGoodsEntity t:resultold){
+			if (StringUtil.isEmpty(t.getGoodsName())){
+				try{
+					MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
+					if(goods!=null){
+						t.setGoodsName(goods.getGoodsName());
+					}
+				}catch (Exception e){
+
+				}
+
+			}
+
+			resultnew.add(t);
+		}
+		dataGrid.setResults(resultnew);
+
+
 		TagUtil.datagrid(response, dataGrid);
 	}
 	

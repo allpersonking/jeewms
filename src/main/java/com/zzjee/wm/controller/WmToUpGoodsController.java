@@ -134,6 +134,26 @@ public class WmToUpGoodsController extends BaseController {
 		cq.setOrder(map1); 
 		cq.add();
 		this.wmToUpGoodsService.getDataGridReturn(cq, true);
+
+		List<WmToUpGoodsEntity> resultold = dataGrid.getResults();
+		List<WmToUpGoodsEntity> resultnew = new ArrayList<>();
+		for(WmToUpGoodsEntity t:resultold){
+			if (StringUtil.isEmpty(t.getGoodsName())){
+				try{
+					MvGoodsEntity goods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", t.getGoodsId());
+					if(goods!=null){
+						t.setGoodsName(goods.getGoodsName());
+					}
+				}catch (Exception e){
+
+				}
+
+			}
+
+			resultnew.add(t);
+		}
+		dataGrid.setResults(resultnew);
+
 		TagUtil.datagrid(response, dataGrid);
 	}
 	
