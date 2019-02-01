@@ -114,29 +114,32 @@ function printview(){
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:102pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
+
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
+
 		<tr height=18 style='height:13.2pt'>
-			<td colspan=8 height=18 width=585 style='height:13.2pt;width:438pt'></td>
+			<td colspan=9 height=18 width=585 style='height:13.2pt;width:438pt'></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<td  rowspan="2" class=xl69>
+			<td  rowspan="3" class=xl69>
 				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmImNoticeHPage.noticeId}" style="width:80px;height:80px;vertical-align:right">
 			</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">入库通知单</span></td>
 			<td colspan=3 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
-			<td colspan=1 style='mso-ignore:colspan'></td>
+			<td colspan=2 style='mso-ignore:colspan'></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>货主：${cusname}</td>
-			<td colspan=3 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>供应商：${supname}</td>
+			<td colspan=4 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>供应商：${supname}</td>
 			<td></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.imBeizhu}</td>
-			<td colspan=3 >WMS单号：${wmImNoticeHPage.noticeId}</td>
+			<td colspan=4 >WMS单号：${wmImNoticeHPage.noticeId}</td>
 			<td></td>
 		</tr>
 
@@ -151,6 +154,8 @@ function printview(){
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
+
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
 
 			<td  ></td>
@@ -167,6 +172,8 @@ function printview(){
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsPrdData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsCount }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
+
 				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
