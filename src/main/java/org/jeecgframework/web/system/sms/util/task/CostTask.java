@@ -1247,6 +1247,7 @@ public class CostTask {
 			WmDayCostsku.setDayCostHsj(dfsku.format(dayCostHsj));
 			systemService.save(WmDayCostsku);
 		}
-
+		org.jeecgframework.core.util.LogUtil
+				.info("===================10仓租成功===================");
 	}
 }
