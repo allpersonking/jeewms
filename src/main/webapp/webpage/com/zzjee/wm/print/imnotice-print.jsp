@@ -112,7 +112,7 @@ function printview(){
 		<col width=94  style='mso-width-source:userset;mso-width-alt:2986;
  width:73pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:102pt'>
+		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:60pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
@@ -172,7 +172,7 @@ function printview(){
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsPrdData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsCount }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
 
 				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>

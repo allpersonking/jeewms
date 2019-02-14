@@ -286,6 +286,35 @@ public class WmOmNoticeHController extends BaseController {
 
                     }
                     tom.setBaseGoodscount(StringUtil.getdouble(tom.getBaseGoodscount()));
+
+					try{
+						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+								MvGoodsEntity.class, "goodsCode", tom.getGoodsId());
+						if (mvgoods != null) {
+							tom.setShpGuiGe(mvgoods.getShpGuiGe());
+						}
+						int shpguige = 0;
+						try{
+							shpguige = Integer.parseInt(mvgoods.getShpGuiGe());
+						}catch (Exception e){
+
+						}
+						if(shpguige!=0){
+							Double xianhshu = Math.floor(Double.parseDouble(tom.getBaseGoodscount())/shpguige);
+							Double jianshu = Double.parseDouble(tom.getBaseGoodscount())%shpguige;
+							long xiangshuint = Math.round(xianhshu);
+							if(xianhshu > 0){
+								tom.setPickNotice(xiangshuint+"整"+jianshu+tom.getBaseUnit());
+
+							}else{
+								tom.setPickNotice(tom.getBaseGoodscount()+tom.getBaseUnit());
+							}
+						}
+
+					}catch (Exception e){
+
+					}
+
                     wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){

@@ -123,6 +123,8 @@ public class WmOmQmIEntity implements java.io.Serializable {
 
 	@Excel(name="保质期")
 	private java.lang.String baoZhiq;
+	private java.lang.String shpGuiGe;
+	private java.lang.String pickNotice;
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -668,5 +670,29 @@ public class WmOmQmIEntity implements java.io.Serializable {
 
 	public void setBaoZhiq(String baoZhiq) {
 		this.baoZhiq = baoZhiq;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  商品规格
+	 */
+	@Column(name ="SHP_GUI_GE",nullable=true,length=32)
+	public java.lang.String getShpGuiGe(){
+		return this.shpGuiGe;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品规格
+	 */
+	public void setShpGuiGe(java.lang.String shpGuiGe){
+		this.shpGuiGe = shpGuiGe;
+	}
+	@Column(name ="pick_notice",nullable=true,length=32)
+	public String getPickNotice() {
+		return pickNotice;
+	}
+	public void setPickNotice(String pickNotice) {
+		this.pickNotice = pickNotice;
 	}
 }

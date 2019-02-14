@@ -106,16 +106,20 @@ function printview(){
  collapse;table-layout:fixed;width:438pt;margin-left: 30px;margin-top: -30px'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:3612;width:76pt'>
 
-		<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>
-		<col width=253 style='mso-width-source:userset;mso-width-alt:4010;width:252pt'>
+		<%--<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>--%>
+		<col width=253 style='mso-width-source:userset;mso-width-alt:4010;width:200pt'>
 		<col width=45 style='mso-width-source:userset;mso-width-alt:1592;width:34pt'>
-		<col width=94  style='mso-width-source:userset;mso-width-alt:2986; width:73pt'>
+		<col width=94  style='mso-width-source:userset;mso-width-alt:2986; width:80pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 
-		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:102pt'>
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:70pt'>
+
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:70pt'>
+
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<tr height=18 style='height:13.2pt'>
 			<td colspan=10 height=18 width=585 style='height:13.2pt;width:438pt'></td>
@@ -157,16 +161,18 @@ function printview(){
 
 		<tr height=33 style='mso-height-source:userset;height:25.05pt'>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>储位</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>
-			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品名称</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>--%>
+			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>单位</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>生产日期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>重量</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>体积</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘/保质期</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>品质</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
 
 			<td  ></td>
@@ -177,14 +183,15 @@ function printview(){
 
 			<tr height=33 style='mso-height-source:userset;height:50px'>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.binId }　</td>
-				<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsId }</td>
+				<%--<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsId }</td>--%>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center;word-break:break-all;'><span style='word-break:break-all;width: auto;font-size: 14pt'>${poVal.goodsName }</span></td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseUnit }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.proData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseGoodscount }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinZhl }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinTj }</td>
-
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.pickNotice }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>
 				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>

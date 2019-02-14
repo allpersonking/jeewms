@@ -117,6 +117,8 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	private java.lang.String baseQmcount;
 	@Excel(name="商品条码")
 	private java.lang.String barCode;
+	private java.lang.String shpGuiGe;
+
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -659,5 +661,22 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	 */
 	public void setBarCode(java.lang.String barCode){
 		this.barCode = barCode;
+	}
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  商品规格
+	 */
+	@Column(name ="SHP_GUI_GE",nullable=true,length=32)
+	public java.lang.String getShpGuiGe(){
+		return this.shpGuiGe;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品规格
+	 */
+	public void setShpGuiGe(java.lang.String shpGuiGe){
+		this.shpGuiGe = shpGuiGe;
 	}
 }
