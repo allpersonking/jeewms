@@ -86,6 +86,8 @@
 		<thumbnailator.version>0.4.6</thumbnailator.version>
 		<pinyin4j.version>2.5.0</pinyin4j.version>
 		<org.quartz.version>1.6.2</org.quartz.version>
+		<!--<org.quartz.version>2.3.0</org.quartz.version>-->
+
 		<activation.version>1.1.1</activation.version>
 		<aopalliance.version>1.0</aopalliance.version>
 		<xstream.version>1.4.4</xstream.version>
@@ -96,7 +98,8 @@
 		<!--maven插件变量 -->
 		<tomcat.version>2.2</tomcat.version>
 		<jetty.version>7.6.14.v20131031</jetty.version>
-
+		<!-- jacob -->
+		<jacob.version>1.18</jacob.version>
 		<webserver.port>8081</webserver.port>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -141,6 +144,8 @@
 			<groupId>org.jeecgframework</groupId>
 			<artifactId>codegenerate</artifactId>
 			<version>${codegenerate.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/codegenerate-3.6.1.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.jeecgframework</groupId>
@@ -179,6 +184,10 @@
 			<groupId>com.springsource</groupId>
 			<artifactId>org.quartz</artifactId>
 			<version>${org.quartz.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.quartz-1.6.2.jar</systemPath>
+
+
 		</dependency>
 		<!-- SPRING start -->
 		<dependency>
@@ -579,10 +588,19 @@
 			<artifactId>ehcache-core</artifactId>
 			<version>${ehcache.version}</version>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.jeecgframework</groupId>-->
+			<!--<artifactId>freemarker-null</artifactId>-->
+			<!--<version>${freemarker.version}</version>-->
+		<!--</dependency>-->
+
+		<!-- freemarker -->
 		<dependency>
-			<groupId>org.jeecgframework</groupId>
-			<artifactId>freemarker-null</artifactId>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
 			<version>${freemarker.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/freemarker-null-2.3.19.jar</systemPath>
 		</dependency>
 		<!-- JSR303 Bean Validator -->
 		<dependency>
@@ -661,11 +679,11 @@
 			<version>${openoffice.version}</version>
 		</dependency>
 		<!-- java的OpenDucument文件转换器，它利用OpenOffice来进行转换工作 -->
-		<dependency>
-			<groupId>org.artofsolving</groupId>
-			<artifactId>jodconverter</artifactId>
-			<version>${jodconverter.version}</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.artofsolving</groupId>-->
+			<!--<artifactId>jodconverter</artifactId>-->
+			<!--<version>${jodconverter.version}</version>-->
+		<!--</dependency>-->
 		<!-- openoffice end -->
 		<dependency>
 			<groupId>com.opensymphony</groupId>
@@ -700,10 +718,16 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- jacob -->
+		<!--<dependency>-->
+			<!--<groupId>org.jeecgframework</groupId>-->
+			<!--<artifactId>jacob</artifactId>-->
+			<!--<version>1.0.0</version>-->
+		<!--</dependency>-->
+
 		<dependency>
-			<groupId>org.jeecgframework</groupId>
+			<groupId>com.hynnet</groupId>
 			<artifactId>jacob</artifactId>
-			<version>1.0.0</version>
+			<version>${jacob.version}</version>
 		</dependency>
 		<!-- highchart 图片导出 -->
 		<dependency>
@@ -895,6 +919,24 @@
 			<version>4.3.1</version>
 		</dependency>
 		<!--用友end-->
+
+
+		<!-- codegenerate -->
+		<dependency>
+			<groupId>com.hynnet</groupId>
+			<artifactId>jacob</artifactId>
+			<version>1.19</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jacob.jar</systemPath>
+		</dependency>
+		<!-- java的OpenDucument文件转换器，它利用OpenOffice来进行转换工作-->
+		<dependency>
+			<groupId>org.artofsolving</groupId>
+			<artifactId>jodconverter</artifactId>
+			<version>${jodconverter.version}</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jodconverter-3.0-beta-4-20170917.jar</systemPath>
+		</dependency>
 	</dependencies>
 
 	<organization>

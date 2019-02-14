@@ -40,7 +40,7 @@ public class ControllerTestDemo  extends AbstractUnitTest{
 	//测试登录
 	@Test
 	public void testLogin() throws Exception {
-        yyUtil.getProduct();
+//        yyUtil.getProduct();
 //		Map<String, Object> paramMap = new HashMap<String, Object>();
 //		paramMap.put("formDate","2017-01-01");
 //		paramMap.put("lastUpdateTime","2017-01-01");
