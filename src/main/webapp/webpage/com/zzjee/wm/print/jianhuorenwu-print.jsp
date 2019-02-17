@@ -97,7 +97,7 @@ function printview(){
 	</style>
 
 </head>
-<body style="overflow-y:hidden" scroll="yes">
+<body style="overflow-y:auto" scroll="no">
 <a class="easyui-linkbutton" style="margin-top:3px" icon="icon-print" href="javascript:printall()">打印</a>
 
 <div class="printdiv"><t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table"  >
