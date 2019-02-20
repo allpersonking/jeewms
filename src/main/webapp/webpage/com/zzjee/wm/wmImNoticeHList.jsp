@@ -92,7 +92,7 @@
  }
  function doprint(id){
      var url = "wmImNoticeHController.do?doPrintpage&id="+id;
-     createdetailwindow(" 进货通知单", url, 1000, 1000);
+     createdetailwindow(" 进货通知单", url, 1200, 1000);
 
      // window.open(url);
  }

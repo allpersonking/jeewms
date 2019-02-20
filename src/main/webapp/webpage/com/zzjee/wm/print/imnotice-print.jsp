@@ -106,13 +106,15 @@ function printview(){
  collapse;table-layout:fixed;width:438pt;margin-left: 30px;margin-top: -30px'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:3612;width:76pt'>
 
-		<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>
+		<%--<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>--%>
 		<col width=253 style='mso-width-source:userset;mso-width-alt:4010;width:252pt'>
 		<col width=45 style='mso-width-source:userset;mso-width-alt:1592;width:34pt'>
 		<col width=94  style='mso-width-source:userset;mso-width-alt:2986;
  width:73pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:2389;width:60pt'>
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
+		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
 
 		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
@@ -122,14 +124,14 @@ function printview(){
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
-			<td colspan=3 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
+			<td colspan=4 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
 			<td  rowspan="3" class=xl69>
 				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmImNoticeHPage.noticeId}" style="width:80px;height:80px;vertical-align:right">
 			</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=4 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">入库通知单</span></td>
-			<td colspan=3 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
+			<td colspan=4 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
 			<td colspan=2 style='mso-ignore:colspan'></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
@@ -146,12 +148,14 @@ function printview(){
 
 		<tr height=33 style='mso-height-source:userset;height:25.05pt'>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>最近上架</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>
-			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品名称</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>--%>
+			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>单位</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>生产日期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>体积</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>重量</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
@@ -166,11 +170,15 @@ function printview(){
 
 			<tr height=33 style='mso-height-source:userset;height:50px'>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.binPlan }　</td>
-				<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsCode }</td>
+				<%--<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsCode }</td>--%>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center;word-break:break-all;'><span style='word-break:break-all;width: auto;font-size: 14pt'>${poVal.goodsName }</span></td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsUnit }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsPrdData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsCount }</td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsFvol }</td>
+
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsWeight }</td>
+
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
 
