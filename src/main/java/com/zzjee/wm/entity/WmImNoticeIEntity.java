@@ -118,7 +118,9 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	@Excel(name="商品条码")
 	private java.lang.String barCode;
 	private java.lang.String shpGuiGe;
-
+	/**保质期*/
+//	@Excel(name="保质期")
+	private java.lang.String bzhiQi;
 	/**
 	 *方法: 取得java.lang.String
 	 *@return: java.lang.String  主键
@@ -678,5 +680,18 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	 */
 	public void setShpGuiGe(java.lang.String shpGuiGe){
 		this.shpGuiGe = shpGuiGe;
+	}
+
+	@Column(name ="BZHI_QI",nullable=true,length=32)
+	public java.lang.String getBzhiQi(){
+		return this.bzhiQi;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  保质期
+	 */
+	public void setBzhiQi(java.lang.String bzhiQi){
+		this.bzhiQi = bzhiQi;
 	}
 }

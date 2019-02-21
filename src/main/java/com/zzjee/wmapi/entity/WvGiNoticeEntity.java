@@ -101,6 +101,7 @@ public class WvGiNoticeEntity implements java.io.Serializable {
 	/**任务接收人*/
 	@Excel(name="任务接收人")
 	private java.lang.String assignTo;
+	private java.lang.String shpGuiGe;
 
 	/**
 	 *方法: 取得java.util.Date
@@ -490,5 +491,23 @@ public class WvGiNoticeEntity implements java.io.Serializable {
 	 */
 	public void setOmBeiZhu(String omBeiZhu){
 		this.omBeiZhu = omBeiZhu;
+	}
+
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  商品规格
+	 */
+	@Column(name ="SHP_GUI_GE",nullable=true,length=32)
+	public java.lang.String getShpGuiGe(){
+		return this.shpGuiGe;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品规格
+	 */
+	public void setShpGuiGe(java.lang.String shpGuiGe){
+		this.shpGuiGe = shpGuiGe;
 	}
 }

@@ -7,6 +7,7 @@ import com.zzjee.wm.page.WmNoticeImpPage;
 import com.zzjee.wm.service.WmImNoticeHServiceI;
 import com.zzjee.wm.page.WmImNoticeHPage;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -193,6 +194,8 @@ public class WmImNoticeHController extends BaseController {
 		//查询-产品
 		Double tomsum = 0.00;
 		Double  noticesum = 0.00;
+		DecimalFormat dfsum=new DecimalFormat(".##");
+
 		List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
 			String hql0 = "from WmImNoticeIEntity where 1 = 1 AND iM_NOTICE_ID = ? ";
 			try {
@@ -217,6 +220,23 @@ public class WmImNoticeHController extends BaseController {
 				 }catch (Exception e){
 
 				 }
+
+				 try{
+
+					 wmImNoticeIEntity.setGoodsFvol(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsFvol())));
+				 }catch (Exception e){
+
+				 }
+
+					try{
+						wmImNoticeIEntity.setGoodsWeight(dfsum.format(Double.parseDouble(wmImNoticeIEntity.getGoodsWeight())));
+
+					}catch (Exception e){
+
+					}
+
+
+
 					wmImNoticeIEntitynewList.add(wmImNoticeIEntity);
 				}
 
