@@ -215,6 +215,7 @@ public class WmImNoticeHController extends BaseController {
 					 MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 							 MvGoodsEntity.class, "goodsCode", wmImNoticeIEntity.getGoodsCode());
 					 if (mvgoods != null) {
+						 wmImNoticeIEntity.setBzhiQi(mvgoods.getBzhiQi());
 						 wmImNoticeIEntity.setShpGuiGe(mvgoods.getShpGuiGe());
 					 }
 				 }catch (Exception e){
