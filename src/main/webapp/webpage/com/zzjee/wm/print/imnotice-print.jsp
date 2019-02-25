@@ -141,7 +141,7 @@ function printview(){
 			<td></td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=4 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.imBeizhu}</td>
+			<td colspan=4 class=xl68 width=337 style='width:252pt'>备注：${wmImNoticeHPage.imBeizhu}</td>
 			<td colspan=4 >WMS单号：${wmImNoticeHPage.noticeId}</td>
 			<td></td>
 		</tr>
