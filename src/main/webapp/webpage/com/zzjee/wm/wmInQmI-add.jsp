@@ -158,7 +158,7 @@ window.onload = function() {
 			          <div class="col-xs-3">
 								<input id="proData" name="proData" type="text"
 									ignore="checked" onchange="setbatch()" 
-								  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker()"    type="date"  />
+								  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"    type="date"  />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">生产日期</label>
 			          </div>
