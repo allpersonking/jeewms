@@ -48,7 +48,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址  https:
 	
 四、技术支持：
 
-    演示环境：http://www.jeewms.cn/wmstest     用户： test   密码：123456
+    演示环境：http://120.78.150.43/wmstest     用户： test   密码：123456
     QQ群：335607153    
 
 五、修改日志：
