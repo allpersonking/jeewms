@@ -57,8 +57,7 @@ public class WaveToDownEntity implements java.io.Serializable {
 	/**客户订单号*/
 	@Excel(name="客户订单号")
 	private java.lang.String imCusCode;
-	@Excel(name="备注")
-	private java.lang.String omBeizhu;
+
 	/**仓位*/
 	@Excel(name="仓位")
 	private String binId;
@@ -68,6 +67,8 @@ public class WaveToDownEntity implements java.io.Serializable {
 	/**生产日期*/
 	@Excel(name="生产日期")
 	private String proData;
+	@Excel(name="可用库存")
+	private java.lang.String omBeizhu;
 	/**baseGoodscount*/
 	@Excel(name="数量")
 	private Double baseGoodscount;
