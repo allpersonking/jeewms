@@ -13,12 +13,13 @@
     <t:dgCol title="商品编码"  field="goodsId"   query="true"   queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="goodsName"   query="true"   queryMode="single"  width="120"></t:dgCol>
       <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="100"></t:dgCol>
-      <t:dgCol title="备注"  field="omBeizhu" query="true"   queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="仓位"  field="binId"   query="true"   queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="托盘"  field="tinId"   query="true"   queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="生产日期"  field="proData"    queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="数量"  field="baseGoodscount"    queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="基本单位"  field="baseUnit"    queryMode="single"  width="120"></t:dgCol>
+      <t:dgCol title="可用库存"  field="omBeizhu" query="true"   queryMode="single"  width="120"></t:dgCol>
+
+      <t:dgCol title="基本单位"  field="baseUnit"    queryMode="single"  width="120"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
    <%--<t:dgDelOpt title="删除" url="waveToDownController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>--%>
    <%--<t:dgToolBar title="录入" icon="icon-add" url="waveToDownController.do?goAdd" funname="add"></t:dgToolBar>--%>
