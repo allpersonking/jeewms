@@ -1,7 +1,9 @@
 package com.zzjee.md.controller;
 
 import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdCusOtherEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
+import com.zzjee.md.entity.MvGoodsEntity;
 import com.zzjee.md.service.MdGoodsServiceI;
 
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.zzjee.wm.entity.WmInQmIEntity;
-import com.zzjee.wm.entity.WmSttInGoodsEntity;
-import com.zzjee.wm.entity.WmToDownGoodsEntity;
+import com.zzjee.wm.entity.*;
+import com.zzjee.wm.page.WmNoticeImpPage;
+import com.zzjee.wm.service.WmOmNoticeHServiceI;
 import com.zzjee.wmapi.entity.WvGiEntity;
 import com.zzjee.wmutil.wmIntUtil;
 import com.zzjee.wmutil.wmUtil;
@@ -101,6 +103,8 @@ public class MdGoodsController extends BaseController {
 	@Autowired
 	private Validator validator;
 
+	@Autowired
+	private WmOmNoticeHServiceI wmOmNoticeHService;
 	/**
 	 * 商品信息列表 页面跳转
 	 * 
@@ -556,6 +560,62 @@ public class MdGoodsController extends BaseController {
 			MdGoodsEntity t = systemService.get(MdGoodsEntity.class,mdGoods.getId());
 			MyBeanUtils.copyBeanNotNull2Bean(mdGoods,t);
 			mdGoodsService.saveOrUpdate(t);
+			D0.setOK(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			D0.setOK(false);
+		}
+
+		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/order", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<?> xiadan(@RequestParam String mdGoodsstr,
+									UriComponentsBuilder uriBuilder) {		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		ResultDO D0 = new  ResultDO();
+		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
+		// 保存
+		try {
+			MdGoodsEntity t = systemService.get(MdGoodsEntity.class,mdGoods.getId());
+
+			List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+
+					WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
+					wmi.setGoodsId(t.getShpBianMa());
+					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+							MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
+					if (mvgoods != null) {
+						wmi.setGoodsName(mvgoods.getGoodsName());
+						wmi.setGoodsUnit(mvgoods.getShlDanWei());
+					}
+					try{
+
+						wmi.setGoodsQua(mdGoods.getChZhXiang());//长度作为数量
+					}catch (Exception e){
+
+					}
+
+					wmomNoticeIListnew.add(wmi);
+
+			WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
+
+//			wmOmNoticeH.setDelvData(pageheader.getImData());
+			wmOmNoticeH.setOrderTypeCode("11");
+			wmOmNoticeH.setCusCode(t.getSuoShuKeHu());
+			String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
+			wmOmNoticeH.setOmNoticeId(noticeid);
+			wmOmNoticeH.setOmBeizhu(mdGoods.getKuZhXiang() );//宽作为备注
+			wmOmNoticeH.setOcusCode(mdGoods.getGaoZhXiang());// 高作为三方客户
+			wmOmNoticeH.setDelvAddr(mdGoods.getTiJiCm());//体积作为地址
+			MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", wmOmNoticeH.getOcusCode());
+			if (mdcusother != null) {
+				wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
+			}
+//			wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
+			wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
+			D0.setErrorMsg("订单生成成功");
 			D0.setOK(true);
 		} catch (Exception e) {
 			e.printStackTrace();
