@@ -577,6 +577,8 @@ public class MdGoodsController extends BaseController {
 		ResultDO D0 = new  ResultDO();
 		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
 		// 保存
+		org.jeecgframework.core.util.LogUtil
+				.info("===================下单成功===================");
 		try {
 			MdGoodsEntity t = systemService.get(MdGoodsEntity.class,mdGoods.getId());
 
