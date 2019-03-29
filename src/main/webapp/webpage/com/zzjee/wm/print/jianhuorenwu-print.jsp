@@ -127,9 +127,12 @@ function printview(){
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
 			<td colspan=4 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<td  rowspan="2" class=xl69>
-				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">
-			</td>
+			<%--<td  rowspan="2" class=xl69>--%>
+				<%--<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">--%>
+			<%--</td>--%>
+				<td  rowspan="2" class=xl69>
+				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${showlisturl}" style="width:80px;height:80px;vertical-align:right">
+				</td>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单</span></td>

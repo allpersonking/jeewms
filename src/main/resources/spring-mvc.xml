@@ -128,6 +128,10 @@
 						<value>rest/wmBaseController/showOrDownqrcodeByurl</value>
 						<!-- 菜单样式图标预览 -->
 						<value>webpage/common/functionIconStyleList.jsp</value>
+
+						<value>wmOmNoticeHController.do?showlist</value>
+						<value>wmOmNoticeHController.do?showgoods</value>
+
 					</list>
 				</property>
 			</bean>

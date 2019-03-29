@@ -223,6 +223,7 @@ public class WmOmNoticeHController extends BaseController {
 		request.setAttribute("wmOmNoticeHPage", wmOmNoticeHEntity);
 		request.setAttribute("kprq",DateUtils.date2Str(wmOmNoticeHEntity.getCreateDate(),DateUtils.date_sdf));
 		request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+		request.setAttribute("showlisturl", ResourceUtil.getConfigByName("show.noticeurl")+id);
 
 		if(StringUtil.isNotEmpty(wmOmNoticeHEntity.getImCusCode())){
 			request.setAttribute("noticeid", wmOmNoticeHEntity.getImCusCode());
@@ -327,6 +328,112 @@ public class WmOmNoticeHController extends BaseController {
 		}catch (Exception e){
 		}
 		return new ModelAndView("com/zzjee/wm/print/jianhuorenwu-print");
+	}
+
+	@RequestMapping(params = "showlist")
+	public ModelAndView showlist(String id,HttpServletRequest request) {
+		WmOmNoticeHEntity wmOmNoticeHEntity = wmOmNoticeHService.getEntity(WmOmNoticeHEntity.class, id);
+        request.setAttribute("wmOmNoticeHPage", wmOmNoticeHEntity);
+		request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+
+
+		try{
+			MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmOmNoticeHEntity.getCusCode());
+			MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class,"keHuBianMa",wmOmNoticeHEntity.getOcusCode());
+			request.setAttribute("cusname",wmOmNoticeHEntity.getCusCode()+"-"+ mdcus.getZhongWenQch());
+			if(mdcusother!=null){
+				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode()+"-"+ mdcusother.getZhongWenQch());
+			}else{
+				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode());
+			}
+
+		}catch (Exception e){
+
+		}
+		//获取参数
+		Object id0 = wmOmNoticeHEntity.getOmNoticeId();
+		//===================================================================================
+		//查询-产品
+		String hql0 = "from WmOmQmIEntity where 1 = 1 AND omNoticeId = ? order by binId";
+		Double tomsum = 0.00;
+		Double  noticesum = 0.00;
+		Double  tijisum = 0.00;
+		Double  zhlsum = 0.00;
+		try{
+			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
+			List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+			DecimalFormat dfsum=new DecimalFormat(".##");
+			try{
+				for(WmOmQmIEntity tom:wmOmQmIEntityList){
+					tomsum = tomsum + Double.parseDouble(tom.getBaseGoodscount());
+					try{
+						tijisum = tijisum + Double.parseDouble(tom.getTinTj());
+
+					}catch ( Exception e){
+					}
+					try{
+						zhlsum = zhlsum + Double.parseDouble(tom.getTinZhl());
+					}catch ( Exception e){
+					}
+					try{
+						tom.setTinZhl(dfsum.format(Double.parseDouble(tom.getTinZhl())));
+					}catch ( Exception e){
+					}
+					try{
+						tom.setTinTj(dfsum.format(Double.parseDouble(tom.getTinTj())));
+					}catch ( Exception e){
+					}
+					tom.setBaseGoodscount(StringUtil.getdouble(tom.getBaseGoodscount()));
+					try{
+						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+								MvGoodsEntity.class, "goodsCode", tom.getGoodsId());
+						if (mvgoods != null) {
+							tom.setShpGuiGe(mvgoods.getShpGuiGe());
+						}
+						int shpguige = 0;
+						try{
+							shpguige = Integer.parseInt(mvgoods.getShpGuiGe());
+						}catch (Exception e){
+						}
+						if(shpguige!=0){
+							Double xianhshu = Math.floor(Double.parseDouble(tom.getBaseGoodscount())/shpguige);
+							Double jianshu = Double.parseDouble(tom.getBaseGoodscount())%shpguige;
+							long xiangshuint = Math.round(xianhshu);
+							if(xianhshu > 0){
+								tom.setPickNotice(xiangshuint+"整"+jianshu+tom.getBaseUnit());
+							}else{
+								tom.setPickNotice(tom.getBaseGoodscount()+tom.getBaseUnit());
+							}
+						}
+					}catch (Exception e){
+					}
+					wmOmQmIEntityListnew.add(tom);
+				}
+			}catch ( Exception e){
+			}
+			String hqlnotice = "from WmOmNoticeIEntity where 1 = 1 AND oM_NOTICE_ID = ? ";
+			List<WmOmNoticeIEntity> wmOmNoticeIEntityList = systemService.findHql(hqlnotice,id0);
+			for(WmOmNoticeIEntity tnotice:wmOmNoticeIEntityList){
+				noticesum = noticesum + Double.parseDouble(tnotice.getBaseGoodscount());
+			}
+			if(Double.doubleToLongBits(noticesum) != Double.doubleToLongBits(tomsum)){
+				request.setAttribute("jianhuoremark", "订单："+dfsum.format(noticesum)+" 拣货："+dfsum.format(tomsum));
+			}else{
+				request.setAttribute("jianhuoremark", "全部拣货，共"+dfsum.format(noticesum));
+			}
+			String tijiunit="立方分米";
+			String zhongliangunit="公斤";
+			try{
+				tijiunit= ResourceUtil.getConfigByName("tijiunit");
+				zhongliangunit=ResourceUtil.getConfigByName("zhongliangunit");
+			}catch (Exception e){
+			}
+			request.setAttribute("tijisum", dfsum.format(tijisum)+tijiunit);
+			request.setAttribute("zhlsum", dfsum.format(zhlsum)+zhongliangunit);
+			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
+		}catch (Exception e){
+		}
+		return new ModelAndView("com/zzjee/wm/print/zhuisu-print");
 	}
 //
 	/**
