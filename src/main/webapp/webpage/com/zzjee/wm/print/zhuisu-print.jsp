@@ -98,85 +98,57 @@ function printview(){
 
 </head>
 <body style="overflow-y:auto" scroll="no">
-<a class="easyui-linkbutton" style="margin-top:3px" icon="icon-print" href="javascript:printall()">打印</a>
 
 <div class="printdiv"><t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table"  >
 	<input id="content" type="hidden" value="${wmOmNoticeHPage.omNoticeId}">
 	<table border=0 cellpadding=0 cellspacing=0 width=780 style='border-collapse:
  collapse;table-layout:fixed;width:438pt;margin-left: 30px;margin-top: -30px'>
 		<col width=102 style='mso-width-source:userset;mso-width-alt:3612;width:76pt'>
-
-		<%--<col width=84 style='mso-width-source:userset;mso-width-alt:2986;width:63pt'>--%>
-		<col width=253 style='mso-width-source:userset;mso-width-alt:4010;width:200pt'>
 		<col width=45 style='mso-width-source:userset;mso-width-alt:1592;width:34pt'>
-		<col width=94  style='mso-width-source:userset;mso-width-alt:2986; width:80pt'>
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:70pt'>
-
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:70pt'>
-
-		<col width=67 style='mso-width-source:userset;mso-width-alt:2389;width:50pt'>
-		<tr height=18 style='height:13.2pt'>
-			<td colspan=10 height=18 width=585 style='height:13.2pt;width:438pt'></td>
-		</tr>
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
-			<td colspan=4 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<%--<td  rowspan="2" class=xl69>--%>
-				<%--<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">--%>
-			<%--</td>--%>
-				<td  rowspan="2" class=xl69>
-				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${showlisturl}" style="width:80px;height:80px;vertical-align:right">
-				</td>
-		</tr>
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单</span></td>
-			<td colspan=4 class=xl68 width=168 style='width:126pt'>单号：${noticeid}</td>
-			<td colspan=1 style='mso-ignore:colspan'></td>
-		</tr>
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>货主：${cusname}</td>
-			<td colspan=4 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>客户：${ocusname}</td>
-			<td></td>
-		</tr>
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.omBeizhu}</td>
-			<td colspan=4 >WMS单号：${wmOmNoticeHPage.omNoticeId}</td>
-			<td></td>
-		</tr>
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 class=xl68 width=337 style='width:252pt'>地址：${wmOmNoticeHPage.delvAddr}</td>
-			<td colspan=4 >拣货提醒：${jianhuoremark}</td>
-			<td></td>
-		</tr>
+		<col width=102 style='mso-width-source:userset;mso-width-alt:3612;width:76pt'>
+		<col width=45 style='mso-width-source:userset;mso-width-alt:1592;width:34pt'>
 
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<td colspan=5 class=xl68 width=337 style='width:252pt'>总体积：${tijisum}</td>
-			<td colspan=4 >总重量：${zhlsum}</td>
-			<td></td>
+			<td colspan=2 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
+			<td colspan=2 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
 		</tr>
+			<tr height=40 style='mso-height-source:userset;height:30.0pt'>
+			<td colspan=2 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>货主：${cusname}</td>
+			<td colspan=2 height=40 class=xl68 width=242 style='height:30.0pt;width:182pt'>客户：${ocusname}</td>
+
+		</tr>
+		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
+			<td colspan=2 class=xl68 width=337 style='width:252pt'>备注：${wmOmNoticeHPage.omBeizhu}</td>
+			<td colspan=2 >单号：${wmOmNoticeHPage.omNoticeId}</td>
+			1
+		</tr>
+		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
+			<td colspan=4 class=xl68 width=337 style='width:252pt'>地址：${wmOmNoticeHPage.delvAddr}</td>
+
+		</tr>
+
+		<%--<tr height=40 style='mso-height-source:userset;height:30.0pt'>--%>
+			<%--<td colspan=5 class=xl68 width=337 style='width:252pt'>总体积：${tijisum}</td>--%>
+			<%--<td colspan=4 >总重量：${zhlsum}</td>--%>
+			<%--<td></td>--%>
+		<%--</tr>--%>
 
 
 		<tr height=33 style='mso-height-source:userset;height:25.05pt'>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>储位</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>储位</td>--%>
 			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>--%>
 			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品</td>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>单位</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>单位</td>--%>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>生产日期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>数量</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>重量</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>体积</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>重量</td>--%>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>体积</td>--%>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>--%>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>--%>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>品质</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
+			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>品质</td>--%>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>追溯码</td>
 
 			<td  ></td>
 		</tr>
@@ -185,34 +157,24 @@ function printview(){
 		<c:forEach items="${wmOmQmIList}" var="poVal" varStatus="stuts">
 
 			<tr height=33 style='mso-height-source:userset;height:50px'>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.binId }　</td>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.binId }　</td>--%>
 				<%--<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsId }</td>--%>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center;word-break:break-all;'><span style='word-break:break-all;width: auto;font-size: 14pt'>${poVal.goodsName }</span></td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseUnit }</td>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseUnit }</td>--%>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.proData }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.baseGoodscount }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinZhl }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinTj }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.pickNotice }</td>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinZhl }</td>--%>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinTj }</td>--%>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>--%>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.pickNotice }</td>--%>
+				<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>--%>
 				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
 
 		</c:forEach>
 		</c:if>
-		<tr height=20 style='height:25.0pt'>
-			<td height=20 class=xl66 colspan=8 style='height:15.0pt;mso-ignore:colspan;text-align: justify'>主管：<span
-					style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>制单： ${wmOmNoticeHPage.createBy}<span
-					style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>仓管：<span
-					style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>叉车：<span
-					style='mso-spacerun:yes'></span></td>
-			<td></td>
-		</tr>
+
 
 	</table>
 </t:formvalid></div>
