@@ -128,12 +128,19 @@
 						<value>rest/wmBaseController/showOrDownqrcodeByurl</value>
 						<!-- 菜单样式图标预览 -->
 						<value>webpage/common/functionIconStyleList.jsp</value>
-
-						<value>wmOmNoticeHController.do?showlist</value>
-						<value>wmOmNoticeHController.do?showgoods</value>
+						<value>wmOmNoticeHController.do</value>
+						<value>wmOmNoticeHController.do</value>
 
 					</list>
 				</property>
+				<property name="excludeContainUrls">
+					<list>
+
+						<value>wmOmNoticeHController.do</value>
+					</list>
+				</property>
+
+
 			</bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

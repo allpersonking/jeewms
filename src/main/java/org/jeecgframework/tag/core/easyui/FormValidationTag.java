@@ -134,6 +134,9 @@ public class FormValidationTag extends TagSupport {
 		JspWriter out = null;
 		try {
 			String lang = (String)((HttpServletRequest) this.pageContext.getRequest()).getSession().getAttribute("lang");
+			if(StringUtil.isEmpty(lang)){
+				lang="zh-cn";
+			}
 			SysThemesEnum sysThemesEnum = null;
 			if(StringUtil.isEmpty(cssTheme)||"null".equals(cssTheme)){
 				sysThemesEnum = SysThemesUtil.getSysTheme((HttpServletRequest) super.pageContext.getRequest());

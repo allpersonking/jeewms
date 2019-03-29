@@ -42,6 +42,15 @@ public class AuthInterceptor implements HandlerInterceptor {
 	private static final Logger logger = Logger.getLogger(AuthInterceptor.class);
 	private SystemService systemService;
 	private List<String> excludeUrls;
+	private List<String> excludeContainUrls;
+
+	public List<String> getExcludeContainUrls() {
+		return excludeContainUrls;
+	}
+
+	public void setExcludeContainUrls(List<String> excludeContainUrls) {
+		this.excludeContainUrls = excludeContainUrls;
+	}
 
 	public List<String> getExcludeUrls() {
 		return excludeUrls;
@@ -84,7 +93,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 
 		if (excludeUrls.contains(requestPath)) {
 			return true;
-		} else {
+		}else if(moHuContain(excludeContainUrls, requestPath)) {
+			return true;
+		}else {
 			//步骤二： 权限控制，优先重组请求URL(考虑online请求前缀一致问题)
 			String clickFunctionId = request.getParameter("clickFunctionId");
 			Client client = ClientManager.getInstance().getClient(ContextHolderUtils.getSession().getId());
@@ -204,6 +215,16 @@ public class AuthInterceptor implements HandlerInterceptor {
 			}
 
 		}
+	}
+
+
+	private boolean moHuContain(List<String> list,String key){
+		for(String str : list){
+			if(key.contains(str)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
