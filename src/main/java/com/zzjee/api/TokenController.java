@@ -122,7 +122,44 @@ public class TokenController {
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/postkey", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> postkeys(@RequestParam String devEui, @RequestParam String keyValue) {
+		logger.info("获取TOKEN[{}]" + devEui);
+		ResultDO D0 = new  ResultDO();
 
+			D0.setObj("");
+			D0.setOK(true);
+
+		// 生成一个token，保存用户登录状态
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/controlcallback", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> controlcallback(@RequestParam String devEui, @RequestParam String ctlDisplayStatus) {
+		logger.info("获取TOKEN[{}]" + devEui);
+		ResultDO D0 = new  ResultDO();
+
+		D0.setObj("");
+		D0.setOK(true);
+
+		// 生成一个token，保存用户登录状态
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/lighrcallback", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> lighrcallback(@RequestParam String devEui, @RequestParam String ctlLedStatus ) {
+		logger.info("获取TOKEN[{}]" + devEui);
+		ResultDO D0 = new  ResultDO();
+
+		D0.setObj("");
+		D0.setOK(true);
+
+		// 生成一个token，保存用户登录状态
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
 	// 文件上传
 	@RequestMapping(value = "/saveImage", method = RequestMethod.PUT)
 	@ResponseBody
