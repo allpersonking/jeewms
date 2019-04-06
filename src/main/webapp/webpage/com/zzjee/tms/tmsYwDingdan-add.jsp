@@ -30,29 +30,26 @@
 				  <td colspan="4">
 					  <div >
 					  <label >发货人(输入姓名，电话地址搜索；如果是新的收货人，请按照：姓名-电话-地址   格式输入） </label>
-							  <%--<input type="hidden" id="username" name="username" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
 
-					  <t:autocomplete datatype="*"  entityName="VTmsDzEntity" searchField="dizhi" name="fahuoren"></t:autocomplete>
-					  <%--<input id="fahuoren" name="fahuoren" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
 
 					  </div>
 				  </td>
-				  <%--<td>--%>
-					  <%--<div >--%>
-					  <%--<label >发货人电话:</label>--%>
-					  <%--<input id="fhrdh" name="fhrdh" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
 
-					  <%--</div>--%>
-				  <%--</td>--%>
-				  <%--<td>--%>
-					  <%--<div >--%>
-					  <%--<label >发货人地址:</label>--%>
-					  <%--<input id="fhrdz" name="fhrdz" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
-
-					  <%--</div>--%>
-				  <%--</td>--%>
 
 			  </tr>
+
+			  <tr>
+				  <td colspan="4">
+					  <div >
+
+						  <t:autocomplete datatype="*"  entityName="VTmsDzEntity" searchField="dizhi" name="fahuoren"></t:autocomplete>
+
+					  </div>
+				  </td>
+
+
+			  </tr>
+
 			  <tr><td colspan="4"><p style="font-size: large">收货人信息 </p></td></tr>
 			  <tr>
 				  <td colspan="4">
@@ -60,32 +57,21 @@
 						  <label>
 							  收货人(输入姓名，电话地址搜索；如果是新的收货人，请按照：姓名-电话-地址   格式输入)
 						  </label>
-						  <%--<input id="shouhuoren" name="shouhuoren" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
-						  <t:autocomplete datatype="*" entityName="VTmsDzEntity" searchField="dizhi" name="shouhuoren"></t:autocomplete>
-
 					  </div>
 				  </td>
-				  <%--<td>--%>
-					  <%--<div >--%>
-						  <%--<label >收货人电话:</label>--%>
-						  <%--<input id="shrsj" name="shrsj" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
-
-					  <%--</div>--%>
-				  <%--</td>--%>
-				  <%--<td>--%>
-					  <%--<div >--%>
-						  <%--<label >收货人地址:</label>--%>
-						  <%--<input id="shrdh" name="shrdh" type="text" style="width: 150px" class="inputxt"  ignore="ignore" />--%>
-
-					  <%--</div>--%>
-				  <%--</td>--%>
-
 			  </tr>
 
 
+			  <td colspan="4">
+				  <div >
+					   <t:autocomplete datatype="*" entityName="VTmsDzEntity" searchField="dizhi" name="shouhuoren"></t:autocomplete>
+
+				  </div>
+			  </td>
+
+			  </tr>
 
 			  <tr><td colspan="4"><p style="font-size: large">货物信息 </p></td></tr>
-
 
 			  <tr>
 				  <td>
@@ -180,81 +166,13 @@
 				  <td>
 					  <div >
 						  <label >是否等通知</label>
-						  <t:dictSelect field="dengtongzhi" type="radio"  typeGroupCode="sf_yn"   defaultVal="N" hasLabel="false"  title="是否等通知"></t:dictSelect>
+						  <t:dictSelect field="dengtongzhi" type="radio"  typeGroupCode="sf_tz"   defaultVal="N" hasLabel="false"  title="是否等通知"></t:dictSelect>
 
 					  </div>
 				  </td>
 
 			  </tr>
 		  </table>
-			<%--<legend>发货人信息 </legend>--%>
-			<%--<div >--%>
-		      <%--<label >单号:</label>--%>
-					     	 <%--<input id="fadh" name="fadh" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-		      <%--<span class="Validform_checktip"></span>--%>
-		    <%--</div>--%>
-			<%--<div >--%>
-		      <%--<label >下单人:</label>--%>
-					     	 <%--<input id="username" name="username" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-		      <%--<span class="Validform_checktip"></span>--%>
-		    <%--</div>--%>
-			<%--<div >--%>
-				<%--<label >下单人名字:</label>--%>
-				<%--<input id="xdrmz" name="xdrmz" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-				<%--<span class="Validform_checktip"></span>--%>
-			<%--</div>--%>
-			<%--<div >--%>
-
-
-		    <%--</div>--%>
-			<%--<div >--%>
-		      <%--<label >发货人电话:</label>--%>
-					     	 <%--<input id="fhrdh" name="fhrdh" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-		      <%--<span class="Validform_checktip"></span>--%>
-		    <%--</div>--%>
-			<%--<div >--%>
-
-		    <%--</div>--%>
-
-
-
-
-
-
-			<%--<legend>派车信息 </legend>--%>
-			<%--<div >--%>
-				<%--<label >车号:</label>--%>
-				<%--<input id="chehao" name="chehao" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-				<%--<span class="Validform_checktip"></span>--%>
-			<%--</div>--%>
-			<%--<div >--%>
-				<%--<label >司机:</label>--%>
-				<%--<input id="siji" name="siji" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-				<%--<span class="Validform_checktip"></span>--%>
-			<%--</div>--%>
-			<%--<div >--%>
-				<%--<label >预计送达时间:</label>--%>
-				<%--<input id="yjsdsj" name="yjsdsj" type="text" style="width: 120px" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ignore="ignore" />--%>
-				<%--<span class="Validform_checktip"></span>--%>
-			<%--</div>--%>
-			<%--<legend>回单信息 </legend>--%>
-			<%--<div >--%>
-				<%--<label >送达时间:</label>--%>
-				<%--<input id="sdsj" name="sdsj" type="text" style="width: 120px" class="Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ignore="ignore" />--%>
-				<%--<span class="Validform_checktip"></span>--%>
-			<%--</div>--%>
-			<%--<div >--%>
-		      <%--<label >价格:</label>--%>
-					     	 <%--<input id="jiage" name="jiage" type="text" style="width: 120px" class="inputxt"  ignore="ignore" />--%>
-		      <%--<span class="Validform_checktip"></span>--%>
-		    <%--</div>--%>
-
-			<%--<div >--%>
-		      <%--<label >回单附件:</label>--%>
-				<%--<t:webUploader name="huidanfj" bizType="photosucai" auto="true" extensions="doc,txt,jpg" buttonStyle="btn-green btn-L" ></t:webUploader>--%>
-
-		      <%--<span class="Validform_checktip"></span>--%>
-		    <%--</div>--%>
 
 	  <div style="margin:3px auto"><button onclick="sub('formobj');">下单</button></div>
   </t:formvalid>

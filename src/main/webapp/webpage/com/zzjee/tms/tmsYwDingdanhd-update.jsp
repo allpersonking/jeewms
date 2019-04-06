@@ -30,37 +30,37 @@
 
 	  <fieldset class="step">
 
-			<table border="1pt" style="width: 1200px ">
+			<table border="1pt" style="width: 650px ">
 				<tr><td colspan="4"><p style="font-size: large">回单信息 </p></td></tr>
 				<tr>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">运费:</label>
 							<input id="hwyf" name="hwyf" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.hwyf}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">卸货费:</label>
 							<input id="hwxhf" name="hwxhf" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.hwxhf}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">货物总费用:</label>
 							<input id="hwzfy" name="hwzfy" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.hwzfy}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">回单备注:</label>
 							<input id="ywhdbz" name="ywhdbz" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.ywhdbz}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 				</tr>
@@ -70,50 +70,50 @@
 				<tr><td colspan="4"><p style="font-size: large">发货人信息 </p></td></tr>
 				<tr>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">发货人:</label>
 							<input id="fahuoren" name="fahuoren" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.fahuoren}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">发货人电话:</label>
 							<input id="fhrdh" name="fhrdh" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.fhrdh}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">发货人地址:</label>
 							<input id="fhrdz" name="fhrdz" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.fhrdz}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 				</tr>
 				<tr><td colspan="4"><p style="font-size: large">收货人信息 </p></td></tr>
 				<tr>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">收货人:</label>
 							<input id="shouhuoren" name="shouhuoren" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.shouhuoren}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">收货人电话:</label>
 							<input id="shrsj" name="shrsj" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.shrsj}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">收货人地址:</label>
 							<input id="shrdh" name="shrdh" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.shrdh}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 				</tr>
@@ -128,66 +128,66 @@
 
 				<tr>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">货物:</label>
 							<input id="huowu" name="huowu" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.huowu}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">件数:</label>
 							<input id="hwshjs" name="hwshjs" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.hwshjs}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">重量:</label>
 							<input id="zhongl" name="zhongl" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.zhongl}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">送货方式:</label>
 							<t:dictSelect field="hwshfs" type="radio"  typeGroupCode="tms_thfs"   defaultVal="${tmsYwDingdanPage.hwshfs}" hasLabel="false"  title="送货方式"></t:dictSelect>
 
-						</div>
+
 					</td>
 				</tr>
 
 
 				<tr>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">长米:</label>
 							<input id="chang" name="chang" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.chang}'/>
 							<span class="Validform_checktip"></span>
-						</div>
-					</td>
-					<td>
-						<div class="form">
-							<label class="Validform_label">宽米:</label>
-							<input id="kuan" name="kuan" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.kuan}'/>
-							<span class="Validform_checktip"></span>
-						</div>
-					</td>
-					<td>
-						<div class="form">
-							<label class="Validform_label">高米:</label>
-							<input id="gao" name="gao" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.gao}'/>
-							<span class="Validform_checktip"></span>
-						</div>
 
 					</td>
 					<td>
-						<div class="form">
+
+							<label class="Validform_label">宽米:</label>
+							<input id="kuan" name="kuan" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.kuan}'/>
+							<span class="Validform_checktip"></span>
+
+					</td>
+					<td>
+
+							<label class="Validform_label">高米:</label>
+							<input id="gao" name="gao" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.gao}'/>
+							<span class="Validform_checktip"></span>
+
+
+					</td>
+					<td>
+
 							<label class="Validform_label">立方米:</label>
 							<input id="tiji" name="tiji" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.tiji}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 
 					</td>
 
@@ -206,22 +206,22 @@
 						<%--</td>--%>
 
 							<td>
-								<div class="form">
+
 									<label class="Validform_label">下单备注:</label>
 									<input id="ywddbz" name="ywddbz" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.ywddbz}'/>
 									<span class="Validform_checktip"></span>
-								</div>
+
 							</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">代收款金额:</label>
 							<input id="daishouk" name="daishouk" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.daishouk}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 							<td>
-								<div class="form">
+
 									<label class="Validform_label">客户单号:</label>
 									<input id="ywkhdh" name="ywkhdh" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.ywkhdh}'/>
 									<span class="Validform_checktip"></span>
@@ -230,29 +230,27 @@
 
 
 							<td>
-						<div class="form">
+
 							<label class="Validform_label">是否等通知:</label>
-							<t:dictSelect field="dengtongzhi" type="radio"   typeGroupCode="sf_yn"  defaultVal="${tmsYwDingdanPage.dengtongzhi}" hasLabel="false"  title="是否等通知"></t:dictSelect>
+							<t:dictSelect field="dengtongzhi" type="radio"   typeGroupCode="sf_tz"  defaultVal="${tmsYwDingdanPage.dengtongzhi}" hasLabel="false"  title="是否等通知"></t:dictSelect>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 
 				</tr>
 
 				<tr>
 					<td>
-						<div class="form">
 							<label class="Validform_label">车号:</label>
 							<input id="chehao" name="chehao" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.chehao}'/>
 							<span class="Validform_checktip"></span>
-						</div>
 					</td>
 					<td>
-						<div class="form">
+
 							<label class="Validform_label">司机:</label>
 							<input id="siji" name="siji" type="text" style="width: 150px" class="inputxt"  ignore="ignore"  value='${tmsYwDingdanPage.siji}'/>
 							<span class="Validform_checktip"></span>
-						</div>
+
 					</td>
 				</tr>
 

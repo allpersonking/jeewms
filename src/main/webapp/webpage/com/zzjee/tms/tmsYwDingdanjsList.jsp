@@ -68,7 +68,7 @@
      }
      url += '&id='+rowsData[0].id;
 
-     createwindow("结算",url,"100%","100%");
+     createwindow("结算",url,"670px","680px");
  }
 //导入
 function ImportXls() {

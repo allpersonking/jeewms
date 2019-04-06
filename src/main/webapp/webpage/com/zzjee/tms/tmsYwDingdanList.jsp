@@ -48,7 +48,7 @@
    <t:dgCol title="下单人"  field="username"  query="true"  queryMode="single"  width="70"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
    <t:dgDelOpt title="删除" url="tmsYwDingdanController.do?doDel&id={id}" urlclass="ace_button" exp="zhuangtai#eq#已下单"  urlfont="fa-trash-o"/>
-   <t:dgToolBar title="下单" icon="icon-add" url="tmsYwDingdanController.do?goAdd" width="1000" height="400" funname="addbytab"></t:dgToolBar>
+   <t:dgToolBar title="下单" icon="icon-add" url="tmsYwDingdanController.do?goAdd" width="1000" height="600" funname="addbytab"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="tmsYwDingdanController.do?goUpdate" width="1200" height="550" funname="update"></t:dgToolBar>
    <%--<t:dgToolBar title="批量删除"  icon="icon-remove" url="tmsYwDingdanController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>--%>
    <t:dgToolBar title="查看" icon="icon-search" url="tmsYwDingdanController.do?goUpdate" width="1200" height="550" funname="detail"></t:dgToolBar>

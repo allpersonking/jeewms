@@ -83,7 +83,7 @@
      }
      url += '&id='+rowsData[0].id;
 
-     createwindow("回单",url,"100%","100%");
+     createwindow("回单",url,"670px","680px");
  }
 
  //添加行
