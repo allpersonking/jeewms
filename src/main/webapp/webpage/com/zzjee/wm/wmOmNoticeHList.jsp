@@ -38,7 +38,9 @@
    <t:dgDelOpt title="删除" url="wmOmNoticeHController.do?doDel&id={id}"  urlclass="ace_button" exp="omSta#ne#已完成" urlfont="fa-trash-o"/>
       <%--<t:dgFunOpt title="通知单" funname="print(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="omSta#ne#已删除"/>--%>
    <t:dgFunOpt title="拣货单" funname="doprint(id)"  urlclass="ace_button"   exp="omSta#ne#已删除"   />
-   <t:dgFunOpt title="回写" funname="dopost(id)"  urlclass="ace_button"   exp="omSta#eq#已完成"   />
+   <t:dgFunOpt title="追溯单" funname="doprintzhuisu(id)"  urlclass="ace_button"   exp="omSta#ne#已删除"   />
+
+   <%--<t:dgFunOpt title="回写" funname="dopost(id)"  urlclass="ace_button"   exp="omSta#eq#已完成"   />--%>
 
    <t:dgFunOpt title="出库单" funname="printckd(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="omSta#ne#已删除"/>
     <%--<t:dgFunOpt title="装箱单" funname="printckd(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="omSta#ne#已删除"/>--%>
@@ -117,6 +119,12 @@
      function doprint(id){
          var url = "wmOmNoticeHController.do?doPrintpage&id="+id;
          createdetailwindow(" 拣货单", url, 1200, 800);
+
+         // window.open(url);
+     }
+     function doprintzhuisu(id){
+         var url = "wmOmNoticeHController.do?doPrintzhuisu&id="+id;
+         createdetailwindow(" 追溯单", url, 1200, 800);
 
          // window.open(url);
      }

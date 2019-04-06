@@ -26,7 +26,7 @@ function make2DCode() {
         width : codesize,
         height : codesize
     });
-    qrcode.makeCode(document.getElementById("showlisturl").value);
+    qrcode.makeCode(document.getElementById("content").value);
 };
 // window.onload=function(){
 //     make2DCode();
@@ -167,14 +167,14 @@ function downloadqrcode() {
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">${comname}</span></td>
 			<td colspan=4 class=xl68 width=168 style='width:126pt'>日期：${kprq}</td>
-			<%--<td  rowspan="2" class=xl69>--%>
-				<%--<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">--%>
-			<%--</td>--%>
-				<td  rowspan="2" class=xl69>
+			<td  rowspan="2" class=xl69>
+				<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${wmOmNoticeHPage.omNoticeId}" style="width:80px;height:80px;vertical-align:right">
+			</td>
+				<%--<td  rowspan="2" class=xl69>--%>
 
-					<div id="qrcode" style="width:80px; height:80px;margin-top: 10px;margin-left: -10px"></div>
-				<%--<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${showlisturl}" style="width:80px;height:80px;vertical-align:right">--%>
-				</td>
+					<%--<div id="qrcode" style="width:80px; height:80px;margin-top: 10px;margin-left: -10px"></div>--%>
+				<%--&lt;%&ndash;<img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${showlisturl}" style="width:80px;height:80px;vertical-align:right">&ndash;%&gt;--%>
+				<%--</td>--%>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
 			<td colspan=5 height=40 class=xl67 style='height:30.0pt'><span style="font-size: 18pt">拣货单</span></td>
@@ -217,7 +217,7 @@ function downloadqrcode() {
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>品质</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘/保质期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
 
 			<td  ></td>

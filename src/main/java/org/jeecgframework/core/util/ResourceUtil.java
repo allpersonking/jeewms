@@ -86,6 +86,23 @@ public class ResourceUtil {
 
 		return null;
 	}
+	public static final TSUser getSessionUser() {
+		HttpSession session = ContextHolderUtils.getSession();
+		if(ClientManager.getInstance().getClient(session.getId())!=null){
+			return ClientManager.getInstance().getClient(session.getId()).getUser();
+			//update-begin--update---author:scott-----------date:20151218-------for:解决分布式登录问题-------
+		}else{
+			TSUser u = (TSUser) session.getAttribute(ResourceUtil.LOCAL_CLINET_USER);
+			Client client = new Client();
+			client.setIp("");
+			client.setLogindatetime(new Date());
+			client.setUser(u);
+			ClientManager.getInstance().addClinet(session.getId(), client);
+		}
+		//update-end--update---author:scott-----------date:20151218-------for:解决分布式登录问题-------
+		return null;
+	}
+
 	@Deprecated
 	public static final List<TSRoleFunction> getSessionTSRoleFunction(String roleId) {
 		HttpSession session = ContextHolderUtils.getSession();

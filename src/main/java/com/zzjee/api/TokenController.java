@@ -147,7 +147,18 @@ public class TokenController {
 		// 生成一个token，保存用户登录状态
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
+	@RequestMapping(value = "/callback", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<?> callback(@RequestParam String devEui, @RequestParam String type, @RequestParam String obj) {
+		logger.info("获取TOKEN[{}]" + devEui);
+		ResultDO D0 = new  ResultDO();
 
+		D0.setObj("");
+		D0.setOK(true);
+
+		// 生成一个token，保存用户登录状态
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
 	@RequestMapping(value = "/lighrcallback", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> lighrcallback(@RequestParam String devEui, @RequestParam String ctlLedStatus ) {

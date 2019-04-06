@@ -1,5 +1,7 @@
 package com.zzjee.wm.service.impl;
+import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
+import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import com.zzjee.wm.service.WmOmNoticeHServiceI;
 
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
@@ -7,6 +9,7 @@ import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 
+import org.jeecgframework.core.util.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +17,6 @@ import java.util.List;
 
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.service.impl.CommonServiceImpl;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.core.util.StringUtil;
-import org.jeecgframework.core.util.oConvertUtils;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -37,7 +37,13 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 	        List<WmOmNoticeIEntity> wmOmNoticeIList){
 			//保存主信息
 			this.save(wmOmNoticeH);
-		
+			Double jishu = 0.00;
+			Double tiji=0.00;
+			Double zhongl = 0.00;
+			Double chang = 0.00;
+			Double kuan = 0.00;
+			Double gao = 0.00;
+			String huowu = "";
 			/**保存-出货商品明细*/
 			for(WmOmNoticeIEntity wmOmNoticeI:wmOmNoticeIList){
 				//外键设置
@@ -45,6 +51,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 					MvGoodsEntity mvgoods = new MvGoodsEntity();
 					mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmOmNoticeI.getGoodsId()) ;
 					if(mvgoods!=null){
+						huowu=huowu+mvgoods.getGoodsName();
 						wmOmNoticeI.setGoodsName(mvgoods.getGoodsName());
 						try{
 						wmOmNoticeI.setBaseUnit(mvgoods.getBaseunit());
@@ -53,6 +60,16 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 							wmOmNoticeI.setBaseGoodscount(String.valueOf(Double.parseDouble(mvgoods.getChlShl())*Double.parseDouble(wmOmNoticeI.getGoodsQua())));
 						}else{
 							wmOmNoticeI.setBaseGoodscount(wmOmNoticeI.getGoodsQua());
+						}
+						try{
+							tiji= tiji+ Double.parseDouble(wmOmNoticeI.getBaseGoodscount())*Double.parseDouble(mvgoods.getTiJiCm());
+							zhongl= zhongl+ Double.parseDouble(wmOmNoticeI.getBaseGoodscount())*Double.parseDouble(mvgoods.getZhlKg());
+//							chang= chang+ Double.parseDouble(wmOmNoticeI.getBaseGoodscount())*Double.parseDouble(mvgoods.get());
+//							kuan= kuan+ Double.parseDouble(wmOmNoticeI.getBaseGoodscount())*Double.parseDouble(mvgoods.getZhlKg());
+//							gao= gao+ Double.parseDouble(wmOmNoticeI.getBaseGoodscount())*Double.parseDouble(mvgoods.getZhlKg());
+
+							jishu = jishu + Double.parseDouble(wmOmNoticeI.getBaseGoodscount());
+						}catch (Exception e){
 						}
 						}catch (Exception e){
 
@@ -68,6 +85,37 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 				wmOmNoticeI.setOmBeizhu(wmOmNoticeH.getOmBeizhu());
 				this.save(wmOmNoticeI);
 			}
+
+		if("yes".equals(ResourceUtil.getConfigByName("wms.totms"))){
+			try{
+				TmsYwDingdanEntity tmsYwDingdanEntity = new TmsYwDingdanEntity();
+				MdCusEntity mdcus = this.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmOmNoticeH.getCusCode());
+				tmsYwDingdanEntity.setHwshjs(jishu.toString());
+				tmsYwDingdanEntity.setTiji(tiji.toString());
+				tmsYwDingdanEntity.setZhongl(zhongl.toString());
+				tmsYwDingdanEntity.setChang(chang.toString());
+				tmsYwDingdanEntity.setKuan(kuan.toString());
+				tmsYwDingdanEntity.setGao(gao.toString());
+				tmsYwDingdanEntity.setHuowu(huowu);
+				tmsYwDingdanEntity.setCreateDate(DateUtils.getDate());
+				tmsYwDingdanEntity.setUsername(mdcus.getKeHuBianMa());
+				tmsYwDingdanEntity.setFahuoren(mdcus.getZhongWenQch());
+				tmsYwDingdanEntity.setFhrdh(mdcus.getDianHua());
+				tmsYwDingdanEntity.setFhrdz(mdcus.getDiZhi());
+				tmsYwDingdanEntity.setSiji(wmOmNoticeH.getReCarno());//司机
+				tmsYwDingdanEntity.setShouhuoren(wmOmNoticeH.getDelvMember());
+				tmsYwDingdanEntity.setShrdh(wmOmNoticeH.getDelvAddr());
+				tmsYwDingdanEntity.setShrsj(wmOmNoticeH.getDelvMobile());
+				tmsYwDingdanEntity.setYwddbz(wmOmNoticeH.getOmBeizhu());
+				tmsYwDingdanEntity.setYwkhdh(wmOmNoticeH.getOmNoticeId());
+				tmsYwDingdanEntity.setZhuangtai("已下单");
+				this.save(tmsYwDingdanEntity);
+			}catch (Exception e){
+
+			}
+
+		}
+
 			//执行新增操作配置的sql增强
  			this.doAddSql(wmOmNoticeH);
 	}

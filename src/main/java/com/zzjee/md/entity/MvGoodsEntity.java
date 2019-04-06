@@ -77,7 +77,17 @@ public class MvGoodsEntity implements java.io.Serializable {
 
 	@Excel(name="商品规格")
 	private java.lang.String shpGuiGe;
-	
+	/**商品品牌*/
+	@Excel(name="商品品牌")
+	private java.lang.String shpPinPai;
+	@Excel(name="长")
+	private java.lang.String chZhXiang;
+	/**宽整箱*/
+	@Excel(name="宽")
+	private java.lang.String kuZhXiang;
+	/**高整箱*/
+	@Excel(name="高")
+	private java.lang.String gaoZhXiang;
 	@Id
 	@GeneratedValue(generator = "paymentableGenerator")
 	@GenericGenerator(name = "paymentableGenerator", strategy = "uuid")
@@ -347,4 +357,70 @@ public class MvGoodsEntity implements java.io.Serializable {
 	public void setShpGuiGe(java.lang.String shpGuiGe){
 		this.shpGuiGe = shpGuiGe;
 	}
+
+
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  长整箱
+	 */
+	@Column(name ="CH_ZH_XIANG",nullable=true,length=32)
+	public java.lang.String getChZhXiang(){
+		return this.chZhXiang;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  长整箱
+	 */
+	public void setChZhXiang(java.lang.String chZhXiang){
+		this.chZhXiang = chZhXiang;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  宽整箱
+	 */
+	@Column(name ="KU_ZH_XIANG",nullable=true,length=32)
+	public java.lang.String getKuZhXiang(){
+		return this.kuZhXiang;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  宽整箱
+	 */
+	public void setKuZhXiang(java.lang.String kuZhXiang){
+		this.kuZhXiang = kuZhXiang;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  高整箱
+	 */
+	@Column(name ="GAO_ZH_XIANG",nullable=true,length=32)
+	public java.lang.String getGaoZhXiang(){
+		return this.gaoZhXiang;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  高整箱
+	 */
+	public void setGaoZhXiang(java.lang.String gaoZhXiang){
+		this.gaoZhXiang = gaoZhXiang;
+	}
+	@Column(name ="SHP_PIN_PAI",nullable=true,length=35)
+	public java.lang.String getShpPinPai(){
+		return this.shpPinPai;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  商品品牌
+	 */
+	public void setShpPinPai(java.lang.String shpPinPai){
+		this.shpPinPai = shpPinPai;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  商品条码
+	 */
 }

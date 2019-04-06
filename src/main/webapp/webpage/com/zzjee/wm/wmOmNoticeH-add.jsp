@@ -284,7 +284,10 @@
 			          	<b>承运人车号：</b>
 			          </div>
 			          <div class="col-xs-2">
-								<input id="reCarno" name="reCarno" type="text" class="form-control"
+
+						  <t:autocomplete   entityName="TmsMdCheliangEntity" searchField="chepaihao" name="reCarno"></t:autocomplete>
+
+						  <input id="reCarno" name="reCarno" type="text" class="form-control"
 									/>
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">承运人车号</label>

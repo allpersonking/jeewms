@@ -1,6 +1,7 @@
 package com.zzjee.wm.controller;
 import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.*;
+import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import com.zzjee.wm.entity.*;
 import com.zzjee.wm.page.*;
 import com.zzjee.wm.service.WmOmNoticeHServiceI;
@@ -329,7 +330,129 @@ public class WmOmNoticeHController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/print/jianhuorenwu-print");
 	}
+	@RequestMapping(params = "doPrintzhuisu")
+	public ModelAndView doPrintpzhuisu(String id,HttpServletRequest request) {
+		WmOmNoticeHEntity wmOmNoticeHEntity = wmOmNoticeHService.getEntity(WmOmNoticeHEntity.class, id);
+		wmOmNoticeHEntity.setPrintStatus("已打印");
+		systemService.updateEntitie(wmOmNoticeHEntity);
+		request.setAttribute("wmOmNoticeHPage", wmOmNoticeHEntity);
+		request.setAttribute("kprq",DateUtils.date2Str(wmOmNoticeHEntity.getCreateDate(),DateUtils.date_sdf));
+		request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+		request.setAttribute("showlisturl", ResourceUtil.getConfigByName("show.noticeurl")+id);
 
+		if(StringUtil.isNotEmpty(wmOmNoticeHEntity.getImCusCode())){
+			request.setAttribute("noticeid", wmOmNoticeHEntity.getImCusCode());
+		}else{
+			request.setAttribute("noticeid", wmOmNoticeHEntity.getOmNoticeId());
+		}
+
+		try{
+			MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmOmNoticeHEntity.getCusCode());
+			MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class,"keHuBianMa",wmOmNoticeHEntity.getOcusCode());
+			request.setAttribute("cusname",wmOmNoticeHEntity.getCusCode()+"-"+ mdcus.getZhongWenQch());
+			if(mdcusother!=null){
+				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode()+"-"+ mdcusother.getZhongWenQch());
+			}else{
+				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode());
+			}
+
+		}catch (Exception e){
+
+		}
+		//获取参数
+		Object id0 = wmOmNoticeHEntity.getOmNoticeId();
+		//===================================================================================
+		//查询-产品
+		String hql0 = "from WmOmQmIEntity where 1 = 1 AND omNoticeId = ? order by binId";
+		Double tomsum = 0.00;
+		Double  noticesum = 0.00;
+		Double  tijisum = 0.00;
+		Double  zhlsum = 0.00;
+		try{
+			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
+			List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+			DecimalFormat dfsum=new DecimalFormat(".##");
+			String filepath = ResourceUtil.getConfigByName("webUploadpath");
+            String goodsurl = ResourceUtil.getConfigByName("show.goodsurl");
+
+			try{
+				for(WmOmQmIEntity tom:wmOmQmIEntityList){
+                    try{
+                        QRcodeUtil.encode(goodsurl+tom.getId(),filepath+ File.separator + tom.getId()+".png");
+  						System.out.println(goodsurl+tom.getId());
+                    }catch (Exception e){
+
+                    }
+					tomsum = tomsum + Double.parseDouble(tom.getBaseGoodscount());
+					try{
+						tijisum = tijisum + Double.parseDouble(tom.getTinTj());
+
+					}catch ( Exception e){
+					}
+					try{
+						zhlsum = zhlsum + Double.parseDouble(tom.getTinZhl());
+					}catch ( Exception e){
+					}
+					try{
+						tom.setTinZhl(dfsum.format(Double.parseDouble(tom.getTinZhl())));
+					}catch ( Exception e){
+					}
+					try{
+						tom.setTinTj(dfsum.format(Double.parseDouble(tom.getTinTj())));
+					}catch ( Exception e){
+					}
+					tom.setBaseGoodscount(StringUtil.getdouble(tom.getBaseGoodscount()));
+					try{
+						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+								MvGoodsEntity.class, "goodsCode", tom.getGoodsId());
+						if (mvgoods != null) {
+							tom.setShpGuiGe(mvgoods.getShpGuiGe());
+						}
+						int shpguige = 0;
+						try{
+							shpguige = Integer.parseInt(mvgoods.getShpGuiGe());
+						}catch (Exception e){
+						}
+						if(shpguige!=0){
+							Double xianhshu = Math.floor(Double.parseDouble(tom.getBaseGoodscount())/shpguige);
+							Double jianshu = Double.parseDouble(tom.getBaseGoodscount())%shpguige;
+							long xiangshuint = Math.round(xianhshu);
+							if(xianhshu > 0){
+								tom.setPickNotice(xiangshuint+"整"+jianshu+tom.getBaseUnit());
+							}else{
+								tom.setPickNotice(tom.getBaseGoodscount()+tom.getBaseUnit());
+							}
+						}
+					}catch (Exception e){
+					}
+					wmOmQmIEntityListnew.add(tom);
+				}
+			}catch ( Exception e){
+			}
+			String hqlnotice = "from WmOmNoticeIEntity where 1 = 1 AND oM_NOTICE_ID = ? ";
+			List<WmOmNoticeIEntity> wmOmNoticeIEntityList = systemService.findHql(hqlnotice,id0);
+			for(WmOmNoticeIEntity tnotice:wmOmNoticeIEntityList){
+				noticesum = noticesum + Double.parseDouble(tnotice.getBaseGoodscount());
+			}
+			if(Double.doubleToLongBits(noticesum) != Double.doubleToLongBits(tomsum)){
+				request.setAttribute("jianhuoremark", "订单："+dfsum.format(noticesum)+" 拣货："+dfsum.format(tomsum));
+			}else{
+				request.setAttribute("jianhuoremark", "全部拣货，共"+dfsum.format(noticesum));
+			}
+			String tijiunit="立方分米";
+			String zhongliangunit="公斤";
+			try{
+				tijiunit= ResourceUtil.getConfigByName("tijiunit");
+				zhongliangunit=ResourceUtil.getConfigByName("zhongliangunit");
+			}catch (Exception e){
+			}
+			request.setAttribute("tijisum", dfsum.format(tijisum)+tijiunit);
+			request.setAttribute("zhlsum", dfsum.format(zhlsum)+zhongliangunit);
+			request.setAttribute("wmOmQmIList", wmOmQmIEntityList);
+		}catch (Exception e){
+		}
+		return new ModelAndView("com/zzjee/wm/print/jianhuorenwuzhuisu");
+	}
 	@RequestMapping(params = "showlist")
 	public ModelAndView showlist(String id,HttpServletRequest request) {
 		WmOmNoticeHEntity wmOmNoticeHEntity = wmOmNoticeHService.getEntity(WmOmNoticeHEntity.class, id);
@@ -435,6 +558,52 @@ public class WmOmNoticeHController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/print/zhuisu-print");
 	}
+
+
+	@RequestMapping(params = "showgoods")
+	public ModelAndView showgoods(String id,HttpServletRequest request) {
+		WmOmQmIEntity wmOmQmIEntity = wmOmNoticeHService.getEntity(WmOmQmIEntity.class, id);
+		request.setAttribute("wmOmQmIEntity", wmOmQmIEntity);
+		request.setAttribute("comname", ResourceUtil.getConfigByName("comname"));
+
+		System.out.println(id);
+
+		try{
+			MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmOmQmIEntity.getCusCode());
+			request.setAttribute("cusname",wmOmQmIEntity.getCusCode()+"-"+ mdcus.getZhongWenQch());
+			mdcus.setZuZhiJiGou(mdcus.getZuZhiJiGou().replace(",",""));
+
+			request.setAttribute("MdCusEntity",mdcus);
+
+
+		}catch (Exception e){
+
+		}
+		//获取参数
+		Object goodsid = wmOmQmIEntity.getGoodsId();
+		Object goodspro = wmOmQmIEntity.getProData();
+
+		//===================================================================================
+		//查询-产品
+		String hql0 = "from WmInQmIEntity where proData = ? AND goodsId = ? order by createDate  ";
+		String hql1 = "from WmImNoticeHEntity where noticeId = ?  order by createDate  ";
+		try{
+			List<WmInQmIEntity> WmInQmIEntityList = systemService.findHql(hql0, goodspro,goodsid);//获取行项目
+			if(WmInQmIEntityList!=null&&WmInQmIEntityList.size()>0){
+				String imnoticeid = WmInQmIEntityList.get(0).getImNoticeId();
+				List<WmImNoticeHEntity> WmImNoticeHEntityList = systemService.findHql(hql1, imnoticeid);//获取行项目
+				if(WmInQmIEntityList!=null&&WmInQmIEntityList.size()>0) {
+					WmImNoticeHEntity wmImNoticeHEntity = WmImNoticeHEntityList.get(0);
+					wmImNoticeHEntity.setFuJian(wmImNoticeHEntity.getFuJian().replace(",",""));
+					request.setAttribute("wmimnoticeh",wmImNoticeHEntity);
+				}
+				}
+			}catch ( Exception e){
+			}
+
+		return new ModelAndView("com/zzjee/wm/print/zhuisuitem-print");
+	}
+
 //
 	/**
 	 * easyui AJAX请求数据
@@ -724,6 +893,8 @@ public class WmOmNoticeHController extends BaseController {
 					wmOmNoticeH.setCusCode(wmUtil.getCusCode());
 				}
 			}
+
+
 			List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
 			for (WmOmNoticeIEntity wmomNoticeIEntity : wmOmNoticeIList) {
 				if(!StringUtil.isEmpty(wmomNoticeIEntity.getGoodsId())){
@@ -745,6 +916,9 @@ public class WmOmNoticeHController extends BaseController {
 				}
 			}
 			wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
+
+
+
 			Map<String ,Object> map = new HashMap<String ,Object>();
 			map.put("id", wmOmNoticeH.getOmNoticeId());
 			try {
@@ -1476,7 +1650,7 @@ public class WmOmNoticeHController extends BaseController {
 				try{
 					if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))){
 //						String[]  columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","库存","备注" };
-						String[]  columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","体积/cm³","备注" };
+						String[]  columnNames1 = { "序号", "商品编码", "商品名称", "生产日期", "品质","箱数", "拆零数", "毛重/KG","库存","备注" };
 
 						columnNames = columnNames1;
 					}
@@ -1590,7 +1764,7 @@ public class WmOmNoticeHController extends BaseController {
 						try{
 							if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))) {
 								try{
-//									cell9.setCellValue(wmUtil.getstock(result.get(i).get("goods_id").toString()));
+									cell9.setCellValue(wmUtil.getstock(result.get(i).get("goods_id").toString()));
 								}catch (Exception e){
 
 								}

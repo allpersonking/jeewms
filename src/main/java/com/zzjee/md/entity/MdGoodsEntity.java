@@ -87,6 +87,7 @@ public class MdGoodsEntity implements java.io.Serializable {
 	@Excel(name="计费商品类")
 	private java.lang.String jfShpLei;
 	/**商品品牌*/
+	@Excel(name="商品品牌")
 	private java.lang.String shpPinPai;
 	/**商品条码*/
 	@Excel(name="商品条码")

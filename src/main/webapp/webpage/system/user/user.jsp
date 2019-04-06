@@ -137,6 +137,16 @@
                 <span class="Validform_checktip"><t:mutiLang langKey="role.muti.select"/></span>
             </td>
 		</tr>
+
+        <tr>
+            <td align="right"><label class="Validform_label"> 用户类型: </label></td>
+            <td class="value">
+
+                <t:dictSelect id="userType" field="userType" typeGroupCode="user_type" hasLabel="false" defaultVal="${user.userType==null?'4':(user.userType)}" type="radio"></t:dictSelect>
+                <span class="Validform_checktip"></span>
+            </td>
+        </tr>
+
 		<tr>
 			<td align="right" nowrap><label class="Validform_label">  <t:mutiLang langKey="common.phone"/>: </label></td>
 			<td class="value">

@@ -135,7 +135,7 @@
 				</property>
 				<property name="excludeContainUrls">
 					<list>
-
+                        <value>systemController/showOrDownByurl.do</value>
 						<value>wmOmNoticeHController.do</value>
 					</list>
 				</property>

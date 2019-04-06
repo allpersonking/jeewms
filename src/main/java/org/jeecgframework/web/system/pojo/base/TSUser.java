@@ -27,6 +27,8 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	@Excel(name = "邮箱")
 	private String email;// 邮箱
 	/**创建时间*/
+	private String userType;//用户类型  1:系统用户 \2接口用户 3 公司权限  4 当前用户
+
 	private java.util.Date createDate;
 	/**创建人ID*/
 	private java.lang.String createBy;
@@ -38,6 +40,18 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	private java.lang.String updateBy;
 	/**修改人名称*/
 	private java.lang.String updateName;
+
+
+	@Column(name = "user_type")
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+
 	@Column(name = "signatureFile", length = 100)
 	public String getSignatureFile() {
 		return this.signatureFile;
