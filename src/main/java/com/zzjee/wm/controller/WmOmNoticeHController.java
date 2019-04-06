@@ -465,6 +465,9 @@ public class WmOmNoticeHController extends BaseController {
 			MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class,"keHuBianMa",wmOmNoticeHEntity.getOcusCode());
 			request.setAttribute("cusname",wmOmNoticeHEntity.getCusCode()+"-"+ mdcus.getZhongWenQch());
 			if(mdcusother!=null){
+				mdcusother.setZuZhiJiGou(mdcusother.getZuZhiJiGou().replace(",",""));
+				request.setAttribute("mdcusother",mdcusother);
+
 				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode()+"-"+ mdcusother.getZhongWenQch());
 			}else{
 				request.setAttribute("ocusname",wmOmNoticeHEntity.getOcusCode());
@@ -595,6 +598,15 @@ public class WmOmNoticeHController extends BaseController {
 				if(WmInQmIEntityList!=null&&WmInQmIEntityList.size()>0) {
 					WmImNoticeHEntity wmImNoticeHEntity = WmImNoticeHEntityList.get(0);
 					wmImNoticeHEntity.setFuJian(wmImNoticeHEntity.getFuJian().replace(",",""));
+					try{
+						String arr[] = wmImNoticeHEntity.getFuJian().split(",");
+						for(int si=0;si<arr.length;si++){
+							request.setAttribute("fujian"+si,arr[si]);
+						}
+					}catch (Exception e){
+
+					}
+
 					request.setAttribute("wmimnoticeh",wmImNoticeHEntity);
 				}
 				}

@@ -159,13 +159,18 @@ function printview(){
 			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt"><img src="systemController/showOrDownByurl.do?dbPath=${MdCusEntity.zuZhiJiGou }"    ></span></th>
 		</tr>
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt">检测报告</th>
+			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt">收货附件</th>
 		</tr>
+		<c:if test="${fujian0 }">
 		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt"><img src="systemController/showOrDownByurl.do?dbPath=${wmimnoticeh.fuJian }"    ></span></th>
+			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt"><img src="systemController/showOrDownByurl.do?dbPath=${fujian0}"    ></span></th>
 		</tr>
-
-
+		</c:if>
+		<c:if test="${fujian1 }">
+		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
+			<th colspan=3 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt"><img src="systemController/showOrDownByurl.do?dbPath=${fujian1}"    ></span></th>
+		</tr>
+        </c:if>
 
 
 	</table>

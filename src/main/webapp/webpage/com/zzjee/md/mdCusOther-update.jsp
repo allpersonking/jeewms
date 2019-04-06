@@ -560,18 +560,18 @@
 						</td>
 					</tr>
 					<tr>
-						<td align="right">
-							<label class="Validform_label">
-								组织机构代码证:
-							</label>
-						</td>
-						<td class="value">
-						     	 <input id="zuZhiJiGou" name="zuZhiJiGou" type="text" style="width: 150px" class="inputxt"  
-						     	 ignore="ignore" 
-						     	 value='${mdCusOtherPage.zuZhiJiGou}'>
-							<span class="Validform_checktip"></span>
-							<label class="Validform_label" style="display: none;">组织机构代码证</label>
-						</td>
+						<%--<td align="right">--%>
+							<%--<label class="Validform_label">--%>
+								<%--组织机构代码证:--%>
+							<%--</label>--%>
+						<%--</td>--%>
+						<%--<td class="value">--%>
+						     	 <%--<input id="zuZhiJiGou" name="zuZhiJiGou" type="text" style="width: 150px" class="inputxt"  --%>
+						     	 <%--ignore="ignore" --%>
+						     	 <%--value='${mdCusOtherPage.zuZhiJiGou}'>--%>
+							<%--<span class="Validform_checktip"></span>--%>
+							<%--<label class="Validform_label" style="display: none;">组织机构代码证</label>--%>
+						<%--</td>--%>
 						<td align="right">
 							<label class="Validform_label">
 								道路运输经营许可证:
@@ -689,6 +689,20 @@
 							<label class="Validform_label" style="display: none;">电话1</label>
 						</td>
 					</tr>
+			<div class="row show-grid">
+				<div class="col-xs-3 text-center">
+					<b>附件：</b>
+				</div>
+				<div class="col-xs-3">
+
+					<t:webUploader auto="true" pathValues="${mdCusOtherPage.zuZhiJiGou}" name="zuZhiJiGou" duplicate="true" fileNumLimit="1"></t:webUploader>
+
+
+
+					<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					<label class="Validform_label" style="display: none">营业执照</label>
+				</div>
+			</div>
 			</table>
 		</t:formvalid>
  </body>
