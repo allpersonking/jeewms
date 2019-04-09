@@ -597,7 +597,7 @@ public class WmOmNoticeHController extends BaseController {
 				List<WmImNoticeHEntity> WmImNoticeHEntityList = systemService.findHql(hql1, imnoticeid);//获取行项目
 				if(WmInQmIEntityList!=null&&WmInQmIEntityList.size()>0) {
 					WmImNoticeHEntity wmImNoticeHEntity = WmImNoticeHEntityList.get(0);
-					wmImNoticeHEntity.setFuJian(wmImNoticeHEntity.getFuJian().replace(",",""));
+//					wmImNoticeHEntity.setFuJian(wmImNoticeHEntity.getFuJian().replace(",",""));
 					try{
 						String arr[] = wmImNoticeHEntity.getFuJian().split(",");
 						for(int si=0;si<arr.length;si++){
@@ -924,6 +924,7 @@ public class WmOmNoticeHController extends BaseController {
 				String datecuso[]= wmOmNoticeH.getOcusCode().split("-");
 				MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", datecuso[0]);
 				if (mdcusother != null) {
+					wmOmNoticeH.setOcusCode(datecuso[0]);
 					wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
 				}
 			}
