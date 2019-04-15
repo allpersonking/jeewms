@@ -79,6 +79,26 @@ public class GoodsMoveTask {
                 "and   bin_id in ('A','B') " +
                 "and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
         this.genGoodsMove(tsql,"C","",moveStatus);
+
+
+		//转移到DB
+        tsql = "SELECT id FROM wv_stock_stt " +
+				"where yushoutianshu <> bzhi_qi  " +
+				"and bzhi_qi > 0 " +
+				"and  bin_id = 'DA' " +
+				"and to_days(`goods_pro_data` + interval  (bzhi_qi - yushoutianshu) day) < to_days(now())  " +
+				"and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) > to_days(now())";
+		this.genGoodsMove(tsql,"DB","",moveStatus);
+
+
+		//转移到DC
+		tsql = "SELECT id FROM wv_stock_stt " +
+				"where yushoutianshu <>  bzhi_qi   " +
+				"and bzhi_qi > 0 " +
+				"and   bin_id in ('DA','DB') " +
+				"and to_days(`goods_pro_data` + interval  (bzhi_qi ) day) <= to_days(now())";
+		this.genGoodsMove(tsql,"DC","",moveStatus);
+
 	}
 
 	private void  genGoodsMove(String Tsql,String TinId,String binstrore,String moveStatus  ){
