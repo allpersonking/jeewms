@@ -5,14 +5,18 @@ import com.alibaba.fastjson.JSONObject;
 import com.zzjee.conf.entity.FxjOtherLoginEntity;
 import com.zzjee.conf.entity.WxConfigEntity;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.util.ResourceUtil;
 
+import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.jwt.util.ResponseMessage;
 import org.jeecgframework.jwt.util.Result;
+import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.pojo.base.TSFunction;
 import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.pojo.base.TSUserOrg;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -269,6 +273,43 @@ public class TokenController {
 		}
 		D0.setOK(true);
 		return D0;
+	}
+
+	@RequestMapping(value = "/getuser/{username}", method = RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="根据username获取用户信息",notes="根据username获取用户信息",httpMethod="GET",produces="application/json")
+	public ResponseMessage<?> getuser(@ApiParam(required=true,name="username",value="username")@PathVariable("username") String username) {
+		TSUser task = systemService.findUniqueByProperty(TSUser.class,"userName",username);
+		if (task == null) {
+			FxjOtherLoginEntity fxjOtherLoginEntity = userService.findUniqueByProperty(FxjOtherLoginEntity.class, "otherid", username);
+			if (fxjOtherLoginEntity != null) {
+				task = systemService.findUniqueByProperty(TSUser.class,"userName",fxjOtherLoginEntity.getUsername());
+			}
+		}
+		if (task == null) {
+			task = systemService.findUniqueByProperty(TSUser.class,"userName",ResourceUtil.getConfigByName("mini.user"));
+			return org.jeecgframework.jwt.util.Result.error("获取用户信息失败");
+		}
+		if(!StringUtil.isEmpty(task.getDepartid())){
+			TSDepart tsDepart = systemService.get(TSDepart.class,task.getDepartid());
+			if(tsDepart!=null){
+				tsDepart.setTSDeparts(null);
+				tsDepart.setTSPDepart(null);
+				task.setCurrentDepart(tsDepart);
+			}else{
+				try{
+					TSUserOrg tsDepart1 =  task.getUserOrgList().get(0);
+
+					tsDepart1.setTsDepart(null);
+					task.setCurrentDepart (tsDepart1.getTsDepart());
+				}catch (Exception e1){
+				}
+
+			}
+		}
+		task.setUserOrgList(null);
+
+		return org.jeecgframework.jwt.util.Result.success(task);
 	}
 
 }
