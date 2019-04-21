@@ -822,6 +822,8 @@ public class WmOmNoticeHController extends BaseController {
 	@RequestMapping(params = "doDel")
 	@ResponseBody
 	public AjaxJson doDel(WmOmNoticeHEntity wmOmNoticeH, HttpServletRequest request) {
+		String deltype = ResourceUtil.getConfigByName("del.type");
+
 		AjaxJson j = new AjaxJson();
 		wmOmNoticeH = systemService.getEntity(WmOmNoticeHEntity.class, wmOmNoticeH.getId());
 		String message = "出货通知删除成功";
@@ -835,9 +837,20 @@ public class WmOmNoticeHController extends BaseController {
 			for (WmOmNoticeIEntity wmOmNoticeIEntity : wmOmNoticeIOldList) {
 				wmOmNoticeIEntity.setOmSta("已删除");
 				wmOmNoticeIEntity.setPlanSta("Y");
-				systemService.saveOrUpdate(wmOmNoticeIEntity);
+				if("database".equals(deltype)){
+					systemService.delete(wmOmNoticeIEntity);
+
+				}else{
+					systemService.saveOrUpdate(wmOmNoticeIEntity);
+
+				}
 			}
-			wmOmNoticeHService.saveOrUpdate(wmOmNoticeH);
+			if("database".equals(deltype)){
+				wmOmNoticeHService.delete(wmOmNoticeH);
+			}else{
+				wmOmNoticeHService.saveOrUpdate(wmOmNoticeH);
+
+			}
 			systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();

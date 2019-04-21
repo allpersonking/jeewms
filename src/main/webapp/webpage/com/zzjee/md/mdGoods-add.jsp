@@ -92,7 +92,7 @@ function counttiji(){
 			          <div class="col-xs-3">
 			          <input id="jiZhunwendu" name="jiZhunwendu" type="text" class="form-control" 
 									ignore="checked"
-								 datatype="*" required="required"/>
+								   required="required"/>
 									<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">基准温度</label>
 			          </div>
@@ -157,6 +157,36 @@ function counttiji(){
 						<label class="Validform_label" style="display: none">商品名称</label>
 			          </div>
 						</div>
+
+					  <div class="row show-grid">
+
+
+						  <div class="col-xs-3 text-center">
+							  <b   >英文名称</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="ywMingCheng" name="ywMingCheng" type="text" class="form-control"
+									 ignore="checked" style="width:490px"
+									   />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">英文名称</label>
+						  </div>
+					  </div>
+
+					  <div class="row show-grid">
+
+
+						  <div class="col-xs-3 text-center">
+							  <b   >日文名称</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="rwMingCheng" name="rwMingCheng" type="text" class="form-control"
+									 ignore="checked" style="width:490px"
+									    />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">日文名称</label>
+						  </div>
+					  </div>
 		        
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
@@ -174,7 +204,7 @@ function counttiji(){
 			          </div>
 			          <div class="col-xs-3">
 								<input id="zhlKg" name="zhlKg" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"    datatype="*" required="required"
+									ignore="ignore" style="text-align:right"    required="required"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">重量</label>
@@ -184,41 +214,41 @@ function counttiji(){
 							<div class="row show-grid">
 			    
 			          	          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">长</b>
+			          	<b   >长</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="chZhXiang" name="chZhXiang" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"  datatype="d" 
+									ignore="ignore" style="text-align:right"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">长</label>
 			          </div>
 			               <div class="col-xs-3 text-center">
-			          	<b  style="color:red">宽</b>
+			          	<b  >宽</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="kuZhXiang" name="kuZhXiang" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"  datatype="d"  
+									ignore="ignore" style="text-align:right"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">宽</label>
 			          </div>
 			          			               <div class="col-xs-3 text-center">
-			          	<b  style="color:red">高</b>
+			          	<b  >高</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="gaoZhXiang" name="gaoZhXiang" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"  datatype="d"  onchange="counttiji()"
+									ignore="ignore" style="text-align:right"     onchange="counttiji()"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">高</label>
 			          </div>
 			                <div class="col-xs-3 text-center">
-			          	<b  style="color:red">体积</b>
+			          	<b   >体积</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="tiJiCm" name="tiJiCm" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"  datatype="d" datatype="*"
+									ignore="ignore" style="text-align:right"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">体积</label>

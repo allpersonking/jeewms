@@ -1,5 +1,6 @@
 package com.zzjee.wmutil;
 
+import com.zzjee.conf.entity.FxjOtherLoginEntity;
 import com.zzjee.md.entity.MdBinEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.sys.entity.SysParaEntity;
@@ -7,10 +8,7 @@ import org.antlr.stringtemplate.language.Cat;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.ResourceUtil;
-import org.jeecgframework.web.system.pojo.base.TSIcon;
-import org.jeecgframework.web.system.pojo.base.TSRole;
-import org.jeecgframework.web.system.pojo.base.TSRoleUser;
-import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.pojo.base.*;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.sms.service.TSSmsSqlServiceI;
 import org.jeecgframework.core.common.model.json.DataGrid;
@@ -462,5 +460,32 @@ public class wmUtil {
 		return flag;
 	}
 
+	public static  TSUser getsysorgcode(String sysuser){
+		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
+		try{
+			FxjOtherLoginEntity fxjOtherLoginEntity = systemService.findUniqueByProperty(FxjOtherLoginEntity.class,"otherid",sysuser);
+			if (fxjOtherLoginEntity!=null){
+				sysuser = fxjOtherLoginEntity.getUsername();
+			}
+		}catch (Exception e){
 
+		}
+		TSUser task = systemService.findUniqueByProperty(TSUser.class,"userName",sysuser);
+//		if(task==null){
+//			sysuser=ResourceUtil.getConfigByName("mini.user");
+//			task = systemService.findUniqueByProperty(TSUser.class,"userName",sysuser);
+//		}
+		if(task!=null) {
+			try {
+				TSDepart tsDepart = systemService.get(TSDepart.class, task.getDepartid());
+				if (tsDepart != null) {
+					tsDepart.setOrgCode(tsDepart.getOrgCode());
+					task.setCurrentDepart(tsDepart);
+				}
+			} catch (Exception e) {
+
+			}
+		}
+		return  task;
+	}
 }

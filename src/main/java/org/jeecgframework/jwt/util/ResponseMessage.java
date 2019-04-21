@@ -13,7 +13,7 @@ public class ResponseMessage<T> {
     private String respMsg;
     private T data;
     private boolean ok;
-
+    private Long total;
     public ResponseMessage() {
     }
 
@@ -21,7 +21,13 @@ public class ResponseMessage<T> {
         this.respCode = codeEnum.getCode();
         this.respMsg = message;
     }
-    
+    public ResponseMessage(ResponseMessageCodeEnum codeEnum, String message, boolean ok, T data,long total) {
+        this.respCode = codeEnum.getCode();
+        this.respMsg = message;
+        this.ok = ok;
+        this.data = data;
+        this.total = total;
+    }
     public ResponseMessage(ResponseMessageCodeEnum codeEnum, String message, boolean ok, T data) {
         this.respCode = codeEnum.getCode();
         this.respMsg = message;
@@ -56,4 +62,12 @@ public class ResponseMessage<T> {
     public boolean isOk() {
 		return ok;
 	}
+
+    public Long getTotal() {
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
 }

@@ -22,7 +22,9 @@ public class Result {
     public static <T> ResponseMessage<T> success(ResponseMessageCodeEnum codeEnum, T t) {
         return new ResponseMessage(codeEnum, "", true, t);
     }
-
+    public static <T> ResponseMessage<T> success(T t,Long total) {
+        return new ResponseMessage(ResponseMessageCodeEnum.SUCCESS, "成功", true, t,total);
+    }
     public static <T> ResponseMessage<T> success(ResponseMessageCodeEnum codeEnum, String message, T t) {
         return new ResponseMessage(codeEnum, message, true, t);
     }

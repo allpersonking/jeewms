@@ -2,10 +2,15 @@ package com.zzjee.api;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.zzjee.conf.entity.FxjOtherLoginEntity;
+import com.zzjee.conf.entity.WxConfigEntity;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.util.ResourceUtil;
 
+import org.jeecgframework.jwt.util.ResponseMessage;
+import org.jeecgframework.jwt.util.Result;
 import org.jeecgframework.web.system.pojo.base.TSFunction;
 import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
@@ -14,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -120,6 +126,70 @@ public class TokenController {
 		}
 		// 生成一个token，保存用户登录状态
 		return new ResponseEntity(D0, HttpStatus.OK);
+	}
+	@ApiOperation(value = "wxauthv3")
+	@RequestMapping(value = "/authv3",method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseMessage<?> authV3(@RequestParam(value="JSCODE", required=false)  String JSCODE, @RequestParam(value="appCode", required=false) String appCode) {
+
+		if (StringUtils.isEmpty(JSCODE)) {
+			return Result.error("JSCODE不能为空!");
+		}
+		WxConfigEntity wxConfigEntity = systemService.findUniqueByProperty(WxConfigEntity.class,"appCode",appCode);
+		Assert.notNull(JSCODE, "JSCODE can not be empty");
+		String url="https://api.weixin.qq.com/sns/jscode2session?appid=" + wxConfigEntity.getAppId() +
+				"&secret=" + wxConfigEntity.getAppSecret() +
+				"&js_code=" +
+				JSCODE+"&grant_type=authorization_code";
+		String result= com.xiaoleilu.hutool.http.HttpUtil.get(url);
+		logger.info("JSCODE=="+JSCODE);
+		logger.info("url=="+url );
+		logger.info("authv2=="+ result);
+
+		net.sf.json.JSONObject resultJson = net.sf.json.JSONObject.fromObject(result);
+		String openid = String.valueOf(resultJson.get("openid"));
+		try{
+
+			FxjOtherLoginEntity fxjOtherLoginEntity = userService.findUniqueByProperty(FxjOtherLoginEntity.class,"otherid",openid);
+			if(fxjOtherLoginEntity!=null){
+				return Result.success(openid,(long)1);
+			}else{
+				return Result.success(openid,(long)0);
+			}
+		}catch (Exception e){
+			return Result.success(openid,(long)0);
+
+		}
+
+	}
+
+	@ApiOperation(value = "三方openid保存")
+	@RequestMapping(value = "/otherloginsave",method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseMessage<?> otherloginsave(@RequestParam(value="openid", required=false)  String openid, @RequestParam(value="unionid", required=false)  String unionid, @RequestParam(value="username", required=true)  String username, @RequestParam(value="password", required=true) String password,  @RequestParam(value="appCode", required=false) String appCode) {
+		// 验证
+		if (StringUtils.isEmpty(openid)) {
+			return  org.jeecgframework.jwt.util.Result.error("用户账号不能为空!");
+		}
+		TSUser user = userService.checkUserExits(username, password);
+
+		if (user == null) {
+			// 提示用户名或密码错误
+			return  Result.error("用户账号密码错误!" );
+		}
+		FxjOtherLoginEntity fxjOtherLoginEntity = userService.findUniqueByProperty(FxjOtherLoginEntity.class,"otherid",openid);
+
+		if (fxjOtherLoginEntity!=null){
+			fxjOtherLoginEntity.setUsername(username);
+			fxjOtherLoginEntity.setOtherid(openid);
+			userService.updateEntitie(fxjOtherLoginEntity);
+		}else{
+			fxjOtherLoginEntity = new FxjOtherLoginEntity();
+			fxjOtherLoginEntity.setUsername(username);
+			fxjOtherLoginEntity.setOtherid(openid);
+			userService.save(fxjOtherLoginEntity);
+		}
+		return Result.success(fxjOtherLoginEntity);
 	}
 
 	@RequestMapping(value = "/postkey", method = RequestMethod.POST)

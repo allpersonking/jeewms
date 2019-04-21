@@ -15,6 +15,9 @@
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="所属客户"  field="suoShuKeHu"   query="true" queryMode="single" dictionary="mv_cus,cus_code,cus_name"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="shpMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
+    <t:dgCol title="英文名称"  field="ywMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
+    <t:dgCol title="日文名称"  field="rwMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
+
     <t:dgCol title="商品简称"  field="shpJianCheng"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品编码"  field="shpBianMa"   query="true" queryMode="single"  width="90"></t:dgCol>
     <t:dgCol title="客户商品编码"  field="shpBianMakh"   query="true" queryMode="single"  width="90"></t:dgCol>
@@ -52,8 +55,8 @@
     <t:dgCol title="基准温度"  field="jiZhunwendu"     queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="商品描述"  field="shpMiaoShu"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="停用"  field="zhuangTai"   query="true" dictionary="sf_yn" width="120"></t:dgCol>
-   <%--<t:dgCol title="操作" field="opt" width="100"></t:dgCol>--%>
-   <%--<t:dgDelOpt title="删除" url="mdGoodsController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>--%>
+   <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+   <t:dgDelOpt title="删除" url="mdGoodsController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
    <t:dgToolBar title="录入" icon="icon-add" url="mdGoodsController.do?goAdd" funname="add"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="mdGoodsController.do?goUpdate" funname="update"></t:dgToolBar>
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mdGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>

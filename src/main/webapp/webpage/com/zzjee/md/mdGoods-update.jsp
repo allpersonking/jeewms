@@ -161,7 +161,31 @@
 						<label class="Validform_label" style="display: none">商品名称</label>
 			          </div>
 						</div>
-			          
+
+					  <div class="row show-grid">
+						  <div class="col-xs-3 text-center">
+							  <b   >英文名称</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="ywMingCheng" name="ywMingCheng" type="text" class="form-control"
+									 ignore="checked" style="width:490px"
+									  value='${mdGoodsPage.ywMingCheng}' />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">英文名称</label>
+						  </div>
+					  </div>
+					  <div class="row show-grid">
+						  <div class="col-xs-3 text-center">
+							  <b   >日文名称</b>
+						  </div>
+						  <div class="col-xs-3">
+							  <input id="rwMingCheng" name="rwMingCheng" type="text" class="form-control"
+									 ignore="checked" style="width:490px"
+									   value='${mdGoodsPage.rwMingCheng}' />
+							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
+							  <label class="Validform_label" style="display: none">日文名称</label>
+						  </div>
+					  </div>
 			        <div class="row show-grid">
 			          <div class="col-xs-3 text-center">
 			          	<b  style="color:red">单位</b>

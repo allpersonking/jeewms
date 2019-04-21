@@ -54,6 +54,10 @@ public class MdGoodsEntity implements java.io.Serializable {
 	/**商品名称*/
 	@Excel(name="商品名称")
 	private java.lang.String shpMingCheng;
+	@Excel(name="英文名称")
+	private java.lang.String ywMingCheng;
+	@Excel(name="日文名称")
+	private java.lang.String rwMingCheng;
 	/**商品简称*/
 	private java.lang.String shpJianCheng;
 	/**商品编码*/
@@ -877,5 +881,23 @@ public class MdGoodsEntity implements java.io.Serializable {
 	 */
 	public void setZhuangTai(java.lang.String zhuangTai){
 		this.zhuangTai = zhuangTai;
+	}
+
+	@Column(name ="YW_MING_CHENG",nullable=true,length=32)
+	public String getYwMingCheng() {
+		return ywMingCheng;
+	}
+
+	public void setYwMingCheng(String ywMingCheng) {
+		this.ywMingCheng = ywMingCheng;
+	}
+
+	@Column(name ="RW_MING_CHENG",nullable=true,length=32)
+	public String getRwMingCheng() {
+		return rwMingCheng;
+	}
+
+	public void setRwMingCheng(String rwMingCheng) {
+		this.rwMingCheng = rwMingCheng;
 	}
 }

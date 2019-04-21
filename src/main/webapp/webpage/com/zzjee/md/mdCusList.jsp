@@ -56,8 +56,8 @@
     <t:dgCol title="批准文号"  field="piZhunWenHao"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="注册日期"  field="zhuCeRiQi" formatter="yyyy-MM-dd" hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="备注"  field="beiZhu"    queryMode="group"  width="120"></t:dgCol>
-<%--    <t:dgCol title="操作" field="opt" width="100"></t:dgCol> --%>
-<%--    <t:dgDelOpt title="删除" url="mdCusController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/> --%>
+    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+    <t:dgDelOpt title="删除" url="mdCusController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
    <t:dgToolBar title="录入" icon="icon-add" url="mdCusController.do?goAdd" funname="add"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="mdCusController.do?goUpdate" funname="update"></t:dgToolBar>
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mdCusController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
