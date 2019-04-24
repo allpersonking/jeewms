@@ -1653,7 +1653,7 @@ public class WmImNoticeHController extends BaseController {
 		String message = "进货通知添加成功";
 		try {
 
-			String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+			String noticeid =  wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode()) ;
 			wmImNoticeH.setNoticeId(noticeid);
 			WmPlatIoEntity wmPlatIo = new WmPlatIoEntity();
 			wmPlatIo.setCarno(wmImNoticeH.getImCarNo());
@@ -1769,7 +1769,7 @@ public class WmImNoticeHController extends BaseController {
 									List<WmImNoticeIEntity> wmImNoticeIListnew = new ArrayList<WmImNoticeIEntity>();
 
 									wmImNoticeH.setOrderTypeCode("01");
-									String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+									String noticeid = wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
 
 									wmImNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
 									wmImNoticeH.setNoticeId(noticeid);
@@ -1897,47 +1897,7 @@ public class WmImNoticeHController extends BaseController {
         return new Date(time); // 将毫秒数转换成日期
     }
 
-private String getNextNoticeid(String orderType){
-		String noticeid=null;
-	Map<String, Object> countMap = systemService
-			.findOneForJdbc("SELECT count(*)+1 as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-	if (StringUtil.isEmpty(orderType)){
-		orderType = "01";
-	}
-	if (countMap != null) {
-		if(orderType.equals("03")){
-			noticeid = "TH"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}else if(orderType.equals("01")){
-			noticeid = "RK"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}else if(orderType.equals("04")){
-			noticeid = "YK"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}else if(orderType.equals("09")){
-			noticeid = "QT"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}
 
-	}
-		return  noticeid;
-}
 	/**
 	 * 更新进货通知抬头
 	 * 
@@ -2262,7 +2222,7 @@ private String getNextNoticeid(String orderType){
 
                 WmImNoticeHEntity wmImNoticeH  = new WmImNoticeHEntity();
 				wmImNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
-				String noticeid = getNextNoticeid(wmImNoticeH.getOrderTypeCode());
+				String noticeid = wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode());
 				wmImNoticeH.setCusCode(pageheader.getCusCode());
                 wmImNoticeH.setNoticeId(noticeid);
 				wmImNoticeH.setImData(pageheader.getImData());

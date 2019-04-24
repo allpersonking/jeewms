@@ -901,7 +901,7 @@ public class WmOmNoticeHController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		String message = "添加成功";
 		try{
-			String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
+			String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
 			WmPlatIoEntity wmPlatIo = new WmPlatIoEntity();
 			wmPlatIo.setCarno(wmOmNoticeH.getReCarno());
 			wmPlatIo.setDocId(noticeid);
@@ -961,30 +961,7 @@ public class WmOmNoticeHController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
-	private String getNextNoticeId(String orderType){
-		Map<String, Object> countMap = systemService
-				.findOneForJdbc("SELECT count(*)+1 as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
-		String noticeid = null;
-		if (StringUtil.isEmpty(orderType)){
-			orderType = "11";
-		}
-		if(orderType.equals("19")){
-			noticeid = "QT"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}else {
-			noticeid = "CK"
-					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
-					+ "-"
-					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
-					'0');
-		}
-		return  noticeid;
-	}
+
 	@RequestMapping(params = "doGet")
 	@ResponseBody
 	public AjaxJson dogetfromother(String formDate, HttpServletRequest request) {
@@ -1026,7 +1003,7 @@ public class WmOmNoticeHController extends BaseController {
 									wmOmNoticeH.setOmPlatNo(Integer.toString(billResult.getData().get(s).getPiId()));
 									wmOmNoticeH.setOrderTypeCode("11");
 									wmOmNoticeH.setCusCode(ResourceUtil.getConfigByName("uas.cuscode"));
-									String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
+									String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
 									wmOmNoticeH.setOmNoticeId(noticeid);
 									wmOmNoticeH.setPiClass(billResult.getData().get(s).getPiClass());
 									wmOmNoticeH.setPiMaster(master);
@@ -2159,7 +2136,7 @@ public class WmOmNoticeHController extends BaseController {
 					wmOmNoticeH.setDelvData(pageheader.getImData());
 					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
 					wmOmNoticeH.setCusCode(pageheader.getCusCode());
-					String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
+					String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
 					wmOmNoticeH.setOmNoticeId(noticeid);
 					wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
 					wmOmNoticeH.setOcusCode(pageheader.getSupCode());
@@ -2294,7 +2271,7 @@ public class WmOmNoticeHController extends BaseController {
 					wmOmNoticeH.setDelvData(pageheader.getImData());
 					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
 					wmOmNoticeH.setCusCode(pageheader.getCusCode());
-					String noticeid = getNextNoticeId(wmOmNoticeH.getOrderTypeCode());
+					String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
 					wmOmNoticeH.setOmNoticeId(noticeid);
 					wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
 					wmOmNoticeH.setOcusCode(pageheader.getSupCode());

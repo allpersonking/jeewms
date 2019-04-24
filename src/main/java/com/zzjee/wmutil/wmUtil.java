@@ -89,7 +89,15 @@ public class wmUtil {
 						+ StringUtil.leftPad(
 						((Long) countMap.get("count")).intValue(), 4,
 						'0');
+			}else {
+				noticeid = "QT"
+						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+						+ "-"
+						+ StringUtil.leftPad(
+						((Long) countMap.get("count")).intValue(), 4,
+						'0');
 			}
+
 
 		}
 		return  noticeid;
@@ -111,8 +119,15 @@ public class wmUtil {
 					+ StringUtil.leftPad(
 					((Long) countMap.get("count")).intValue(), 4,
 					'0');
-		}else {
+		}else if (orderType.equals("11")){
 			noticeid = "CK"
+					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
+					+ "-"
+					+ StringUtil.leftPad(
+					((Long) countMap.get("count")).intValue(), 4,
+					'0');
+		}else {
+			noticeid = "QT"
 					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 					+ "-"
 					+ StringUtil.leftPad(

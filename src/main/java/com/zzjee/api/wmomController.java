@@ -61,9 +61,49 @@ public class wmomController {
 	@Autowired
 	SystemService systemService;
 
+
+	@RequestMapping(value = "/alllist/{username}", method = RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value = "获取全部订单列表信息", produces = "application/json", httpMethod = "GET")
+	public ResponseMessage<List<WmOmNoticeHPage>> alllist(@PathVariable("username") String username, @RequestParam int pageNumber, @RequestParam int pageSize, HttpServletRequest request) {
+		CriteriaQuery query = new CriteriaQuery(WmOmNoticeHEntity.class);
+		try {
+
+			if(StringUtil.isNotEmpty(request.getParameter("omNoticeId"))){
+				query.like("omNoticeId","%"+request.getParameter("omNoticeId")+"%");
+			}
+			if(StringUtil.isNotEmpty(request.getParameter("delvMobile"))){
+				query.like("delvMobile","%"+request.getParameter("delvMobile")+"%");
+			}
+			if(StringUtil.isNotEmpty(request.getParameter("delvMember"))){
+				query.like("delvMember","%"+request.getParameter("delvMember")+"%");
+			}
+			if(StringUtil.isNotEmpty(request.getParameter("delvAddr"))){
+				query.like("delvAddr","%"+request.getParameter("delvAddr")+"%");
+			}
+			String orgcode = "";
+			TSUser task = wmUtil.getsysorgcode(username);
+			if (task != null) {
+				query.like("reCarno", "%" + task.getUserName() + "%");
+			}
+		} catch (Exception e) {
+		}
+		query.add();
+		List<WmOmNoticeHPage> listsize = this.systemService.getListByCriteriaQuery(query, false);
+		query.setCurPage(pageNumber <= 0 ? 1 : pageNumber);
+		query.setPageSize(pageSize < 1 ? 1 : pageSize);
+		query.add();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("createDate", "desc");
+		query.setOrder(map);
+		List<WmOmNoticeHPage> list = this.systemService.getListByCriteriaQuery(query, true);
+		return Result.success(list, (long) listsize.size());
+	}
+
+
 	@RequestMapping(value = "/list/{username}", method = RequestMethod.GET)
 	@ResponseBody
-	@ApiOperation(value = "订单列表信息", produces = "application/json", httpMethod = "GET")
+	@ApiOperation(value = "获取未完成订单列表信息", produces = "application/json", httpMethod = "GET")
 	public ResponseMessage<List<WmOmNoticeHPage>> list(@PathVariable("username") String username, @RequestParam int pageNumber, @RequestParam int pageSize, HttpServletRequest request) {
 		CriteriaQuery query = new CriteriaQuery(WmOmNoticeHEntity.class);
 		try {
@@ -138,7 +178,7 @@ public class wmomController {
 
 	@RequestMapping(value = "/goodsdownlist/{orderNo}", method = RequestMethod.GET)
 	@ResponseBody
-	@ApiOperation(value = "订单file信息", produces = "application/json", httpMethod = "GET")
+	@ApiOperation(value = "订单出库商品信息", produces = "application/json", httpMethod = "GET")
 	public ResponseMessage<List<WmToDownGoodsEntity>> filelist(@PathVariable("orderNo") String orderNo, HttpServletRequest request) {
 		String hql0 = "from WmToDownGoodsEntity where 1 = 1 AND orderId = ? ";
 		List<WmToDownGoodsEntity> wmToDownGoodsEntitiesList = this.systemService.findHql(hql0, orderNo);
@@ -164,7 +204,7 @@ public class wmomController {
 
 	@RequestMapping(value="/getNotice/{username}", method = RequestMethod.GET)
 	@ResponseBody
-	@ApiOperation(value="附近巡检任务列表信息",produces="application/json",httpMethod="GET")
+	@ApiOperation(value="获取公告",produces="application/json",httpMethod="GET")
 	public ResponseMessage<List<TSNotice>> getNotice(@PathVariable("username") String username, HttpServletRequest request) {
 
 		List<TSNotice> list = new ArrayList<>();
