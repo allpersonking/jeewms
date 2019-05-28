@@ -36,9 +36,9 @@ public class ConstantUtil {
     /**
      * 获取预支付id的接口url
      */
-    public static String GATEURL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
+    public static final String GATEURL = "https://api.mch.weixin.qq.com/pay/unifiedorder";
     /**
      * 微信服务器回调通知url
      */
-    public static String NOTIFY_URL="http://www.zhaodui.com.cn/fxj380/rest/tenPayController/app/tenpay/notify";
+    public static final String NOTIFY_URL="http://www.zhaodui.com.cn/fxj380/rest/tenPayController/app/tenpay/notify";
 }

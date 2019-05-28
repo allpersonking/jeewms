@@ -1,29 +1,26 @@
 package com.zzjee.wm.controller;
 
-import com.zzjee.api.ResultDO;
-import com.zzjee.md.entity.*;
-import com.zzjee.wm.entity.*;
-import com.zzjee.wm.page.WmNoticeImpPage;
-import com.zzjee.wm.service.WmImNoticeHServiceI;
-import com.zzjee.wm.page.WmImNoticeHPage;
-
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.text.SimpleDateFormat;
+import java.util.Map;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
-import com.zzjee.wmutil.*;
-import net.sf.json.JSONArray;
 import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
 import org.apache.poi.hssf.usermodel.HSSFPatriarch;
@@ -37,13 +34,7 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
@@ -53,54 +44,58 @@ import org.jeecgframework.core.constant.Globals;
 import org.jeecgframework.core.util.BarcodeUtil;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.ExceptionUtil;
+import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.QRcodeUtil;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.poi.excel.ExcelImportUtil;
+import org.jeecgframework.poi.excel.entity.ExportParams;
+import org.jeecgframework.poi.excel.entity.ImportParams;
+import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.tag.vo.datatable.SortDirection;
-import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.pojo.base.TSRole;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.sms.util.Constants;
 import org.jeecgframework.web.system.sms.util.TuiSongMsgUtil;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.poi.excel.ExcelImportUtil;
-import org.jeecgframework.poi.excel.entity.ExportParams;
-import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
-
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-
-import java.net.URI;
-
-import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdCusEntity;
+import com.zzjee.md.entity.MdGoodsEntity;
+import com.zzjee.md.entity.MdSupEntity;
+import com.zzjee.md.entity.MvGoodsEntity;
+import com.zzjee.wm.entity.WmImNoticeHEntity;
+import com.zzjee.wm.entity.WmImNoticeIEntity;
+import com.zzjee.wm.entity.WmInQmIEntity;
+import com.zzjee.wm.entity.WmPlatIoEntity;
+import com.zzjee.wm.entity.WmToUpGoodsEntity;
+import com.zzjee.wm.page.WmImNoticeHPage;
+import com.zzjee.wm.page.WmNoticeImpPage;
+import com.zzjee.wm.service.WmImNoticeHServiceI;
+import com.zzjee.wmutil.billResult;
+import com.zzjee.wmutil.resResult;
+import com.zzjee.wmutil.wmIntUtil;
+import com.zzjee.wmutil.wmUtil;
+import com.zzjee.wmutil.yyUtil;
+
+import net.sf.json.JSONArray;
 
 /**
  * @Title: Controller
@@ -192,8 +187,8 @@ public class WmImNoticeHController extends BaseController {
 		Object id0 = wmImNoticeHEntity.getNoticeId();
 		//===================================================================================
 		//查询-产品
-		Double tomsum = 0.00;
-		Double  noticesum = 0.00;
+//		Double tomsum = 0.00;
+//		Double  noticesum = 0.00;
 		DecimalFormat dfsum=new DecimalFormat(".##");
 
 		List<WmImNoticeIEntity> wmImNoticeIEntitynewList = new ArrayList<>();
@@ -644,7 +639,7 @@ public class WmImNoticeHController extends BaseController {
 			HttpServletRequest request, HttpServletResponse response) {
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		wmImNoticeH = systemService.getEntity(WmImNoticeHEntity.class,
 				wmImNoticeH.getId());// 获取抬头
 		String hql0 = "from WmInQmIEntity where 1 = 1 AND imNoticeId = ? ";
@@ -652,13 +647,13 @@ public class WmImNoticeHController extends BaseController {
 				hql0, wmImNoticeH.getNoticeId());// 获取行项目
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			StringBuffer sber = new StringBuffer();
+//			StringBuffer sber = new StringBuffer();
 
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 //			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmImNoticeH
 //					.getNoticeId()));
 			// 进行转码，使其支持中文文件名
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="
 					+ wmImNoticeH.getNoticeId() + "hpid.xls");
 //			ImageIO.write(bufferImg, "jpg", byteArrayOut);
@@ -887,7 +882,7 @@ public class WmImNoticeHController extends BaseController {
 			HttpServletRequest request, HttpServletResponse response) {
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		wmImNoticeH = systemService.getEntity(WmImNoticeHEntity.class,
 				wmImNoticeH.getId());// 获取抬头
 		String hql0 = "from WmImNoticeIEntity where 1 = 1 AND imNoticeId = ? ";
@@ -895,13 +890,13 @@ public class WmImNoticeHController extends BaseController {
 				hql0, wmImNoticeH.getNoticeId());// 获取行项目
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			StringBuffer sber = new StringBuffer();
+//			StringBuffer sber = new StringBuffer();
 
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmImNoticeH
 					.getNoticeId()));
 			// 进行转码，使其支持中文文件名
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="
 					+ wmImNoticeH.getNoticeId() + ".xls");
 			ImageIO.write(bufferImg, "jpg", byteArrayOut);
@@ -1138,13 +1133,13 @@ public class WmImNoticeHController extends BaseController {
 			HttpServletRequest request, HttpServletResponse response) {
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		wmImNoticeH = systemService.getEntity(WmImNoticeHEntity.class,
 				wmImNoticeH.getId());// 获取抬头
 
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			StringBuffer sber = new StringBuffer();
+//			StringBuffer sber = new StringBuffer();
 
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 //			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmImNoticeH
@@ -1153,7 +1148,7 @@ public class WmImNoticeHController extends BaseController {
 					.getNoticeId());
 		
 			// 进行转码，使其支持中文文件名
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="
 					+ wmImNoticeH.getNoticeId() + ".xls");
 			ImageIO.write(bufferImg, "jpg", byteArrayOut);
@@ -1881,7 +1876,9 @@ public class WmImNoticeHController extends BaseController {
 			resResult resResult = wmIntUtil.postBill(ja.toString(),wmImNoticeH.getPiMaster());
 			j.setMsg(resResult.getDetailedMessage());
 		}catch (Exception e){
-
+			e.printStackTrace();
+			message = "读取失败";
+			throw new BusinessException(e.getMessage());
 		}
 
 		j.setMsg(message);
