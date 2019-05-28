@@ -1,8 +1,10 @@
 package com.zzjee.bireport.controller;
 
-import com.zzjee.bireport.entity.RpPeriodInOutEntity;
-import com.zzjee.bireport.service.RpPeriodInOutServiceI;
-import com.zzjee.wmutil.wmUtil;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
@@ -13,17 +15,15 @@ import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.web.system.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Validator;
-import java.util.List;
+import com.zzjee.bireport.entity.RpPeriodInOutEntity;
+import com.zzjee.bireport.service.RpPeriodInOutServiceI;
+import com.zzjee.wmutil.wmUtil;
 
 /**
  * @author onlineGenerator
@@ -42,10 +42,10 @@ public class RpPeriodInOutController extends BaseController {
 
     @Autowired
     private RpPeriodInOutServiceI rpPeriodInOutService;
-    @Autowired
-    private SystemService systemService;
-    @Autowired
-    private Validator validator;
+//    @Autowired
+//    private SystemService systemService;
+//    @Autowired
+//    private Validator validator;
 
 
     /**

@@ -18,14 +18,19 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
+import org.apache.poi.hssf.usermodel.HSSFPatriarch;
+import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.tools.ant.taskdefs.Exit;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
@@ -160,12 +165,12 @@ public class MvCusCostController extends BaseController {
 	public void downReceiveExcelysd(MvCusCostEntity mvCusCost,HttpServletRequest request,HttpServletResponse response) {
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		mvCusCost = systemService.getEntity(MvCusCostEntity.class,
 				request.getParameter("id"));// 获取抬头
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="
 					+ mvCusCost.getCusCode()+"("+request.getParameter("begindate")+" "+request.getParameter("enddate")+").xls");
 			HSSFWorkbook wb = new HSSFWorkbook();

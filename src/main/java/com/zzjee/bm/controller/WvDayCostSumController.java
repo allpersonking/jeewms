@@ -194,6 +194,7 @@ public class WvDayCostSumController extends BaseController {
 					+ sdayCostHsj + "");
 		} catch (Exception e) {
 			// TODO: handle exception
+			throw new BusinessException(e.getMessage());
 		}
 		
 		TagUtil.datagrid(response, dataGrid);
