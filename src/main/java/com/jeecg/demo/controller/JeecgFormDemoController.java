@@ -114,9 +114,9 @@ public class JeecgFormDemoController extends BaseController {
 		}
 		cq.add();
 		List<TSDepart> demoList = systemService.getListByCriteriaQuery(cq, false);
-		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
+//		List<ComboTree> comboTrees = new ArrayList<ComboTree>();
 		ComboTreeModel comboTreeModel = new ComboTreeModel("id", "departname", "TSDeparts");
-		comboTrees = systemService.ComboTree(demoList, comboTreeModel, null, false);
+		List<ComboTree> comboTrees = systemService.ComboTree(demoList, comboTreeModel, null, false);
 		return comboTrees;
 	}
 	
