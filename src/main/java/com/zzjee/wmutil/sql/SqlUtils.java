@@ -5,7 +5,7 @@ import org.jeecgframework.core.util.StringUtil;
 
 import java.util.Map;
 
-public class sqlUtils {
+public class SqlUtils {
 
 	public static String getAndLike(String sql, String filedName, Object params) {
 		if (StringUtil.isNotEmpty(params)) {
