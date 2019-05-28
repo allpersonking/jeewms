@@ -86,7 +86,7 @@ public class JeecgFormDemoController extends BaseController {
 	public List<Map<String, String>> cityselect(HttpServletRequest req) throws Exception{
 		logger.info("----省市区联动-----");
 		String pid=req.getParameter("pid");
-		List<Map<String, String>> list=jeecgMinidaoDao.getProCity(pid);
+		//List<Map<String, String>> list=jeecgMinidaoDao.getProCity(pid);
 		return jeecgMinidaoDao.getProCity(pid);
 	}
 	
