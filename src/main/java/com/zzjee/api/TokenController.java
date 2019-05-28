@@ -1,15 +1,21 @@
 package com.zzjee.api;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.zzjee.conf.entity.FxjOtherLoginEntity;
-import com.zzjee.conf.entity.WxConfigEntity;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.util.ResourceUtil;
-
 import org.jeecgframework.core.util.StringUtil;
 import org.jeecgframework.jwt.util.ResponseMessage;
 import org.jeecgframework.jwt.util.Result;
@@ -24,15 +30,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.zzjee.conf.entity.FxjOtherLoginEntity;
+import com.zzjee.conf.entity.WxConfigEntity;
+
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 获取和删除token的请求地址， 
@@ -81,7 +89,7 @@ public class TokenController {
 			logger.info("获取TOKEN,账号密码错误[{}]" + username);
 //			return new ResponseEntity("用户账号密码错误!", HttpStatus.FORBIDDEN);
 		}else{
-			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>();
+//			Map<String, TSFunction> loginActionlist = new HashMap<String, TSFunction>();
 			StringBuilder hqlsb1 = new StringBuilder("select distinct f from TSFunction f,TSRoleFunction rf,TSRoleUser ru  ").append("where ru.TSRole.id=rf.TSRole.id and rf.TSFunction.id=f.id and ru.TSUser.id=? ");
 			//-------author: zhoujf---start---date:20160923----for:组织机构角色赋权不起作用问题
 			StringBuilder hqlsb2 = new StringBuilder("select distinct c from TSFunction c,TSRoleFunction rf,TSRoleOrg b,TSUserOrg a ")
@@ -92,14 +100,14 @@ public class TokenController {
 //					.append(" where g.tsFunctionGroup.id=u.groupId and c.id=g.tsFunction.id and u.userId=?");
 //			//TODO hql执行效率慢 为耗时最多地方
 			//-------author: zhangliang---start---date:20170725----for:TASK #2116 【性能问题】优化登录逻辑
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		log.info("================================开始时间:"+sdf.format(new Date())+"==============================");
-			long start = System.currentTimeMillis();
+//			long start = System.currentTimeMillis();
 			List<MenuEntity> listreturn = new ArrayList<MenuEntity>();
 			List<TSFunction> list1 = systemService.findHql(hqlsb1.toString(), user.getId());
 			List<TSFunction> list2 = systemService.findHql(hqlsb2.toString(), user.getId());
 //			List<TSFunction> list3 = systemService.findHql(hqlsb3.toString(), user.getUserName());
-			long end = System.currentTimeMillis();
+//			long end = System.currentTimeMillis();
 //		log.info("================================结束时间:"+sdf.format(new Date())+"==============================");
 //		log.info("================================耗时:"+(end-start)+"ms==============================");
 			//-------author: zhangliang---end---date:20170725----for:TASK #2116 【性能问题】优化登录逻辑
@@ -287,7 +295,7 @@ public class TokenController {
 			}
 		}
 		if (task == null) {
-			task = systemService.findUniqueByProperty(TSUser.class,"userName",ResourceUtil.getConfigByName("mini.user"));
+//			task = systemService.findUniqueByProperty(TSUser.class,"userName",ResourceUtil.getConfigByName("mini.user"));
 			return org.jeecgframework.jwt.util.Result.error("获取用户信息失败");
 		}
 		if(!StringUtil.isEmpty(task.getDepartid())){

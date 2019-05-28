@@ -1330,12 +1330,8 @@ public class WmOmNoticeHController extends BaseController {
 				byteArrayOut = new ByteArrayOutputStream();
 				bufferImg = ImageIO.read(BarcodeUtil.generateToStream(entity.getGoodsId()));
 				ImageIO.write(bufferImg, "jpg", byteArrayOut);
-				if(cellsNum == 6){
-					anchor = new HSSFClientAnchor(0, 0, 0, 0,(short)8, cellsNum, (short)9, cellsNum+1);
-				}else{
-					anchor = new HSSFClientAnchor(0, 0, 0, 0,(short)8, cellsNum, (short)9, cellsNum+1);
-				}
-
+//TODO 代码判断后，执行代码一样所以删除了
+				anchor = new HSSFClientAnchor(0, 0, 0, 0,(short)8, cellsNum, (short)9, cellsNum+1);
 
 				patriarch.createPicture(anchor, wb.addPicture(byteArrayOut.toByteArray(), HSSFWorkbook.PICTURE_TYPE_JPEG));
 
