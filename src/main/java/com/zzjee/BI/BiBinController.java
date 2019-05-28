@@ -1,6 +1,14 @@
 package com.zzjee.BI;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.model.json.Highchart;
 import org.jeecgframework.web.system.service.SystemService;
@@ -10,21 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Validator;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @Controller
 @RequestMapping("/BiBinController")
 public class BiBinController extends BaseController {
     @Autowired
     private SystemService systemService;
-    @Autowired
-    private Validator validator;
+//    @Autowired
+//    private Validator validator;
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";
@@ -120,7 +120,7 @@ public class BiBinController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+//        hc = new Highchart();
         hc.setName("近七日下架数量");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -132,12 +132,12 @@ public class BiBinController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("create_date").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;
@@ -180,7 +180,7 @@ public class BiBinController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+//        hc = new Highchart();
         hc.setName("上架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -192,12 +192,12 @@ public class BiBinController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;
@@ -239,7 +239,7 @@ public class BiBinController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+        //hc = new Highchart();
         hc.setName("下架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -251,12 +251,12 @@ public class BiBinController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;

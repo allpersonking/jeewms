@@ -23,8 +23,8 @@ import java.util.Map;
 public class BiStaffController extends BaseController {
     @Autowired
     private SystemService systemService;
-    @Autowired
-    private Validator validator;
+//    @Autowired
+//    private Validator validator;
     @RequestMapping(params = "homebi")
     public ModelAndView bi(HttpServletRequest request) {
         String num1= "0";
@@ -120,7 +120,7 @@ public class BiStaffController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+        //hc = new Highchart();
         hc.setName("近七日下架数量");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -132,12 +132,12 @@ public class BiStaffController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("create_date").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;
@@ -180,7 +180,7 @@ public class BiStaffController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+       // hc = new Highchart();
         hc.setName("上架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -192,12 +192,12 @@ public class BiStaffController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;
@@ -239,7 +239,7 @@ public class BiStaffController extends BaseController {
 //        List<Map<String,Object>> mapcount=systemService.findForJdbc(sbconut.toString());
 //		Double count = systemService.getCountForJdbc("SELECT COUNT(1) FROM T_S_Log WHERE 1=1");
         List lt = new ArrayList();
-        hc = new Highchart();
+//        hc = new Highchart();
         hc.setName("下架数量前6");
         hc.setType(reportType);
         Map<String, Object> map;
@@ -251,12 +251,12 @@ public class BiStaffController extends BaseController {
                 Map<String,Object> obj =   object;
                 map.put("name", obj.get("goodsid").toString());
                 map.put("y",  (int) Double.parseDouble(obj.get("amount").toString()));
-                Double groupCount = 0.00;
-                try{
-                    groupCount =  Double.parseDouble(obj.get("amount").toString());
-                }catch (Exception e){
-
-                }
+//                Double groupCount = 0.00;
+//                try{
+//                    groupCount =  Double.parseDouble(obj.get("amount").toString());
+//                }catch (Exception e){
+//
+//                }
 //                Double  percentage = 0.0;
 //                if (count != null && count.intValue() != 0) {
 //                    percentage = new Double(groupCount)/count;

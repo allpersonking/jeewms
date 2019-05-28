@@ -1,48 +1,45 @@
 package com.zzjee.api;
 
 
-import com.alibaba.fastjson.JSONArray;
-import com.zzjee.conf.entity.FxjOtherLoginEntity;
-import com.zzjee.conf.entity.WxConfigEntity;
+import static com.xiaoleilu.hutool.date.DateTime.now;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
+import org.jeecgframework.core.util.ExceptionUtil;
+import org.jeecgframework.core.util.MyBeanUtils;
+import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.jwt.util.ResponseMessage;
+import org.jeecgframework.jwt.util.Result;
+import org.jeecgframework.web.system.pojo.base.TSNotice;
+import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.service.SystemService;
+import org.jeecgframework.web.system.sms.util.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.zzjee.wm.entity.WmNoticeConfEntity;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 import com.zzjee.wm.entity.WmToDownGoodsEntity;
 import com.zzjee.wm.page.WmOmNoticeHPage;
 import com.zzjee.wmutil.wmUtil;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
-import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
-import org.jeecgframework.core.constant.Globals;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.core.util.ResourceUtil;
-import org.jeecgframework.core.util.StringUtil;
-import org.jeecgframework.jwt.util.ResponseMessage;
-import org.jeecgframework.jwt.util.Result;
-import org.jeecgframework.web.system.pojo.base.TSFunction;
-import org.jeecgframework.web.system.pojo.base.TSNotice;
-import org.jeecgframework.web.system.pojo.base.TSUser;
-import org.jeecgframework.web.system.service.SystemService;
-import org.jeecgframework.web.system.service.UserService;
-import org.jeecgframework.web.system.sms.util.Constants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
-import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static com.xiaoleilu.hutool.date.DateTime.now;
 
 /**
  * 获取和删除token的请求地址， 
@@ -55,8 +52,8 @@ import static com.xiaoleilu.hutool.date.DateTime.now;
 @RequestMapping("/wmom")
 public class wmomController {
 	private static final Logger logger = Logger.getLogger(wmomController.class);
-	@Autowired
-	private UserService userService;
+//	@Autowired
+//	private UserService userService;
 
 	@Autowired
 	SystemService systemService;
@@ -81,7 +78,7 @@ public class wmomController {
 			if(StringUtil.isNotEmpty(request.getParameter("delvAddr"))){
 				query.like("delvAddr","%"+request.getParameter("delvAddr")+"%");
 			}
-			String orgcode = "";
+//			String orgcode = "";
 			TSUser task = wmUtil.getsysorgcode(username);
 			if (task != null) {
 				query.like("reCarno", "%" + task.getUserName() + "%");
@@ -121,7 +118,7 @@ public class wmomController {
 			if(StringUtil.isNotEmpty(request.getParameter("delvAddr"))){
 				query.like("delvAddr","%"+request.getParameter("delvAddr")+"%");
 			}
-			String orgcode = "";
+//			String orgcode = "";
 			TSUser task = wmUtil.getsysorgcode(username);
 			if (task != null) {
 				query.like("reCarno", "%" + task.getUserName() + "%");
@@ -150,14 +147,14 @@ public class wmomController {
 			task = systemService.get(WmOmNoticeHEntity.class, id);
 
 		} catch (Exception e) {
-
+			logger.error(ExceptionUtil.getExceptionMessage(e));
 		}
 		if (task == null) {
 			try {
 				task = systemService.findUniqueByProperty(WmOmNoticeHEntity.class, "omNoticeId", id);
 
 			} catch (Exception e) {
-
+				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}
 			if (task == null) {
 				return Result.error("根据ID获取订单信息为空");
@@ -172,6 +169,7 @@ public class wmomController {
 			page.setWmOmNoticeIList(WmOmNoticeIEntityList);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 		return Result.success(page);
 	}
@@ -210,7 +208,7 @@ public class wmomController {
 		List<TSNotice> list = new ArrayList<>();
 		TSUser task = wmUtil.getsysorgcode(username);
 		List<Map<String, Object>> resultList2 = null;
-		String orgcode = "";
+//		String orgcode = "";
 		Integer isRead = null;
 		if (task != null) {
 			try {
@@ -226,7 +224,7 @@ public class wmomController {
 				List<Map<String, Object>> noticeList = systemService.findForJdbcParam(sql, 1, 10, task.getId(), isRead.intValue());
 
 				//将List转换成JSON存储
-				net.sf.json.JSONArray result = new net.sf.json.JSONArray();
+//				net.sf.json.JSONArray result = new net.sf.json.JSONArray();
 				if (noticeList != null && noticeList.size() > 0) {
 					for (int i = 0; i < noticeList.size(); i++) {
 						TSNotice tsNotice = new TSNotice();

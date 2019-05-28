@@ -404,7 +404,7 @@ public class WvDayCostSumController extends BaseController {
 				try {
 					file.getInputStream().close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		}
