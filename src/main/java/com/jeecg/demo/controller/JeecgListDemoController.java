@@ -182,7 +182,7 @@ public class JeecgListDemoController extends BaseController {
 	
 	@RequestMapping(params = "addTab")
 	public ModelAndView addTab(HttpServletRequest request) {
-		String type = oConvertUtils.getString(request.getParameter("type"));
+		//String type = oConvertUtils.getString(request.getParameter("type"));
 		return new ModelAndView("com/jeecg/demo/demoTab");
 		
 	}
@@ -552,7 +552,7 @@ public class JeecgListDemoController extends BaseController {
 	
 	@RequestMapping(params = "logrpDatagrid")
 	public void logrpDatagrid(HttpServletResponse response,JeecgLogReport log, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(JeecgLogReport.class, dataGrid);
+		//CriteriaQuery cq = new CriteriaQuery(JeecgLogReport.class, dataGrid);
 		List<JeecgLogReport> list=this.jeecgMinidaoDao.getLogReportData(log);
 		dataGrid.setResults(list);
 		TagUtil.datagrid(response, dataGrid);
