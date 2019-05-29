@@ -22,7 +22,7 @@ public class AcceptAdd {
 		          AcceptService acceptService = new AcceptService();
 		try {
 			// 通过平台交易号新增
-			JSONObject record = acceptService.add(jsonBody, to_account);
+			acceptService.add(jsonBody, to_account);
 
 		} catch (OpenAPIException e) {
 

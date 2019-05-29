@@ -1,63 +1,66 @@
 package com.zzjee.wm.controller;
 
-import com.zzjee.api.ResultDO;
-import com.zzjee.md.entity.MdCusEntity;
-import com.zzjee.md.entity.MdGoodsEntity;
-import com.zzjee.md.entity.MvGoodsEntity;
-import com.zzjee.wm.entity.*;
-import com.zzjee.wm.service.WmInQmIServiceI;
-
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
 import org.apache.log4j.Logger;
-import org.jeecgframework.core.util.*;
-import com.zzjee.wmutil.wmUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
-import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.web.system.service.SystemService;
-
+import org.jeecgframework.core.util.DateUtils;
+import org.jeecgframework.core.util.ExceptionUtil;
+import org.jeecgframework.core.util.JSONHelper;
+import org.jeecgframework.core.util.MyBeanUtils;
+import org.jeecgframework.core.util.ResourceUtil;
+import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.core.util.oConvertUtils;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
-
-import java.io.IOException;
-
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.util.Map;
-import java.util.HashMap;
-
+import org.jeecgframework.tag.core.easyui.TagUtil;
+import org.jeecgframework.web.system.service.SystemService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.http.HttpStatus;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
-
-import java.util.Set;
-
-import javax.swing.text.StyledEditorKit;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-
-import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdCusEntity;
+import com.zzjee.md.entity.MdGoodsEntity;
+import com.zzjee.md.entity.MvGoodsEntity;
+import com.zzjee.wm.entity.WmImNoticeHEntity;
+import com.zzjee.wm.entity.WmImNoticeIEntity;
+import com.zzjee.wm.entity.WmInQmIEntity;
+import com.zzjee.wm.entity.WmToUpGoodsEntity;
+import com.zzjee.wm.service.WmInQmIServiceI;
+import com.zzjee.wmutil.wmUtil;
 
 /**
  * @Title: Controller
@@ -238,7 +241,7 @@ public class WmInQmIController extends BaseController {
 
 
 	private boolean toup(String id ){
-		List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
+//		List<WmToUpGoodsEntity> wmToUpGoodsList = new ArrayList<WmToUpGoodsEntity>();
 		String hql0 = "from WmInQmIEntity where binSta = 'N' and  id = ?";
 		List<WmInQmIEntity> WmInQmIEntityList = systemService.findHql(hql0,
 				id);// 获取行项目
@@ -275,8 +278,8 @@ public class WmInQmIController extends BaseController {
 
 			try {
 
-				MvGoodsEntity mvgoods = new MvGoodsEntity();
-				mvgoods = systemService.findUniqueByProperty(
+//				MvGoodsEntity mvgoods = new MvGoodsEntity();
+				MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 						MvGoodsEntity.class, "goodsCode",
 						wmToUpGoodsEntity.getGoodsId());
 				wmToUpGoodsEntity.setBaseUnit(mvgoods.getBaseunit());
@@ -772,8 +775,8 @@ public class WmInQmIController extends BaseController {
 				.getListByCriteriaQuery(cq, false);
 for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 	try {
-		MvGoodsEntity mvgoods = new MvGoodsEntity();
-		mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmInQmIEntity.getGoodsId()) ;
+//		MvGoodsEntity mvgoods = new MvGoodsEntity();
+		MvGoodsEntity mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmInQmIEntity.getGoodsId()) ;
 		wmInQmIEntity.setGoodsName(mvgoods.getShpMingCheng());
 	} catch (Exception e) {
 		// TODO: handle exception
@@ -815,7 +818,7 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 		return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request,
@@ -985,7 +988,7 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		// 按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		String id = wmInQmI.getId();
+//		String id = wmInQmI.getId();
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
 

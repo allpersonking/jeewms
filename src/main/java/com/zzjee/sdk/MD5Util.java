@@ -29,7 +29,8 @@ public class MD5Util {
     public static String MD5Encode(String origin, String charsetname) {
         String resultString = null;
         try {
-            resultString = new String(origin);
+        	//Dm DM_STRING_CTOR 因为使用String（String）构造函数生成新字符串会浪费内存，推荐使用原有字符串。
+            resultString = origin;
             MessageDigest md = MessageDigest.getInstance("MD5");
             if (charsetname == null || "".equals(charsetname))
                 resultString = byteArrayToHexString(md.digest(resultString

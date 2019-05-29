@@ -1,14 +1,11 @@
 package com.zzjee.yongyoubase.openapi4j.commons;
 
-import com.alibaba.fastjson.JSONObject;
-
-import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
-import com.zzjee.yongyoubase.openapi4j.util.HttpUtil;
-import com.zzjee.yongyoubase.openapi4j.util.PropUtil;
 import org.apache.commons.lang.StringUtils;
 import org.jeecgframework.core.util.ResourceUtil;
 
-import java.util.Properties;
+import com.alibaba.fastjson.JSONObject;
+import com.zzjee.yongyoubase.openapi4j.exception.OpenAPIException;
+import com.zzjee.yongyoubase.openapi4j.util.HttpUtil;
 
 public class TokenManager {
 

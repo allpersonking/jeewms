@@ -209,7 +209,7 @@ public class wmomController {
 		TSUser task = wmUtil.getsysorgcode(username);
 		List<Map<String, Object>> resultList2 = null;
 //		String orgcode = "";
-		Integer isRead = null;
+		//Integer isRead = null;
 		if (task != null) {
 			try {
 
@@ -218,10 +218,10 @@ public class wmomController {
 						+ "WHERE noticeRead.del_flag = 0 and noticeRead.user_id = ? ";
 				sql += " and noticeRead.is_read = ? ";
 				sql += " ORDER BY noticeRead.create_time DESC ";
-				if (isRead == null || !(isRead == 1 || isRead == 0)) {
-					isRead = 0;
-				}
-				List<Map<String, Object>> noticeList = systemService.findForJdbcParam(sql, 1, 10, task.getId(), isRead.intValue());
+//				if (isRead == null || !(isRead == 1 || isRead == 0)) {
+//					isRead = 0;
+//				}
+				List<Map<String, Object>> noticeList = systemService.findForJdbcParam(sql, 1, 10, task.getId(),Integer.valueOf(0) );//isRead.intValue()
 
 				//将List转换成JSON存储
 //				net.sf.json.JSONArray result = new net.sf.json.JSONArray();
@@ -244,7 +244,7 @@ public class wmomController {
 
 			}
 			catch (Exception e){
-
+				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}
 		}
 		return Result.success(list, Long.parseLong(resultList2.get(0).get("count").toString()));

@@ -1836,11 +1836,11 @@ public class WmImNoticeHController extends BaseController {
 			List<Map<String,String>> list = new ArrayList<Map<String,String>>();
 			for(WmImNoticeIEntity t:wmImNoticeIEntityList){
 
-                List<WmInQmIEntity> WmInQmlist = new ArrayList<WmInQmIEntity>();
+//                List<WmInQmIEntity> WmInQmlist = new ArrayList<WmInQmIEntity>();
                String  hql = null;
                  hql = "from WmInQmIEntity t where t.imNoticeItem = ? ";
 
-                WmInQmlist = systemService.findHql(hql, new Object[] { t.getId() });
+                 List<WmInQmIEntity>  WmInQmlist = systemService.findHql(hql, new Object[] { t.getId() });
                 for(WmInQmIEntity qm:WmInQmlist){
 
                     Map<String,String> map = new HashMap<String,String>();

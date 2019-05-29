@@ -24,7 +24,7 @@ public class SapRFC {
 
 	private JCoParameterList tabPara = null;
 
-	private String functionName;
+//	private String functionName;
 
 	private static String ABAP_AS = "ABAP_AS_WITHOUT_POOL";
 
@@ -49,7 +49,7 @@ public class SapRFC {
 		String language  ;
 		String host  ;
 		String system ;
-		String router  ;
+		//String router  ;
 		// set properties参数，
 		try{
 //			clientName = "300";
@@ -65,7 +65,7 @@ public class SapRFC {
 			 language = ResourceUtil.getConfigByName("rfc.language");
 			 host = ResourceUtil.getConfigByName("rfc.host");
 			 system = ResourceUtil.getConfigByName("rfc.system");
-			 router = ResourceUtil.getConfigByName("rfc.router");
+			// router = ResourceUtil.getConfigByName("rfc.router");
 		}catch (Exception e){
 			clientName = "300";
 			userid = "DY_EZCAO";
@@ -118,7 +118,9 @@ public class SapRFC {
 
 	// 执行方法
 	public SapRFC prepare(String functionName) {
-		this.functionName = functionName;
+		//this.functionName = functionName;
+		//Unread field: com.zzjee.sap.SapRFC.functionName
+		//Bug type URF_UNREAD_FIELD (click for details) 
 		try {
 			// 取得要执行的方法
 			function = destination.getRepository().getFunction(functionName);

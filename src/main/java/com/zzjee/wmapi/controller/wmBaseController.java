@@ -60,12 +60,12 @@ public class wmBaseController extends BaseController {
 	 */
 	private static final Logger logger = Logger.getLogger(wmBaseController.class);
 
-	@Autowired
-	private WvGiServiceI wvGiService;
-	@Autowired
-	private SystemService systemService;
-	@Autowired
-	private Validator validator;
+//	@Autowired
+//	private WvGiServiceI wvGiService;
+//	@Autowired
+//	private SystemService systemService;
+//	@Autowired
+//	private Validator validator;
 
 
 
@@ -121,7 +121,7 @@ public class wmBaseController extends BaseController {
 			}
 			response.flushBuffer();
 		} catch (Exception e) {
-
+			logger.error(ExceptionUtil.getExceptionMessage(e));
 		}finally{
 			if(inputStream!=null){
 				inputStream.close();

@@ -48,8 +48,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 			for(WmOmNoticeIEntity wmOmNoticeI:wmOmNoticeIList){
 				//外键设置
 				try{
-					MvGoodsEntity mvgoods = new MvGoodsEntity();
-					mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmOmNoticeI.getGoodsId()) ;
+					MvGoodsEntity mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmOmNoticeI.getGoodsId()) ;
 					if(mvgoods!=null){
 						huowu=huowu+mvgoods.getGoodsName();
 						wmOmNoticeI.setGoodsName(mvgoods.getGoodsName());
@@ -141,8 +140,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 					if(oldE.getId().equals(sendE.getId())){
 		    			try {
 							MyBeanUtils.copyBeanNotNull2Bean(sendE,oldE);
-							MvGoodsEntity mvgoods = new MvGoodsEntity();
-							mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", oldE.getGoodsId()) ;
+							MvGoodsEntity mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", oldE.getGoodsId()) ;
 							oldE.setGoodsUnit(mvgoods.getShlDanWei());
 							oldE.setBaseUnit(mvgoods.getBaseunit());
 							if(!mvgoods.getBaseunit().equals(mvgoods.getShlDanWei())){

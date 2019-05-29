@@ -298,17 +298,17 @@ public class VYsddController extends BaseController {
         }
         List<VYsddEntity> vYsdds = this.vYsddService.getListByCriteriaQuery(cq,false);
 		OutputStream fileOut = null;
-		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		BufferedImage bufferImg = null;
+//		String codedFileName = null;
 
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename=zhangdan.xls"
 					);
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("zhangdan");
-			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
+//			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 
 			sheet.setMargin(HSSFSheet.TopMargin,0.1);// 页边距（上）
 			sheet.setMargin(HSSFSheet.BottomMargin,0.1);// 页边距（下）
@@ -576,7 +576,7 @@ public class VYsddController extends BaseController {
     	return NormalExcelConstants.JEECG_EXCEL_VIEW;
 	}
 	
-	@SuppressWarnings("unchecked")
+//	@SuppressWarnings("unchecked")
 	@RequestMapping(params = "importExcel", method = RequestMethod.POST)
 	@ResponseBody
 	public AjaxJson importExcel(HttpServletRequest request, HttpServletResponse response) {

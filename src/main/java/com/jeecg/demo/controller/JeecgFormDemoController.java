@@ -131,10 +131,10 @@ public class JeecgFormDemoController extends BaseController {
 	public AjaxJson getTreeData(TSDepart depatr,HttpServletResponse response,HttpServletRequest request ){
 		AjaxJson j = new AjaxJson();
 		try{
-			List<TSDepart> depatrList = new ArrayList<TSDepart>();
+//			List<TSDepart> depatrList = new ArrayList<TSDepart>();
 			StringBuffer hql = new StringBuffer(" from TSDepart t");
 			//hql.append(" and (parent.id is null or parent.id='')");
-			depatrList = this.systemService.findHql(hql.toString());
+			List<TSDepart> depatrList = this.systemService.findHql(hql.toString());
 			List<Map<String,Object>> dataList = new ArrayList<Map<String,Object>>();
 			Map<String,Object> map = null;
 			for (TSDepart tsdepart : depatrList) {

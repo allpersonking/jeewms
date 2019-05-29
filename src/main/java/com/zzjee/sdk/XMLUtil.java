@@ -105,8 +105,8 @@ public class XMLUtil {
     }
 
     public static String createXML(Map<String,Object> map){
-        Set<Entry<String,Object>> set=map.entrySet();
-        set.iterator();
+       // Set<Entry<String,Object>> set=map.entrySet();
+        //set.iterator();
         return null;
     }
 

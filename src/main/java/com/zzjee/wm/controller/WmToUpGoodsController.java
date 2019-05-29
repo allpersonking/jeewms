@@ -221,8 +221,8 @@ public class WmToUpGoodsController extends BaseController {
 		message = "上架列表添加成功";
 		try{
 			wmToUpGoods.setOrderId("ZY");
-			MvGoodsEntity mvgoods = new MvGoodsEntity();
-			mvgoods = systemService.findUniqueByProperty(
+			//MvGoodsEntity mvgoods = new MvGoodsEntity();
+			MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 					MvGoodsEntity.class, "goodsCode",
 					wmToUpGoods.getGoodsId());
 			if(mvgoods!=null){

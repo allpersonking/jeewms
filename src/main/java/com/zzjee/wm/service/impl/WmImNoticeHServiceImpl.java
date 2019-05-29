@@ -48,8 +48,7 @@ public class WmImNoticeHServiceImpl extends CommonServiceImpl implements WmImNot
 			/**保存-进货通知明细*/
 			for(WmImNoticeIEntity wmImNoticeI:wmImNoticeIList){
 				//外键设置
-				MvGoodsEntity mvgoods = new MvGoodsEntity();
-				mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmImNoticeI.getGoodsCode()) ;		
+				MvGoodsEntity mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmImNoticeI.getGoodsCode()) ;		
 				if(mvgoods!=null){
 					wmImNoticeI.setGoodsName(mvgoods.getGoodsName());
 					wmImNoticeI.setBarCode(mvgoods.getShpTiaoMa());

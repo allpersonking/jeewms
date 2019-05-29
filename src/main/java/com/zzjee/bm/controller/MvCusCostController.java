@@ -171,8 +171,10 @@ public class MvCusCostController extends BaseController {
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
 //			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+			
+			String setHeaderEnddate =request.getParameter("enddate");
 			response.setHeader("content-disposition", "attachment;filename="
-					+ mvCusCost.getCusCode()+"("+request.getParameter("begindate")+" "+request.getParameter("enddate")+").xls");
+					+ mvCusCost.getCusCode()+"("+request.getParameter("begindate")+" "+setHeaderEnddate+").xls");
 			HSSFWorkbook wb = new HSSFWorkbook();
 			HSSFSheet sheet = wb.createSheet("sum");
 			HSSFSheet sheet1 = wb.createSheet("detail");

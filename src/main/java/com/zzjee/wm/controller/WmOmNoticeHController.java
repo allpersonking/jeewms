@@ -1,27 +1,23 @@
 package com.zzjee.wm.controller;
-import com.zzjee.api.ResultDO;
-import com.zzjee.md.entity.*;
-import com.zzjee.tms.entity.TmsYwDingdanEntity;
-import com.zzjee.wm.entity.*;
-import com.zzjee.wm.page.*;
-import com.zzjee.wm.service.WmOmNoticeHServiceI;
-
-import java.io.*;
-import java.net.URLEncoder;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.text.SimpleDateFormat;
+import java.util.Map;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 
-import com.zzjee.wmutil.*;
-import net.sf.json.JSONArray;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -36,12 +32,7 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
 import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
@@ -51,54 +42,62 @@ import org.jeecgframework.core.constant.Globals;
 import org.jeecgframework.core.util.BarcodeUtil;
 import org.jeecgframework.core.util.DateUtils;
 import org.jeecgframework.core.util.ExceptionUtil;
+import org.jeecgframework.core.util.MyBeanUtils;
 import org.jeecgframework.core.util.QRcodeUtil;
 import org.jeecgframework.core.util.ResourceUtil;
 import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.poi.excel.ExcelImportUtil;
+import org.jeecgframework.poi.excel.entity.ExportParams;
+import org.jeecgframework.poi.excel.entity.ImportParams;
+import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.jeecgframework.tag.core.easyui.TagUtil;
-import org.jeecgframework.tag.vo.datatable.SortDirection;
-import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.pojo.base.TSRole;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.sms.util.Constants;
 import org.jeecgframework.web.system.sms.util.TuiSongMsgUtil;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.poi.excel.ExcelImportUtil;
-import org.jeecgframework.poi.excel.entity.ExportParams;
-import org.jeecgframework.poi.excel.entity.ImportParams;
-import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.awt.image.BufferedImage;
-import java.util.Map;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.jeecgframework.core.beanvalidator.BeanValidators;
-import org.jsoup.helper.DataUtil;
-
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-
-import java.net.URI;
-
-import jdk.nashorn.internal.ir.TryNode;
-
-import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdCusEntity;
+import com.zzjee.md.entity.MdCusOtherEntity;
+import com.zzjee.md.entity.MvGoodsEntity;
+import com.zzjee.wm.entity.WmImNoticeHEntity;
+import com.zzjee.wm.entity.WmInQmIEntity;
+import com.zzjee.wm.entity.WmNoticeConfEntity;
+import com.zzjee.wm.entity.WmOmNoticeHEntity;
+import com.zzjee.wm.entity.WmOmNoticeIEntity;
+import com.zzjee.wm.entity.WmOmQmIEntity;
+import com.zzjee.wm.entity.WmPlatIoEntity;
+import com.zzjee.wm.page.WmNoticeImpPage;
+import com.zzjee.wm.page.WmOmNoticeHPage;
+import com.zzjee.wm.page.WmOmNoticeImpPage;
+import com.zzjee.wm.page.confrowpage;
+import com.zzjee.wm.page.wmomnoticeipage;
+import com.zzjee.wm.service.WmOmNoticeHServiceI;
+import com.zzjee.wmutil.resResult;
+import com.zzjee.wmutil.sdresult;
+import com.zzjee.wmutil.wmIntUtil;
+import com.zzjee.wmutil.wmUtil;
+import com.zzjee.wmutil.yyUtil;
+
+import net.sf.json.JSONArray;
 
 /**
  * @Title: Controller
@@ -256,7 +255,7 @@ public class WmOmNoticeHController extends BaseController {
 		Double  zhlsum = 0.00;
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
-            List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+            //List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
             DecimalFormat dfsum=new DecimalFormat(".##");
             try{
 				for(WmOmQmIEntity tom:wmOmQmIEntityList){
@@ -301,8 +300,9 @@ public class WmOmNoticeHController extends BaseController {
 							}
 						}
 					}catch (Exception e){
+						
 					}
-                    wmOmQmIEntityListnew.add(tom);
+                    //wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){
 			}
@@ -370,7 +370,7 @@ public class WmOmNoticeHController extends BaseController {
 		Double  zhlsum = 0.00;
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
-			List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+			//List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
 			DecimalFormat dfsum=new DecimalFormat(".##");
 			String filepath = ResourceUtil.getConfigByName("webUploadpath");
             String goodsurl = ResourceUtil.getConfigByName("show.goodsurl");
@@ -425,7 +425,7 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}catch (Exception e){
 					}
-					wmOmQmIEntityListnew.add(tom);
+					//wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){
 			}
@@ -487,7 +487,7 @@ public class WmOmNoticeHController extends BaseController {
 		Double  zhlsum = 0.00;
 		try{
 			List<WmOmQmIEntity> wmOmQmIEntityList = systemService.findHql(hql0, id0);//获取行项目
-			List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
+			//List<WmOmQmIEntity> wmOmQmIEntityListnew = new ArrayList<>();
 			DecimalFormat dfsum=new DecimalFormat(".##");
 			try{
 				for(WmOmQmIEntity tom:wmOmQmIEntityList){
@@ -533,7 +533,7 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}catch (Exception e){
 					}
-					wmOmQmIEntityListnew.add(tom);
+					//wmOmQmIEntityListnew.add(tom);
 				}
 			}catch ( Exception e){
 			}
@@ -672,7 +672,7 @@ public class WmOmNoticeHController extends BaseController {
 		if(CollectionUtils.isNotEmpty(demos)){
 			for(WmOmNoticeHEntity jeecgDemo:demos){
 				if (StringUtil.isNotEmpty(jeecgDemo.getId())) {
-					WmOmNoticeHEntity t =systemService.get(WmOmNoticeHEntity.class, jeecgDemo.getId());
+//					WmOmNoticeHEntity t =systemService.get(WmOmNoticeHEntity.class, jeecgDemo.getId());
 					try {
 						message = "回单成功";
 						WmNoticeConfEntity confe = new WmNoticeConfEntity();
@@ -929,6 +929,7 @@ public class WmOmNoticeHController extends BaseController {
 						wmomNoticeIEntity.setGoodsName(date[1]);
 					} catch (Exception e) {
 						// TODO: handle exception
+						logger.error(ExceptionUtil.getExceptionMessage(e));
 					}
 					wmomNoticeIListnew.add(wmomNoticeIEntity);
 				}
@@ -951,6 +952,7 @@ public class WmOmNoticeHController extends BaseController {
 				TuiSongMsgUtil.sendMessage("出货通知", Constants.SMS_SEND_TYPE_3, "CKYYTZ", map, "admin", ResourceUtil.getSessionUserName().getUserName());
 			} catch (Exception e) {
 				// TODO: handle exception
+				logger.error(ExceptionUtil.getExceptionMessage(e));
 			}
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -1084,7 +1086,7 @@ public class WmOmNoticeHController extends BaseController {
 			resResult resResult = wmIntUtil.postBill(ja.toString(),wmOmNoticeHEntity.getPiMaster());
 			j.setMsg(resResult.getDetailedMessage());
 		}catch (Exception e){
-
+			logger.error(ExceptionUtil.getExceptionMessage(e));
 		}
 
 		j.setMsg(message);
@@ -1106,7 +1108,7 @@ public class WmOmNoticeHController extends BaseController {
 	public void downReceiveExcel(WmOmNoticeHEntity wmOmNoticeH,HttpServletRequest request,HttpServletResponse response){
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		wmOmNoticeH = systemService.getEntity(WmOmNoticeHEntity.class,
 				wmOmNoticeH.getId());//获取抬头
 		String hql0 = "from WmOmNoticeIEntity where 1 = 1 AND omNoticeId = ? ";
@@ -1114,11 +1116,11 @@ public class WmOmNoticeHController extends BaseController {
 				.findHql(hql0, wmOmNoticeH.getOmNoticeId());//获取行项目
 		//先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			StringBuffer sber=new StringBuffer();
+//			StringBuffer sber=new StringBuffer();
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmOmNoticeH.getOmNoticeId()));
 			// 进行转码，使其支持中文文件名
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="+wmOmNoticeH.getOmNoticeId()+".xls");
 			ImageIO.write(bufferImg, "jpg", byteArrayOut);
 
@@ -1346,12 +1348,14 @@ public class WmOmNoticeHController extends BaseController {
 			wb.write(fileOut);
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error(ExceptionUtil.getExceptionMessage(e));
 		}finally{
 			if(fileOut != null){
 				try {
 					fileOut.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+					logger.error(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		}
@@ -1365,14 +1369,14 @@ public class WmOmNoticeHController extends BaseController {
 						   HttpServletRequest request, HttpServletResponse response) {
 		OutputStream fileOut = null;
 		BufferedImage bufferImg = null;
-		String codedFileName = null;
+//		String codedFileName = null;
 		wmOmNoticeH = systemService.getEntity(WmOmNoticeHEntity.class,
 				wmOmNoticeH.getId());//获取抬头
 
 
 		// 先把读进来的图片放到一个ByteArrayOutputStream中，以便产生ByteArray
 		try {
-			StringBuffer sber = new StringBuffer();
+//			StringBuffer sber = new StringBuffer();
 
 			ByteArrayOutputStream byteArrayOut = new ByteArrayOutputStream();
 //			bufferImg = ImageIO.read(BarcodeUtil.generateToStream(wmImNoticeH
@@ -1381,7 +1385,7 @@ public class WmOmNoticeHController extends BaseController {
 					.getOmNoticeId());
 
 			// 进行转码，使其支持中文文件名
-			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
+//			codedFileName = java.net.URLEncoder.encode("中文", "UTF-8");
 			response.setHeader("content-disposition", "attachment;filename="
 					+ wmOmNoticeH.getOmNoticeId() + ".xls");
 			ImageIO.write(bufferImg, "jpg", byteArrayOut);
@@ -1654,7 +1658,7 @@ public class WmOmNoticeHController extends BaseController {
 						columnNames = columnNames1;
 					}
 				}catch ( Exception e){
-
+					logger.error(ExceptionUtil.getExceptionMessage(e));
 				}
 
 
@@ -1701,7 +1705,7 @@ public class WmOmNoticeHController extends BaseController {
 							cell4.setCellStyle(cs5r);
 						} catch (Exception e) {
 							// TODO: handle exception
-
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 
 						try {
@@ -1710,6 +1714,7 @@ public class WmOmNoticeHController extends BaseController {
 							cell5.setCellStyle(cs5);
 						} catch (Exception e) {
 							// TODO: handle exception
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 
 						try {
@@ -1723,6 +1728,7 @@ public class WmOmNoticeHController extends BaseController {
 							cell6.setCellStyle(cs5);
 						} catch (Exception e) {
 							// TODO: handle exception
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 
 						try {
@@ -1735,6 +1741,7 @@ public class WmOmNoticeHController extends BaseController {
 							cell7.setCellStyle(cs5);
 						} catch (Exception e) {
 							// TODO: handle exception
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 						Cell cell8 = rowColumnValue.createCell(7);// 毛重
 						try {
@@ -1746,6 +1753,7 @@ public class WmOmNoticeHController extends BaseController {
 
 						} catch (Exception e) {
 							// TODO: handle exception
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 						cell8.setCellStyle(cs5);
 						Cell cell9 = rowColumnValue.createCell(8);// 体积
@@ -1762,14 +1770,10 @@ public class WmOmNoticeHController extends BaseController {
 
 						try{
 							if("hr".equals(ResourceUtil.getConfigByName("wm.ckd"))) {
-								try{
 									cell9.setCellValue(wmUtil.getstock(result.get(i).get("goods_id").toString()));
-								}catch (Exception e){
-
-								}
 							}
 						}catch (Exception e){
-
+							logger.error(ExceptionUtil.getExceptionMessage(e));
 						}
 
 
@@ -1830,12 +1834,14 @@ public class WmOmNoticeHController extends BaseController {
 			wb.write(fileOut);
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error(ExceptionUtil.getExceptionMessage(e));
 		} finally {
 			if (fileOut != null) {
 				try {
 					fileOut.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+					logger.error(ExceptionUtil.getExceptionMessage(e));
 				}
 			}
 		}

@@ -27,10 +27,10 @@ public class sapgetdocutil {
     }
 //获取WMDOC
 public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tablename,String par[]) {
-    Map<String, Object> result = new HashMap<String, Object>();
+//    Map<String, Object> result = new HashMap<String, Object>();
     List<wmientity> reslit = new ArrayList<wmientity>();
     try {
-        result = sapWmUtil.getWmdoc(DOCTYPE,DOCID,tablename);
+    	Map<String, Object> result = sapWmUtil.getWmdoc(DOCTYPE,DOCID,tablename);
         JCoTable restable =  (JCoTable)result.get("IT_OUT");
         org.jeecgframework.core.util.LogUtil.info("===================获取凭证开始===================");
         reslit = getlistbyparandrable(restable,par);
@@ -45,10 +45,10 @@ public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tab
 
 //获取储位库存
     public static List<wmientity>   getcwkc(String LGNUM,String MATNR,String LGPLA,String par[]){
-        Map<String, Object> result = new HashMap<String, Object>();
+//        Map<String, Object> result = new HashMap<String, Object>();
         List<wmientity> reslit = new ArrayList<wmientity>();
         try {
-            result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);
+        	 Map<String, Object> result = sapWmUtil.getcwkc(LGNUM,MATNR,LGPLA);
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
             org.jeecgframework.core.util.LogUtil.info("===================获取库存开始===================");
             reslit = getlistbyparandrable(restable,par);
@@ -60,10 +60,10 @@ public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tab
     }
     //获取储位
     public static List<wmientity>   getcw(String LGNUM,String LGPLA,String par[]){
-        Map<String, Object> result = new HashMap<String, Object>();
+//        Map<String, Object> result = new HashMap<String, Object>();
         List<wmientity> reslit = new ArrayList<wmientity>();
         try {
-            result = sapWmUtil.getcw(LGNUM,LGPLA);
+        	Map<String, Object> result = sapWmUtil.getcw(LGNUM,LGPLA);
             JCoTable restable =  (JCoTable)result.get("IT_OUT");
             org.jeecgframework.core.util.LogUtil.info("===================获取储位开始===================");
             reslit = getlistbyparandrable(restable,par);
@@ -77,7 +77,7 @@ public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tab
     private static List<wmientity> getlistbyparandrable(JCoTable restable, String par[]){
         List<wmientity> reslit = new ArrayList<wmientity>();
         for(int i=0;i<restable.getNumRows();i++){
-            wmientity t = new wmientity();
+            //wmientity t = new wmientity();
             try {
                 Class cl = Class.forName("com.yserp.wmapi.entity.wmientity");//反射得到类
                 restable.setRow(i);
@@ -87,7 +87,7 @@ public static List<wmientity>    getWmdoc(String DOCTYPE,String DOCID,String tab
                     Method method = cl.getMethod(methodstr,String.class);
                     method.invoke(obj,restable.getString(par[j-1]));
                 }
-                t = (wmientity) obj;
+                wmientity t = (wmientity) obj;
                 reslit.add(t);
             }catch (Exception e){
 

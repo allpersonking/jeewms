@@ -489,8 +489,8 @@ public class WmToDownGoodsController extends BaseController {
 			wmToDownGoods.setBinIdTo("PK");
 			wmToDownGoods.setDownSta("已复核");
 			wmToDownGoods.setGoodsQuaok(wmToDownGoods.getGoodsQua());
-			MvGoodsEntity mvgoods = new MvGoodsEntity();
-			mvgoods = systemService.findUniqueByProperty(
+//			MvGoodsEntity mvgoods = new MvGoodsEntity();
+			MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 					MvGoodsEntity.class, "goodsCode",
 					wmToDownGoods.getGoodsId());
 			if(mvgoods!=null){

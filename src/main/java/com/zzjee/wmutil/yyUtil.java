@@ -418,7 +418,7 @@ public class yyUtil {
      String jsonBody = params.get("jsonBody").toString();
      OtherOutService otherOutService = new OtherOutService();
      try {
-         JSONObject record = otherOutService.add(jsonBody, to_account);
+         otherOutService.add(jsonBody, to_account);
      } catch (OpenAPIException e) {
          e.printStackTrace();
      }
@@ -428,7 +428,7 @@ public class yyUtil {
         String jsonBody = params.get("jsonBody").toString();
         OtherInService otherInService = new OtherInService();
         try {
-            JSONObject record = otherInService.add(jsonBody, to_account);
+            otherInService.add(jsonBody, to_account);
         } catch (OpenAPIException e) {
             e.printStackTrace();
         }
