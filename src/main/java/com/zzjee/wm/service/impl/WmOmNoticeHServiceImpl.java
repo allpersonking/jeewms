@@ -185,6 +185,41 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 				}
 			}
 		}
+
+		//3.筛选更新明细数据-运输商品明细
+		if(wmOmtmsIList!=null&&wmOmtmsIList.size()>0){
+			for(TmsYwDingdanEntity oldE:wmOmtmsIList){
+				boolean isUpdate = false;
+				for(TmsYwDingdanEntity sendE:wmOmtmsIList){
+					//需要更新的明细数据-出货商品明细
+					if(oldE.getId().equals(sendE.getId())){
+						try {
+							MyBeanUtils.copyBeanNotNull2Bean(sendE,oldE);
+							this.saveOrUpdate(oldE);
+						} catch (Exception e) {
+							e.printStackTrace();
+							throw new BusinessException(e.getMessage());
+						}
+						isUpdate= true;
+						break;
+					}
+				}
+				if(!isUpdate){
+					//如果数据库存在的明细，前台没有传递过来则是删除-出货商品明细
+					super.delete(oldE);
+				}
+
+			}
+			//3.持久化新增的数据-出货商品明细
+			for(TmsYwDingdanEntity wmOmNoticeI:wmOmtmsIList){
+				if(oConvertUtils.isEmpty(wmOmNoticeI.getId())){
+					//外键设置
+					wmOmNoticeI.setYwkhdh(wmOmNoticeH.getOmNoticeId());
+					this.save(wmOmNoticeI);
+				}
+			}
+		}
+
 		//执行更新操作配置的sql增强
  		this.doUpdateSql(wmOmNoticeH);
 	}
