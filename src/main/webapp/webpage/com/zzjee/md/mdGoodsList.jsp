@@ -52,7 +52,7 @@
     <t:dgCol title="长"  field="chZhXiang"     queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="宽"  field="kuZhXiang"    queryMode="group"  width="80"></t:dgCol>
      <t:dgCol title="高"  field="gaoZhXiang"     queryMode="group"  width="80"></t:dgCol>
-    <t:dgCol title="基准温度"  field="jiZhunwendu"     queryMode="group"  width="80"></t:dgCol>
+    <%--<t:dgCol title="基准温度"  field="jiZhunwendu"     queryMode="group"  width="80"></t:dgCol>--%>
     <t:dgCol title="商品描述"  field="shpMiaoShu"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="停用"  field="zhuangTai"   query="true" dictionary="sf_yn" width="120"></t:dgCol>
    <t:dgCol title="操作" field="opt" width="100"></t:dgCol>

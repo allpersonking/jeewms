@@ -133,7 +133,7 @@ public class MdGoodsEntity implements java.io.Serializable {
 	/**高整箱*/
 	@Excel(name="高")
 	private java.lang.String gaoZhXiang;
-	@Excel(name="基准温度")
+//	@Excel(name="基准温度")
 	private java.lang.String jiZhunwendu;
 	/**商品描述*/
 	private java.lang.String shpMiaoShu;

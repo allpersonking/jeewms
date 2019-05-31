@@ -86,16 +86,16 @@ function counttiji(){
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">产品属性</label>
 			          </div>
-			          		          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">基准温度</b>
-			          </div>
-			          <div class="col-xs-3">
-			          <input id="jiZhunwendu" name="jiZhunwendu" type="text" class="form-control" 
-									ignore="checked"
-								   required="required"/>
-									<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">基准温度</label>
-			          </div>
+			          		          <%--<div class="col-xs-3 text-center">--%>
+			          	<%--<b  style="color:red">基准温度</b>--%>
+			          <%--</div>--%>
+			          <%--<div class="col-xs-3">--%>
+			          <%--<input id="jiZhunwendu" name="jiZhunwendu" type="text" class="form-control" --%>
+									<%--ignore="checked"--%>
+								   <%--required="required"/>--%>
+									<%--<span class="Validform_checktip" style="float:left;height:0px;"></span>--%>
+						<%--<label class="Validform_label" style="display: none">基准温度</label>--%>
+			          <%--</div>--%>
 						</div>
 			          
 			        
