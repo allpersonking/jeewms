@@ -118,6 +118,32 @@ function printview(){
 			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shpMingCheng} </td>
 
         </tr>
+		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
+
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>日文</td>
+
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.rwMingCheng} </td>
+
+		</tr>
+
+		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
+
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>型号</td>
+
+			<td    class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shpGuiGe} </td>
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>定价</td>
+
+			<td    class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.gaoDanPin} </td>
+
+		</tr>
+
+		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
+
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>条码</td>
+
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shpTiaoMa} </td>
+
+		</tr>
 
 
 
