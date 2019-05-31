@@ -114,7 +114,7 @@
 				<th scope="row"><div name="xh"></div></th>
 				<td><input style="width:20px;" type="checkbox" name="ck"/></td>
 				  <td>
-							  			  	<input id="wmOmtmsIList[0].goodsId"  name="wmOmtmsIList[0].goodsId" maxlength="32"
+							  			  	<input id="wmOmtmsIList[0].fahuoren"  name="wmOmtmsIList[0].fahuoren" maxlength="32"
  							  		type="text"    style="width:420px;text-align: left" >
 
 
@@ -122,20 +122,20 @@
 					  <label class="Validform_label" style="display: none;">快递公司</label>
 					</td>
 				  <td>
-					  	<input name="wmOmtmsIList[0].goodsQua" maxlength="32"
+					  	<input name="wmOmtmsIList[0].fadh" maxlength="32"
 					  		type="text" class="form-control"  style="width:120px;" >
 					  <label class="Validform_label" style="display: none;">运单号</label>
 					</td>
 
 
 				<td>
-					<input name="wmOmNoticeIList[0].binOm" maxlength="32"
+					<input name="wmOmNoticeIList[0].jiage" maxlength="32"
 						   type="text" class="form-control"  style="width:120px;" >
 					<label class="Validform_label" style="display: none;">费用</label>
 				</td>
 
 				<td>
-					<input name="wmOmNoticeIList[0].binId" maxlength="32"
+					<input name="wmOmNoticeIList[0].ywddbz" maxlength="32"
 						   type="text" class="form-control"  style="width:120px;" >
 					<label class="Validform_label" style="display: none;">备注</label>
 				</td>
@@ -154,25 +154,25 @@
 
 				   <td align="left">
 
-					   <input id="wmOmtmsIList[${stuts.index }].goodsName" value="${poVal.goodsName }" readonly="readonly"  name="wmOmtmsIList[${stuts.index }].goodsName" maxlength="32"
-							  ignore="ignore"
+					   <input id="wmOmtmsIList[${stuts.index }].fahuoren" value="${poVal.fahuoren }"   maxlength="32"
+							  type="text" class="form-control"  style="width:120px;" >
 
 					  <label class="Validform_label" style="display: none;">快递公司</label>
 				   </td>
 				   <td align="left">
-					  	<input name="wmOmtmsIList[${stuts.index }].goodsQua" maxlength="32"
-					  		type="text" class="form-control"  style="width:120px;"  value="${poVal.goodsQua }">
+					  	<input name="wmOmtmsIList[${stuts.index }].fadh" maxlength="32"
+					  		type="text" class="form-control"  style="width:120px;"  value="${poVal.fadh }">
 					  <label class="Validform_label" style="display: none;">运单号</label>
 				   </td>
 
 				<td align="left">
-					<input name="wmOmtmsIList[${stuts.index }].binOm" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binOm }">
+					<input name="wmOmtmsIList[${stuts.index }].jiage" maxlength="32"
+						   type="text" class="form-control"  style="width:120px;"  value="${poVal.jiage }">
 					<label class="Validform_label" style="display: none;">费用</label>
 				</td>
 				<td align="left">
-					<input name="wmOmtmsIList[${stuts.index }].binId" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binId }">
+					<input name="wmOmtmsIList[${stuts.index }].ywddbz" maxlength="32"
+						   type="text" class="form-control"  style="width:120px;"  value="${poVal.ywddbz }">
 					<label class="Validform_label" style="display: none;">备注</label>
 				</td>
 

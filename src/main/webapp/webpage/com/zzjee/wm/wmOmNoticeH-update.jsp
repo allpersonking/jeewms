@@ -98,19 +98,16 @@
     }
  </script>
  <body>
-  <form id="formobj" action="wmOmNoticeHController.do?doUpdate" name="formobj" method="post"><input type="hidden" id="btn_sub" class="btn_sub"/>
-				
-			<input type="hidden" id="btn_sub" class="btn_sub"/>
-			<input type="hidden" name="id" value='${wmOmNoticeHPage.id}' >
-			<input type="hidden" name="omNoticeId" value='${wmOmNoticeHPage.omNoticeId}' >
-						<input id="createDate" name="createDate" type="hidden" value="${wmOmNoticeHPage.createDate }"/>
+  <form id="formobj" action="wmOmNoticeHController.do?doUpdate" name="formobj" method="post">
+	  <input type="hidden" id="btn_sub" class="btn_sub"/>
+		<input type="hidden" name="id" value='${wmOmNoticeHPage.id}' >
+		<input type="hidden" name="omNoticeId" value='${wmOmNoticeHPage.omNoticeId}' >
+		<input id="createDate" name="createDate" type="hidden" value="${wmOmNoticeHPage.createDate }"/>
 		<input id="createBy" name="createBy" type="hidden" value="${wmOmNoticeHPage.createBy }"/>
 		<input id="createName" name="createName" type="hidden" value="${wmOmNoticeHPage.createName }"/>
 		<input id="updateBy" name="updateBy" type="hidden" value="${wmOmNoticeHPage.updateBy }"/>
 		<input id="updateDate" name="updateDate" type="hidden" value="${wmOmNoticeHPage.updateDate }"/>
 		<input id="updateName" name="updateName" type="hidden" value="${wmOmNoticeHPage.updateName }"/>
-			
-			
 			<div class="tab-wrapper">
 			    <!-- tab -->
 			    <ul class="nav nav-tabs">
@@ -354,12 +351,10 @@
 <div id="jform_tab" class="tab-wrapper">
 	<!-- tab -->
     <ul class="nav nav-tabs">
-		    	<li role="presentation" tab-ajax-url="wmOmNoticeHController.do?wmOmNoticeIList&omNoticeId=${wmOmNoticeHPage.omNoticeId}"><a href="#con-wrapper0">出货商品明细</a></li>
-    <%--</ul>--%>
-	<%--<ul class="nav nav-tabs">--%>
+	   	<li role="presentation" tab-ajax-url="wmOmNoticeHController.do?wmOmNoticeIList&omNoticeId=${wmOmNoticeHPage.omNoticeId}"><a href="#con-wrapper0">出货商品明细</a></li>
 		<li role="presentation" tab-ajax-url="wmOmNoticeHController.do?wmOmtmsIList&omNoticeId=${wmOmNoticeHPage.omNoticeId}"><a href="#con-wrapper1">运输订单明细</a></li>
 	</ul>
-	     <div class="con-wrapper" id="con-wrapper0" style="display: none;"></div>
+	<div class="con-wrapper" id="con-wrapper0" style="display: none;"></div>
 	<div class="con-wrapper" id="con-wrapper1" style="display: none;"></div>
 
 </div>
@@ -441,6 +436,15 @@
 		</script>
 		
 		</form>
+
+
+
+
+
+
+
+
+
   <!-- 添加 产品明细 模版 -->
   <table style="display:none">
 	  <tbody id="add_wmOmNoticeI_table_template">
@@ -509,7 +513,7 @@
 			  <%-- 											dictCondition="${wmOmNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>      --%>
 
 
-			  <input id="wmOmtmsIList[#index#].goodsId"    maxlength="32"
+			  <input id="wmOmtmsIList[#index#].fahuoren"    maxlength="32"
 					 ignore="ignore"
 					 type="text" class="form-control searchbox-inputtext"    style="width:420px;text-align: left" >
 
@@ -518,7 +522,7 @@
 			  <label class="Validform_label" style="display: none;">快递公司</label>
 		  </td>
 		  <td align="left">
-			  <input name="wmOmtmsIList[#index#].goodsQua" maxlength="32"
+			  <input name="wmOmtmsIList[#index#].fadh" maxlength="32"
 					 ignore="ignore"
 					 type="text" class="form-control"  style="width:120px;" >
 			  <label class="Validform_label" style="display: none;">运单号</label>
@@ -526,14 +530,14 @@
 
 
 		  <td align="left">
-			  <input name="wmOmtmsIList[#index#].binOm" maxlength="32"
+			  <input name="wmOmtmsIList[#index#].jiage" maxlength="32"
 					 ignore="ignore"
 					 type="text" class="form-control"  style="width:120px;" >
 			  <label class="Validform_label" style="display: none;">运费</label>
 		  </td>
 
 		  <td align="left">
-			  <input name="wmOmtmsIList[#index#].binId" maxlength="32"
+			  <input name="wmOmtmsIList[#index#].ywddbz" maxlength="32"
 					 ignore="ignore"
 					 type="text" class="form-control"  style="width:120px;" >
 			  <label class="Validform_label" style="display: none;">备注</label>
