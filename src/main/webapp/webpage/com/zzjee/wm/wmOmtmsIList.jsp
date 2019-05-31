@@ -114,10 +114,10 @@
 				<th scope="row"><div name="xh"></div></th>
 				<td><input style="width:20px;" type="checkbox" name="ck"/></td>
 				  <td>
-							  			  	<input id="wmOmtmsIList[0].fahuoren"  name="wmOmtmsIList[0].fahuoren" maxlength="32"
- 							  		type="text"    style="width:420px;text-align: left" >
+							  			  	<%--<input id="wmOmtmsIList[0].fahuoren"  name="wmOmtmsIList[0].fahuoren" maxlength="32"--%>
+ 							  		<%--type="text"    style="width:420px;text-align: left" >--%>
 
-
+					  <t:dictSelect field="wmOmtmsIList[#index#].fahuoren" type="select" typeGroupCode="tms_kd" hasLabel="false"  defaultVal=""></t:dictSelect>
 
 					  <label class="Validform_label" style="display: none;">快递公司</label>
 					</td>
@@ -154,8 +154,10 @@
 
 				   <td align="left">
 
-					   <input id="wmOmtmsIList[${stuts.index }].fahuoren" value="${poVal.fahuoren }"   maxlength="32"
-							  type="text" class="form-control"  style="width:120px;" >
+					   <%--<input id="wmOmtmsIList[${stuts.index }].fahuoren" value="${poVal.fahuoren }"   maxlength="32"--%>
+							  <%--type="text" class="form-control"  style="width:120px;" >--%>
+					   <t:dictSelect field="wmOmtmsIList[${stuts.index }].fahuoren" type="select" typeGroupCode="tms_kd" hasLabel="false"  defaultVal="${poVal.fahuoren }"></t:dictSelect>
+
 
 					  <label class="Validform_label" style="display: none;">快递公司</label>
 				   </td>

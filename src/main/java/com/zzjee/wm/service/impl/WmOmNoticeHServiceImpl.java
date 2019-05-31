@@ -187,8 +187,11 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 		}
 
 		//3.筛选更新明细数据-运输商品明细
+		String hql1 ="from TmsYwDingdanEntity where 1 = 1 AND ywkhdh = ? ";
+		List<TmsYwDingdanEntity> wmOmtmsIOldList = this.findHql(hql1,id0);
+
 		if(wmOmtmsIList!=null&&wmOmtmsIList.size()>0){
-			for(TmsYwDingdanEntity oldE:wmOmtmsIList){
+			for(TmsYwDingdanEntity oldE:wmOmtmsIOldList){
 				boolean isUpdate = false;
 				for(TmsYwDingdanEntity sendE:wmOmtmsIList){
 					//需要更新的明细数据-出货商品明细

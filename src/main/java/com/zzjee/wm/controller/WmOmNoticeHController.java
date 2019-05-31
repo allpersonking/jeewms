@@ -1859,7 +1859,7 @@ public class WmOmNoticeHController extends BaseController {
 	@ResponseBody
 	public AjaxJson doUpdate(WmOmNoticeHEntity wmOmNoticeH,WmOmNoticeHPage wmOmNoticeHPage, HttpServletRequest request) {
 		List<WmOmNoticeIEntity> wmOmNoticeIList =  wmOmNoticeHPage.getWmOmNoticeIList();
-		List<TmsYwDingdanEntity> wmOmtmsIList =  wmOmNoticeHPage.getWmOmtmsIList();
+		List<TmsYwDingdanEntity> wmOmtmsIList =   wmOmNoticeHPage.getWmOmtmsIList();
 		AjaxJson j = new AjaxJson();
 		String message = "更新成功";
 		try{

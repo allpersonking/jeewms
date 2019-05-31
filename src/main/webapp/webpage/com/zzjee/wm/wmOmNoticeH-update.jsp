@@ -513,18 +513,18 @@
 			  <%-- 											dictCondition="${wmOmNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>      --%>
 
 
-			  <input id="wmOmtmsIList[#index#].fahuoren"    maxlength="32"
-					 ignore="ignore"
-					 type="text" class="form-control searchbox-inputtext"    style="width:420px;text-align: left" >
+			  <%--<input id="wmOmtmsIList[#index#].fahuoren"    maxlength="32"--%>
+					 <%--ignore="ignore"--%>
+					 <%--type="text" class="form-control searchbox-inputtext"    style="width:120px;text-align: left" >--%>
 
+                  <t:dictSelect field="wmOmtmsIList[#index#].fahuoren" type="select" typeGroupCode="tms_kd" hasLabel="false"  defaultVal=""></t:dictSelect>
 
-
-			  <label class="Validform_label" style="display: none;">快递公司</label>
+                  <label class="Validform_label" style="display: none;">快递公司</label>
 		  </td>
 		  <td align="left">
 			  <input name="wmOmtmsIList[#index#].fadh" maxlength="32"
 					 ignore="ignore"
-					 type="text" class="form-control"  style="width:120px;" >
+					 type="text" class="form-control"  style="width:220px;" >
 			  <label class="Validform_label" style="display: none;">运单号</label>
 		  </td>
 

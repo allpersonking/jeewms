@@ -37,7 +37,8 @@
 		</tr>
 		<tr>
 			<td align="center" width="100px"><label class="Validform_label">checkbox:</label></td>
-			<td class="value"><t:dictSelect field="dbtype" type="checkbox" typeGroupCode="dbtype" hasLabel="false" title="数据库类型" defaultVal="oracle,mysql"></t:dictSelect> 
+			<td class="value">
+				<t:dictSelect field="dbtype" type="checkbox" typeGroupCode="dbtype" hasLabel="false" title="数据库类型" defaultVal="oracle,mysql"></t:dictSelect>
 			<span class="Validform_checktip"></span>
 			</td>
 		</tr>
