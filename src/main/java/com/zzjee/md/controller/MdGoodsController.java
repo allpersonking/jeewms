@@ -1,7 +1,9 @@
 package com.zzjee.md.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Validator;
 
+import com.zzjee.md.entity.MdCusEntity;
+import com.zzjee.wm.entity.WmOmQmIEntity;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
@@ -17,11 +21,7 @@ import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
-import org.jeecgframework.core.util.ExceptionUtil;
-import org.jeecgframework.core.util.JSONHelper;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.core.util.ResourceUtil;
-import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.core.util.*;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -152,6 +152,16 @@ public class MdGoodsController extends BaseController {
 		j.setMsg(message);
 		return j;
 	}
+
+
+	@RequestMapping(params = "doPrintmdgoods")
+	public ModelAndView doPrintpzhuisu(String id,HttpServletRequest request) {
+		MdGoodsEntity mdGoodsEntity = mdGoodsService.getEntity(MdGoodsEntity.class, id);
+		request.setAttribute("mdGoodsPage", mdGoodsEntity);
+		return new ModelAndView("com/zzjee/wm/print/mdGoods-print");
+	}
+
+
 
 	/**
 	 * 批量删除商品信息

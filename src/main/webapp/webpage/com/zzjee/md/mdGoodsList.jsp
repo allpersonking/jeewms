@@ -13,7 +13,9 @@
     <t:dgCol title="更新日期"  field="updateDate" formatter="yyyy-MM-dd" hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
-    <t:dgCol title="所属客户"  field="suoShuKeHu"   query="true" queryMode="single" dictionary="mv_cus,cus_code,cus_name"  width="120"></t:dgCol>
+      <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
+
+      <t:dgCol title="所属客户"  field="suoShuKeHu"   query="true" queryMode="single" dictionary="mv_cus,cus_code,cus_name"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="shpMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
     <t:dgCol title="英文名称"  field="ywMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
     <t:dgCol title="日文名称"  field="rwMingCheng"   query="true" queryMode="single"  width="160"></t:dgCol>
@@ -55,8 +57,9 @@
     <%--<t:dgCol title="基准温度"  field="jiZhunwendu"     queryMode="group"  width="80"></t:dgCol>--%>
     <t:dgCol title="商品描述"  field="shpMiaoShu"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="停用"  field="zhuangTai"   query="true" dictionary="sf_yn" width="120"></t:dgCol>
-   <t:dgCol title="操作" field="opt" width="100"></t:dgCol>
-   <t:dgDelOpt title="删除" url="mdGoodsController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
+      <t:dgFunOpt title="打印" funname="doprint(id)"  urlclass="ace_button"      />
+
+      <t:dgDelOpt title="删除" url="mdGoodsController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/>
    <t:dgToolBar title="录入" icon="icon-add" url="mdGoodsController.do?goAdd" funname="add"></t:dgToolBar>
    <t:dgToolBar title="编辑" icon="icon-edit" url="mdGoodsController.do?goUpdate" funname="update"></t:dgToolBar>
 <%--    <t:dgToolBar title="批量删除"  icon="icon-remove" url="mdGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar> --%>
@@ -108,7 +111,12 @@
                $('#mdGoodsList').datagrid('reload',{});
            }
    }
- 
+ function doprint(id){
+     var url = "mdGoodsController.do?doPrintmdgoods&id="+id;
+     createdetailwindow(" 商品标签", url, 800, 600);
+
+     // window.open(url);
+ }
 //导入
 function ImportXls() {
 	openuploadwin('Excel导入', 'mdGoodsController.do?upload', "mdGoodsList");

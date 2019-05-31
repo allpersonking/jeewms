@@ -592,6 +592,10 @@ public class WmImNoticeHController extends BaseController {
 	@ResponseBody
 	public AjaxJson doDel(WmImNoticeHEntity wmImNoticeH,
 			HttpServletRequest request) {
+		boolean  deltrue = true;
+		if(!"database".equals(ResourceUtil.getConfigByName("sys.del"))){
+			deltrue=false;
+		}
 		AjaxJson j = new AjaxJson();
 		wmImNoticeH = systemService.getEntity(WmImNoticeHEntity.class,
 				wmImNoticeH.getId());
@@ -603,7 +607,13 @@ public class WmImNoticeHController extends BaseController {
 				systemService.delete(wmPlatIo);
 			}
 			wmImNoticeH.setImSta(Constants.wm_sta3);
-			wmImNoticeHService.saveOrUpdate(wmImNoticeH);
+			if(deltrue){
+				wmImNoticeHService.delete(wmImNoticeH);
+
+			}else{
+				wmImNoticeHService.saveOrUpdate(wmImNoticeH);
+
+			}
 			systemService.addLog(message, Globals.Log_Type_DEL,
 					Globals.Log_Leavel_INFO);
 			Object id0 = wmImNoticeH.getNoticeId();
@@ -620,7 +630,13 @@ public class WmImNoticeHController extends BaseController {
 						.findHql(hql0, id0);
 				for (WmImNoticeIEntity wmImNoticeIEntity : wmImNoticeIEntityList) {
 					wmImNoticeIEntity.setBinPre("Y");
-					systemService.updateEntitie(wmImNoticeIEntity);
+					if(deltrue){
+						systemService.delete(wmImNoticeIEntity);
+
+					}else{
+						systemService.updateEntitie(wmImNoticeIEntity);
+
+					}
 				}
 			}catch (Exception e) {
 				
