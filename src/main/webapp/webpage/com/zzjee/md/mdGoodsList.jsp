@@ -113,7 +113,7 @@
    }
  function doprint(id){
      var url = "mdGoodsController.do?doPrintmdgoods&id="+id;
-     createdetailwindow(" 商品标签", url, 800, 600);
+     createdetailwindow(" 商品标签", url, 400, 300);
 
      // window.open(url);
  }

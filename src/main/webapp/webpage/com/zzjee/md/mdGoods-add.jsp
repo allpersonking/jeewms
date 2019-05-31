@@ -90,7 +90,7 @@ function counttiji(){
 			          	<b  style="color:red">价格</b>
 			          </div>
 			          <div class="col-xs-3">
-			          <input id="gaoDanpin" name="gaoDanpin" type="text" class="form-control"
+			          <input id="gaoDanPin" name="gaoDanPin" type="text" class="form-control"
 									ignore="checked"
 								   required="required"/>
 									<span class="Validform_checktip" style="float:left;height:0px;"></span>

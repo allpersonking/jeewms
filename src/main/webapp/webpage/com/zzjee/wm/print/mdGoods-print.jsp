@@ -98,31 +98,32 @@ function printview(){
 
 </head>
 <body style="overflow-y:auto" scroll="no">
+<a class="easyui-linkbutton" style="margin-top:3px" icon="icon-print" href="javascript:printall()">打印</a>
 
 <div class="printdiv"><t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table"  >
-	<table border=0 cellpadding=0 cellspacing=0 width=2340 style='border-collapse:
- collapse;table-layout:fixed;width:438pt;margin-left: 30px;margin-top: -30px'>
-		<col width=45 style='mso-width-source:userset;mso-width-alt:3612;width:34pt'>
-		<col width=102 style='mso-width-source:userset;mso-width-alt:1560;width:76pt'>
-		<col width=45 style='mso-width-source:userset;mso-width-alt:3612;width:34pt'>
-		<col width=102 style='mso-width-source:userset;mso-width-alt:1560;width:76pt'>
+	<table border=0 cellpadding=0 cellspacing=0 width=1000 style='border-collapse:
+ collapse;table-layout:fixed;width:200pt;margin-left: 30px;margin-top: -30px'>
+		<col width=20 style='mso-width-source:userset;mso-width-alt:3612;width:17pt'>
+		<col width=20 style='mso-width-source:userset;mso-width-alt:1560;width:17pt'>
+		<col width=20 style='mso-width-source:userset;mso-width-alt:3612;width:17pt'>
+		<col width=20 style='mso-width-source:userset;mso-width-alt:1560;width:17pt'>
 
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<th colspan=4 height=40 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt">商品标签</span></th>
+		<tr height=40 style='mso-height-source:userset;height:50.0pt'>
+			<th colspan=4 height=40 class=xl67 style='height:50.0pt' ><span style="font-size: 18pt">商品标签</span></th>
 		</tr>
 
 		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
 
 			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>中文</td>
 
-			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shpMingCheng} </td>
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpMingCheng} </td>
 
         </tr>
 		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
 
 			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>日文</td>
 
-			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.rwMingCheng} </td>
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.rwMingCheng} </td>
 
 		</tr>
 
@@ -141,14 +142,14 @@ function printview(){
 
 			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>条码</td>
 
-			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shpTiaoMa} </td>
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpTiaoMa} </td>
 
 		</tr>
 
 
 
-		<tr height=40 style='mso-height-source:userset;height:30.0pt'>
-			<th colspan=4 height=400 class=xl67 style='height:30.0pt' ><span style="font-size: 18pt"><img src="systemController/showOrDownbarcodeByurl.do?dbPath=${mdGoodsPage.shpTiaoMa }"    ></span></th>
+		<tr height=40 style='mso-height-source:userset '>
+			<th colspan=4 height=80 class=xl67   ><span style="font-size: 18pt"><img src="rest/wmBaseController/showOrDownbarcodeByurl.do?qrvalue=${mdGoodsPage.shpTiaoMa }"    ></span></th>
 		</tr>
 	</table>
 </t:formvalid></div>

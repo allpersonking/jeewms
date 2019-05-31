@@ -97,8 +97,8 @@
 			          	<b  style="color:red">价格</b>
 			          </div>
 			          <div class="col-xs-3">
-			          <input id="gaoDanpin" name="gaoDanpin" type="text" class="form-control"
-									ignore="checked" value='${mdGoodsPage.gaoDanpin}'
+			          <input id="gaoDanPin" name="gaoDanPin" type="text" class="form-control"
+									ignore="checked" value='${mdGoodsPage.gaoDanPin}'
 								/>
 									<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">价格</label>
