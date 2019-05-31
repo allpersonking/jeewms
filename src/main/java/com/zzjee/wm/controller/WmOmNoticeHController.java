@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -1858,6 +1859,7 @@ public class WmOmNoticeHController extends BaseController {
 	@ResponseBody
 	public AjaxJson doUpdate(WmOmNoticeHEntity wmOmNoticeH,WmOmNoticeHPage wmOmNoticeHPage, HttpServletRequest request) {
 		List<WmOmNoticeIEntity> wmOmNoticeIList =  wmOmNoticeHPage.getWmOmNoticeIList();
+		List<TmsYwDingdanEntity> wmOmtmsIList =  wmOmNoticeHPage.getWmOmtmsIList();
 		AjaxJson j = new AjaxJson();
 		String message = "更新成功";
 		try{
@@ -1882,7 +1884,7 @@ public class WmOmNoticeHController extends BaseController {
 			}
 
 
-			wmOmNoticeHService.updateMain(wmOmNoticeH, wmOmNoticeIList);
+			wmOmNoticeHService.updateMain(wmOmNoticeH, wmOmNoticeIList,wmOmtmsIList);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -1993,6 +1995,34 @@ public class WmOmNoticeHController extends BaseController {
 		}
 		return new ModelAndView("com/zzjee/wm/wmOmNoticeIList");
 	}
+
+	/**
+	 * 加载明细列表[出货商品明细]
+	 *
+	 * @return
+	 */
+	@RequestMapping(params = "wmOmtmsIList")
+	public ModelAndView wmOmtmsIList(WmOmNoticeHEntity wmOmNoticeH, HttpServletRequest req) {
+
+		//===================================================================================
+		//获取参数
+		Object id0 = wmOmNoticeH.getOmNoticeId();
+		//===================================================================================
+		//查询-出货商品明细
+		String hql0 = "from TmsYwDingdanEntity where 1 = 1 AND ywkhdh = ? ";
+		try{
+			if(StringUtil.isNotEmpty(id0)){
+				List<TmsYwDingdanEntity> wmOmtmsIEntityList = systemService.findHql(hql0,id0);
+				req.setAttribute("wmOmtmsIList", wmOmtmsIEntityList);
+			}
+		}catch(Exception e){
+			logger.info(e.getMessage());
+		}
+		return new ModelAndView("com/zzjee/wm/wmOmtmsIList");
+	}
+
+
+
 
 	/**
 	 * 导出excel
@@ -2404,6 +2434,7 @@ public class WmOmNoticeHController extends BaseController {
 
 		//保存
 		List<WmOmNoticeIEntity> wmOmNoticeIList =  wmOmNoticeHPage.getWmOmNoticeIList();
+		List<TmsYwDingdanEntity> wmOmtmsIList =  wmOmNoticeHPage.getWmOmtmsIList();
 
 		WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
 		try{
@@ -2411,7 +2442,7 @@ public class WmOmNoticeHController extends BaseController {
 		}catch(Exception e){
 			logger.info(e.getMessage());
 		}
-		wmOmNoticeHService.updateMain(wmOmNoticeH, wmOmNoticeIList);
+		wmOmNoticeHService.updateMain(wmOmNoticeH, wmOmNoticeIList,wmOmtmsIList);
 
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);

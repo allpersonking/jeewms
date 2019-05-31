@@ -1,4 +1,5 @@
 package com.zzjee.wm.service;
+import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 
@@ -20,7 +21,7 @@ public interface WmOmNoticeHServiceI extends CommonService{
 	 * 
 	 */
 	public void updateMain(WmOmNoticeHEntity wmOmNoticeH,
-	        List<WmOmNoticeIEntity> wmOmNoticeIList);
+	        List<WmOmNoticeIEntity> wmOmNoticeIList,List<TmsYwDingdanEntity> wmOmtmsIList);
 	public void delMain (WmOmNoticeHEntity wmOmNoticeH);
 	
  	/**

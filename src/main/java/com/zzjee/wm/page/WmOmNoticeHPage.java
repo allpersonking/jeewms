@@ -1,5 +1,6 @@
 
 package com.zzjee.wm.page;
+import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 
@@ -522,4 +523,17 @@ public class WmOmNoticeHPage implements java.io.Serializable {
 		public void setWmOmNoticeIList(List<WmOmNoticeIEntity> wmOmNoticeIList) {
 		this.wmOmNoticeIList = wmOmNoticeIList;
 		}
+
+	/**保存-出货通知项目*/
+	@ExcelCollection(name="运输项目")
+	private List<TmsYwDingdanEntity> wmOmtmsIList = new ArrayList<TmsYwDingdanEntity>();
+
+
+	public List<TmsYwDingdanEntity> getWmOmtmsIList() {
+		return wmOmtmsIList;
+	}
+
+	public void setWmOmtmsIList(List<TmsYwDingdanEntity> wmOmtmsIList) {
+		this.wmOmtmsIList = wmOmtmsIList;
+	}
 }

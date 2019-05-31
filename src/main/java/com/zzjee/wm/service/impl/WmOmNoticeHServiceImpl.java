@@ -121,7 +121,7 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 
 	
 	public void updateMain(WmOmNoticeHEntity wmOmNoticeH,
-	        List<WmOmNoticeIEntity> wmOmNoticeIList) {
+	        List<WmOmNoticeIEntity> wmOmNoticeIList,List<TmsYwDingdanEntity> wmOmtmsIList) {
 		//保存主表信息
 		this.saveOrUpdate(wmOmNoticeH);
 		//===================================================================================

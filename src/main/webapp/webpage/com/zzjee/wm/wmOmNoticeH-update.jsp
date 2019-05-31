@@ -355,9 +355,13 @@
 	<!-- tab -->
     <ul class="nav nav-tabs">
 		    	<li role="presentation" tab-ajax-url="wmOmNoticeHController.do?wmOmNoticeIList&omNoticeId=${wmOmNoticeHPage.omNoticeId}"><a href="#con-wrapper0">出货商品明细</a></li>
-    </ul>
-    
+    <%--</ul>--%>
+	<%--<ul class="nav nav-tabs">--%>
+		<li role="presentation" tab-ajax-url="wmOmNoticeHController.do?wmOmtmsIList&omNoticeId=${wmOmNoticeHPage.omNoticeId}"><a href="#con-wrapper1">运输订单明细</a></li>
+	</ul>
 	     <div class="con-wrapper" id="con-wrapper0" style="display: none;"></div>
+	<div class="con-wrapper" id="con-wrapper1" style="display: none;"></div>
+
 </div>
 
 
@@ -488,6 +492,53 @@
 			  >
 			  <label class="Validform_label" style="display: none;">生产日期</label>
 		  </td>
+	  </tr>
+	  </tbody>
+  </table>
+
+
+
+  <!-- 添加 产品明细 模版 -->
+  <table style="display:none">
+	  <tbody id="add_wmOmtmsI_table_template">
+	  <tr>
+		  <th scope="row"><div name="xh"></div></th>
+		  <td><input style="width:20px;" type="checkbox" name="ck"/></td>
+		  <td align="left">
+			  <%-- 							  		<t:dictSelect field="wmOmNoticeIList[#index#].goodsId" type="list" extendJson="{class:'form-control',datatype:'*',style:'width:350px'}"   --%>
+			  <%-- 											dictCondition="${wmOmNoticeHPage.wherecon}"				dictTable="mv_goods" dictField="goods_code" dictText="goods_name" defaultVal="" hasLabel="false"  title="商品编码"></t:dictSelect>      --%>
+
+
+			  <input id="wmOmtmsIList[#index#].goodsId"    maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control searchbox-inputtext"    style="width:420px;text-align: left" >
+
+
+
+			  <label class="Validform_label" style="display: none;">快递公司</label>
+		  </td>
+		  <td align="left">
+			  <input name="wmOmtmsIList[#index#].goodsQua" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">运单号</label>
+		  </td>
+
+
+		  <td align="left">
+			  <input name="wmOmtmsIList[#index#].binOm" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">运费</label>
+		  </td>
+
+		  <td align="left">
+			  <input name="wmOmtmsIList[#index#].binId" maxlength="32"
+					 ignore="ignore"
+					 type="text" class="form-control"  style="width:120px;" >
+			  <label class="Validform_label" style="display: none;">备注</label>
+		  </td>
+
 	  </tr>
 	  </tbody>
   </table>
