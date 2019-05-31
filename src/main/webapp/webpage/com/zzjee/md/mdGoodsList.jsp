@@ -48,7 +48,7 @@
     <t:dgCol title="尺寸单位"  field="chcDanWei"  hidden="true"  queryMode="group" dictionary="ba_unit,unit_code,unit_zh_name"  width="120"></t:dgCol>
     <t:dgCol title="长单品"  field="chDanPin"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="宽单品"  field="kuDanPin"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
-    <t:dgCol title="高单品"  field="gaoDanPin"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+    <t:dgCol title="价格"  field="gaoDanPin"    queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="长"  field="chZhXiang"     queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="宽"  field="kuZhXiang"    queryMode="group"  width="80"></t:dgCol>
      <t:dgCol title="高"  field="gaoZhXiang"     queryMode="group"  width="80"></t:dgCol>

@@ -123,6 +123,7 @@ public class MdGoodsEntity implements java.io.Serializable {
 	/**宽单品*/
 	private java.lang.String kuDanPin;
 	/**高单品*/
+	@Excel(name="价格")
 	private java.lang.String gaoDanPin;
 	/**长整箱*/
 	@Excel(name="长")
