@@ -27,8 +27,8 @@
     <t:dgCol title="商品型号"  field="shpXingHao"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="商品规格"  field="shpGuiGe"   queryMode="group"  width="80"></t:dgCol>
     <t:dgCol title="商品颜色"  field="shpYanSe"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
-    <t:dgCol title="产品属性"  field="chpShuXing"  queryMode="single" dictionary="ba_goods_type,goods_type_code,goods_type_name"   width="120"></t:dgCol>
-    <t:dgCol title="存放温层"  field="cfWenCeng"   query="true" queryMode="single" dictionary="ba_deg_type,deg_type_code,deg_type_name"  width="80"></t:dgCol>
+    <t:dgCol title="产品属性"  field="chpShuXing" query="true"  queryMode="single" dictionary="ba_goods_type,goods_type_code,goods_type_name"   width="120"></t:dgCol>
+    <t:dgCol title="存放温层"  field="cfWenCeng"    queryMode="single" dictionary="ba_deg_type,deg_type_code,deg_type_name"  width="80"></t:dgCol>
     <t:dgCol title="拆零控制"  field="chlKongZhi"    queryMode="group" dictionary="sf_yn" width="60"></t:dgCol>
     <t:dgCol title="码盘单层数量"  field="mpDanCeng"   style="text-align:right"  queryMode="group"  width="60"></t:dgCol>
     <t:dgCol title="码盘层高"  field="mpCengGao"  style="text-align:right"   queryMode="group"  width="60"></t:dgCol>

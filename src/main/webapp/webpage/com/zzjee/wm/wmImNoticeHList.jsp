@@ -19,11 +19,11 @@
    <t:dgCol title="客户编码"  field="cusCode"  query="true"   queryMode="single" dictionary="mv_cus,cus_code,cus_name"  width="200"></t:dgCol>
    <t:dgCol title="预计到货时间"  field="imData" formatter="yyyy-MM-dd hh:mm:ss"  query="true" queryMode="group"  width="120"></t:dgCol>
    <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="90"></t:dgCol>
-   <t:dgCol title="车号"  field="imCarNo"   query="true" queryMode="single"  width="50"></t:dgCol>
-   <t:dgCol title="司机"  field="imCarDri"   query="true" queryMode="single"  width="50"></t:dgCol>
-   <t:dgCol title="司机电话"  field="imCarMobile"   query="true" queryMode="single"  width="60"></t:dgCol>
+   <t:dgCol title="运输号码"  field="imCarNo"   query="true" queryMode="single"  width="50"></t:dgCol>
+   <t:dgCol title="运输公司"  field="imCarDri"   query="true" queryMode="single"  width="50"></t:dgCol>
+   <%--<t:dgCol title="司机电话"  field="imCarMobile"   query="true" queryMode="single"  width="60"></t:dgCol>--%>
    <t:dgCol title="订单类型"  field="orderTypeCode"   query="true" queryMode="single" dictionary="ba_order_type,order_type_code,order_type_name"  width="60"></t:dgCol>
-   <t:dgCol title="月台"  field="platformCode"   query="true" queryMode="single" dictionary="ba_platform,platform_code,platform_name"  width="50"></t:dgCol>
+   <%--<t:dgCol title="月台"  field="platformCode"   query="true" queryMode="single" dictionary="ba_platform,platform_code,platform_name"  width="50"></t:dgCol>--%>
    <t:dgCol title="备注"  field="imBeizhu"    queryMode="single"  width="120"></t:dgCol>
 
    <t:dgCol title="单据状态"  field="imSta"   query="true" queryMode="single"  width="50"></t:dgCol>

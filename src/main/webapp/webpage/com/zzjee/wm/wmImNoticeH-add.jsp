@@ -211,41 +211,41 @@
 			          
 			        
 			          <div class="col-xs-1 text-center">
-			          	<b>车号：</b>
+			          	<b>运输号码：</b>
 			          </div>
 			          <div class="col-xs-2">
 								<input id="imCarNo" name="imCarNo" type="text" class="form-control"
 									ignore="ignore"
 								   />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">车号</label>
+						<label class="Validform_label" style="display: none">运输号码</label>
 			          </div>
 							</div>
 			          
 			        
 							<div class="row show-grid">
 			          <div class="col-xs-1 text-center">
-			          	<b>司机：</b>
+			          	<b>运输公司：</b>
 			          </div>
 			          <div class="col-xs-2">
 								<input id="imCarDri" name="imCarDri" type="text" class="form-control"
 									ignore="ignore"
 								   />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">司机</label>
+						<label class="Validform_label" style="display: none">运输公司</label>
 			          </div>
 			          
 			        
-			          <div class="col-xs-1 text-center">
-			          	<b>司机电话：</b>
-			          </div>
-			          <div class="col-xs-2">
-								<input id="imCarMobile" name="imCarMobile" type="text" class="form-control"
-									ignore="ignore"
-								   />
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">司机电话</label>
-			          </div>
+			          <%--<div class="col-xs-1 text-center">--%>
+			          	<%--<b>司机电话：</b>--%>
+			          <%--</div>--%>
+			          <%--<div class="col-xs-2">--%>
+								<%--<input id="imCarMobile" name="imCarMobile" type="text" class="form-control"--%>
+									<%--ignore="ignore"--%>
+								   <%--/>--%>
+						<%--<span class="Validform_checktip" style="float:left;height:0px;"></span>--%>
+						<%--<label class="Validform_label" style="display: none">司机电话</label>--%>
+			          <%--</div>--%>
 
 			          <div class="col-xs-1 text-center">
 			          	<b>订单类型：</b>
@@ -258,15 +258,15 @@
 			          </div>
 			          
 			        
-			          <div class="col-xs-1 text-center">
-			          	<b>月台：</b>
-			          </div>
-			          <div class="col-xs-2">
-								<t:dictSelect field="platformCode" type="list" extendJson="{class:'form-control',style:'width:150px'}"  
-								dictTable="ba_platform" dictField="platform_code" dictText="platform_name" hasLabel="false"  title="月台"></t:dictSelect>     
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">月台</label>
-			          </div>
+			          <%--<div class="col-xs-1 text-center">--%>
+			          	<%--<b>月台：</b>--%>
+			          <%--</div>--%>
+			          <%--<div class="col-xs-2">--%>
+								<%--<t:dictSelect field="platformCode" type="list" extendJson="{class:'form-control',style:'width:150px'}"  --%>
+								<%--dictTable="ba_platform" dictField="platform_code" dictText="platform_name" hasLabel="false"  title="月台"></t:dictSelect>     --%>
+						<%--<span class="Validform_checktip" style="float:left;height:0px;"></span>--%>
+						<%--<label class="Validform_label" style="display: none">月台</label>--%>
+			          <%--</div>--%>
 							</div>
 			          
 			        

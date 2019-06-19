@@ -30,10 +30,10 @@
    <t:dgCol title="收货人"  field="delvMember"   query="true" queryMode="single"  width="60"></t:dgCol>
    <t:dgCol title="收货人电话"  field="delvMobile"   query="true" queryMode="single"  width="90"></t:dgCol>
    <t:dgCol title="收货人地址"  field="delvAddr"    queryMode="single"  width="120"></t:dgCol>
-   <t:dgCol title="承运人"  field="reMember"   query="true" queryMode="single"  width="60"></t:dgCol>
-   <t:dgCol title="承运人电话"  field="reMobile"   query="true" queryMode="single"  width="60"></t:dgCol>
-   <t:dgCol title="承运人车号"  field="reCarno"   query="true" queryMode="single"  width="60"></t:dgCol>
-   <t:dgCol title="发货月台"  field="omPlatNo"   query="true" queryMode="single"  dictionary="ba_platform,platform_code,platform_name" width="60"></t:dgCol>
+   <t:dgCol title="运输公司"  field="reMember"   query="true" queryMode="single"  width="60"></t:dgCol>
+   <%--<t:dgCol title="承运人电话"  field="reMobile"   query="true" queryMode="single"  width="60"></t:dgCol>--%>
+   <t:dgCol title="发货运单号"  field="reCarno"   query="true" queryMode="single"  width="60"></t:dgCol>
+   <%--<t:dgCol title="发货月台"  field="omPlatNo"   query="true" queryMode="single"  dictionary="ba_platform,platform_code,platform_name" width="60"></t:dgCol>--%>
 
    <t:dgDelOpt title="删除" url="wmOmNoticeHController.do?doDel&id={id}"  urlclass="ace_button" exp="omSta#ne#已完成" urlfont="fa-trash-o"/>
       <%--<t:dgFunOpt title="通知单" funname="print(id)"  urlclass="ace_button"  urlfont="	fa-print" exp="omSta#ne#已删除"/>--%>

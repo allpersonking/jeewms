@@ -245,11 +245,11 @@
 						<label class="Validform_label" style="display: none">宽</label>
 			          </div>
 			          			               <div class="col-xs-3 text-center">
-			          	<b  style="color:red">高</b>
+			          	<b   >高</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="gaoZhXiang" name="gaoZhXiang" type="text" class="form-control" 
-									ignore="ignore" style="text-align:right"  datatype="d"  value='${mdGoodsPage.gaoZhXiang}'  onchange="counttiji()"
+									ignore="ignore" style="text-align:right"    value='${mdGoodsPage.gaoZhXiang}'  onchange="counttiji()"
 								 />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">高</label>
@@ -258,17 +258,17 @@
 			        
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">保质期</b>
+			          	<b   >保质期</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="bzhiQi" name="bzhiQi" type="text" class="form-control"
-									ignore="ignore" style="text-align:right"  datatype="d"
+									ignore="ignore" style="text-align:right"
 								   value='${mdGoodsPage.bzhiQi}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">保质期</label>
 			          </div>
 			          			          			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">允收天数</b>
+			          	<b   >允收天数</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="zhlKgm" name="zhlKgm" type="text" class="form-control"
@@ -279,7 +279,7 @@
 			          </div>
 						</div>
 			          			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">计费商品类</b>
+			          	<b   >计费商品类</b>
 			          </div>
 			          <div class="col-xs-3">
 								<t:dictSelect field="jfShpLei" type="list" extendJson="{class:'form-control'}"
@@ -289,22 +289,22 @@
 			          </div>
 	
 			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">码盘单层数量</b>
+			          	<b   >码盘单层数量</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="mpDanCeng" name="mpDanCeng" type="text" class="form-control"
-									ignore="ignore" style="text-align:right"  datatype="d"
+									ignore="ignore" style="text-align:right"
 								   value='${mdGoodsPage.mpDanCeng}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">码盘单层数量</label>
 			          </div>
 
 			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">码盘层高</b>
+			          	<b   >码盘层高</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="mpCengGao" name="mpCengGao" type="text" class="form-control"
-									ignore="ignore" style="text-align:right"  datatype="d"
+									ignore="ignore" style="text-align:right"
 								   value='${mdGoodsPage.mpCengGao}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">码盘层高</label>
@@ -316,29 +316,29 @@
 
 			          							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">拆零控制</b>
+			          	<b   >拆零控制</b>
 			          </div>
 			          <div class="col-xs-3">
-								<t:dictSelect field="chlKongZhi" type="radio" extendJson="{class:'form-control';datatype:'*'}"
+								<t:dictSelect field="chlKongZhi" type="radio"
 								typeGroupCode="sf_yn" defaultVal="${mdGoodsPage.chlKongZhi}" hasLabel="false"  title="拆零控制"></t:dictSelect>     
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">拆零控制</label>
 			          </div>
 			          		          <div class="col-xs-3 text-center">
-			          	<b style="color:red">拆零单位</b>
+			          	<b  >拆零单位</b>
 			          </div>
 			          <div class="col-xs-3">
-								<t:dictSelect field="jshDanWei" type="list" extendJson="{class:'form-control';datatype:'*'}"
+								<t:dictSelect field="jshDanWei" type="list"
 								dictTable="ba_unit" dictField="unit_code" dictText="unit_zh_name" defaultVal="${mdGoodsPage.jshDanWei}" hasLabel="false"  title="拆零单位"></t:dictSelect>     
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">拆零单位</label>
 			          </div>
 			          		          <div class="col-xs-3 text-center">
-			          	<b  style="color:red">拆零数量</b>
+			          	<b   >拆零数量</b>
 			          </div>
 			          <div class="col-xs-3">
 								<input id="chlShl" name="chlShl" type="text" class="form-control"
-									ignore="ignore" style="text-align:right"  datatype="*" 
+									ignore="ignore" style="text-align:right"
 								   value='${mdGoodsPage.chlShl}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">拆零数量</label>

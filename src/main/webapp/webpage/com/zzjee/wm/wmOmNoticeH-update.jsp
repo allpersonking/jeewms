@@ -230,52 +230,52 @@
 			          
 			        
 			          <div class="col-xs-1 text-center">
-			          	<b>承运人：</b>
+			          	<b>运输公司：</b>
 			          </div>
 			          <div class="col-xs-2">
 								<input id="reMember" name="reMember" type="text" class="form-control" 
 									 value='${wmOmNoticeHPage.reMember}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">承运人</label>
+						<label class="Validform_label" style="display: none">运输公司</label>
 			          </div>
 
 			        
 							<div class="row show-grid">
-			          <div class="col-xs-1 text-center">
-			          	<b>承运人电话：</b>
-			          </div>
-			          <div class="col-xs-2">
-								<input id="reMobile" name="reMobile" type="text" class="form-control" 
-									 value='${wmOmNoticeHPage.reMobile}' />
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">承运人电话</label>
-			          </div>
+			          <%--<div class="col-xs-1 text-center">--%>
+			          	<%--<b>承运人电话：</b>--%>
+			          <%--</div>--%>
+			          <%--<div class="col-xs-2">--%>
+								<%--<input id="reMobile" name="reMobile" type="text" class="form-control" --%>
+									 <%--value='${wmOmNoticeHPage.reMobile}' />--%>
+						<%--<span class="Validform_checktip" style="float:left;height:0px;"></span>--%>
+						<%--<label class="Validform_label" style="display: none">承运人电话</label>--%>
+			          <%--</div>--%>
 			          
 			        
 			          <div class="col-xs-1 text-center">
-			          	<b>承运人车号：</b>
+			          	<b>发货运单号：</b>
 			          </div>
 			          <div class="col-xs-2">
 								<input id="reCarno" name="reCarno" type="text" class="form-control" 
 									 value='${wmOmNoticeHPage.reCarno}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">承运人车号</label>
+						<label class="Validform_label" style="display: none">发货运单号</label>
 			          </div>
 
 							</div>
 			          
 			        
 							<div class="row show-grid">
-			          <div class="col-xs-1 text-center">
-			          	<b>发货月台：</b>
-			          </div>
-			          <div class="col-xs-2">
-								<input id="omPlatNo" name="omPlatNo" type="text" class="form-control" 
-									ignore="ignore"
-								 value='${wmOmNoticeHPage.omPlatNo}' />
-						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">发货月台</label>
-			          </div>
+			          <%--<div class="col-xs-1 text-center">--%>
+			          	<%--<b>发货月台：</b>--%>
+			          <%--</div>--%>
+			          <%--<div class="col-xs-2">--%>
+								<%--<input id="omPlatNo" name="omPlatNo" type="text" class="form-control" --%>
+									<%--ignore="ignore"--%>
+								 <%--value='${wmOmNoticeHPage.omPlatNo}' />--%>
+						<%--<span class="Validform_checktip" style="float:left;height:0px;"></span>--%>
+						<%--<label class="Validform_label" style="display: none">发货月台</label>--%>
+			          <%--</div>--%>
 			          
 			        
 			          <div class="col-xs-1 text-center">
