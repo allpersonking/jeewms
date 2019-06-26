@@ -19,6 +19,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import com.zzjee.tms.entity.TmsYwDingdanEntity;
+import com.zzjee.wm.page.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -86,11 +87,6 @@ import com.zzjee.wm.entity.WmOmNoticeHEntity;
 import com.zzjee.wm.entity.WmOmNoticeIEntity;
 import com.zzjee.wm.entity.WmOmQmIEntity;
 import com.zzjee.wm.entity.WmPlatIoEntity;
-import com.zzjee.wm.page.WmNoticeImpPage;
-import com.zzjee.wm.page.WmOmNoticeHPage;
-import com.zzjee.wm.page.WmOmNoticeImpPage;
-import com.zzjee.wm.page.confrowpage;
-import com.zzjee.wm.page.wmomnoticeipage;
 import com.zzjee.wm.service.WmOmNoticeHServiceI;
 import com.zzjee.wmutil.resResult;
 import com.zzjee.wmutil.sdresult;
@@ -2103,11 +2099,11 @@ public class WmOmNoticeHController extends BaseController {
 			params.setHeadRows(1);
 			params.setNeedSave(true);
 			try {
-				List<WmNoticeImpPage> list =  ExcelImportUtil.importExcel(file.getInputStream(), WmNoticeImpPage.class, params);
+				List<WmOmNoticeImpnewPage> list =  ExcelImportUtil.importExcel(file.getInputStream(), WmOmNoticeImpnewPage.class, params);
 
 				String flag = "Y";
 				String message="";
-				for(WmNoticeImpPage wmt:list){
+				for(WmOmNoticeImpnewPage wmt:list){
 					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
 							MvGoodsEntity.class, "goodsCode", wmt.getGoodsId());
 					if(mvgoods==null){
@@ -2119,7 +2115,7 @@ public class WmOmNoticeHController extends BaseController {
 					j.setMsg(message+"不存在");
 					return j;
 				}
-				List<WmNoticeImpPage> listheader =  ExcelImportUtil.importExcel(
+				List<WmOmNoticeImpnewPage> listheader =  ExcelImportUtil.importExcel(
 						file.getInputStream(), WmNoticeImpPage.class, params);
 				for(int i=0;i<listheader.size()-1;i++){
 					for(int  k=listheader.size()-1;k>i;k--){
@@ -2128,14 +2124,14 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}
 				}
-				for(WmNoticeImpPage pageheader: listheader) {
+				for(WmOmNoticeImpnewPage pageheader: listheader) {
 					List<WmOmNoticeHEntity>  wmomh = systemService.findByProperty(WmOmNoticeHEntity.class, "imCusCode", pageheader.getImCusCode());
 					if(wmomh!=null&&wmomh.size()>0){
 						continue;
 					}
 
 					List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
-					for (WmNoticeImpPage page : list) {
+					for (WmOmNoticeImpnewPage page : list) {
 						if(pageheader.getImCusCode().equals(page.getImCusCode())) {
 							WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
 							wmi.setGoodsId(page.getGoodsId());
@@ -2164,7 +2160,10 @@ public class WmOmNoticeHController extends BaseController {
 						}
 					}
 					WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
-
+					wmOmNoticeH.setReMember(pageheader.getReMember());
+					wmOmNoticeH.setReCarno(pageheader.getReCarno());
+					wmOmNoticeH.setDelvMember(pageheader.getDelvMember());
+					wmOmNoticeH.setDelvMobile(pageheader.getDelvMobile());
 					wmOmNoticeH.setDelvData(pageheader.getImData());
 					wmOmNoticeH.setOrderTypeCode(pageheader.getOrderTypeCode());
 					wmOmNoticeH.setCusCode(pageheader.getCusCode());
@@ -2336,7 +2335,7 @@ public class WmOmNoticeHController extends BaseController {
 	@RequestMapping(params = "exportXlsByT")
 	public String exportXlsByT(ModelMap map) {
 		map.put(NormalExcelConstants.FILE_NAME,"出货通知");
-		map.put(NormalExcelConstants.CLASS,WmNoticeImpPage.class);
+		map.put(NormalExcelConstants.CLASS,WmOmNoticeImpnewPage.class);
 		map.put(NormalExcelConstants.PARAMS,new ExportParams("出货通知", "导出人:"+ ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
 		map.put(NormalExcelConstants.DATA_LIST,new ArrayList());
