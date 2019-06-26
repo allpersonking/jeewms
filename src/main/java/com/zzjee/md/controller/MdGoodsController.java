@@ -207,11 +207,15 @@ public class MdGoodsController extends BaseController {
 					MdGoodsEntity.class, "shpBianMa", mdGoods.getShpBianMa());
 	
 			if(mdGoods1 ==null ){
-				if(mdGoods.getChlKongZhi().equals("N")){
+				if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
+					mdGoods.setChlKongZhi("N");
+				}
+				if("N".equals(mdGoods.getChlKongZhi() )){
 					mdGoods.setChlShl("1");
 					mdGoods.setJshDanWei(mdGoods.getShlDanWei());
 					
 				}
+
 				try {
 					if(StringUtil.isEmpty(mdGoods.getZhlKgm())){
 						if(!StringUtil.isEmpty(mdGoods.getBzhiQi())){
@@ -425,6 +429,18 @@ public class MdGoodsController extends BaseController {
 								}
 								
 							}
+							if(StringUtil.isEmpty(mdGoods.getChlKongZhi()) ){
+								mdGoods.setChlKongZhi("N");
+
+							}
+							if("N".equals(mdGoods.getChlKongZhi())){
+								mdGoods.setChlShl("1");
+								mdGoods.setJshDanWei(mdGoods.getShlDanWei());
+
+							}
+
+
+
 						} catch (Exception e) {
 							// TODO: handle exception
 						}
