@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.zzjeeframework</groupId>
-	<artifactId>zzjee</artifactId>
+	<artifactId>jeewms</artifactId>
 	<version>3.7</version>
 	<packaging>war</packaging>
 	<properties>
@@ -970,7 +970,7 @@
 
 	<organization>
 		<name>ZZJEE 智能快速开发平台</name>
-		<url>www.zzjee.org</url>
+		<url>www.jeewms.com</url>
 	</organization>
 	<build>
 		<plugins>
@@ -980,7 +980,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
-					<path>/zzjee</path>
+					<path>/jeewms</path>
 					<port>8080</port>
 					<uriEncoding>UTF-8</uriEncoding>
 					<url>http://localhost:8080/manager/html</url>
@@ -1038,7 +1038,7 @@
                 </configuration>
             </plugin>
         </plugins>
-		<finalName>zzjee</finalName>
+		<finalName>jeewms</finalName>
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
