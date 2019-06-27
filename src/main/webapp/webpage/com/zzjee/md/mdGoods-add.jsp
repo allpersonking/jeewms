@@ -141,6 +141,16 @@ function counttiji(){
 									<span class="Validform_checktip" style="float:left;height:0px;"></span>
 									<label class="Validform_label" style="display: none">商品规格</label>
 								</div>
+								<div class="col-xs-3 text-center">
+									<b  >商品品牌</b>
+								</div>
+								<div class="col-xs-3">
+									<input id="ppTuPian" name="ppTuPian" type="text" class="form-control"
+										   ignore="ignore"
+									/>
+									<span class="Validform_checktip" style="float:left;height:0px;"></span>
+									<label class="Validform_label" style="display: none">商品品牌</label>
+								</div>
 						</div>
 			          
 							<div class="row show-grid">

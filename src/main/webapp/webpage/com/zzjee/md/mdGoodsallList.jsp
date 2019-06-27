@@ -21,6 +21,9 @@
     
     <t:dgCol title="商品型号"  field="shpXingHao"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="商品规格"  field="shpGuiGe"    queryMode="group"  width="80"></t:dgCol>
+      <t:dgCol title="商品品牌"  field="ppTuPian"    query="true" queryMode="single"  width="80"></t:dgCol>
+
+
     <t:dgCol title="商品颜色"  field="shpYanSe"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="产品属性"  field="chpShuXing"  queryMode="single" dictionary="ba_goods_type,goods_type_code,goods_type_name"   width="120"></t:dgCol>
     <t:dgCol title="存放温层"  field="cfWenCeng"   query="true" queryMode="single" dictionary="ba_deg_type,deg_type_code,deg_type_name"  width="80"></t:dgCol>

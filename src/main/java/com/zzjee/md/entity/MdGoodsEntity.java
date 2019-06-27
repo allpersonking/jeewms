@@ -88,6 +88,7 @@ public class MdGoodsEntity implements java.io.Serializable {
 	@Excel(name="商品条码")
 	private java.lang.String shpTiaoMa;
 	/**品牌图片*/
+	@Excel(name="品牌")
 	private java.lang.String ppTuPian;
 	/**保质期*/
 	@Excel(name="保质期")
