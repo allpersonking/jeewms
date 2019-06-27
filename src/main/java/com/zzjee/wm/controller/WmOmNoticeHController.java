@@ -2116,7 +2116,7 @@ public class WmOmNoticeHController extends BaseController {
 					return j;
 				}
 				List<WmOmNoticeImpnewPage> listheader =  ExcelImportUtil.importExcel(
-						file.getInputStream(), WmNoticeImpPage.class, params);
+						file.getInputStream(), WmOmNoticeImpnewPage.class, params);
 				for(int i=0;i<listheader.size()-1;i++){
 					for(int  k=listheader.size()-1;k>i;k--){
 						if(listheader.get(k).getImCusCode().equals(listheader.get(i).getImCusCode()))  {
