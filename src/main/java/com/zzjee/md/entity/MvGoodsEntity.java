@@ -47,7 +47,7 @@ public class MvGoodsEntity implements java.io.Serializable {
 	@Excel(name="mpCengGao")
 	private java.lang.String mpCengGao;
 	/**shpTiaoMa*/
-	@Excel(name="shpTiaoMa")
+	@Excel(name="商品条码")
 	private java.lang.String shpTiaoMa;
 	/**bzhiQi*/
 	@Excel(name="bzhiQi")

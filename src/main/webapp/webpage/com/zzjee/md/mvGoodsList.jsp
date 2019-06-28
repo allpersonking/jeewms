@@ -8,11 +8,15 @@
     <t:dgCol title="商品"  field="goodsCode"     queryMode="single"  width="80"></t:dgCol>
     <t:dgCol title="商品名"  field="goodsName"   query="true" queryMode="single"  width="280"></t:dgCol>
     <t:dgCol title="单位"  field="shlDanWei"    queryMode="group"  width="50"></t:dgCol>
-    <t:dgCol title="温层"  field="cfWenCeng"    queryMode="group"  width="50"></t:dgCol>
+    <t:dgCol title="温层"  field="cfWenCeng"     queryMode="group"  width="50"></t:dgCol>
     <t:dgCol title="mpDanCeng"  field="mpDanCeng"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="mpCengGao"  field="mpCengGao"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
-    <t:dgCol title="shpTiaoMa"  field="shpTiaoMa"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+    <t:dgCol title="条码"  field="shpTiaoMa"   query="true" queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="规格"  field="shpGuiGe"     query="true" queryMode="single"   width="120"></t:dgCol>
+    <t:dgCol title="品牌"  field="shpPinPai"   query="true" queryMode="single"   width="120"></t:dgCol>
+
     <t:dgCol title="bzhiQi"  field="bzhiQi"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
+
     <t:dgCol title="chlShl"  field="chlShl"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="tiJiCm"  field="tiJiCm"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="zhlKg"  field="zhlKg"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
