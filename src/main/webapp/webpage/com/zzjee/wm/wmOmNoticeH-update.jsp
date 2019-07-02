@@ -233,8 +233,10 @@
 			          	<b>运输公司：</b>
 			          </div>
 			          <div class="col-xs-2">
-								<input id="reMember" name="reMember" type="text" class="form-control" 
-									 value='${wmOmNoticeHPage.reMember}' />
+						  <t:dictSelect field="reMember" type="list" extendJson="{class:'form-control',style:'width:150px'}"
+										typeGroupCode="tms_kd"  defaultVal="${wmOmNoticeHPage.reMember}" hasLabel="false"  title="运输公司"></t:dictSelect>
+								<%--<input id="reMember" name="reMember" type="text" class="form-control" --%>
+									 <%--value='${wmOmNoticeHPage.reMember}' />--%>
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">运输公司</label>
 			          </div>
