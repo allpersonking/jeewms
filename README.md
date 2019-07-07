@@ -44,7 +44,7 @@ android app也已经开源，近期更新会比较频繁 app开源地址  https:
     5、主要技术
         开发语言：JAVA。
     6、技术架构
-	SpringMVC+Hibernat+Minidao(类Mybatis)+Easyui(UI库)+ Jquery + Boostrap + Ehcache + Redis + Ztree等基础架构
+	基础架构基于jeecg。技术架构为SpringMVC+Hibernat+Minidao(类Mybatis)+Easyui(UI库)+ Jquery + Boostrap + Ehcache + Redis + Ztree等基础架构
 	
 四、技术支持：
 
