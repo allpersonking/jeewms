@@ -48,7 +48,7 @@ public class Constants {
 		public static final String wm_sta3 = "已删除";
 		public static final String wm_sta4 = "已完成";
 		public static final String wm_sta5 = "复核中";
-	public static final String wm_sta6 = "复核完成";
+	    public static final String wm_sta6 = "复核完成";
 		
 		
 }
