@@ -96,7 +96,7 @@ public class SimpleJdbcTemplate {
 			}
 
 		}catch (Exception e) {
-			return 0;
+			return (long)0;
 		}
 	}
 	
