@@ -212,6 +212,7 @@ public class WmImNoticeHController extends BaseController {
 					 if (mvgoods != null) {
 						 wmImNoticeIEntity.setBzhiQi(mvgoods.getBzhiQi());
 						 wmImNoticeIEntity.setShpGuiGe(mvgoods.getShpGuiGe());
+						 wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
 					 }
 				 }catch (Exception e){
 
