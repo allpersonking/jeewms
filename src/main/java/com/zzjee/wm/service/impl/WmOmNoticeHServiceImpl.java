@@ -140,6 +140,9 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 					if(oldE.getId().equals(sendE.getId())){
 		    			try {
 							MyBeanUtils.copyBeanNotNull2Bean(sendE,oldE);
+							oldE.setBinOm(sendE.getBinOm());
+							oldE.setGoodsProData(sendE.getGoodsProData());
+							oldE.setBinId(sendE.getBinId());
 							MvGoodsEntity mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", oldE.getGoodsId()) ;
 							oldE.setGoodsUnit(mvgoods.getShlDanWei());
 							oldE.setBaseUnit(mvgoods.getBaseunit());
@@ -187,41 +190,41 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 		}
 
 		//3.筛选更新明细数据-运输商品明细
-		String hql1 ="from TmsYwDingdanEntity where 1 = 1 AND ywkhdh = ? ";
-		List<TmsYwDingdanEntity> wmOmtmsIOldList = this.findHql(hql1,id0);
-
-		if(wmOmtmsIList!=null&&wmOmtmsIList.size()>0){
-			for(TmsYwDingdanEntity oldE:wmOmtmsIOldList){
-				boolean isUpdate = false;
-				for(TmsYwDingdanEntity sendE:wmOmtmsIList){
-					//需要更新的明细数据-出货商品明细
-					if(oldE.getId().equals(sendE.getId())){
-						try {
-							MyBeanUtils.copyBeanNotNull2Bean(sendE,oldE);
-							this.saveOrUpdate(oldE);
-						} catch (Exception e) {
-							e.printStackTrace();
-							throw new BusinessException(e.getMessage());
-						}
-						isUpdate= true;
-						break;
-					}
-				}
-				if(!isUpdate){
-					//如果数据库存在的明细，前台没有传递过来则是删除-出货商品明细
-					super.delete(oldE);
-				}
-
-			}
-			//3.持久化新增的数据-出货商品明细
-			for(TmsYwDingdanEntity wmOmNoticeI:wmOmtmsIList){
-				if(oConvertUtils.isEmpty(wmOmNoticeI.getId())){
-					//外键设置
-					wmOmNoticeI.setYwkhdh(wmOmNoticeH.getOmNoticeId());
-					this.save(wmOmNoticeI);
-				}
-			}
-		}
+//		String hql1 ="from TmsYwDingdanEntity where 1 = 1 AND ywkhdh = ? ";
+//		List<TmsYwDingdanEntity> wmOmtmsIOldList = this.findHql(hql1,id0);
+//
+//		if(wmOmtmsIList!=null&&wmOmtmsIList.size()>0){
+//			for(TmsYwDingdanEntity oldE:wmOmtmsIOldList){
+//				boolean isUpdate = false;
+//				for(TmsYwDingdanEntity sendE:wmOmtmsIList){
+//					//需要更新的明细数据-出货商品明细
+//					if(oldE.getId().equals(sendE.getId())){
+//						try {
+//							MyBeanUtils.copyBeanNotNull2Bean(sendE,oldE);
+//							this.saveOrUpdate(oldE);
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//							throw new BusinessException(e.getMessage());
+//						}
+//						isUpdate= true;
+//						break;
+//					}
+//				}
+//				if(!isUpdate){
+//					//如果数据库存在的明细，前台没有传递过来则是删除-出货商品明细
+//					super.delete(oldE);
+//				}
+////
+//			}
+//			//3.持久化新增的数据-出货商品明细
+//			for(TmsYwDingdanEntity wmOmNoticeI:wmOmtmsIList){
+//				if(oConvertUtils.isEmpty(wmOmNoticeI.getId())){
+//					//外键设置
+//					wmOmNoticeI.setYwkhdh(wmOmNoticeH.getOmNoticeId());
+//					this.save(wmOmNoticeI);
+//				}
+//			}
+//		}
 
 		//执行更新操作配置的sql增强
  		this.doUpdateSql(wmOmNoticeH);

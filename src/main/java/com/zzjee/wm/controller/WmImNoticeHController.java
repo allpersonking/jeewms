@@ -1711,9 +1711,12 @@ public class WmImNoticeHController extends BaseController {
 				if(!StringUtil.isEmpty(wmImNoticeIEntity.getGoodsCode())){
 	
 				try {
-					String date[]=wmImNoticeIEntity.getGoodsCode().split("-");  
-					wmImNoticeIEntity.setGoodsCode(date[0]);
-					wmImNoticeIEntity.setGoodsName(date[1]);
+
+				    MvGoodsEntity mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class,"goodsName",wmImNoticeIEntity.getGoodsCode());
+
+//					String date[]=wmImNoticeIEntity.getGoodsCode().split("-");
+					wmImNoticeIEntity.setGoodsCode(mvgoods.getGoodsCode());
+					wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
 				} catch (Exception e) {
 					// TODO: handle exception
 				}

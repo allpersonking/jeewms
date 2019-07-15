@@ -921,9 +921,16 @@ public class WmOmNoticeHController extends BaseController {
 			for (WmOmNoticeIEntity wmomNoticeIEntity : wmOmNoticeIList) {
 				if(!StringUtil.isEmpty(wmomNoticeIEntity.getGoodsId())){
 					try {
-						String date[]=wmomNoticeIEntity.getGoodsId().split("-");
-						wmomNoticeIEntity.setGoodsId(date[0]);
-						wmomNoticeIEntity.setGoodsName(date[1]);
+
+
+						MvGoodsEntity mvgoods = systemService.findUniqueByProperty(MvGoodsEntity.class,"goodsName",wmomNoticeIEntity.getGoodsId());
+
+//					String date[]=wmImNoticeIEntity.getGoodsCode().split("-");
+//						wmImNoticeIEntity.setGoodsCode(mvgoods.getGoodsCode());
+//						wmImNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
+//						String date[]=wmomNoticeIEntity.getGoodsId().split("-");
+						wmomNoticeIEntity.setGoodsId(mvgoods.getGoodsCode());
+						wmomNoticeIEntity.setGoodsName(mvgoods.getShpMingCheng());
 					} catch (Exception e) {
 						// TODO: handle exception
 						logger.error(ExceptionUtil.getExceptionMessage(e));
