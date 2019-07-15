@@ -552,7 +552,32 @@ public class MdGoodsController extends BaseController {
 	}
 
 
+	@RequestMapping(value = "/addgoods", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<?> addgoods(@RequestParam String mdGoodsstr,
+									UriComponentsBuilder uriBuilder) {		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
+		ResultDO D0 = new  ResultDO();
+		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
+		// 保存
+		try {
+			MdGoodsEntity t = systemService.findUniqueByProperty(MdGoodsEntity.class,"shpBianMa",mdGoods.getShpBianMa());
+			if(t!=null){
+				MyBeanUtils.copyBeanNotNull2Bean(mdGoods,t);
+				mdGoodsService.saveOrUpdate(t);
+			}else{
+				mdGoodsService.save(mdGoods);
 
+			}
+
+			D0.setOK(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+			D0.setOK(false);
+		}
+
+		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/change", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
