@@ -15,7 +15,10 @@
     <t:dgCol title="所属部门"  field="sysOrgCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="所属公司"  field="sysCompanyCode"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
       <t:dgCol title="原始单据编码"  field="orderId"   query="true" queryMode="single"  width="100"></t:dgCol>
-    <t:dgCol title="商品编码"  field="goodsId" query="true" queryMode="single"  width="180"></t:dgCol>
+    <t:dgCol title="商品编码"  field="goodsId" query="true" queryMode="single"  width="120"></t:dgCol>
+      <t:dgCol title="商品名称"  field="goodsName" query="true" queryMode="single"  width="180"></t:dgCol>
+
+
       <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="100"></t:dgCol>
       <t:dgCol title="备注"  field="omBeizhu" query="true"   queryMode="single"  width="120"></t:dgCol>
       <t:dgCol title="数量"  field="goodsQua"    queryMode="single"  width="120"></t:dgCol>
