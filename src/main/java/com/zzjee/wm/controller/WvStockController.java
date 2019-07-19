@@ -1,6 +1,7 @@
 package com.zzjee.wm.controller;
 
 import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.wm.entity.WmSttInGoodsEntity;
 import com.zzjee.wm.entity.WmToMoveGoodsEntity;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.zzjee.wmutil.wmUtil;
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -396,10 +398,17 @@ public class WvStockController extends BaseController {
 					wmtomove.setBinFrom(t.getKuWeiBianMa());
 					wmtomove.setCusCode(t.getCusCode());
 					wmtomove.setCusName(t.getZhongWenQch());
-					wmtomove.setToCusCode(t.getCusCode());
-					wmtomove.setToCusName(t.getZhongWenQch());
-					wmtomove.setGoodsId(t.getGoodsId());
 					wmtomove.setGoodsName(t.getShpMingCheng());
+					try{
+						MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
+						wmtomove.setCusName(mdcus.getZhongWenQch());
+						wmtomove.setToCusName(mdcus.getZhongWenQch());
+
+					}catch (Exception e){
+
+					}
+					wmtomove.setToCusCode(t.getCusCode());
+					wmtomove.setGoodsId(t.getGoodsId());
 					wmtomove.setGoodsProData(t.getGoodsProData());
 					wmtomove.setGoodsQua(t.getGoodsQua().toString());
 					wmtomove.setGoodsUnit(t.getGoodsUnit());
