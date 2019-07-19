@@ -6,7 +6,7 @@
 <script type="text/javascript" src="plug-in/jquery/jquery-autocomplete/jquery.autocomplete.min.js"></script>
 <div class="easyui-layout" fit="true">
  <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="wmInQmIList"  checkbox="true" pagination="true" fitColumns="false" title="收货登记" actionUrl="wmInQmIController.do?datagrid" idField="id" fit="false"  queryMode="group">
+  <t:datagrid name="wmInQmIList"  checkbox="true" pagination="true" fitColumns="false" title="批量收货" actionUrl="wmInQmIController.do?datagrid" idField="id" fit="false"  queryMode="group">
    <t:dgCol title="操作" field="opt" width="120"></t:dgCol>
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="验收人"  field="createName"     queryMode="single"  width="80"></t:dgCol>

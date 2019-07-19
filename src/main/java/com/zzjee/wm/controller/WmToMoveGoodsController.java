@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.md.entity.MvCusEntity;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
@@ -21,11 +22,7 @@ import org.jeecgframework.core.common.hibernate.qbc.CriteriaQuery;
 import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.common.model.json.DataGrid;
 import org.jeecgframework.core.constant.Globals;
-import org.jeecgframework.core.util.ExceptionUtil;
-import org.jeecgframework.core.util.JSONHelper;
-import org.jeecgframework.core.util.MyBeanUtils;
-import org.jeecgframework.core.util.ResourceUtil;
-import org.jeecgframework.core.util.StringUtil;
+import org.jeecgframework.core.util.*;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
@@ -256,6 +253,13 @@ public class WmToMoveGoodsController extends BaseController {
 		WmToMoveGoodsEntity t = wmToMoveGoodsService.get(WmToMoveGoodsEntity.class, wmToMoveGoods.getId());
 		try {
 			MyBeanUtils.copyBeanNotNull2Bean(wmToMoveGoods, t);
+			try{
+				MvCusEntity mvcus = systemService.findUniqueByProperty(MvCusEntity.class, "cusCode",wmToMoveGoods.getToCusCode() ) ;
+				t.setToCusName(mvcus.getCusName());
+			}catch (Exception e){
+
+			}
+
 			wmToMoveGoodsService.saveOrUpdate(t);
 			systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 		} catch (Exception e) {

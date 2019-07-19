@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>收货登记</title>
+  <title>批量收货</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="online/template/ledefault/css/vendor.css">
@@ -53,7 +53,7 @@
 			<div class="tab-wrapper">
 			    <!-- tab -->
 			    <ul class="nav nav-tabs">
-			      <li role="presentation" class="active"><a href="javascript:void(0);">收货登记</a></li>
+			      <li role="presentation" class="active"><a href="javascript:void(0);">批量收货</a></li>
 			    </ul>
 			    <!-- tab内容 -->
 			    <div class="con-wrapper" id="con-wrapper1" style="display: block;">

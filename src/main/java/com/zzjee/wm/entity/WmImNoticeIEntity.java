@@ -100,7 +100,7 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	/**未清数量*/
    
 	private java.lang.String goodsWqmCount;
-	/**收货登记数量*/
+	/**批量收货数量*/
   
 	private java.lang.String goodsQmCount;
 	/**行项目状态*/
@@ -529,7 +529,7 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 	
 	/**
 	 *方法: 取得java.lang.String
-	 *@return: java.lang.String  收货登记数量
+	 *@return: java.lang.String  批量收货数量
 	 */
 	
 	@Column(name ="GOODS_QM_COUNT",nullable=true,length=32)
@@ -539,7 +539,7 @@ public class WmImNoticeIEntity implements java.io.Serializable {
 
 	/**
 	 *方法: 设置java.lang.String
-	 *@param: java.lang.String  收货登记数量
+	 *@param: java.lang.String  批量收货数量
 	 */
 	public void setGoodsQmCount(java.lang.String goodsQmCount){
 		this.goodsQmCount = goodsQmCount;

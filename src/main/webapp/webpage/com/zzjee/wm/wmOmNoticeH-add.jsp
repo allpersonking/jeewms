@@ -484,26 +484,26 @@
 										typeGroupCode="sf_yn"  hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
-  						  <td align="left">
- 							  	<input name="wmOmNoticeIList[#index#].binOm" maxlength="32"
- 									ignore="ignore"
- 							  		type="text" class="form-control"  style="width:120px;" >
- 						  <label class="Validform_label" style="display: none;">出货储位</label>
- 						  </td>
+  						  <%--<td align="left">--%>
+ 							  	<%--<input name="wmOmNoticeIList[#index#].binOm" maxlength="32"--%>
+ 									<%--ignore="ignore"--%>
+ 							  		<%--type="text" class="form-control"  style="width:120px;" >--%>
+ 						  <%--<label class="Validform_label" style="display: none;">出货储位</label>--%>
+ 						  <%--</td>--%>
 
- 						  <td align="left">
- 							  	<input name="wmOmNoticeIList[#index#].binId" maxlength="32"
- 									ignore="ignore"
- 							  		type="text" class="form-control"  style="width:120px;" >
- 							  <label class="Validform_label" style="display: none;">出货托盘</label>
- 						  </td>
-					<td align="left">
-						<input name="wmOmNoticeIList[#index#].goodsProData" maxlength="32"
-							   type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"
-							   ignore="ignore"
-						>
-						<label class="Validform_label" style="display: none;">生产日期</label>
-					</td>
+ 						  <%--<td align="left">--%>
+ 							  	<%--<input name="wmOmNoticeIList[#index#].binId" maxlength="32"--%>
+ 									<%--ignore="ignore"--%>
+ 							  		<%--type="text" class="form-control"  style="width:120px;" >--%>
+ 							  <%--<label class="Validform_label" style="display: none;">出货托盘</label>--%>
+ 						  <%--</td>--%>
+					<%--<td align="left">--%>
+						<%--<input name="wmOmNoticeIList[#index#].goodsProData" maxlength="32"--%>
+							   <%--type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"--%>
+							   <%--ignore="ignore"--%>
+						<%-->--%>
+						<%--<label class="Validform_label" style="display: none;">生产日期</label>--%>
+					<%--</td>--%>
 					</tr>
 				 </tbody>
 		</table>

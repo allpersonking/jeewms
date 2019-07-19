@@ -39635,13 +39635,13 @@ end</a:Text>
 </o:Column>
 <o:Column Id="o2543">
 <a:ObjectID>2C90CE4E-E1B2-4E40-8CCC-13A5C36CFEC6</a:ObjectID>
-<a:Name>收货登记数量</a:Name>
+<a:Name>批量收货数量</a:Name>
 <a:Code>goods_qm_count</a:Code>
 <a:CreationDate>1534327358</a:CreationDate>
 <a:Creator>Administrator</a:Creator>
 <a:ModificationDate>1534477570</a:ModificationDate>
 <a:Modifier>Administrator</a:Modifier>
-<a:Comment>收货登记数量</a:Comment>
+<a:Comment>批量收货数量</a:Comment>
 <a:DataType>varchar(32)</a:DataType>
 <a:Length>32</a:Length>
 <a:ExtendedAttributesText>{F4F16ECD-F2F1-4006-AF6F-638D5C65F35E},MYSQL50,56={9C949EAB-FF87-446D-938C-8F03A4ABDC8E},National,4=true

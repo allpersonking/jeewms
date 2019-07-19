@@ -96,15 +96,15 @@
 					  <th>
 							下架任务是否已生成
 					  </th>
-			  <th>
-				  出货储位
-			  </th>
-					  <th>
-						  出货托盘
-					  </th>
-			  <th>
-				  生产日期
-			  </th>
+			  <%--<th>--%>
+				  <%--出货储位--%>
+			  <%--</th>--%>
+					  <%--<th>--%>
+						  <%--出货托盘--%>
+					  <%--</th>--%>
+			  <%--<th>--%>
+				  <%--生产日期--%>
+			  <%--</th>--%>
 	      </tr>
 	    </thead>
         
@@ -133,22 +133,22 @@
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
 
-				<td>
-					<input name="wmOmNoticeIList[0].binOm" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;" >
-					<label class="Validform_label" style="display: none;">出货储位</label>
-				</td>
+				<%--<td>--%>
+					<%--<input name="wmOmNoticeIList[0].binOm" maxlength="32"--%>
+						   <%--type="text" class="form-control"  style="width:120px;" >--%>
+					<%--<label class="Validform_label" style="display: none;">出货储位</label>--%>
+				<%--</td>--%>
 
-				<td>
-					<input name="wmOmNoticeIList[0].binId" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;" >
-					<label class="Validform_label" style="display: none;">出货托盘</label>
-				</td>
-				<td align="left">
-					<input name="wmOmNoticeIList[0].goodsProData" maxlength="32"
-						   type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"     >
-					<label class="Validform_label" style="display: none;">生产日期</label>
-				</td>
+				<%--<td>--%>
+					<%--<input name="wmOmNoticeIList[0].binId" maxlength="32"--%>
+						   <%--type="text" class="form-control"  style="width:120px;" >--%>
+					<%--<label class="Validform_label" style="display: none;">出货托盘</label>--%>
+				<%--</td>--%>
+				<%--<td align="left">--%>
+					<%--<input name="wmOmNoticeIList[0].goodsProData" maxlength="32"--%>
+						   <%--type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"     >--%>
+					<%--<label class="Validform_label" style="display: none;">生产日期</label>--%>
+				<%--</td>--%>
    			</tr>
    			
 
@@ -208,26 +208,26 @@ wmOmNoticeIList[${stuts.index }].goodsId<input name="wmOmNoticeIList[${stuts.ind
 										typeGroupCode="sf_yn" defaultVal="${poVal.planSta}" hasLabel="false"  title="下架任务是否已生成"></t:dictSelect>     
 					  <label class="Validform_label" style="display: none;">下架任务是否已生成</label>
 					</td>
-				<td align="left">
-					<input name="wmOmNoticeIList[${stuts.index }].binOm" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binOm }">
-					<label class="Validform_label" style="display: none;">出货储位</label>
-				</td>
-				<td align="left">
-					<input name="wmOmNoticeIList[${stuts.index }].binId" maxlength="32"
-						   type="text" class="form-control"  style="width:120px;"  value="${poVal.binId }">
-					<label class="Validform_label" style="display: none;">出货托盘</label>
-				</td>
+				<%--<td align="left">--%>
+					<%--<input name="wmOmNoticeIList[${stuts.index }].binOm" maxlength="32"--%>
+						   <%--type="text" class="form-control"  style="width:120px;"  value="${poVal.binOm }">--%>
+					<%--<label class="Validform_label" style="display: none;">出货储位</label>--%>
+				<%--</td>--%>
+				<%--<td align="left">--%>
+					<%--<input name="wmOmNoticeIList[${stuts.index }].binId" maxlength="32"--%>
+						   <%--type="text" class="form-control"  style="width:120px;"  value="${poVal.binId }">--%>
+					<%--<label class="Validform_label" style="display: none;">出货托盘</label>--%>
+				<%--</td>--%>
 <!-- 				   <td align="left"> -->
 <%-- 					  	<input name="wmOmNoticeIList[${stuts.index }].goodsQuaok" maxlength="32"  --%>
 <%-- 					  		type="text" class="form-control"  style="width:120px;"   value="${poVal.goodsQuaok }"> --%>
 <!-- 					  <label class="Validform_label" style="display: none;">已经出货数量</label> -->
 <!-- 				   </td> -->
-				   <td align="left">
-							<input name="wmOmNoticeIList[${stuts.index }].goodsProData" maxlength="32"
-					  		type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"    value="<fmt:formatDate value='${poVal.goodsProData}' type="date" pattern="yyyy-MM-dd"/>">
-					  <label class="Validform_label" style="display: none;">生产日期</label>
-				   </td>
+				   <%--<td align="left">--%>
+							<%--<input name="wmOmNoticeIList[${stuts.index }].goodsProData" maxlength="32"--%>
+					  		<%--type="text" class="form-control" onClick="WdatePicker()"  style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;width:160px;"    value="<fmt:formatDate value='${poVal.goodsProData}' type="date" pattern="yyyy-MM-dd"/>">--%>
+					  <%--<label class="Validform_label" style="display: none;">生产日期</label>--%>
+				   <%--</td>--%>
 <!-- 				   <td align="left"> -->
 <%-- 					  	<input name="wmOmNoticeIList[${stuts.index }].binOm" maxlength="32"  --%>
 <%-- 					  		type="text" class="form-control"  style="width:120px;"  value="${poVal.binOm }"> --%>

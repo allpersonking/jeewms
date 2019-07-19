@@ -69,7 +69,7 @@ public class SmsSendTask {
 			// TODO: handle exception
 		}
 
-		try {//查找储位 设置收货登记基本数量
+		try {//查找储位 设置批量收货基本数量
 			List<WmInQmIEntity> WmInQmlist = new ArrayList<WmInQmIEntity>();
 			hql = null;
 			hql = "from WmInQmIEntity t where t.binSta=? and (t.binId is null or t.binId = '' )  ";

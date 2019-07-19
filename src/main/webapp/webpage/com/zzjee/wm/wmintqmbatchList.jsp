@@ -41,7 +41,9 @@ function wmim(id) {
     // createdetailwindow()
 
     // function addbytab(){
-    addOneTab("退货验收", url);
+    createwindow("退货验收", url,"740px","420px");
+
+    // addOneTab("退货验收", url);
     // var url = "wmInQmIController.do?goAddBatch&id=" + id;
     // add('退货登记', url, "wmInQmIbatchList","680","450");
 }

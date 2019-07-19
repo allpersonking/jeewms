@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>收货登记</title>
+  <title>批量收货</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="online/template/ledefault/css/vendor.css">
@@ -73,8 +73,8 @@ window.onload = function() {
 </head>
 
  <body>
-
-	<t:formvalid formid="formobj" dialog="true" usePlugin="password"   layout="div" >
+ <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" action="wmInQmIController.do?doAdd" tiptype="1" >
+	<%--<t:formvalid formid="formobj" dialog="true" usePlugin="password"   layout="div" >--%>
 			<input type="hidden" id="btn_sub" class="btn_sub"/>
 			<input type="hidden" id="id" name="id"/>
 			<input type="hidden" id="binSta" name="binSta" value="N"/>
@@ -82,7 +82,7 @@ window.onload = function() {
 			<div class="tab-wrapper">
 			    <!-- tab -->
 			    <ul class="nav nav-tabs">
-			      <li role="presentation" class="active"><a href="javascript:void(0);">收货登记</a></li>
+			      <li role="presentation" class="active"><a href="javascript:void(0);">批量收货</a></li>
 			    </ul>
 			    <!-- tab内容 -->
 			    <div class="con-wrapper" id="con-wrapper1" style="display: block;">
@@ -212,18 +212,18 @@ window.onload = function() {
 					  </div>
 					  </div>
 
-			          <%--<div class="row" id = "sub_tr" style="display: none;">--%>
-				        <%--<div class="col-xs-12 layout-header">--%>
-				          <%--<div class="col-xs-6"></div>--%>
-				          <%--<div class="col-xs-6"><button type="button" onclick="neibuClick();" class="btn btn-default">提交</button></div>--%>
-				        <%--</div>--%>
-				      <%--</div>--%>
+			          <div class="row" id = "sub_tr" style="display: none;">
+				        <div class="col-xs-12 layout-header">
+				          <div class="col-xs-6"></div>
+				          <div class="col-xs-6"><button type="button" onclick="neibuClick();" class="btn btn-default">提交</button></div>
+				        </div>
+				      </div>
 			     </div>
 			   </div>
 			   
 			   <div class="con-wrapper" id="con-wrapper2" style="display: block;"></div>
 			 </div>
-		<div style="margin:3px auto"><button onclick="sub('formobj');">验收</button></div>
+		<%--<div style="margin:3px auto"><button onclick="sub('formobj');">验收</button></div>--%>
 
 	</t:formvalid>
 

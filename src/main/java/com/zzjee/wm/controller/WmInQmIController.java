@@ -64,7 +64,7 @@ import com.zzjee.wmutil.wmUtil;
 
 /**
  * @Title: Controller
- * @Description: 收货登记
+ * @Description: 批量收货
  * @author erzhongxmu
  * @date 2017-08-20 19:48:00
  * @version V1.0
@@ -89,7 +89,7 @@ public class WmInQmIController extends BaseController {
 
 
 	/**
-	 * 收货登记列表 页面跳转
+	 * 批量收货列表 页面跳转
 	 * 
 	 * @return
 	 */
@@ -193,7 +193,7 @@ public class WmInQmIController extends BaseController {
 		TagUtil.datagrid(response, dataGrid);
 	}
 	/**
-	 * 删除收货登记
+	 * 删除批量收货
 	 * 
 	 * @return
 	 */
@@ -203,14 +203,14 @@ public class WmInQmIController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		wmInQmI = systemService.getEntity(WmInQmIEntity.class, wmInQmI.getId());
-		message = "收货登记删除成功";
+		message = "批量收货删除成功";
 		try {
 			wmInQmIService.delete(wmInQmI);
 			systemService.addLog(message, Globals.Log_Type_DEL,
 					Globals.Log_Leavel_INFO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "收货登记删除失败";
+			message = "批量收货删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -313,7 +313,7 @@ public class WmInQmIController extends BaseController {
 	}
 
 	/**
-	 * 批量删除收货登记
+	 * 批量删除批量收货
 	 * 
 	 * @return
 	 */
@@ -322,7 +322,7 @@ public class WmInQmIController extends BaseController {
 	public AjaxJson doBatchDel(String ids, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		message = "收货登记删除成功";
+		message = "批量收货删除成功";
 		try {
 			for (String id : ids.split(",")) {
 				WmInQmIEntity wmInQmI = systemService.getEntity(
@@ -333,7 +333,7 @@ public class WmInQmIController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "收货登记删除失败";
+			message = "批量收货删除失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -401,7 +401,7 @@ public class WmInQmIController extends BaseController {
 			}
 			if (goodsno <= 0) {
 				j.setSuccess(false);
-				j.setMsg("已经收货登记完毕");
+				j.setMsg("已经批量收货完毕");
 			}
 		}
 		mdgoods.setShpMingCheng(mvgoods.getGoodsName());
@@ -410,7 +410,7 @@ public class WmInQmIController extends BaseController {
 	}
 
 	/**
-	 * 添加收货登记
+	 * 添加批量收货
 	 * 
 	 * @return
 	 */
@@ -420,7 +420,7 @@ public class WmInQmIController extends BaseController {
 		String message = null;
 		AjaxJson j = new AjaxJson();
 		String flag = "N";
-		message = "收货登记添加成功";
+		message = "批量收货添加成功";
 		try {
 			if (Double.parseDouble(wmInQmI.getQmOkQuat()) <= 0) {
 				j.setSuccess(false);
@@ -545,7 +545,7 @@ public class WmInQmIController extends BaseController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "收货登记添加失败";
+			message = "批量收货添加失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -557,7 +557,7 @@ public class WmInQmIController extends BaseController {
 
 
 	/**
-	 * 更新收货登记
+	 * 更新批量收货
 	 *
 
 	 * @return
@@ -567,7 +567,7 @@ public class WmInQmIController extends BaseController {
 	public AjaxJson dobatchUpdatedate(WmInQmIEntity wmInQmI, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		message = "收货登记更新成功";
+		message = "批量收货更新成功";
 		WmInQmIEntity t = wmInQmIService.get(WmInQmIEntity.class,
 				request.getParameter("id"));
 
@@ -593,7 +593,7 @@ public class WmInQmIController extends BaseController {
 
 
 	/**
-	 * 更新收货登记
+	 * 更新批量收货
 	 *
 
 	 * @return
@@ -603,7 +603,7 @@ public class WmInQmIController extends BaseController {
 	public AjaxJson dobatchUpdate(WmInQmIEntity wmInQmI, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		message = "收货登记更新成功";
+		message = "批量收货更新成功";
 		WmInQmIEntity t = wmInQmIService.get(WmInQmIEntity.class,
 				request.getParameter("id"));
 
@@ -637,7 +637,7 @@ public class WmInQmIController extends BaseController {
 
 
 	/**
-	 * 更新收货登记
+	 * 更新批量收货
 	 * 
 	 * @return
 	 */
@@ -646,7 +646,7 @@ public class WmInQmIController extends BaseController {
 	public AjaxJson doUpdate(WmInQmIEntity wmInQmI, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		message = "收货登记更新成功";
+		message = "批量收货更新成功";
 		WmInQmIEntity t = wmInQmIService.get(WmInQmIEntity.class,
 				wmInQmI.getId());
 		try {
@@ -668,7 +668,7 @@ public class WmInQmIController extends BaseController {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			message = "收货登记更新失败";
+			message = "批量收货更新失败";
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
@@ -676,7 +676,7 @@ public class WmInQmIController extends BaseController {
 	}
 
 	/**
-	 * 收货登记新增页面跳转
+	 * 批量收货新增页面跳转
 	 * 
 	 * @return
 	 */
@@ -733,7 +733,7 @@ public class WmInQmIController extends BaseController {
 	}
 	
 	/**
-	 * 收货登记编辑页面跳转
+	 * 批量收货编辑页面跳转
 	 * 
 	 * @return
 	 */
@@ -790,9 +790,9 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 	}
 	wmInQmIs.add(wmInQmIEntity);
 }
-		modelMap.put(NormalExcelConstants.FILE_NAME, "收货登记");
+		modelMap.put(NormalExcelConstants.FILE_NAME, "批量收货");
 		modelMap.put(NormalExcelConstants.CLASS, WmInQmIEntity.class);
-		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("收货登记列表",
+		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("批量收货列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST, wmInQmIs);
@@ -809,9 +809,9 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 	public String exportXlsByT(WmInQmIEntity wmInQmI,
 			HttpServletRequest request, HttpServletResponse response,
 			DataGrid dataGrid, ModelMap modelMap) {
-		modelMap.put(NormalExcelConstants.FILE_NAME, "收货登记");
+		modelMap.put(NormalExcelConstants.FILE_NAME, "批量收货");
 		modelMap.put(NormalExcelConstants.CLASS, WmInQmIEntity.class);
-		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("收货登记列表",
+		modelMap.put(NormalExcelConstants.PARAMS, new ExportParams("批量收货列表",
 				"导出人:" + ResourceUtil.getSessionUserName().getRealName(),
 				"导出信息"));
 		modelMap.put(NormalExcelConstants.DATA_LIST, new ArrayList());

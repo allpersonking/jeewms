@@ -3,7 +3,7 @@
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div  class="easyui-layout" fit="true">
     <div region="center" style="padding:0px;border:0px">
-  <t:datagrid name="wmInQmIbatchList" checkbox="true" pagination="false" fitColumns="false" title="收货登记" actionUrl="wmImNoticeHController.do?datagridbatch" idField="id" fit="true" queryMode="group">
+  <t:datagrid name="wmInQmIbatchList" checkbox="true" pagination="false" fitColumns="false" title="批量收货" actionUrl="wmImNoticeHController.do?datagridbatch" idField="id" fit="true" queryMode="group">
    <t:dgCol title="操作" field="opt" width="50"></t:dgCol>
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"    queryMode="single"  width="80"></t:dgCol>
@@ -42,9 +42,12 @@
     // createdetailwindow()
 
         // function addbytab(){
-            addOneTab("验收", url);
+        //     addOneTab("验收", url);
+
+        createwindow("验收", url,"740px","420px");
+
         // }
-    // add('收货登记', url, "wmInQmIbatchList","100%","100%");
+    // add('批量收货', url, "wmInQmIbatchList","100%","100%");
 }
     //导入
     function ImportXls() {
