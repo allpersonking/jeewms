@@ -398,6 +398,8 @@ public class WvStockController extends BaseController {
 					wmtomove.setBinFrom(t.getKuWeiBianMa());
 					wmtomove.setCusCode(t.getCusCode());
 					wmtomove.setCusName(t.getZhongWenQch());
+					wmtomove.setToCusName(t.getZhongWenQch());
+
 					wmtomove.setGoodsName(t.getShpMingCheng());
 					try{
 						MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
@@ -453,6 +455,14 @@ public class WvStockController extends BaseController {
 			wmtomove.setCusName(t.getZhongWenQch());
 			wmtomove.setToCusCode(t.getCusCode());
 			wmtomove.setToCusName(t.getZhongWenQch());
+			try{
+				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
+				wmtomove.setCusName(mdcus.getZhongWenQch());
+				wmtomove.setToCusName(mdcus.getZhongWenQch());
+
+			}catch (Exception e){
+
+			}
 			wmtomove.setGoodsId(t.getGoodsId());
 			wmtomove.setGoodsName(t.getShpMingCheng());
 			wmtomove.setGoodsProData(t.getGoodsProData());
@@ -497,6 +507,16 @@ public class WvStockController extends BaseController {
 					wmtomove.setCusName(t.getZhongWenQch());
 					wmtomove.setToCusCode(t.getCusCode());
 					wmtomove.setToCusName(t.getZhongWenQch());
+
+					try{
+						MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
+						wmtomove.setCusName(mdcus.getZhongWenQch());
+						wmtomove.setToCusName(mdcus.getZhongWenQch());
+
+					}catch (Exception e){
+
+					}
+
 					wmtomove.setGoodsId(t.getGoodsId());
 					wmtomove.setGoodsName(t.getShpMingCheng());
 					wmtomove.setGoodsProData(t.getGoodsProData());
@@ -548,6 +568,16 @@ public class WvStockController extends BaseController {
 			wmtomove.setCusName(t.getZhongWenQch());
 			wmtomove.setToCusCode(t.getCusCode());
 			wmtomove.setToCusName(t.getZhongWenQch());
+
+			try{
+				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
+				wmtomove.setCusName(mdcus.getZhongWenQch());
+				wmtomove.setToCusName(mdcus.getZhongWenQch());
+
+			}catch (Exception e){
+
+			}
+
 			wmtomove.setGoodsId(t.getGoodsId());
 			wmtomove.setGoodsName(t.getShpMingCheng());
 			wmtomove.setGoodsProData(t.getGoodsProData());
