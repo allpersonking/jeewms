@@ -55,7 +55,7 @@
 			          	<b>商品编码：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsId" name="goodsId" type="text" class="form-control"
+								<input id="goodsId" name="goodsId"  readonly="readonly"  type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.goodsId}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -69,7 +69,7 @@
 			          	<b>商品名称：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsName" name="goodsName" style="width:300px" type="text" class="form-control"
+								<input id="goodsName" name="goodsName" readonly="readonly" style="width:300px" type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.goodsName}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -80,10 +80,10 @@
 			        
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
-			          	<b>数量：</b>
+			          	<b>现有数量：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsQua" name="goodsQua" type="text" class="form-control"
+								<input id="goodsQua" name="goodsQua"  readonly="readonly"  type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.goodsQua}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -92,14 +92,14 @@
 						</div>
 					  <div class="row show-grid">
 						  <div class="col-xs-3 text-center">
-							  <b>基本单位数量：</b>
+							  <b>移动数量：</b>
 						  </div>
 						  <div class="col-xs-3">
 							  <input id="baseGoodscount" name="baseGoodscount" type="text" class="form-control"
 									 ignore="ignore"
 									 value='${wmToMoveGoodsPage.baseGoodscount}' />
 							  <span class="Validform_checktip" style="float:left;height:0px;"></span>
-							  <label class="Validform_label" style="display: none">基本单位数量</label>
+							  <label class="Validform_label" style="display: none">移动数量</label>
 						  </div>
 					  </div>
 			        
@@ -108,7 +108,7 @@
 			          	<b>生产日期：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsProData" name="goodsProData" type="text" 
+								<input id="goodsProData" name="goodsProData"  readonly="readonly"  type="text"
 									ignore="ignore"
 								style="background: url('plug-in/ace/images/datetime.png') no-repeat scroll right center transparent;"  class="form-control" onClick="WdatePicker()" value='${wmToMoveGoodsPage.goodsProData}'  />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -132,7 +132,7 @@
 			          	<b>单位：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="goodsUnit" name="goodsUnit" type="text" class="form-control"
+								<input id="goodsUnit" name="goodsUnit"  readonly="readonly"  type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.goodsUnit}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -143,28 +143,28 @@
 			        
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
-			          	<b>客户编码：</b>
+			          	<b>货主编码：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="cusCode" name="cusCode" type="text" class="form-control"
+								<input id="cusCode" name="cusCode"  readonly="readonly"  type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.cusCode}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">客户编码</label>
+						<label class="Validform_label" style="display: none">货主编码</label>
 			          </div>
 						</div>
 			          
 			        
 							<div class="row show-grid">
 			          <div class="col-xs-3 text-center">
-			          	<b>客户名称：</b>
+			          	<b>货主名称：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="cusName" name="cusName" style="width:300px" type="text" class="form-control"
+								<input id="cusName" name="cusName"  readonly="readonly"  style="width:300px" type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.cusName}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
-						<label class="Validform_label" style="display: none">客户名称</label>
+						<label class="Validform_label" style="display: none">货主名称</label>
 			          </div>
 						</div>
 			          
@@ -174,7 +174,7 @@
 			          	<b>源托盘：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="tinFrom" name="tinFrom" type="text" class="form-control"
+								<input id="tinFrom" name="tinFrom"   readonly="readonly" readonly="readonly" type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.tinFrom}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -188,7 +188,7 @@
 			          	<b>到托盘：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="tinId" name="tinId" type="text" class="form-control"
+								<input id="tinId" name="tinId"  type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.tinId}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
@@ -202,7 +202,7 @@
 			          	<b>源储位：</b>
 			          </div>
 			          <div class="col-xs-3">
-								<input id="binFrom" name="binFrom" type="text" class="form-control"
+								<input id="binFrom" name="binFrom"   readonly="readonly" type="text" class="form-control"
 									ignore="ignore"
 								   value='${wmToMoveGoodsPage.binFrom}' />
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>

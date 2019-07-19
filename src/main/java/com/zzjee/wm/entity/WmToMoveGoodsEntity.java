@@ -78,12 +78,12 @@ public class WmToMoveGoodsEntity implements java.io.Serializable {
 	@Excel(name="商品名称")
 	private java.lang.String goodsName;
 	/**数量*/
-	@Excel(name="数量")
+	@Excel(name="现有数量")
 	private java.lang.String goodsQua;
 	@Excel(name="单位")
 	private java.lang.String goodsUnit;
 	/**基本单位数量*/
-	@Excel(name="基本单位数量")
+	@Excel(name="移动数量")
 	private java.lang.String baseGoodscount;
 	/**基本单位*/
 	@Excel(name="基本单位")

@@ -18,14 +18,14 @@
 <%--     <t:dgCol title="原始单据行项目"  field="orderIdI"  hidden="true"  queryMode="group"  width="120"></t:dgCol> --%>
     <t:dgCol title="商品编码"  field="goodsId"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="goodsName"   query="true" queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="数量"  field="goodsQua" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
-    <t:dgCol title="基本单位数量"  field="baseGoodscount" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
+    <t:dgCol title="现有数量"  field="goodsQua" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
+    <t:dgCol title="移动数量"  field="baseGoodscount" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
     <t:dgCol title="生产日期"  field="goodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
       <t:dgCol title="到生产日期"  field="toGoodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
 
       <t:dgCol title="单位"  field="baseUnit"    queryMode="group"  width="50"></t:dgCol>
-    <t:dgCol title="客户编码"  field="cusCode"   query="true" queryMode="single"  width="80"></t:dgCol>
-    <t:dgCol title="客户名称"  field="cusName"   query="true" queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="货主"  field="cusCode"   query="true" queryMode="single"  width="80"></t:dgCol>
+    <t:dgCol title="货主名称"  field="cusName"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="源托盘"  field="tinFrom"   query="true" queryMode="single"  width="70"></t:dgCol>
     <t:dgCol title="到托盘"  field="tinId"  extendParams="editor:'text'"   query="true" queryMode="single"  width="70"></t:dgCol>
     <t:dgCol title="源储位"  field="binFrom"   query="true" queryMode="single"  width="100"></t:dgCol>
@@ -33,8 +33,8 @@
     <t:dgCol title="状态"  field="moveSta"    query="true"  queryMode="single"  width="50"></t:dgCol>
       <t:dgCol title="执行状态"  field="runSta" query="true"  queryMode="single"  width="50"></t:dgCol>
 
-      <t:dgCol title="转移客户"  field="toCusCode"   query="true" queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="转移客户名称"  field="toCusName"   query="true" queryMode="single"  width="120"></t:dgCol>
+      <t:dgCol title="到货主"  field="toCusCode"   query="true" queryMode="single"  width="120"></t:dgCol>
+    <t:dgCol title="到货主名称"  field="toCusName"   query="true" queryMode="single"  width="120"></t:dgCol>
 <%--    <t:dgCol title="操作" field="opt" width="100"></t:dgCol> --%>
    <t:dgDelOpt title="删除" url="wmToMoveGoodsController.do?doDel&id={id}" urlclass="ace_button"  exp="moveSta#ne#已完成"  urlfont="fa-trash-o"/>
 <%--    <t:dgToolBar title="录入" icon="icon-add" url="wmToMoveGoodsController.do?goAdd" funname="add"></t:dgToolBar> --%>
