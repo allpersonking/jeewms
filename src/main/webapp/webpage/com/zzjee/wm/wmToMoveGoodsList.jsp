@@ -18,7 +18,7 @@
 <%--     <t:dgCol title="原始单据行项目"  field="orderIdI"  hidden="true"  queryMode="group"  width="120"></t:dgCol> --%>
     <t:dgCol title="商品编码"  field="goodsId"   query="true" queryMode="single"  width="120"></t:dgCol>
     <t:dgCol title="商品名称"  field="goodsName"   query="true" queryMode="single"  width="120"></t:dgCol>
-    <t:dgCol title="现有数量"  field="goodsQua" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
+    <t:dgCol title="现有数量"  field="goodsQua"     queryMode="group"  width="70"></t:dgCol>
     <t:dgCol title="移动数量"  field="baseGoodscount" extendParams="editor:'text'"    queryMode="group"  width="70"></t:dgCol>
     <t:dgCol title="生产日期"  field="goodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
       <t:dgCol title="到生产日期"  field="toGoodsProData" formatter="yyyy-MM-dd"   queryMode="group"  width="80"></t:dgCol>
@@ -42,10 +42,10 @@
       <%--<t:dgToolBar title="质押" icon="icon-edit" url="wmToMoveGoodsController.do?goUpdate" funname="update" ></t:dgToolBar>--%>
 
 
-      <t:dgToolBar title="选择批量更改" icon="icon-edit"  funname="editRow"></t:dgToolBar>
-      <t:dgToolBar  title="批量保存" icon="icon-save" url="wmToMoveGoodsController.do?saveRows" funname="saveData"></t:dgToolBar>
-      <t:dgToolBar   title="取消批量更改" icon="icon-undo" funname="reject"></t:dgToolBar>
-      <t:dgToolBar title="批量确定转移"     funname="dobatchUpdate"></t:dgToolBar>
+      <t:dgToolBar title="选择批量转移" icon="icon-edit"  funname="editRow"></t:dgToolBar>
+      <t:dgToolBar  title="批量转移保存" icon="icon-save" url="wmToMoveGoodsController.do?saveRows" funname="saveData"></t:dgToolBar>
+      <t:dgToolBar   title="取消批量转移" icon="icon-undo" funname="reject"></t:dgToolBar>
+      <%--<t:dgToolBar title="批量确定转移"     funname="dobatchUpdate"></t:dgToolBar>--%>
 
     <t:dgToolBar title="批量删除"  icon="icon-remove" url="wmToMoveGoodsController.do?doBatchDel" funname="deleteALLSelect"></t:dgToolBar>
    <t:dgToolBar title="查看" icon="icon-search" url="wmToMoveGoodsController.do?goUpdate" funname="detail"></t:dgToolBar>
