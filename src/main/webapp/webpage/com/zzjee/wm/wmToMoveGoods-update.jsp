@@ -252,10 +252,7 @@
 			          <div class="col-xs-3">
 						  <t:dictSelect     field="toCusCode" type="list"   extendJson="  {class:'form-control',datatype:'*',style:'width:230px'}"
 										 defaultVal="${wmToMoveGoodsPage.toCusCode}" dictTable="mv_cus" dictField="cus_code" dictText="cus_name"   hasLabel="false"  title="客户编码"></t:dictSelect>
-						  <
-								<input id="toCusCode" name="toCusCode" type="text" class="form-control"
-									ignore="ignore"
-								   value='${wmToMoveGoodsPage.toCusCode}' />
+
 						<span class="Validform_checktip" style="float:left;height:0px;"></span>
 						<label class="Validform_label" style="display: none">转移客户</label>
 			          </div>
