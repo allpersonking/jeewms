@@ -15,6 +15,7 @@ import javax.validation.Validator;
 import com.zzjee.md.entity.MvCusEntity;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.apache.poi.ss.formula.functions.Now;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
@@ -28,6 +29,7 @@ import org.jeecgframework.poi.excel.entity.ExportParams;
 import org.jeecgframework.poi.excel.entity.ImportParams;
 import org.jeecgframework.poi.excel.entity.vo.NormalExcelConstants;
 import org.jeecgframework.tag.core.easyui.TagUtil;
+import org.jeecgframework.web.system.pojo.base.TSUser;
 import org.jeecgframework.web.system.service.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -53,6 +55,8 @@ import com.zzjee.wm.entity.WmToMoveGoodsEntity;
 import com.zzjee.wm.page.wmtomovepage;
 import com.zzjee.wm.service.WmToMoveGoodsServiceI;
 import com.zzjee.wmutil.wmUtil;
+
+import static com.xiaoleilu.hutool.date.DateTime.now;
 
 /**   
  * @Title: Controller  
@@ -516,6 +520,15 @@ public class WmToMoveGoodsController extends BaseController {
 		try{
 			WmToMoveGoodsEntity t = systemService.get(WmToMoveGoodsEntity.class,wmToMoveGoods.getId());
 			MyBeanUtils.copyBeanNotNull2Bean(wmToMoveGoods,t);
+			try{
+				if(StringUtil.isNotEmpty(wmToMoveGoods.getUpdateBy())){
+					TSUser tsuser = systemService.findUniqueByProperty(TSUser.class,"",wmToMoveGoods.getUpdateBy());
+					t.setUpdateName(tsuser.getRealName());
+				}
+			}catch (Exception e){
+
+			}
+			t.setUpdateDate(now());
 			wmToMoveGoodsService.saveOrUpdate(t);
 			D0.setOK(true);
 
