@@ -324,6 +324,12 @@ public class WvStockController extends BaseController {
 							.getParameter("stttype").toString());
 					wmstt.setSttSta("计划中");
 					wmstt.setTinId(t.getBinId());
+					try{
+						MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmstt.getCusCode());
+						wmstt.setCusName(mdcus.getZhongWenQch());
+					}catch (Exception e){
+
+					}
 					systemService.save(wmstt);
 					systemService.addLog(message, Globals.Log_Type_UPDATE,
 							Globals.Log_Leavel_INFO);
@@ -369,6 +375,12 @@ public class WvStockController extends BaseController {
 				.getParameter("stttype").toString());//01 托盘盘点  02 储位盘点
 			wmstt.setSttSta("计划中");
 			wmstt.setTinId(t.getBinId());
+			try{
+				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmstt.getCusCode());
+				wmstt.setCusName(mdcus.getZhongWenQch());
+			}catch (Exception e){
+
+			}
 			systemService.save(wmstt);
 			systemService.addLog(message, Globals.Log_Type_UPDATE,
 					Globals.Log_Leavel_INFO);

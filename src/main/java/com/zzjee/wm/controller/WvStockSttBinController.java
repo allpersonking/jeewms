@@ -1,4 +1,5 @@
 package com.zzjee.wm.controller;
+import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.wm.entity.WmSttInGoodsEntity;
 import com.zzjee.wm.entity.WvStockEntity;
 import com.zzjee.wm.entity.WvStockSttBinEntity;
@@ -202,6 +203,14 @@ public class WvStockSttBinController extends BaseController {
 		AjaxJson j = new AjaxJson();
 		message = "储位盘点添加成功";
 		try{
+
+			try{
+				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wvStockSttBin.getCusCode());
+				wvStockSttBin.setZhongWenQch(mdcus.getZhongWenQch());
+			}catch (Exception e){
+
+			}
+
 			wvStockSttBinService.save(wvStockSttBin);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}catch(Exception e){
@@ -257,6 +266,13 @@ public class WvStockSttBinController extends BaseController {
 			wmstt.setTinId(t.getBinId());
 			wmstt.setCusCode(t.getCusCode());
 			wmstt.setCusName(t.getZhongWenQch());
+			try{
+				MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",t.getCusCode());
+				wmstt.setCusName(mdcus.getZhongWenQch());
+			}catch (Exception e){
+
+			}
+
 			wmstt.setGoodsId(t.getGoodsId());
 			wmstt.setGoodsName(t.getShpMingCheng());
 			wmstt.setGoodsProData(t.getGoodsProData());
