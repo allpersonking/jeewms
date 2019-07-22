@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.wm.entity.*;
+import com.zzjee.wm.page.confrowpage;
+import com.zzjee.wm.page.wminqmpage;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
 import org.jeecgframework.core.common.controller.BaseController;
@@ -55,10 +59,6 @@ import com.zzjee.api.ResultDO;
 import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
-import com.zzjee.wm.entity.WmImNoticeHEntity;
-import com.zzjee.wm.entity.WmImNoticeIEntity;
-import com.zzjee.wm.entity.WmInQmIEntity;
-import com.zzjee.wm.entity.WmToUpGoodsEntity;
 import com.zzjee.wm.service.WmInQmIServiceI;
 import com.zzjee.wmutil.wmUtil;
 
@@ -549,6 +549,27 @@ public class WmInQmIController extends BaseController {
 			throw new BusinessException(e.getMessage());
 		}
 		j.setMsg(message);
+		return j;
+	}
+
+
+	@RequestMapping(params = "saveRows")
+	@ResponseBody
+	public AjaxJson saveRows(wminqmpage page, HttpServletRequest request){
+		String message = null;
+		List<WmImNoticeIEntity> demos=page.getWminqmrows();
+		AjaxJson j = new AjaxJson();
+		if(CollectionUtils.isNotEmpty(demos)){
+			for(WmImNoticeIEntity jeecgDemo:demos){
+				if (StringUtil.isNotEmpty(jeecgDemo.getGoodsWqmCount())) {
+					WmInQmIEntity wminqm = new WmInQmIEntity();
+					wminqm.setQmOkQuat(jeecgDemo.getGoodsWqmCount());
+
+                     this.doAdd(wminqm,request);
+
+				}
+			}
+		}
 		return j;
 	}
 

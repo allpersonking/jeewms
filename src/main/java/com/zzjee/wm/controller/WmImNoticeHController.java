@@ -263,6 +263,7 @@ public class WmImNoticeHController extends BaseController {
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
 			try {
 				if (Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) > Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())) {
+					wmImNoticeIEntity.setGoodsWqmCount(Double.toString(Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) - Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())));
 					resultnew.add(wmImNoticeIEntity);
 				}
 			} catch (Exception e) {
@@ -293,6 +294,8 @@ public class WmImNoticeHController extends BaseController {
 		List<WmImNoticeIEntity> resultold = dataGrid.getResults();
 		for (WmImNoticeIEntity wmImNoticeIEntity : resultold) {
 			if (Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) > Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())) {
+				wmImNoticeIEntity.setGoodsWqmCount(Double.toString(Double.parseDouble(wmImNoticeIEntity.getGoodsCount()) - Double.parseDouble(wmImNoticeIEntity.getGoodsQmCount())));
+
 				resultnew.add(wmImNoticeIEntity);
 			}
 		}
