@@ -575,6 +575,7 @@ public class WmInQmIController extends BaseController {
 					if(StringUtil.isEmpty(wminqm.getGoodsBatch())){
 						wminqm.setGoodsBatch(wminqm.getProData());
 					}
+					wminqm.setBinSta("N");
 					this.doAdd(wminqm,request);
 
 				}
