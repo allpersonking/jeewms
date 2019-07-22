@@ -564,8 +564,18 @@ public class WmInQmIController extends BaseController {
 				if (StringUtil.isNotEmpty(jeecgDemo.getGoodsWqmCount())) {
 					WmInQmIEntity wminqm = new WmInQmIEntity();
 					wminqm.setQmOkQuat(jeecgDemo.getGoodsWqmCount());
-
-                     this.doAdd(wminqm,request);
+					wminqm.setImNoticeItem(jeecgDemo.getId());
+					wminqm.setGoodsId(jeecgDemo.getGoodsCode());
+					wminqm.setProData(DateUtils.date2Str(jeecgDemo.getGoodsPrdData(),DateUtils.date_sdf));
+					wminqm.setImNoticeId(jeecgDemo.getImNoticeId());
+					wminqm.setGoodsName(jeecgDemo.getGoodsName());
+					wminqm.setBinId(jeecgDemo.getBinPlan());
+					wminqm.setGoodsUnit(jeecgDemo.getGoodsUnit());
+					wminqm.setGoodsBatch(jeecgDemo.getGoodsBatch());
+					if(StringUtil.isEmpty(wminqm.getGoodsBatch())){
+						wminqm.setGoodsBatch(wminqm.getProData());
+					}
+					this.doAdd(wminqm,request);
 
 				}
 			}

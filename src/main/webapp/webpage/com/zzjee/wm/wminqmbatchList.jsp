@@ -22,10 +22,10 @@
    <t:dgCol title="商品名称"  field="goodsName"   query="true"    queryMode="single"    width="250"></t:dgCol>
     <t:dgCol title="预约数量"  field="goodsCount"    queryMode="single"  width="80"></t:dgCol>
     <t:dgCol title="已登记数量"  field="goodsQmCount"    queryMode="single"  width="80"></t:dgCol>
-   <t:dgCol title="未收货数量"  field="goodsWqmCount"  extendParams="editor:'text'"   queryMode="single"  width="80"></t:dgCol>
-   <t:dgCol title="生产日期"  field="goodsPrdData"  extendParams="editor:'datebox'"   formatter="yyyy-MM-dd "  queryMode="single"  width="80"></t:dgCol>
-   <t:dgCol title="批次"  field="goodsBatch"  extendParams="editor:'text'"   queryMode="single"  width="80"></t:dgCol>
-   <t:dgCol title="储位"  field="binPlan"  extendParams="editor:'text'"   queryMode="single"  width="80"></t:dgCol>
+   <t:dgCol title="未收货数量"  field="goodsWqmCount"  extendParams="editor:'text'"   queryMode="single"  width="120"></t:dgCol>
+   <t:dgCol title="生产日期"  field="goodsPrdData"  extendParams="editor:'datebox'"   formatter="yyyy-MM-dd "  queryMode="single"  width="120"></t:dgCol>
+   <t:dgCol title="批次"  field="goodsBatch"  extendParams="editor:'text'"   queryMode="single"  width="120"></t:dgCol>
+   <t:dgCol title="储位"  field="binPlan"  extendParams="editor:'text'"   queryMode="single"  width="120"></t:dgCol>
 
     <t:dgCol title="单位"  field="goodsUnit"    queryMode="single"  width="50"></t:dgCol>
 <%--    <t:dgDelOpt title="删除" url="wmInQmIController.do?doDel&id={id}" urlclass="ace_button"  urlfont="fa-trash-o"/> --%>
