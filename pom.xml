@@ -161,6 +161,8 @@
 					<artifactId>com.springsource.org.junit</artifactId>
 				</exclusion>
 			</exclusions>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/minidao-pe-1.6.jar</systemPath>
 		</dependency>
 		<!-- java生成缩略图 -->
 		<dependency>
@@ -818,41 +820,41 @@
 		<dependency>
 			<groupId>org.p3framework</groupId>
 			<artifactId>jeecg-p3-core</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.p3framework</groupId>
-			<artifactId>jeecg-p3-ui</artifactId>
 			<version>1.1.2</version>
-			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>org.p3framework</groupId>
-			<artifactId>jeecg-p3-bizcore</artifactId>
-			<version>1.0-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.p3framework</groupId>-->
+			<!--<artifactId>jeecg-p3-ui</artifactId>-->
+			<!--<version>1.1.2</version>-->
+			<!--<type>jar</type>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.p3framework</groupId>-->
+			<!--<artifactId>jeecg-p3-bizcore</artifactId>-->
+			<!--<version>1.0-SNAPSHOT</version>-->
+			<!--<type>jar</type>-->
+		<!--</dependency>-->
 		<!-- 插件demo -->
-		<dependency>
-			<groupId>org.p3framework</groupId>
-			<artifactId>jeecg-p3-biz-demo</artifactId>
-			<version>1.0.2</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.p3framework</groupId>-->
+			<!--<artifactId>jeecg-p3-biz-demo</artifactId>-->
+			<!--<version>1.0.2</version>-->
+		<!--</dependency>-->
 
 		<!-- 插件: 我的邮箱 -->
-		<dependency>
-			<groupId>org.p3framework</groupId>
-			<artifactId>jeecg-p3-biz-mail</artifactId>
-			<version>1.0.0</version>
-			<type>jar</type>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.p3framework</groupId>-->
+			<!--<artifactId>jeecg-p3-biz-mail</artifactId>-->
+			<!--<version>1.0.0</version>-->
+			<!--<type>jar</type>-->
+		<!--</dependency>-->
 
 		<!-- 在线聊天工具 -->
-		<dependency>
-			<groupId>org.p3framework</groupId>
-			<artifactId>jeecg-p3-biz-chat</artifactId>
-			<version>1.0.1</version>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.p3framework</groupId>-->
+			<!--<artifactId>jeecg-p3-biz-chat</artifactId>-->
+			<!--<version>1.0.1</version>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>com.github.abel533</groupId>
 			<artifactId>ECharts</artifactId>
