@@ -2315,7 +2315,7 @@ public class WmImNoticeHController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public ResponseEntity<?> create(
 			@RequestBody WmImNoticeHPage wmImNoticeHPage,

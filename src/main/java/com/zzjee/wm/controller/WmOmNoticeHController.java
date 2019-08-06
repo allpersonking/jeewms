@@ -2404,8 +2404,7 @@ public class WmOmNoticeHController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public ResponseEntity<?> create(@RequestBody WmOmNoticeHPage wmOmNoticeHPage, UriComponentsBuilder uriBuilder) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();

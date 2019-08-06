@@ -478,7 +478,11 @@ public class MdGoodsController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<?>  list( @RequestParam(value="username", required=false) String username, @RequestParam(value="searchstr", required=false)String searchstr, @RequestParam(value="searchstr2", required=false)String searchstr2) {
+	public ResponseEntity<?>  list( @RequestParam(value="username", required=false) String username,
+									@RequestParam(value="all", required=false)String all,
+
+									@RequestParam(value="searchstr", required=false)String searchstr,
+									@RequestParam(value="searchstr2", required=false)String searchstr2) {
 
 
 		ResultDO D0 = new  ResultDO();
@@ -498,9 +502,12 @@ public class MdGoodsController extends BaseController {
 		int i = 0;
 		for (MdGoodsEntity t :listMdGoodss){
 					i++;
-			if(i>100){
-				break;
-			}
+					if(!"all".equals(all)){
+						if(i>100){
+							break;
+						}
+					}
+
 			result.add(t);
 		}
 

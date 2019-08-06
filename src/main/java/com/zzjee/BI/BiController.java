@@ -178,7 +178,7 @@ public class BiController extends BaseController {
         StringBuffer sb = new StringBuffer();
         sb.append("select * from ( " +
                 "SELECT  " +
-                "    GOODS_ID as goodsid, " +
+                "    GOODS_name as goodsid, " +
                 "    floor(sum(BASE_GOODSCOUNT)) as amount " +
                 "FROM" +
                 "    wm_to_up_goods where ORDER_ID <> 'ZY'   " +
@@ -237,7 +237,7 @@ public class BiController extends BaseController {
         StringBuffer sb = new StringBuffer();
         sb.append("select * from ( " +
                 "SELECT  " +
-                "    GOODS_ID as goodsid, " +
+                "    GOODS_name as goodsid, " +
                 "    floor(sum(BASE_GOODSCOUNT)) as amount " +
                 "FROM" +
                 "    wm_to_down_goods where ORDER_ID <> 'ZY'   " +
