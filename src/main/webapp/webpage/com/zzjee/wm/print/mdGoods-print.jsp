@@ -137,14 +137,23 @@ function printview(){
 			<td    class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.gaoDanPin} </td>
 
 		</tr>
-
 		<tr height=20 style='mso-height-source:userset;height:20.05pt'>
 
-			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>条码</td>
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>单位</td>
 
-			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpBianMa} </td>
+			<td    class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.shlDanWei} </td>
+			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>保质期</td>
+
+			<td    class=xl65 style='border:1.0pt solid black;text-align: center'> ${mdGoodsPage.bzhiQi} </td>
 
 		</tr>
+		<%--<tr height=20 style='mso-height-source:userset;height:20.05pt'>--%>
+
+			<%--<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>品牌</td>--%>
+
+			<%--<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpPinPai} </td>--%>
+
+		<%--</tr>--%>
 
 
 

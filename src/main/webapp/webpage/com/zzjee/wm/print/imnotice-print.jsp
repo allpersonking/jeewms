@@ -163,7 +163,7 @@ function printview(){
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>储位</td>
 
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>二维码</td>
 
 			<td  ></td>
 		</tr>

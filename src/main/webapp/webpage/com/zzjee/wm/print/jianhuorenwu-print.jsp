@@ -218,7 +218,7 @@ function downloadqrcode() {
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>
 
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘/保质期</td>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>流通码</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>二维码</td>
 
 			<td  ></td>
 		</tr>
@@ -238,7 +238,7 @@ function downloadqrcode() {
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.pickNotice }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>
-				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.goodsCode }" alt="${poVal.goodsCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
+				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.goodsId }" alt="${poVal.goodsId }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
 
