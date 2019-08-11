@@ -963,6 +963,13 @@ for (WmInQmIEntity wmInQmIEntity : wmInQmIso) {
 				try{
 					WmImNoticeHEntity wmImNoticeHEntity = systemService.findUniqueByProperty(WmImNoticeHEntity.class,"noticeId",wmInQmI.getImNoticeId());
 					wmInQmI.setCusCode(wmImNoticeHEntity.getCusCode());
+					if(StringUtil.isNotEmpty(wmInQmI.getCusCode())){
+
+						MdCusEntity mdcus = systemService.findUniqueByProperty(MdCusEntity.class,"keHuBianMa",wmInQmI.getCusCode());
+						if(mdcus!=null){
+							wmInQmI.setCusName(mdcus.getZhongWenQch());
+						}
+					}
 					wmInQmI.setImCusCode(wmImNoticeHEntity.getImCusCode());
 				}catch (Exception e){
 
