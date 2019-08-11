@@ -238,7 +238,7 @@ function downloadqrcode() {
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.pickNotice }</td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.tinId }/${poVal.baoZhiq }</td>
-				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
+				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.goodsCode }" alt="${poVal.goodsCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
 

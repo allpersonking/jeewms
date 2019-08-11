@@ -148,7 +148,7 @@ function printview(){
 
 
 		<tr height=33 style='mso-height-source:userset;height:25.05pt'>
-			<td class=xl65 style='border:1.0pt solid black;text-align: center'>69码</td>
+			<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>
 			<%--<td class=xl65 style='border:1.0pt solid black;text-align: center'>商品编码</td>--%>
 			<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>商品</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
@@ -172,7 +172,7 @@ function printview(){
 		<c:forEach items="${wmImNoticeIList}" var="poVal" varStatus="stuts">
 
 			<tr height=33 style='mso-height-source:userset;height:50px'>
-				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.barCode }　</td>
+				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.goodsCode }　</td>
 				<%--<td height=33 class=xl65 style='height:25.05pt;border:1.0pt solid black;text-align: center'>${poVal.goodsCode }</td>--%>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center;word-break:break-all;'><span style='word-break:break-all;width: auto;font-size: 14pt'>${poVal.goodsName }</span></td>
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'>${poVal.shpGuiGe }</td>
@@ -188,7 +188,7 @@ function printview(){
 
 				<td class=xl65 style='border:1.0pt solid black;text-align: center'></td>
 
-				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.barCode }" alt="${poVal.barCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
+				<td class=xl65 align="center" valign="middle" style='border:1.0pt solid black'><img src="rest/wmBaseController/showOrDownqrcodeByurl?qrvalue=${poVal.goodsCode }" alt="${poVal.goodsCode }" style="width:40px;height:40px;vertical-align:middle;">　</td>
 				<td  ></td>
 			</tr>
 

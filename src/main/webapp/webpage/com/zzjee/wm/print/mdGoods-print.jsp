@@ -142,14 +142,14 @@ function printview(){
 
 			<td    height=20 class=xl65 style='height:20.05pt;border:1.0pt solid black;text-align: center'>条码</td>
 
-			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpTiaoMa} </td>
+			<td  colspan=3  class=xl65 style='border:1.0pt solid black;text-align: left'> ${mdGoodsPage.shpBianMa} </td>
 
 		</tr>
 
 
 
 		<tr height=40 style='mso-height-source:userset '>
-			<th colspan=4 height=80 class=xl67   ><span style="font-size: 18pt"><img src="rest/wmBaseController/showOrDownbarcodeByurl.do?qrvalue=${mdGoodsPage.shpTiaoMa }"    ></span></th>
+			<th colspan=4 height=80 class=xl67   ><span style="font-size: 18pt"><img src="rest/wmBaseController/showOrDownbarcodeByurl.do?qrvalue=${mdGoodsPage.shpBianMa }"    ></span></th>
 		</tr>
 	</table>
 </t:formvalid></div>
