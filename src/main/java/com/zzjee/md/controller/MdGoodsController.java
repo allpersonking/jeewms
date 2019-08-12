@@ -119,9 +119,9 @@ public class MdGoodsController extends BaseController {
 		}
 
 
-		if(mdGoods.getZhuangTai()==null){
-			cq.notEq("zhuangTai", "Y");
-		}
+//		if(mdGoods.getZhuangTai()==null){
+//			cq.notEq("zhuangTai", "Y");
+//		}
 		cq.add();
 		this.mdGoodsService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);

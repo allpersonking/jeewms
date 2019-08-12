@@ -2,11 +2,9 @@
 <%@include file="/context/mytags.jsp"%>
 <t:base type="jquery,easyui,tools,DatePicker"></t:base>
 <div class="easyui-layout" fit="true">
+
   <div region="center" style="padding:0px;border:0px">
-
-
-
-<t:datagrid name="mdGoodsList" checkbox="true" pagination="true" fitColumns="false" title="商品信息" actionUrl="mdGoodsController.do?datagrid" idField="id" fit="true" queryMode="group">
+      <t:datagrid name="mdGoodsList" checkbox="true"  fitColumns="false" title="商品信息" actionUrl="mdGoodsController.do?datagrid" idField="id" fit="false" queryMode="group">
     <t:dgCol title="主键"  field="id"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="创建人名称"  field="createName"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
     <t:dgCol title="创建人登录名称"  field="createBy"  hidden="true"  queryMode="group"  width="120"></t:dgCol>
@@ -74,17 +72,18 @@
    <t:dgToolBar title="模板下载" icon="icon-putout" funname="ExportXlsByT"></t:dgToolBar>
   </t:datagrid>
 
-    <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
-      <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
-      日期：<input type="text" name="batchdate"    class="form-control" onClick="WdatePicker()" style="width: 100px; height: 30px;">
-       商品编码：<input type="text" name="othercode"    class="form-control"  style="width: 100px; height: 30px;">
+      <div name="searchColums1" style="float: left; padding-left: 0px;padding-top: 5px;">
+          <%--<input type="text" name="batchbin" style="width: 100px; height: 30px;">--%>
+          日期：<input type="text" name="batchdate"    class="form-control" onClick="WdatePicker()" style="width: 100px; height: 30px;">
+          商品编码：<input type="text" name="othercode"    class="form-control"  style="width: 100px; height: 30px;">
 
-    </div>
+      </div>
   </div>
  </div>
  <script src = "webpage/com/zzjee/md/mdGoodsList.js"></script>		
  <script type="text/javascript">
  $(document).ready(function(){
+     // $('#mdGoodsList').datagrid('reload',{});
  });
  
    function  otherimp() {
