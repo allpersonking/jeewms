@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.tms.entity.TmsYwDingdanEntity;
 import com.zzjee.wm.page.*;
 import org.apache.commons.collections.CollectionUtils;
@@ -2404,25 +2405,33 @@ public class WmOmNoticeHController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public ResponseEntity<?> create(@RequestBody WmOmNoticeHPage wmOmNoticeHPage, UriComponentsBuilder uriBuilder) {
+	@RequestMapping(value = "/apicreate")
+	@ResponseBody
+	public ResponseEntity<?> create(@RequestBody WmOmNoticeHPage wmOmNoticeHPage ) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();
-		Set<ConstraintViolation<WmOmNoticeHPage>> failures = validator.validate(wmOmNoticeHPage);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
-		}
-
 		//保存
 		List<WmOmNoticeIEntity> wmOmNoticeIList =  wmOmNoticeHPage.getWmOmNoticeIList();
-
+		String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeHPage.getOrderTypeCode());
+		wmOmNoticeHPage.setOmNoticeId(noticeid);
 		WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
 		try{
-			MyBeanUtils.copyBeanNotNull2Bean(wmOmNoticeH,wmOmNoticeHPage);
+			MyBeanUtils.copyBeanNotNull2Bean(wmOmNoticeHPage,wmOmNoticeH);
 		}catch(Exception e){
 			logger.info(e.getMessage());
 		}
-		wmOmNoticeHService.addMain(wmOmNoticeH, wmOmNoticeIList);
+		List<WmOmNoticeIEntity> wmOmNoticeIListnew = new ArrayList<>();
+		for(WmOmNoticeIEntity t: wmOmNoticeIList){
+			try{
+				MdGoodsEntity md =systemService.findUniqueByProperty(MdGoodsEntity.class,"shpBianMa",t.getGoodsId());
+				t.setCusCode(md.getSuoShuKeHu());
+			}catch ( Exception e){
+
+			}
+
+			wmOmNoticeIListnew.add(t);
+	   }
+		wmOmNoticeHService.addMain(wmOmNoticeH, wmOmNoticeIListnew);
 		D0.setOK(true);
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
 		return new ResponseEntity(D0, HttpStatus.OK);

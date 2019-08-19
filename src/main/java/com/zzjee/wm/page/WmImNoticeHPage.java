@@ -27,7 +27,7 @@ import org.jeecgframework.poi.excel.annotation.ExcelCollection;
  * @version V1.0   
  *
  */
-public class WmImNoticeHPage implements java.io.Serializable {
+public class WmImNoticeHPage   {
 	/**主键*/
 	private java.lang.String id;
 	/**创建人名称*/
@@ -59,37 +59,27 @@ public class WmImNoticeHPage implements java.io.Serializable {
   
 	private java.lang.String sysCompanyCode;
 	/**客户编码*/
-    @Excel(name="客户编码")
 	private java.lang.String cusCode;
 	/**预计到货时间*/
-    @Excel(name="预计到货时间",format = "yyyy-MM-dd")
 	private java.util.Date imData;
 	/**客户订单号*/
-    @Excel(name="客户订单号")
 	private java.lang.String imCusCode;
 	/**司机*/
-    @Excel(name="司机")
 	private java.lang.String imCarDri;
 	/**司机电话*/
-    @Excel(name="司机电话")
 	private java.lang.String imCarMobile;
 	/**车号*/
-    @Excel(name="车号")
 	private java.lang.String imCarNo;
 	/**订单类型*/
 
 	private java.lang.String orderTypeCode;
 	/**月台*/
-    @Excel(name="月台")
 	private java.lang.String platformCode;
 	/**备注*/
-    @Excel(name="备注")
 	private java.lang.String imBeizhu;
 	/**单据状态*/
-    @Excel(name="单据状态")
 	private java.lang.String imSta;
 	/**进货通知单号*/
-    @Excel(name="进货通知单号")
 	private java.lang.String noticeId;
 	/**附件*/
 
@@ -468,8 +458,7 @@ public class WmImNoticeHPage implements java.io.Serializable {
 		this.piMaster = piMaster;
 	}
 
-	/**保存-预约通知项目*/
-    @ExcelCollection(name="预约通知项目")
+
 	private List<WmImNoticeIEntity> wmImNoticeIList = new ArrayList<WmImNoticeIEntity>();
 		public List<WmImNoticeIEntity> getWmImNoticeIList() {
 		return wmImNoticeIList;

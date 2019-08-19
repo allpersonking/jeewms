@@ -59,51 +59,36 @@ public class WmOmNoticeHPage implements java.io.Serializable {
  
 	private java.lang.String sysCompanyCode;
 	/**客户*/
-    @Excel(name="客户")
 	private java.lang.String cusCode;
 	/**要求交货时间*/
-    @Excel(name="要求交货时间",format = "yyyy-MM-dd")
 	private java.util.Date delvData;
 	/**收货人*/
-    @Excel(name="收货人")
 	private java.lang.String delvMember;
 	/**收货人电话*/
-    @Excel(name="收货人电话")
 	private java.lang.String delvMobile;
 	/**收货人地址*/
-    @Excel(name="收货人地址")
 	private java.lang.String delvAddr;
 	/**承运人*/
-    @Excel(name="承运人")
 	private java.lang.String reMember;
 	/**承运人电话*/
-    @Excel(name="承运人电话")
 	private java.lang.String reMobile;
 	/**承运人车号*/
-    @Excel(name="承运人车号")
 	private java.lang.String reCarno;
 	/**发货月台*/
-    @Excel(name="发货月台")
 	private java.lang.String omPlatNo;
 	/**备注*/
-    @Excel(name="备注")
 	private java.lang.String omBeizhu;
 	/**状态*/
-    @Excel(name="状态")
 	private java.lang.String omSta;
 	/**出货单号*/
-    @Excel(name="出货单号")
 	private java.lang.String omNoticeId;
 	/**附件*/
  
 	private java.lang.String fuJian;
-	@Excel(name="三方客户编号")
 
 	private java.lang.String ocusCode;
-	@Excel(name="三方客户名称")
 
 	private java.lang.String ocusName;
-	@Excel(name="客户订单号")
 	private java.lang.String imCusCode;
 	private java.lang.String printStatus;
 	private java.lang.String piClass;
@@ -515,7 +500,6 @@ public class WmOmNoticeHPage implements java.io.Serializable {
 	}
 
 	/**保存-出货通知项目*/
-    @ExcelCollection(name="出货通知项目")
 	private List<WmOmNoticeIEntity> wmOmNoticeIList = new ArrayList<WmOmNoticeIEntity>();
 		public List<WmOmNoticeIEntity> getWmOmNoticeIList() {
 		return wmOmNoticeIList;
@@ -524,16 +508,15 @@ public class WmOmNoticeHPage implements java.io.Serializable {
 		this.wmOmNoticeIList = wmOmNoticeIList;
 		}
 
-	/**保存-出货通知项目*/
-	@ExcelCollection(name="运输项目")
-	private List<TmsYwDingdanEntity> wmOmtmsIList = new ArrayList<TmsYwDingdanEntity>();
-
-
-	public List<TmsYwDingdanEntity> getWmOmtmsIList() {
-		return wmOmtmsIList;
-	}
-
-	public void setWmOmtmsIList(List<TmsYwDingdanEntity> wmOmtmsIList) {
-		this.wmOmtmsIList = wmOmtmsIList;
-	}
+//	/**保存-出货通知项目*/
+//	private List<TmsYwDingdanEntity> wmOmtmsIList = new ArrayList<TmsYwDingdanEntity>();
+//
+//
+//	public List<TmsYwDingdanEntity> getWmOmtmsIList() {
+//		return wmOmtmsIList;
+//	}
+//
+//	public void setWmOmtmsIList(List<TmsYwDingdanEntity> wmOmtmsIList) {
+//		this.wmOmtmsIList = wmOmtmsIList;
+//	}
 }

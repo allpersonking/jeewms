@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.wm.entity.*;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFClientAnchor;
@@ -81,11 +82,6 @@ import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.md.entity.MdGoodsEntity;
 import com.zzjee.md.entity.MdSupEntity;
 import com.zzjee.md.entity.MvGoodsEntity;
-import com.zzjee.wm.entity.WmImNoticeHEntity;
-import com.zzjee.wm.entity.WmImNoticeIEntity;
-import com.zzjee.wm.entity.WmInQmIEntity;
-import com.zzjee.wm.entity.WmPlatIoEntity;
-import com.zzjee.wm.entity.WmToUpGoodsEntity;
 import com.zzjee.wm.page.WmImNoticeHPage;
 import com.zzjee.wm.page.WmNoticeImpPage;
 import com.zzjee.wm.service.WmImNoticeHServiceI;
@@ -2304,7 +2300,7 @@ public class WmImNoticeHController extends BaseController {
 		return listWmImNoticeHs;
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET )
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
 		WmImNoticeHEntity task = wmImNoticeHService.get(
@@ -2315,21 +2311,13 @@ public class WmImNoticeHController extends BaseController {
 		return new ResponseEntity(task, HttpStatus.OK);
 	}
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/apicreate")
 	@ResponseBody
 	public ResponseEntity<?> create(
-			@RequestBody WmImNoticeHPage wmImNoticeHPage,
-			UriComponentsBuilder uriBuilder) {
+			@RequestBody WmImNoticeHPage wmImNoticeHPage) {
 		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();
 
-		Set<ConstraintViolation<WmImNoticeHPage>> failures = validator
-				.validate(wmImNoticeHPage);
-		if (!failures.isEmpty()) {
-			return new ResponseEntity(
-					BeanValidators.extractPropertyAndMessage(failures),
-					HttpStatus.BAD_REQUEST);
-		}
 
 		// 保存
 		List<WmImNoticeIEntity> wmImNoticeIList = wmImNoticeHPage
@@ -2337,11 +2325,25 @@ public class WmImNoticeHController extends BaseController {
 
 		WmImNoticeHEntity wmImNoticeH = new WmImNoticeHEntity();
 		try {
-			MyBeanUtils.copyBeanNotNull2Bean(wmImNoticeH, wmImNoticeHPage);
+			String noticeid =  wmUtil.getNextNoticeid(wmImNoticeH.getOrderTypeCode()) ;
+			wmImNoticeHPage.setNoticeId(noticeid);
+			MyBeanUtils.copyBeanNotNull2Bean(wmImNoticeHPage,wmImNoticeH);
 		} catch (Exception e) {
 			logger.info(e.getMessage());
 		}
-		wmImNoticeHService.addMain(wmImNoticeH, wmImNoticeIList);
+
+		List<WmImNoticeIEntity> wmOmNoticeIListnew = new ArrayList<>();
+		for(WmImNoticeIEntity t: wmImNoticeIList){
+			try{
+				MdGoodsEntity md =systemService.findUniqueByProperty(MdGoodsEntity.class,"shpBianMa",t.getGoodsCode());
+				wmImNoticeH.setCusCode(md.getSuoShuKeHu());
+			}catch ( Exception e){
+
+			}
+
+			wmOmNoticeIListnew.add(t);
+		}
+		wmImNoticeHService.addMain(wmImNoticeH, wmOmNoticeIListnew);
 		D0.setOK(true);
 		return new ResponseEntity(D0, HttpStatus.OK);
 
