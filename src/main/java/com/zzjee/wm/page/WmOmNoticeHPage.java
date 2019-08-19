@@ -508,15 +508,15 @@ public class WmOmNoticeHPage implements java.io.Serializable {
 		this.wmOmNoticeIList = wmOmNoticeIList;
 		}
 
-//	/**保存-出货通知项目*/
-//	private List<TmsYwDingdanEntity> wmOmtmsIList = new ArrayList<TmsYwDingdanEntity>();
-//
-//
-//	public List<TmsYwDingdanEntity> getWmOmtmsIList() {
-//		return wmOmtmsIList;
-//	}
-//
-//	public void setWmOmtmsIList(List<TmsYwDingdanEntity> wmOmtmsIList) {
-//		this.wmOmtmsIList = wmOmtmsIList;
-//	}
+	/**保存-出货通知项目*/
+	private List<TmsYwDingdanEntity> wmOmtmsIList = new ArrayList<TmsYwDingdanEntity>();
+
+
+	public List<TmsYwDingdanEntity> getWmOmtmsIList() {
+		return wmOmtmsIList;
+	}
+
+	public void setWmOmtmsIList(List<TmsYwDingdanEntity> wmOmtmsIList) {
+		this.wmOmtmsIList = wmOmtmsIList;
+	}
 }
