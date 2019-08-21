@@ -14,6 +14,7 @@ import javax.validation.Validator;
 
 import com.zzjee.md.entity.MdCusEntity;
 import com.zzjee.wm.entity.WmOmQmIEntity;
+import com.zzjee.wm.page.WmOmNoticeImpnewPage;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
 import org.jeecgframework.core.common.exception.BusinessException;
@@ -612,55 +613,45 @@ public class MdGoodsController extends BaseController {
 	public ResponseEntity<?> xiadan(@RequestParam String mdGoodsstr,
 									UriComponentsBuilder uriBuilder) {		// 调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
 		ResultDO D0 = new  ResultDO();
-		MdGoodsEntity mdGoods  = (MdGoodsEntity)JSONHelper.json2Object(mdGoodsstr,MdGoodsEntity.class);
-		// 保存
-		org.jeecgframework.core.util.LogUtil
-				.info("===================下单成功===================");
-		try {
-			MdGoodsEntity t = systemService.get(MdGoodsEntity.class,mdGoods.getId());
+		WmOmNoticeImpnewPage pageheader  = (WmOmNoticeImpnewPage)JSONHelper.json2Object(mdGoodsstr,WmOmNoticeImpnewPage.class);
 
-			List<WmOmNoticeIEntity> wmomNoticeIListnew = new ArrayList<WmOmNoticeIEntity>();
+		WmOmNoticeHEntity wmOmNoticeH = null;
+		MdGoodsEntity t = systemService.get(MdGoodsEntity.class,pageheader.getId());
 
-					WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
-					wmi.setGoodsId(t.getShpBianMa());
-					MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
-							MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
-					if (mvgoods != null) {
-						wmi.setGoodsName(mvgoods.getGoodsName());
-						wmi.setGoodsUnit(mvgoods.getShlDanWei());
-					}
-					try{
-
-						wmi.setGoodsQua(mdGoods.getChZhXiang());//长度作为数量
-					}catch (Exception e){
-
-					}
-
-					wmomNoticeIListnew.add(wmi);
-
-			WmOmNoticeHEntity wmOmNoticeH = new WmOmNoticeHEntity();
-
-//			wmOmNoticeH.setDelvData(pageheader.getImData());
+		List<WmOmNoticeHEntity>  wmomh = systemService.findByProperty(WmOmNoticeHEntity.class, "imCusCode", pageheader.getImCusCode());
+		if(wmomh!=null&&wmomh.size()>0){
+			wmOmNoticeH = wmomh.get(0);
+		}else{
+			wmOmNoticeH = new WmOmNoticeHEntity();
+			wmOmNoticeH.setCreateBy(pageheader.getCreateBy());
 			wmOmNoticeH.setOrderTypeCode("11");
 			wmOmNoticeH.setCusCode(t.getSuoShuKeHu());
 			String noticeid = wmUtil.getNextomNoticeId(wmOmNoticeH.getOrderTypeCode());
 			wmOmNoticeH.setOmNoticeId(noticeid);
-			wmOmNoticeH.setOmBeizhu(mdGoods.getKuZhXiang() );//宽作为备注
-			wmOmNoticeH.setOcusCode(mdGoods.getGaoZhXiang());// 高作为三方客户
-			wmOmNoticeH.setDelvAddr(mdGoods.getTiJiCm());//体积作为地址
-			MdCusOtherEntity mdcusother = systemService.findUniqueByProperty(MdCusOtherEntity.class, "keHuBianMa", wmOmNoticeH.getOcusCode());
-			if (mdcusother != null) {
-				wmOmNoticeH.setOcusName(mdcusother.getZhongWenQch());
-			}
-//			wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
-			wmOmNoticeHService.addMain(wmOmNoticeH, wmomNoticeIListnew);
+			wmOmNoticeH.setImCusCode(pageheader.getImCusCode());
+			wmOmNoticeH.setReCarno(pageheader.getReCarno());
+			wmOmNoticeH.setOmBeizhu(pageheader.getImBeizhu());
+
+			systemService.save(wmOmNoticeH);
+		}
+		WmOmNoticeIEntity wmi = new WmOmNoticeIEntity();
+		wmi.setGoodsId(t.getShpBianMa());
+		wmi.setOmNoticeId(wmOmNoticeH.getOmNoticeId());
+		MvGoodsEntity mvgoods = systemService.findUniqueByProperty(
+		MvGoodsEntity.class, "goodsCode", wmi.getGoodsId());
+		if (mvgoods != null) {
+			wmi.setGoodsName(t.getShpMingCheng());
+			wmi.setGoodsUnit(t.getShlDanWei());
+		}
+		wmi.setCusCode(wmOmNoticeH.getCusCode());
+		try{
+			wmi.setGoodsQua(pageheader.getGoodsQua());//
+		}catch (Exception e){
+
+		}
+		systemService.save(wmi);
 			D0.setErrorMsg("订单生成成功");
 			D0.setOK(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-			D0.setOK(false);
-		}
-
 		// 按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
