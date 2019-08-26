@@ -494,11 +494,15 @@ public class MdGoodsController extends BaseController {
 		String hql = " from MdGoodsEntity where 1 = 1    ";
 		D0.setOK(true);
 		if(!StringUtil.isEmpty(searchstr)) {
-			hql=hql+"  and shpBianMa like '%" + searchstr + "%'";
-		}
+			hql=hql+"  and  (shpBianMa like '%" + searchstr + "%'";
+            hql=hql+"  or   shpTiaoMa like '%" + searchstr + "%')";
+
+        }
 		if(!StringUtil.isEmpty(searchstr2)) {
-			hql=hql+"  and shpTiaoMa like '%" + searchstr2 + "%'";
-		}
+			hql=hql+"  and (shpTiaoMa like '%" + searchstr2 + "%'";
+            hql=hql+"  or shpBianMa like '%" + searchstr2 + "%')";
+
+        }
 
 		List<MdGoodsEntity> listMdGoodss = mdGoodsService.findHql(hql);
 		D0.setOK(true);
