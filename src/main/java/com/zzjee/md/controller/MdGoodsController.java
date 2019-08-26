@@ -483,7 +483,10 @@ public class MdGoodsController extends BaseController {
 									@RequestParam(value="all", required=false)String all,
 
 									@RequestParam(value="searchstr", required=false)String searchstr,
-									@RequestParam(value="searchstr2", required=false)String searchstr2) {
+									@RequestParam(value="searchstr2", required=false)String searchstr2,
+									@RequestParam(value="searchstrin1", required=false)String searchstrin1,
+									@RequestParam(value="searchstrin2", required=false)String searchstrin2,
+									@RequestParam(value="searchstrin3", required=false)String searchstrin3) {
 
 
 		ResultDO D0 = new  ResultDO();
@@ -508,7 +511,9 @@ public class MdGoodsController extends BaseController {
 							break;
 						}
 					}
-
+					t.setShpYanSe(searchstrin1);
+					t.setPpTuPian(searchstrin2);
+					t.setJjZhongBi(searchstrin3);
 			result.add(t);
 		}
 
