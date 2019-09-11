@@ -170,7 +170,9 @@ public class WmOmNoticeHServiceImpl extends CommonServiceImpl implements WmOmNot
 			for(WmOmNoticeIEntity wmOmNoticeI:wmOmNoticeIList){
 				if(oConvertUtils.isEmpty(wmOmNoticeI.getId())){
 					//外键设置
-					MvGoodsEntity mvgoods = new MvGoodsEntity();
+//					MvGoodsEntity mvgoods = new MvGoodsEntity();
+					MvGoodsEntity mvgoods = this.findUniqueByProperty(MvGoodsEntity.class,"goodsName",wmOmNoticeI.getGoodsId());
+
 					mvgoods = this.findUniqueByProperty(MvGoodsEntity.class, "goodsCode", wmOmNoticeI.getGoodsId()) ;
 					wmOmNoticeI.setGoodsUnit(mvgoods.getShlDanWei());
 					wmOmNoticeI.setBaseUnit(mvgoods.getBaseunit());

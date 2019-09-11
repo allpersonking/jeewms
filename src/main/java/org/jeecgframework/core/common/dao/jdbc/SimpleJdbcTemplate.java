@@ -90,9 +90,9 @@ public class SimpleJdbcTemplate {
 			Assert.hasText(sql,"sql语句不正确!");
 
 			if(parameters!=null){
-				return namedJdbcTemplate.queryForObject(sql, parameters,Long.class);
+				return  (long)namedJdbcTemplate.queryForObject(sql, parameters,Long.class);
 			}else{
-				return jdbcTemplate.queryForObject(sql,Long.class);
+				return (long)jdbcTemplate.queryForObject(sql,Long.class);
 			}
 
 		}catch (Exception e) {
