@@ -56,7 +56,7 @@ public class wmUtil {
 		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 
 		Map<String, Object> countMap = systemService
-				.findOneForJdbc("SELECT right(ifnull(max(notice_id),0),4)+1  as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+				.findOneForJdbc("SELECT cast(right(ifnull(max(notice_id),0),4)+1  as SIGNED) as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "01";
 		}
@@ -107,7 +107,7 @@ public class wmUtil {
 	public static String getNextomNoticeId(String orderType){
 		SystemService systemService =ApplicationContextUtil.getContext().getBean(SystemService.class);
 		Map<String, Object> countMap = systemService
-				.findOneForJdbc("SELECT right(ifnull(max(om_notice_id),0),4)+1 count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
+				.findOneForJdbc("SELECT cast(right(ifnull(max(om_notice_id),0),4)+1 as SIGNED) as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW());");
 		String noticeid = null;
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "11";
