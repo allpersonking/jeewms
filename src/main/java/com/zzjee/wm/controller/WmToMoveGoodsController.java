@@ -469,7 +469,9 @@ public class WmToMoveGoodsController extends BaseController {
 			}
 			result.add(t);
 		}
-
+		if(result.size()<=0){
+			D0.setOK(false);
+		}
 		D0.setObj(result);
 		return new ResponseEntity(D0, HttpStatus.OK);
 	}
