@@ -194,7 +194,26 @@
 						<%--<label class="Validform_label" style="display: none">司机电话</label>--%>
 					<%--</div>--%>
 				<%--</div>--%>
-
+					div class="col-xs-1 text-center">
+					<b>供应商编码：</b>
+				</div>
+				<div class="col-xs-2">
+					<input id="supCode" name="supCode" type="text" class="form-control"
+						   ignore="ignore" value='${wmImNoticeHPage.supCode}'
+					/>
+					<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					<label class="Validform_label" style="display: none">供应商编码</label>
+				</div>
+				<div class="col-xs-1 text-center">
+					<b>供应商名称：</b>
+				</div>
+				<div class="col-xs-2">
+					<input id="supName" name="supName" type="text" class="form-control"
+						   ignore="ignore" value='${wmImNoticeHPage.supName}'
+					/>
+					<span class="Validform_checktip" style="float:left;height:0px;"></span>
+					<label class="Validform_label" style="display: none">司机电话</label>
+				</div>
 
 					<div class="col-xs-1 text-center">
 						<b>订单类型：</b>

@@ -21,6 +21,10 @@
    <t:dgCol title="客户订单号"  field="imCusCode"   query="true" queryMode="single"  width="90"></t:dgCol>
    <t:dgCol title="运输号码"  field="imCarNo"   query="true" queryMode="single"  width="50"></t:dgCol>
    <t:dgCol title="运输公司"  field="imCarDri"   query="true" queryMode="single"  width="50"></t:dgCol>
+   <t:dgCol title="供应商编号"  field="supCode"   query="true" queryMode="single"  width="100"></t:dgCol>
+
+   <t:dgCol title="供应商名称"  field="supName"   query="true" queryMode="single"  width="120"></t:dgCol>
+
    <%--<t:dgCol title="司机电话"  field="imCarMobile"   query="true" queryMode="single"  width="60"></t:dgCol>--%>
    <t:dgCol title="订单类型"  field="orderTypeCode"   query="true" queryMode="single" dictionary="ba_order_type,order_type_code,order_type_name"  width="60"></t:dgCol>
    <%--<t:dgCol title="月台"  field="platformCode"   query="true" queryMode="single" dictionary="ba_platform,platform_code,platform_name"  width="50"></t:dgCol>--%>
