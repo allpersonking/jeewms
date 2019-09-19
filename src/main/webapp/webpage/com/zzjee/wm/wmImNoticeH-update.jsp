@@ -194,7 +194,7 @@
 						<%--<label class="Validform_label" style="display: none">司机电话</label>--%>
 					<%--</div>--%>
 				<%--</div>--%>
-					div class="col-xs-1 text-center">
+					<div class="col-xs-1 text-center">
 					<b>供应商编码：</b>
 				</div>
 				<div class="col-xs-2">
