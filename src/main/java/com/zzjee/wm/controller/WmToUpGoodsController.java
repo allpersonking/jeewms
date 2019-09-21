@@ -462,6 +462,14 @@ public class WmToUpGoodsController extends BaseController {
 				wmInQmIEntity.setBinSta("Y");
 				systemService.updateEntitie(wmInQmIEntity);
 			}
+			if(StringUtil.isNotEmpty(wmToUpGoods.getWmToUpId())){
+				List<WmToUpGoodsEntity> wmToUpGoodsEntity = systemService.findByProperty(WmToUpGoodsEntity.class,"wmToUpId",wmToUpGoods.getWmToUpId());
+				if(wmToUpGoodsEntity!=null&&wmToUpGoodsEntity.size()>0){
+					D0.setOK(false);
+					return new ResponseEntity(D0, HttpStatus.OK);
+				}
+			}
+
 			wmToUpGoods.setGoodsName(wmInQmIEntity.getGoodsName());
 			wmToUpGoods.setCreateDate(DateUtils.getDate());
 			wmToUpGoodsService.save(wmToUpGoods);
