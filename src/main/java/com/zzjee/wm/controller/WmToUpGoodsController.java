@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import com.zzjee.wmutil.wmUtil;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.beanvalidator.BeanValidators;
@@ -99,8 +100,7 @@ public class WmToUpGoodsController extends BaseController {
 	 * @param request
 	 * @param response
 	 * @param dataGrid
-	 * @param user
-	 */
+ 	 */
 
 	@RequestMapping(params = "datagrid")
 	public void datagrid(WmToUpGoodsEntity wmToUpGoods,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
@@ -210,8 +210,7 @@ public class WmToUpGoodsController extends BaseController {
 	/**
 	 * 添加上架列表
 	 * 
-	 * @param ids
-	 * @return
+ 	 * @return
 	 */
 	@RequestMapping(params = "doAdd")
 	@ResponseBody
@@ -257,8 +256,7 @@ public class WmToUpGoodsController extends BaseController {
 	/**
 	 * 更新上架列表
 	 * 
-	 * @param ids
-	 * @return
+ 	 * @return
 	 */
 	@RequestMapping(params = "doUpdate")
 	@ResponseBody
@@ -454,6 +452,18 @@ public class WmToUpGoodsController extends BaseController {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
+		if(StringUtil.isEmpty(wmToUpGoods.getKuWeiBianMa())){
+            D0.setOK(false);
+            D0.setErrorMsg("储位不能为空");
+            return new ResponseEntity(D0, HttpStatus.OK);
+        }else{
+            if (!wmUtil.checkbin(wmToUpGoods.getKuWeiBianMa())) {
+                D0.setOK(false);
+                D0.setErrorMsg("储位不存在");
+                return new ResponseEntity(D0, HttpStatus.OK);            }
+        }
+
+
 		//保存
 		try{
 			D0.setOK(true);
@@ -466,7 +476,9 @@ public class WmToUpGoodsController extends BaseController {
 				List<WmToUpGoodsEntity> wmToUpGoodsEntity = systemService.findByProperty(WmToUpGoodsEntity.class,"wmToUpId",wmToUpGoods.getWmToUpId());
 				if(wmToUpGoodsEntity!=null&&wmToUpGoodsEntity.size()>0){
 					D0.setOK(false);
-					return new ResponseEntity(D0, HttpStatus.OK);
+                    D0.setErrorMsg("已经上架，不能重复上架");
+
+                    return new ResponseEntity(D0, HttpStatus.OK);
 				}
 			}
 
