@@ -216,7 +216,6 @@ function downloadqrcode() {
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>体积</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>规格</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>拣货</td>
-
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>托盘/保质期</td>
 			<td class=xl65 style='border:1.0pt solid black;text-align: center'>二维码</td>
 

@@ -902,25 +902,7 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/sapjco3.jar</systemPath>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.jeewx</groupId>-->
-			<!--<artifactId>jeewx-api</artifactId>-->
-			<!--<version>1.2.0</version>-->
-		<!--</dependency>-->
-		<!--yoongyou begin-->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.3.2</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>4.3.1</version>
-		</dependency>
-		<!--用友end-->
+
 
 
 		<!-- codegenerate -->
@@ -940,7 +922,25 @@
 			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/jodconverter-3.0-beta-4-20170917.jar</systemPath>
 		</dependency>
 
-
+		<!--<dependency>-->
+		<!--<groupId>org.jeewx</groupId>-->
+		<!--<artifactId>jeewx-api</artifactId>-->
+		<!--<version>1.2.0</version>-->
+		<!--</dependency>-->
+		<!--yoongyou begin-->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+		<!--用友end-->
 		<!-- swagger  start -->
 		<dependency>
 			<groupId>io.springfox</groupId>
