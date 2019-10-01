@@ -57,6 +57,14 @@ public class wmUtil {
 
 		Map<String, Object> countMap = systemService
 				.findOneForJdbc("SELECT cast(right(ifnull((notice_id),0),4)+1  as SIGNED) as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW()) order by create_date desc limit 1");
+		int newcount = 0;
+
+		try{
+			newcount=	((Long) countMap.get("count")).intValue();
+		}catch (Exception e){
+			newcount = 1;
+		}
+
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "01";
 		}
@@ -66,35 +74,35 @@ public class wmUtil {
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
+						newcount, 4,
 						'0');
 			}else if(orderType.equals("01")){
 				noticeid = "RK"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
+						newcount, 4,
 						'0');
 			}else if(orderType.equals("04")){
 				noticeid = "YK"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
+						newcount, 4,
 						'0');
 			}else if(orderType.equals("09")){
 				noticeid = "QTRK"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
+						newcount, 4,
 						'0');
 			}else {
 				noticeid = "QT"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 						+ "-"
 						+ StringUtil.leftPad(
-						((Long) countMap.get("count")).intValue(), 4,
+						newcount, 4,
 						'0');
 			}
 
@@ -109,6 +117,13 @@ public class wmUtil {
 		Map<String, Object> countMap = systemService
 				.findOneForJdbc("SELECT cast(right(ifnull((om_notice_id),0),4)+1 as SIGNED) as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW()) order by create_date desc limit 1");
 		String noticeid = null;
+		int newcount = 0;
+
+		try{
+			newcount=	((Long) countMap.get("count")).intValue();
+		}catch (Exception e){
+			newcount = 1;
+		}
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "11";
 		}
@@ -117,21 +132,21 @@ public class wmUtil {
 					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 					+ "-"
 					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
+					newcount, 4,
 					'0');
 		}else if (orderType.equals("11")){
 			noticeid = "CK"
 					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 					+ "-"
 					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
+					newcount, 4,
 					'0');
 		}else {
 			noticeid = "QT"
 					+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
 					+ "-"
 					+ StringUtil.leftPad(
-					((Long) countMap.get("count")).intValue(), 4,
+					newcount, 4,
 					'0');
 		}
 		return  noticeid;
