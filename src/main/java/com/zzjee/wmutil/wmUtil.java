@@ -57,7 +57,7 @@ public class wmUtil {
 
 		Map<String, Object> countMap = systemService
 				.findOneForJdbc("SELECT cast(right(ifnull((notice_id),0),4)+1  as SIGNED) as count FROM wm_im_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW()) order by create_date desc limit 1");
-		int newcount = 0;
+		int newcount = 1;
 
 		try{
 			newcount=	((Long) countMap.get("count")).intValue();
@@ -68,7 +68,6 @@ public class wmUtil {
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "01";
 		}
-		if (countMap != null) {
 			if(orderType.equals("03")){
 				noticeid = "TH"
 						+ DateUtils.date2Str(new Date(), DateUtils.yyyyMMdd)
@@ -107,7 +106,7 @@ public class wmUtil {
 			}
 
 
-		}
+
 		return  noticeid;
 	}
 
@@ -117,13 +116,12 @@ public class wmUtil {
 		Map<String, Object> countMap = systemService
 				.findOneForJdbc("SELECT cast(right(ifnull((om_notice_id),0),4)+1 as SIGNED) as count FROM wm_om_notice_h  t where  TO_DAYS(t.create_date) = TO_DAYS(NOW()) order by create_date desc limit 1");
 		String noticeid = null;
-		int newcount = 0;
+		int newcount = 1;
 
 		try{
 			newcount=	((Long) countMap.get("count")).intValue();
 		}catch (Exception e){
-			newcount = 1;
-		}
+ 		}
 		if (StringUtil.isEmpty(orderType)){
 			orderType = "11";
 		}
