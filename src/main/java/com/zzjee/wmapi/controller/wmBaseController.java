@@ -1,6 +1,9 @@
 package com.zzjee.wmapi.controller;
 
 import com.zzjee.api.ResultDO;
+import com.zzjee.md.entity.MdGoodsEntity;
+import com.zzjee.wmapi.entity.WmToDownGoodsErpEntity;
+import com.zzjee.wmapi.entity.WmToUpGoodsErpEntity;
 import com.zzjee.wmapi.entity.WvGiEntity;
 import com.zzjee.wmapi.service.WvGiServiceI;
 import com.zzjee.wmutil.wmUtil;
@@ -62,8 +65,8 @@ public class wmBaseController extends BaseController {
 
 //	@Autowired
 //	private WvGiServiceI wvGiService;
-//	@Autowired
-//	private SystemService systemService;
+	@Autowired
+	private SystemService systemService;
 //	@Autowired
 //	private Validator validator;
 	/**
@@ -193,5 +196,53 @@ public class wmBaseController extends BaseController {
 			}
 		}
 	}
+	@RequestMapping(value="geterpim",method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<?>  listim( @RequestParam(value="username", required=false) String username,
+									@RequestParam(value="all", required=false)String all,
 
+									@RequestParam(value="searchstr", required=false)String searchstr,
+									@RequestParam(value="searchstr2", required=false)String searchstr2,
+									@RequestParam(value="searchstrin1", required=false)String searchstrin1,
+									@RequestParam(value="searchstrin2", required=false)String searchstrin2,
+									@RequestParam(value="searchstrin3", required=false)String searchstrin3) {
+
+
+		ResultDO D0 = new  ResultDO();
+
+		String hql = " from WmToUpGoodsErpEntity where 1 = 1  ";
+		D0.setOK(true);
+
+		List<WmToUpGoodsErpEntity> listerp = systemService.findHql(hql);
+		D0.setOK(true);
+
+
+		D0.setObj(listerp);
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
+
+	@RequestMapping(value="geterpom",method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<?>  listom( @RequestParam(value="username", required=false) String username,
+									@RequestParam(value="all", required=false)String all,
+
+									@RequestParam(value="searchstr", required=false)String searchstr,
+									@RequestParam(value="searchstr2", required=false)String searchstr2,
+									@RequestParam(value="searchstrin1", required=false)String searchstrin1,
+									@RequestParam(value="searchstrin2", required=false)String searchstrin2,
+									@RequestParam(value="searchstrin3", required=false)String searchstrin3) {
+
+
+		ResultDO D0 = new  ResultDO();
+
+		String hql = " from WmToDownGoodsErpEntity where 1 = 1  ";
+		D0.setOK(true);
+
+		List<WmToDownGoodsErpEntity> listerp = systemService.findHql(hql);
+		D0.setOK(true);
+
+
+		D0.setObj(listerp);
+		return new ResponseEntity(D0, HttpStatus.OK);
+	}
 }
