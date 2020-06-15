@@ -42,7 +42,7 @@
 		<log4j.version>1.2.16</log4j.version>
 		<classmate.version>0.5.4</classmate.version>
 		<commons-beanutils.version>1.7.0</commons-beanutils.version>
-		<commons-collections.version>3.2.1</commons-collections.version>
+		<commons-collections.version>3.2.2</commons-collections.version>
 		<commons-chain.version>1.2</commons-chain.version>
 		<commons-codec.version>1.6</commons-codec.version>
 		<commons-digester.version>2.0</commons-digester.version>
