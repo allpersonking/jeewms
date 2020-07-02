@@ -68,7 +68,7 @@
 		<commons-pool.version>1.6</commons-pool.version>
 		<commons-dbcp.version>1.4</commons-dbcp.version>
 		<druid.version>0.2.9</druid.version>
-		<mysql.version>5.1.27</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<!-- sqlserver2005 -->
 		<sqlserver.version>4.0</sqlserver.version>
 		<!-- oracle -->
