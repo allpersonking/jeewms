@@ -12,7 +12,7 @@
 
 		<guava.version>16.0.1</guava.version>
 		<spring.version>4.0.9.RELEASE</spring.version>
-		<hibernate.version>4.1.0.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 		<hibernate-common-annotations.version>4.0.2.Final</hibernate-common-annotations.version>
 		<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
 
