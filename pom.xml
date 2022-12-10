@@ -11,7 +11,7 @@
 		<minidao.version>1.6-SNAPSHOT</minidao.version>
 
 		<guava.version>16.0.1</guava.version>
-		<spring.version>4.0.9.RELEASE</spring.version>
+		<spring.version>6.0.0</spring.version>
 		<hibernate.version>4.1.0.Final</hibernate.version>
 		<hibernate-common-annotations.version>4.0.2.Final</hibernate-common-annotations.version>
 		<hibernate-jpa.version>1.0.1.Final</hibernate-jpa.version>
